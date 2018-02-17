@@ -18,7 +18,6 @@ export const StyledSlideContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-family: Montserrat;
-  font-size: 200%;
   overflow: hidden;
   position: relative;
 
@@ -37,7 +36,7 @@ export const StyledSlideContainer = styled.div`
 
   ol,
   ul {
-    margin-left: 1.5em;
+    padding-left: 1.5em;
   }
 `
 
@@ -47,7 +46,7 @@ export const StyledSlide = styled.div`
   height: 100%;
   justify-content: center;
   left: 0;
-  padding: 2rem;
+  padding: 2em;
   position: absolute;
   top: 0;
   width: 100%;

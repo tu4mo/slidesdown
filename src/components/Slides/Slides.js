@@ -20,7 +20,7 @@ class Slides extends Component {
 
   handleResize = e => {
     this.setState({
-      fontSize: this.slidesRef.clientWidth * 0.1
+      fontSize: this.slidesRef.clientWidth * 0.2
     })
   }
 
