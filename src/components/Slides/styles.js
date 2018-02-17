@@ -7,23 +7,22 @@ export const StyledSlides = styled.div`
   left: 0;
   overflow: auto;
   position: absolute;
-  padding: 1rem;
+  padding: 2rem;
   top: 0;
   width: 100%;
 `
 
 export const StyledSlideContainer = styled.div`
   background-color: #fff;
-  border: 1px solid #eee;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  font-family: Montserrat;
   overflow: hidden;
   padding-top: 56.25%;
   position: relative;
 
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   h1 {

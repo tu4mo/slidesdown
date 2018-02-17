@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 const StyledTextarea = styled.textarea`
   border: 0;
-  font-family: Inconsolata;
+  color: #646468;
+  font-family: ${props => props.theme.fonts.monospace};
   font-size: 16px;
   height: 100%;
   left: 0;

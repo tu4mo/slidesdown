@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { BrowserRouter, Route } from 'react-router-dom'
 
-import Editor from './components/Editor'
-import Logo from './components/Logo'
-import Slides from './components/Slides'
-
-import {
-  injectGlobalStyles,
-  StyledMain,
-  StyledHeader,
-  StyledSidebar,
-  StyledSlidesContainer
-} from './styles.js'
+import { injectGlobalStyles, StyledMain } from './styles.js'
+import theme from './theme'
+import SlidesEditor from './views/SlidesEditor'
 
 injectGlobalStyles()
 
@@ -22,25 +16,30 @@ class App extends Component {
       '## A list!\n\n- Awesome\n\n1. Yeah!'
   }
 
-  handleEditorOnChange = e => {
-    this.setState({ markdown: e.target.value })
+  handleEditorChange = markdown => {
+    this.setState({ markdown })
   }
 
   render() {
     const { markdown } = this.state
 
     return (
-      <StyledMain>
-        <StyledHeader>
-          <Logo />
-        </StyledHeader>
-        <StyledSidebar>
-          <Editor onChange={this.handleEditorOnChange} value={markdown} />
-        </StyledSidebar>
-        <StyledSlidesContainer>
-          <Slides markdown={markdown} />
-        </StyledSlidesContainer>
-      </StyledMain>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <StyledMain>
+            <Route
+              path="/:slidesId?"
+              render={props => (
+                <SlidesEditor
+                  {...props}
+                  markdown={markdown}
+                  onEditorChange={this.handleEditorChange}
+                />
+              )}
+            />
+          </StyledMain>
+        </BrowserRouter>
+      </ThemeProvider>
     )
   }
 }

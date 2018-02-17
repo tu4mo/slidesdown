@@ -5,7 +5,6 @@ import logoSvg from './logo.svg'
 
 const StyledLogo = styled.div`
   align-items: center;
-  font-family: Montserrat;
   font-weight: bold;
   display: flex;
 `
@@ -13,6 +12,7 @@ const StyledLogo = styled.div`
 const StyledImg = styled.img`
   height: 40px;
   margin-right: 0.5rem;
+  width: 40px;
 `
 
 const Logo = () => (
