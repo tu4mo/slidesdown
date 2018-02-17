@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
 import Editor from './components/Editor'
+import Logo from './components/Logo'
 import Slides from './components/Slides'
 
 import {
   injectGlobalStyles,
   StyledMain,
+  StyledHeader,
   StyledSidebar,
   StyledSlidesContainer
 } from './styles.js'
@@ -29,6 +31,9 @@ class App extends Component {
 
     return (
       <StyledMain>
+        <StyledHeader>
+          <Logo />
+        </StyledHeader>
         <StyledSidebar>
           <Editor onChange={this.handleEditorOnChange} value={markdown} />
         </StyledSidebar>

@@ -12,7 +12,8 @@ export const injectGlobalStyles = () => injectGlobal`
 `
 
 export const StyledMain = styled.div`
-  display: flex;
+  display: grid;
+  grid-template: 'header header' 64px 'editor slides' auto / 1fr 3fr;
   height: 100%;
   left: 0;
   position: absolute;
@@ -20,13 +21,21 @@ export const StyledMain = styled.div`
   width: 100%;
 `
 
+export const StyledHeader = styled.div`
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  grid-area: header;
+  padding: 0 1rem;
+`
+
 export const StyledSidebar = styled.div`
   border-right: 1px solid #eee;
-  flex: 0 0 300px;
+  grid-area: editor;
   position: relative;
 `
 
 export const StyledSlidesContainer = styled.div`
-  flex: 1 1 auto;
+  grid-area: slides;
   position: relative;
 `
