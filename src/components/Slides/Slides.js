@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import throttle from 'lodash.throttle'
 
 import Slide from '../Slide'
 
@@ -24,11 +25,13 @@ class Slides extends Component {
     window.removeEventListener('resize', this.handleResize)
   }
 
-  handleResize = e => {
-    this.setState({
-      fontSize: this.slidesRef.clientWidth * 0.2
-    })
-  }
+  handleResize = throttle(
+    () =>
+      this.setState({
+        fontSize: this.slidesRef.clientWidth * 0.2
+      }),
+    100
+  )
 
   render() {
     const { markdown } = this.props
