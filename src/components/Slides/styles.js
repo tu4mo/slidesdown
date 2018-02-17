@@ -35,7 +35,8 @@ export const StyledSlideContainer = styled.div`
     text-align: center;
   }
 
-  ol, ul {
+  ol,
+  ul {
     margin-left: 1.5em;
   }
 `

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.html --public-url ./",
+    "format": "prettier --no-semi --single-quote --write \"**/*.{js,md}\"",
     "start": "parcel src/index.html"
   },
   "keywords": [
@@ -17,7 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "parcel-bundler": "^1.6.1"
+    "parcel-bundler": "^1.6.1",
+    "prettier": "^1.10.2"
   },
   "dependencies": {
     "react": "^16.2.0",
