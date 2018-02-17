@@ -19,12 +19,8 @@ export const StyledSlideContainer = styled.div`
   flex-direction: column;
   font-family: Montserrat;
   overflow: hidden;
+  padding-top: 56.25%;
   position: relative;
-
-  &::before {
-    content: '';
-    padding-top: 56.25%;
-  }
 
   &:not(:last-child) {
     margin-bottom: 1rem;
