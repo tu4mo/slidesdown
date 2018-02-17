@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
 import { StyledSlides, StyledSlideContainer, StyledSlide } from './styles'
 
 class Slides extends Component {
+  static propTypes = {
+    markdown: PropTypes.string
+  }
+
   state = {
     fontSize: 100
   }

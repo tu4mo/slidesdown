@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledTextarea = styled.textarea`
@@ -23,5 +24,10 @@ const Editor = ({ onChange, value }) => (
     value={value}
   />
 )
+
+Editor.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string
+}
 
 export default Editor
