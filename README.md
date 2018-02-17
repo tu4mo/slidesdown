@@ -1,3 +1,3 @@
-<center><img src="./logo.svg" width="256"></center>
+<p align="center"><img src="./logo.svg" width="256"></p>
 
-# <center>Slidesdown</center>
+<h1 align="center">Slidesdown</h1>
