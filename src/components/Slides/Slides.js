@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Markdown from 'react-markdown'
 
-import { StyledSlides, StyledSlideContainer, StyledSlide } from './styles'
+import Slide from '../Slide'
+
+import { StyledSlides } from './styles'
 
 class Slides extends Component {
   static propTypes = {
@@ -38,13 +39,11 @@ class Slides extends Component {
         fontSize={fontSize}
         innerRef={ref => (this.slidesRef = ref)}
       >
-        {markdown.split('---').map(slide => (
-          <StyledSlideContainer key={slide}>
-            <StyledSlide>
-              <Markdown source={slide} />
-            </StyledSlide>
-          </StyledSlideContainer>
-        ))}
+        {markdown
+          .split('---')
+          .map(slideMarkdown => (
+            <Slide key={slideMarkdown} markdown={slideMarkdown} />
+          ))}
       </StyledSlides>
     )
   }
