@@ -19,25 +19,26 @@ import {
 class SlidesEditor extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    markdown: PropTypes.string.isRequired,
-    onEditorChange: PropTypes.func.isRequired
+    match: PropTypes.object.isRequired
   }
 
   state = {
+    markdown:
+      '# Welcome to *Slidesdown*\n\n---\n\n' +
+      '✨ Write markdown, get slides! ✨\n\n---\n\n' +
+      '## A list!\n\n- Awesome\n\n1. Yeah!',
     isLoading: true,
     isShared: false
   }
 
   componentDidMount() {
-    const { history, match, onEditorChange } = this.props
+    const { history, match } = this.props
     const { slidesId } = match.params
 
     if (slidesId) {
       getSlides(slidesId)
         .then(slide => {
-          onEditorChange(slide.markdown)
-          this.setState({ isLoading: false })
+          this.setState({ isLoading: false, markdown: slide.markdown })
         })
         .catch(err => {
           console.error(err)
@@ -49,18 +50,19 @@ class SlidesEditor extends Component {
     }
   }
 
-  handleShareClick = e => {
-    const { history, markdown } = this.props
+  handleEditorChange = e => {
+    this.setState({ markdown: e.target.value })
+  }
 
-    saveSlides({ markdown }).then(slidesId => {
+  handleShareClick = e => {
+    saveSlides({ markdown: this.state.markdown }).then(slidesId => {
       this.setState({ isShared: true })
-      history.push(slidesId)
+      this.props.history.push(slidesId)
     })
   }
 
   render() {
-    const { markdown, onEditorChange } = this.props
-    const { isLoading, isShared } = this.state
+    const { isLoading, isShared, markdown } = this.state
 
     return (
       <Fragment>
@@ -76,10 +78,7 @@ class SlidesEditor extends Component {
         {!isLoading && (
           <Fragment>
             <StyledSidebar>
-              <Editor
-                onChange={e => onEditorChange(e.target.value)}
-                value={markdown}
-              />
+              <Editor onChange={this.handleEditorChange} value={markdown} />
             </StyledSidebar>
             <StyledSlidesContainer>
               <Slides markdown={markdown} />
