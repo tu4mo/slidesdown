@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import throttle from 'lodash.throttle'
 
 import { getSlides, saveSlides } from '../../firebase'
 
@@ -16,6 +17,11 @@ import {
   StyledSlidesContainer
 } from './styles'
 
+const defaultMarkdown =
+  '# Welcome to *Slidesdown*\n\n---\n\n' +
+  '✨ Write markdown, get slides! ✨\n\n---\n\n' +
+  '## A list!\n\n- Awesome\n\n1. Yeah!'
+
 class SlidesEditor extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -23,12 +29,9 @@ class SlidesEditor extends Component {
   }
 
   state = {
-    markdown:
-      '# Welcome to *Slidesdown*\n\n---\n\n' +
-      '✨ Write markdown, get slides! ✨\n\n---\n\n' +
-      '## A list!\n\n- Awesome\n\n1. Yeah!',
     isLoading: true,
-    isShared: false
+    isShared: false,
+    markdown: ''
   }
 
   componentDidMount() {
@@ -46,12 +49,16 @@ class SlidesEditor extends Component {
           history.push('/')
         })
     } else {
-      this.setState({ isLoading: false })
+      this.setState({
+        isLoading: false,
+        markdown: window.localStorage.getItem('markdown') || defaultMarkdown
+      })
     }
   }
 
   handleEditorChange = e => {
     this.setState({ markdown: e.target.value })
+    this.setLocalStorageItem(e.target.value)
   }
 
   handleShareClick = e => {
@@ -60,6 +67,11 @@ class SlidesEditor extends Component {
       this.props.history.push(slidesId)
     })
   }
+
+  setLocalStorageItem = throttle(
+    value => window.localStorage.setItem('markdown', value),
+    1000
+  )
 
   render() {
     const { isLoading, isShared, markdown } = this.state
