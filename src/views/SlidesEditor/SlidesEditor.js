@@ -1,67 +1,66 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import throttle from 'lodash.throttle'
+import { connect } from 'unistore/react'
 
-import { getSlides, saveSlides } from '../../firebase'
+import { saveSlides } from '../../firebase'
+import { actions } from '../../store'
 
 import ShareDialog from './ShareDialog'
 
 import Button from '../../components/Button'
+import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
 import Logo from '../../components/Logo'
 import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
 
 import {
+  StyledMain,
   StyledHeader,
   StyledStatus,
   StyledSidebar,
   StyledSlidesContainer
 } from './styles'
 
-const defaultMarkdown =
-  '# Welcome to *Slidesdown*\n\n---\n\n' +
-  '✨ Write markdown, get slides! ✨\n\n---\n\n' +
-  '## A list!\n\n- Awesome\n\n1. Yeah!'
-
 class SlidesEditor extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    markdown: PropTypes.string,
+    match: PropTypes.object.isRequired,
+    setMarkdown: PropTypes.func.isRequired
   }
 
   state = {
-    isLoading: true,
     isShared: false,
-    isSharing: false,
-    markdown: ''
+    isSharing: false
   }
 
-  componentDidMount() {
-    const { history, match } = this.props
+  async componentDidMount() {
+    const { history, loadMarkdown, match } = this.props
     const { slidesId } = match.params
 
     if (slidesId) {
-      getSlides(slidesId)
-        .then(slide => {
-          this.setState({ isLoading: false, markdown: slide.markdown })
-        })
-        .catch(err => {
-          console.error(err)
-          this.setState({ isLoading: false })
-          history.push('/')
-        })
+      try {
+        await loadMarkdown(slidesId)
+      } catch (err) {
+        console.error(err)
+        history.push('/')
+      }
     } else {
-      this.setState({
-        isLoading: false,
-        markdown: window.localStorage.getItem('markdown') || defaultMarkdown
-      })
+      this.setState({ isLoading: false })
     }
   }
 
   handleEditorChange = e => {
-    this.setState({ markdown: e.target.value })
-    this.setLocalStorageItem(e.target.value)
+    this.props.setMarkdown(e.target.value)
+  }
+
+  handlePresentationClick = e => {
+    const { history, match } = this.props
+    const { slidesId } = match.params
+
+    history.push(`presentation${slidesId ? `/${match.params.slidesId}` : ''}`)
   }
 
   handleShareClick = e => {
@@ -69,9 +68,11 @@ class SlidesEditor extends Component {
   }
 
   handleGetUrlClick = () => {
-    saveSlides({ markdown: this.state.markdown }).then(slidesId => {
+    const { history, markdown } = this.props
+
+    saveSlides({ markdown }).then(slidesId => {
       this.setState({ isSharing: false, isShared: true })
-      this.props.history.push(slidesId)
+      history.push(slidesId)
     })
   }
 
@@ -79,25 +80,24 @@ class SlidesEditor extends Component {
     this.setState({ isSharing: false })
   }
 
-  setLocalStorageItem = throttle(
-    value => window.localStorage.setItem('markdown', value),
-    1000
-  )
-
   render() {
-    const { isLoading, isShared, isSharing, markdown } = this.state
+    const { isShared, isSharing } = this.state
+    const { isLoading, markdown } = this.props
 
     return (
-      <Fragment>
+      <StyledMain>
         <StyledHeader>
           <Logo />
           <StyledStatus>
             {isShared && (
               <Notification>New URL created. Copy it to share.</Notification>
             )}
-            <Button disabled={isShared} onClick={this.handleShareClick}>
-              Share
-            </Button>
+            <ButtonGroup>
+              <Button onClick={this.handlePresentationClick}>
+                Presentation
+              </Button>
+              <Button onClick={this.handleShareClick}>Share</Button>
+            </ButtonGroup>
           </StyledStatus>
         </StyledHeader>
         {!isLoading && (
@@ -116,9 +116,9 @@ class SlidesEditor extends Component {
             onClose={this.handleClose}
           />
         )}
-      </Fragment>
+      </StyledMain>
     )
   }
 }
 
-export default SlidesEditor
+export default connect('isLoading, markdown', actions)(SlidesEditor)

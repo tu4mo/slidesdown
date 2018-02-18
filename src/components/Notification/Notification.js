@@ -7,6 +7,10 @@ const StyledNotification = styled.div`
 `
 
 class Notification extends Component {
+  static propTypes = {
+    timeout: PropTypes.number
+  }
+
   state = {
     hasTimedOut: false
   }
@@ -14,7 +18,7 @@ class Notification extends Component {
   componentDidMount() {
     this.timer = setTimeout(() => {
       this.setState({ hasTimedOut: true })
-    }, 15000)
+    }, this.props.timeout || 15000)
   }
 
   componentWillUnmount() {

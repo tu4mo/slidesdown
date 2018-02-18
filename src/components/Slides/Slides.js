@@ -4,10 +4,11 @@ import throttle from 'lodash.throttle'
 
 import Slide from '../Slide'
 
-import { StyledSlides } from './styles'
+import { StyledSingleSlideContainer, StyledSlidesContainer } from './styles'
 
 class Slides extends Component {
   static propTypes = {
+    isSingle: PropTypes.bool,
     markdown: PropTypes.string
   }
 
@@ -30,12 +31,24 @@ class Slides extends Component {
   handleResize = throttle(() => {
     const computedStyle = window.getComputedStyle(this.slidesRef)
 
-    const width =
+    const maxWidth =
       this.slidesRef.clientWidth -
       parseInt(computedStyle.paddingLeft, 10) -
       parseInt(computedStyle.paddingRight, 10)
 
-    const height = width / 16 * 9
+    const maxHeight =
+      this.slidesRef.clientHeight -
+      parseInt(computedStyle.paddingBottom, 10) -
+      parseInt(computedStyle.paddingTop, 10)
+
+    let width = maxWidth
+    let height = maxHeight
+
+    if (maxHeight > maxWidth * 0.5625) {
+      height = maxWidth * 0.5625
+    } else {
+      width = maxHeight / 0.5625
+    }
 
     this.setState({
       height,
@@ -45,23 +58,29 @@ class Slides extends Component {
   }, 100)
 
   render() {
-    const { markdown } = this.props
+    const { isSingle, markdown } = this.props
     const { height, scale, width } = this.state
 
-    return (
-      <StyledSlides innerRef={ref => (this.slidesRef = ref)}>
-        {markdown
-          .split('---')
-          .map(slideMarkdown => (
-            <Slide
-              height={height}
-              key={slideMarkdown}
-              markdown={slideMarkdown}
-              scale={scale}
-              width={width}
-            />
-          ))}
-      </StyledSlides>
+    const slides = markdown
+      .split('---')
+      .map(slideMarkdown => (
+        <Slide
+          height={height}
+          key={slideMarkdown}
+          markdown={slideMarkdown}
+          scale={scale}
+          width={width}
+        />
+      ))
+
+    return isSingle ? (
+      <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
+        {slides}
+      </StyledSingleSlideContainer>
+    ) : (
+      <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
+        {slides}
+      </StyledSlidesContainer>
     )
   }
 }

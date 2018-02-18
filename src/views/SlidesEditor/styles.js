@@ -1,5 +1,15 @@
 import styled from 'styled-components'
 
+export const StyledMain = styled.div`
+  display: grid;
+  grid-template: 'header header' 64px 'editor slides' auto / 1fr 3fr;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+`
+
 export const StyledHeader = styled.div`
   align-items: center;
   border-bottom: 1px solid ${props => props.theme.colors.border};
