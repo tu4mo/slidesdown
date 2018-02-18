@@ -4,6 +4,8 @@ import throttle from 'lodash.throttle'
 
 import { getSlides, saveSlides } from '../../firebase'
 
+import ShareDialog from './ShareDialog'
+
 import Button from '../../components/Button'
 import Editor from '../../components/Editor'
 import Logo from '../../components/Logo'
@@ -31,6 +33,7 @@ class SlidesEditor extends Component {
   state = {
     isLoading: true,
     isShared: false,
+    isSharing: false,
     markdown: ''
   }
 
@@ -62,10 +65,18 @@ class SlidesEditor extends Component {
   }
 
   handleShareClick = e => {
+    this.setState({ isSharing: true })
+  }
+
+  handleGetUrlClick = () => {
     saveSlides({ markdown: this.state.markdown }).then(slidesId => {
-      this.setState({ isShared: true })
+      this.setState({ isSharing: false, isShared: true })
       this.props.history.push(slidesId)
     })
+  }
+
+  handleClose = () => {
+    this.setState({ isSharing: false })
   }
 
   setLocalStorageItem = throttle(
@@ -74,7 +85,7 @@ class SlidesEditor extends Component {
   )
 
   render() {
-    const { isLoading, isShared, markdown } = this.state
+    const { isLoading, isShared, isSharing, markdown } = this.state
 
     return (
       <Fragment>
@@ -84,7 +95,9 @@ class SlidesEditor extends Component {
             {isShared && (
               <Notification>New URL created. Copy it to share.</Notification>
             )}
-            <Button onClick={this.handleShareClick}>Share</Button>
+            <Button disabled={isShared} onClick={this.handleShareClick}>
+              Share
+            </Button>
           </StyledStatus>
         </StyledHeader>
         {!isLoading && (
@@ -96,6 +109,12 @@ class SlidesEditor extends Component {
               <Slides markdown={markdown} />
             </StyledSlidesContainer>
           </Fragment>
+        )}
+        {isSharing && (
+          <ShareDialog
+            onButtonClick={this.handleGetUrlClick}
+            onClose={this.handleClose}
+          />
         )}
       </Fragment>
     )

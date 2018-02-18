@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const StyledTextarea = styled.textarea`
   border: 0;
-  color: #646468;
+  color: ${props => props.theme.colors.lightText};
   font-family: ${props => props.theme.fonts.monospace};
   font-size: 16px;
   height: 100%;

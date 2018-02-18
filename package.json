@@ -33,6 +33,7 @@
     "prettier": "^1.10.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "firebase": "^4.10.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.6.0",

@@ -9,6 +9,7 @@ export const injectGlobalStyles = () => injectGlobal`
 
   body {
     font-family: ${theme.fonts.default};
+    line-height: 1.4;
     margin: 0;
     padding: 0;
   }

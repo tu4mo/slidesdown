@@ -14,7 +14,7 @@ class Notification extends Component {
   componentDidMount() {
     this.timer = setTimeout(() => {
       this.setState({ hasTimedOut: true })
-    }, 10000)
+    }, 15000)
   }
 
   componentWillUnmount() {

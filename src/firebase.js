@@ -13,13 +13,22 @@ firebase.initializeApp({
 const db = firebase.firestore()
 
 const SLIDES_COLLECTION = 'slides'
+const VISITS_COLLECTION = 'visits'
 
-export const getSlides = id =>
-  db
+export const getSlides = async id => {
+  const doc = await db
     .collection(SLIDES_COLLECTION)
     .doc(id)
     .get()
-    .then(doc => doc.data())
+
+  if (doc) {
+    await db
+      .collection(VISITS_COLLECTION)
+      .add({ visitedAt: new Date(), slideId: id })
+  }
+
+  return doc.data()
+}
 
 export const saveSlides = ({ markdown }) =>
   db
