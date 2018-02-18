@@ -12,7 +12,9 @@ class Slides extends Component {
   }
 
   state = {
-    fontSize: 100
+    height: 0,
+    scale: 1,
+    width: 0
   }
 
   componentDidMount() {
@@ -25,27 +27,39 @@ class Slides extends Component {
     window.removeEventListener('resize', this.handleResize)
   }
 
-  handleResize = throttle(
-    () =>
-      this.setState({
-        fontSize: this.slidesRef.clientWidth * 0.2
-      }),
-    100
-  )
+  handleResize = throttle(() => {
+    const computedStyle = window.getComputedStyle(this.slidesRef)
+
+    const width =
+      this.slidesRef.clientWidth -
+      parseInt(computedStyle.paddingLeft, 10) -
+      parseInt(computedStyle.paddingRight, 10)
+
+    const height = width / 16 * 9
+
+    this.setState({
+      height,
+      scale: Math.min(width / 800, height / 450),
+      width
+    })
+  }, 100)
 
   render() {
     const { markdown } = this.props
-    const { fontSize } = this.state
+    const { height, scale, width } = this.state
 
     return (
-      <StyledSlides
-        fontSize={fontSize}
-        innerRef={ref => (this.slidesRef = ref)}
-      >
+      <StyledSlides innerRef={ref => (this.slidesRef = ref)}>
         {markdown
           .split('---')
           .map(slideMarkdown => (
-            <Slide key={slideMarkdown} markdown={slideMarkdown} />
+            <Slide
+              height={height}
+              key={slideMarkdown}
+              markdown={slideMarkdown}
+              scale={scale}
+              width={width}
+            />
           ))}
       </StyledSlides>
     )
