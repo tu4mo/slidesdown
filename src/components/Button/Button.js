@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
+  background-color: #fff;
   border: 1px solid ${props => props.theme.colors.purple};
   color: ${props => props.theme.colors.purple};
   cursor: pointer;
