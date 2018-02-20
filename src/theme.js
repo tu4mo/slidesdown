@@ -7,7 +7,7 @@ export default {
     purple: '#3023ae'
   },
   fonts: {
-    default: 'Montserrat',
+    default: 'Rubik',
     monospace: 'Inconsolata'
   }
 }
