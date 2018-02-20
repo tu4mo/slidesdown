@@ -44,10 +44,12 @@ class Slides extends Component {
     let width = maxWidth
     let height = maxHeight
 
-    if (maxHeight > maxWidth * 0.5625) {
-      height = maxWidth * 0.5625
+    const RATIO = 0.5625
+
+    if (!this.props.isSingle || maxHeight > maxWidth * RATIO) {
+      height = maxWidth * RATIO
     } else {
-      width = maxHeight / 0.5625
+      width = maxHeight / RATIO
     }
 
     this.setState({
