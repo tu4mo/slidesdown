@@ -45,13 +45,13 @@ const ShareDialog = ({ onClose, onButtonClick }) => (
     <StyledInstructions>
       <StyledInstruction>
         <StyledNumber>1.</StyledNumber>
-        Clicking <strong>Get URL</strong> will give you an unique URL to your
-        slides.
+        Clicking <strong>Create URL</strong> will save your slides to a unique
+        URL.
       </StyledInstruction>
       <StyledInstruction>
         <StyledNumber>2.</StyledNumber>
-        Anyone can access these URLs, but no one, including you, can't edit or
-        remove&sup1; them.
+        Anyone can access this URL, but no one, including you, can edit or
+        remove&sup1; it.
       </StyledInstruction>
       <StyledInstruction>
         <StyledNumber>3.</StyledNumber>
@@ -62,7 +62,7 @@ const ShareDialog = ({ onClose, onButtonClick }) => (
       &sup1;) Slides will be removed after 30 continuous days of no visitors.
     </StyledDetails>
     <StyledFooter>
-      <Button onClick={onButtonClick}>Get URL</Button>
+      <Button onClick={onButtonClick}>Create URL</Button>
     </StyledFooter>
   </Modal>
 )
