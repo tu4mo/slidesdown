@@ -63,7 +63,7 @@ class Presentation extends Component {
 
     switch (e.keyCode) {
       case 27: // ESC
-        history.push(`/${slidesId}`)
+        history.push(`/${slidesId !== '-' ? slidesId : ''}`)
         break
       case 37: // Left arrow
         this.changeSlide(false)
