@@ -58,7 +58,7 @@ class Presentation extends Component {
 
   handleKeyUp = e => {
     const { history, match } = this.props
-    const { slidesId } = match.params
+    const { slidesId = '' } = match.params
 
     switch (e.keyCode) {
       case 27: // ESC
