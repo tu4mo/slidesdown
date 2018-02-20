@@ -6,6 +6,7 @@ import { actions } from '../../store'
 
 import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
+import Spinner from '../../components/Spinner'
 
 import { StyledPresentation, StyledNoticationContainer } from './styles'
 
@@ -80,20 +81,20 @@ class Presentation extends Component {
     const { isLoading, markdown, match } = this.props
     const { slideNumber = 0 } = match.params
 
-    return (
-      !isLoading && (
-        <StyledPresentation onClick={this.changeSlide}>
-          <Slides
-            isSingle
-            markdown={splitMarkdownToSlides(markdown)[slideNumber]}
-          />
-          <StyledNoticationContainer>
-            <Notification timeout="4000">
-              Press ESC to exit, space or arrows to change slide.
-            </Notification>
-          </StyledNoticationContainer>
-        </StyledPresentation>
-      )
+    return isLoading ? (
+      <Spinner />
+    ) : (
+      <StyledPresentation onClick={this.changeSlide}>
+        <Slides
+          isSingle
+          markdown={splitMarkdownToSlides(markdown)[slideNumber]}
+        />
+        <StyledNoticationContainer>
+          <Notification timeout="4000">
+            Press ESC to exit, space or arrows to change slide.
+          </Notification>
+        </StyledNoticationContainer>
+      </StyledPresentation>
     )
   }
 }

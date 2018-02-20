@@ -13,6 +13,7 @@ import Editor from '../../components/Editor'
 import Logo from '../../components/Logo'
 import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
+import Spinner from '../../components/Spinner'
 
 import {
   StyledMain,
@@ -100,7 +101,9 @@ class SlidesEditor extends Component {
             </ButtonGroup>
           </StyledStatus>
         </StyledHeader>
-        {!isLoading && (
+        {isLoading ? (
+          <Spinner />
+        ) : (
           <Fragment>
             <StyledSidebar>
               <Editor onChange={this.handleEditorChange} value={markdown} />
