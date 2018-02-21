@@ -55,6 +55,13 @@ class SlidesEditor extends Component {
   }
 
   handleEditorChange = e => {
+    const { history, match } = this.props
+    const { slidesId } = match.params
+
+    if (slidesId) {
+      history.push('/')
+    }
+
     this.props.setMarkdown(e.target.value)
   }
 
