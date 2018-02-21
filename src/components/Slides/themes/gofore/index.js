@@ -30,20 +30,20 @@ const Theme = styled.div`
 
   ul {
     list-style-type: none;
-  }
 
-  li {
-    position: relative;
+    li {
+      position: relative;
 
-    &::before {
-      background-color: ${ORANGE};
-      border-radius: 50%;
-      content: '';
-      height: 0.5rem;
-      left: -1.5rem;
-      position: absolute;
-      top: 0.75rem;
-      width: 0.5rem;
+      &::before {
+        background-color: ${ORANGE};
+        border-radius: 50%;
+        content: '';
+        height: 0.5rem;
+        left: -1.5rem;
+        position: absolute;
+        top: 0.75rem;
+        width: 0.5rem;
+      }
     }
   }
 `
