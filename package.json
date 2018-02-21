@@ -8,7 +8,9 @@
     "deploy": "npm run build && firebase deploy",
     "format": "prettier --no-semi --single-quote --write \"**/*.{js,md}\"",
     "lint": "eslint .",
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "slides",
@@ -21,6 +23,8 @@
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^4.18.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0-beta.0",
@@ -30,8 +34,10 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.6.1",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.0",
     "parcel-bundler": "^1.6.1",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "react-test-renderer": "^16.2.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -46,5 +52,10 @@
     "react-router-dom": "^4.2.2",
     "styled-components": "^3.1.6",
     "unistore": "^3.0.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }
