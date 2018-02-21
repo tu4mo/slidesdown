@@ -6,10 +6,19 @@ import Slide from '../Slide'
 
 import { StyledSingleSlideContainer, StyledSlidesContainer } from './styles'
 
+import defaultTheme from './themes/default'
+import goforeTheme from './themes/gofore'
+
+const THEMES = {
+  default: defaultTheme,
+  gofore: goforeTheme
+}
+
 class Slides extends Component {
   static propTypes = {
     isSingle: PropTypes.bool,
-    markdown: PropTypes.string
+    markdown: PropTypes.string,
+    theme: PropTypes.string
   }
 
   state = {
@@ -60,8 +69,10 @@ class Slides extends Component {
   }, 100)
 
   render() {
-    const { isSingle, markdown } = this.props
+    const { isSingle, markdown, theme } = this.props
     const { height, scale, width } = this.state
+
+    const StyledTheme = THEMES[theme || 'default']
 
     const slides = markdown
       .split('---')
@@ -76,13 +87,17 @@ class Slides extends Component {
       ))
 
     return isSingle ? (
-      <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
-        {slides}
-      </StyledSingleSlideContainer>
+      <StyledTheme>
+        <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
+          {slides}
+        </StyledSingleSlideContainer>
+      </StyledTheme>
     ) : (
-      <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
-        {slides}
-      </StyledSlidesContainer>
+      <StyledTheme>
+        <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
+          {slides}
+        </StyledSlidesContainer>
+      </StyledTheme>
     )
   }
 }

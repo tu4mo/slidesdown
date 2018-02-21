@@ -29,7 +29,8 @@ class SlidesEditor extends Component {
     isLoading: PropTypes.bool.isRequired,
     markdown: PropTypes.string,
     match: PropTypes.object.isRequired,
-    setMarkdown: PropTypes.func.isRequired
+    setMarkdown: PropTypes.func.isRequired,
+    theme: PropTypes.string.isRequired
   }
 
   state = {
@@ -69,9 +70,9 @@ class SlidesEditor extends Component {
   }
 
   handleGetUrlClick = () => {
-    const { history, markdown } = this.props
+    const { history, markdown, theme } = this.props
 
-    saveSlides({ markdown }).then(slidesId => {
+    saveSlides({ markdown, theme }).then(slidesId => {
       this.setState({ isSharing: false, isShared: true })
       history.push(slidesId)
     })
@@ -83,7 +84,7 @@ class SlidesEditor extends Component {
 
   render() {
     const { isShared, isSharing } = this.state
-    const { isLoading, markdown } = this.props
+    const { isLoading, markdown, theme } = this.props
 
     return (
       <StyledMain>
@@ -109,7 +110,7 @@ class SlidesEditor extends Component {
               <Editor onChange={this.handleEditorChange} value={markdown} />
             </StyledSidebar>
             <StyledSlidesContainer>
-              <Slides markdown={markdown} />
+              <Slides markdown={markdown} theme={theme} />
             </StyledSlidesContainer>
           </Fragment>
         )}
@@ -124,4 +125,4 @@ class SlidesEditor extends Component {
   }
 }
 
-export default connect('isLoading, markdown', actions)(SlidesEditor)
+export default connect('isLoading, markdown, theme', actions)(SlidesEditor)

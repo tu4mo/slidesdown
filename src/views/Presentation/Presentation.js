@@ -17,7 +17,8 @@ class Presentation extends Component {
     history: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
     markdown: PropTypes.string,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    theme: PropTypes.string.isRequired
   }
 
   async componentDidMount() {
@@ -78,7 +79,7 @@ class Presentation extends Component {
   }
 
   render() {
-    const { isLoading, markdown, match } = this.props
+    const { isLoading, markdown, match, theme } = this.props
     const { slideNumber = 0 } = match.params
 
     return isLoading ? (
@@ -88,6 +89,7 @@ class Presentation extends Component {
         <Slides
           isSingle
           markdown={splitMarkdownToSlides(markdown)[slideNumber]}
+          theme={theme}
         />
         <StyledNoticationContainer>
           <Notification timeout="4000">
@@ -99,4 +101,4 @@ class Presentation extends Component {
   }
 }
 
-export default connect('isLoading, markdown', actions)(Presentation)
+export default connect('isLoading, markdown, theme', actions)(Presentation)

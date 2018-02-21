@@ -40,7 +40,7 @@ export const StyledSlide = styled.div`
   height: 100%;
   justify-content: center;
   left: 0;
-  padding: 2em;
+  padding: 2rem;
   position: absolute;
   top: 0;
   width: 100%;

@@ -1,5 +1,6 @@
 import createStore from 'unistore'
 import throttle from 'lodash.throttle'
+import queryString from 'query-string'
 
 import { getSlides } from './firebase'
 
@@ -8,9 +9,13 @@ const defaultMarkdown =
   '✨ Write markdown, get slides! ✨\n\n---\n\n' +
   '## A list!\n\n- Awesome\n\n1. Yeah!'
 
+const getThemeFromUrl = () =>
+  queryString.parse(window.location.search).theme
+
 export const store = createStore({
   isLoading: false,
-  markdown: window.localStorage.getItem('markdown') || defaultMarkdown
+  markdown: window.localStorage.getItem('markdown') || defaultMarkdown,
+  theme: getThemeFromUrl() || 'default'
 })
 
 export const actions = store => ({
