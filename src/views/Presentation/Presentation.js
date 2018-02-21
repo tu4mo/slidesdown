@@ -84,7 +84,7 @@ class Presentation extends Component {
     return isLoading ? (
       <Spinner />
     ) : (
-      <StyledPresentation onClick={this.changeSlide}>
+      <StyledPresentation>
         <Slides
           isSingle
           markdown={splitMarkdownToSlides(markdown)[slideNumber]}
