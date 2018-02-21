@@ -10,8 +10,6 @@ import Spinner from '../../components/Spinner'
 
 import { StyledPresentation, StyledNoticationContainer } from './styles'
 
-const splitMarkdownToSlides = markdown => markdown.split('---')
-
 class Presentation extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -42,13 +40,13 @@ class Presentation extends Component {
   }
 
   changeSlide = (next = true) => {
-    const { history, markdown, match } = this.props
+    const { history, match } = this.props
     const { slidesId = '-', slideNumber = 0 } = match.params
     const getSlideUrl = slideNumber =>
       `/presentation/${slidesId}/${slideNumber}`
 
     if (next) {
-      if (slideNumber < splitMarkdownToSlides(markdown).length - 1) {
+      if (slideNumber < this.slidesCount - 1) {
         history.push(getSlideUrl(parseInt(slideNumber, 10) + 1))
       }
     } else {
@@ -78,6 +76,8 @@ class Presentation extends Component {
     }
   }
 
+  handleSlidesCount = count => (this.slidesCount = count)
+
   render() {
     const { isLoading, markdown, match, theme } = this.props
     const { slideNumber = 0 } = match.params
@@ -87,8 +87,9 @@ class Presentation extends Component {
     ) : (
       <StyledPresentation>
         <Slides
-          isSingle
-          markdown={splitMarkdownToSlides(markdown)[slideNumber]}
+          markdown={markdown}
+          onSlidesCount={this.handleSlidesCount}
+          singleSlide={parseInt(slideNumber, 10)}
           theme={theme}
         />
         <StyledNoticationContainer>

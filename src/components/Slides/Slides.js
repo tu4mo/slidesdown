@@ -14,10 +14,13 @@ const THEMES = {
   gofore: goforeTheme
 }
 
+const splitMarkdownToSlides = markdown => markdown.split('---\n')
+
 class Slides extends Component {
   static propTypes = {
-    isSingle: PropTypes.bool,
     markdown: PropTypes.string,
+    onSlidesCount: PropTypes.func,
+    singleSlide: PropTypes.number,
     theme: PropTypes.string
   }
 
@@ -30,7 +33,12 @@ class Slides extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.handleResize)
 
+    this.handleSlidesCount()
     this.handleResize()
+  }
+
+  componentDidUpdate() {
+    this.handleSlidesCount()
   }
 
   componentWillUnmount() {
@@ -55,7 +63,7 @@ class Slides extends Component {
 
     const RATIO = 0.5625
 
-    if (!this.props.isSingle || maxHeight > maxWidth * RATIO) {
+    if (this.props.singleSlide === undefined || maxHeight > maxWidth * RATIO) {
       height = maxWidth * RATIO
     } else {
       width = maxHeight / RATIO
@@ -68,28 +76,31 @@ class Slides extends Component {
     })
   }, 100)
 
+  handleSlidesCount = () => {
+    const { markdown, onSlidesCount } = this.props
+    onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
+  }
+
   render() {
-    const { isSingle, markdown, theme } = this.props
+    const { singleSlide, markdown, theme } = this.props
     const { height, scale, width } = this.state
 
     const StyledTheme = THEMES[theme || 'default']
 
-    const slides = markdown
-      .split('---')
-      .map(slideMarkdown => (
-        <Slide
-          height={height}
-          key={slideMarkdown}
-          markdown={slideMarkdown}
-          scale={scale}
-          width={width}
-        />
-      ))
+    const slides = splitMarkdownToSlides(markdown).map(slideMarkdown => (
+      <Slide
+        height={height}
+        key={slideMarkdown}
+        markdown={slideMarkdown}
+        scale={scale}
+        width={width}
+      />
+    ))
 
-    return isSingle ? (
+    return singleSlide !== undefined ? (
       <StyledTheme>
         <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
-          {slides}
+          {slides[singleSlide]}
         </StyledSingleSlideContainer>
       </StyledTheme>
     ) : (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
@@ -10,21 +10,12 @@ import {
 
 import CodeBlock from './CodeBlock'
 
-class Slide extends Component {
+class Slide extends PureComponent {
   static propTypes = {
     height: PropTypes.number.isRequired,
     scale: PropTypes.number.isRequired,
     markdown: PropTypes.string,
     width: PropTypes.number.isRequired
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.height !== this.props.height ||
-      nextProps.markdown !== this.props.markdown ||
-      nextProps.scale !== this.props.scale ||
-      nextProps.width !== this.props.width
-    )
   }
 
   render() {
