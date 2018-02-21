@@ -8,6 +8,8 @@ import {
   StyledSlide
 } from './styles'
 
+import CodeBlock from './CodeBlock'
+
 class Slide extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
@@ -32,7 +34,7 @@ class Slide extends Component {
       <StyledTransformContainer width={width} height={height}>
         <StyledSlideContainer scale={scale}>
           <StyledSlide>
-            <Markdown source={markdown} />
+            <Markdown renderers={{ code: CodeBlock }} source={markdown} />
           </StyledSlide>
         </StyledSlideContainer>
       </StyledTransformContainer>
