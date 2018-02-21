@@ -13,4 +13,8 @@ export const injectGlobalStyles = () => injectGlobal`
     margin: 0;
     padding: 0;
   }
+
+  code {
+    font-family: ${theme.fonts.monospace};
+  }
 `
