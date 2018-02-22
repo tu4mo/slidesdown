@@ -29,5 +29,4 @@ const StyledSpinner = styled.div`
   }
 `
 
-
 export default StyledSpinner
