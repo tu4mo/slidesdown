@@ -14,7 +14,7 @@ const THEMES = {
   gofore: goforeTheme
 }
 
-const splitMarkdownToSlides = markdown => markdown.split('---\n')
+const splitMarkdownToSlides = markdown => markdown.split('\n---\n')
 
 class Slides extends Component {
   static propTypes = {
