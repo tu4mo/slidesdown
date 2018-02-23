@@ -106,12 +106,12 @@ class Slides extends Component {
           height={height}
           key={slideMarkdown}
           markdown={slideMarkdown}
-          scale={scale}
           ref={ref => {
             if (slideIndex === slideToFocus) {
               this.scrollToRef = ref
             }
           }}
+          scale={scale}
           width={width}
         />
       )

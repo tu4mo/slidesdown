@@ -17,10 +17,10 @@ const App = () => (
     <BrowserRouter>
       <Switch>
         <Route
-          path="/presentation/:slidesId?/:slideNumber?"
           component={Presentation}
+          path="/presentation/:slidesId?/:slideNumber?"
         />
-        <Route path="/:slidesId?" component={SlidesEditor} />
+        <Route component={SlidesEditor} path="/:slidesId?" />
       </Switch>
     </BrowserRouter>
   </ThemeProvider>

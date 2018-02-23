@@ -10,5 +10,8 @@ module.exports = {
     'prettier/react',
     'prettier/standard'
   ],
-  parser: 'babel-eslint'
+  parser: 'babel-eslint',
+  rules: {
+    'react/jsx-sort-props': 'error'
+  }
 }

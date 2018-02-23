@@ -125,8 +125,8 @@ class SlidesEditor extends Component {
             </StyledSidebar>
             <StyledSlidesContainer>
               <Slides
-                slideToFocus={slideToFocus}
                 markdown={markdown}
+                slideToFocus={slideToFocus}
                 theme={theme}
               />
             </StyledSlidesContainer>

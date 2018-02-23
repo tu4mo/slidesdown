@@ -58,8 +58,8 @@ class CodeBlock extends PureComponent {
       <pre>
         {html ? (
           <code
-            dangerouslySetInnerHTML={{ __html: html }}
             className={this.props.language}
+            dangerouslySetInnerHTML={{ __html: html }}
           />
         ) : (
           <code>{value}</code>

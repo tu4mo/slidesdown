@@ -12,7 +12,7 @@ const MARKDOWN =
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<Slide height={450} scale={1} markdown={MARKDOWN} width={800} />)
+    .create(<Slide height={450} markdown={MARKDOWN} scale={1} width={800} />)
     .toJSON()
 
   expect(tree).toMatchSnapshot()
