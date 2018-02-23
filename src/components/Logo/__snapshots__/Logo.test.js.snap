@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1 {
+  height: 40px;
+  margin-right: 0.5rem;
+  width: 40px;
+}
+
+<div
+  className="c0"
+>
+  <img
+    className="c1"
+    src="Logo"
+  />
+   Slidesdown
+</div>
+`;

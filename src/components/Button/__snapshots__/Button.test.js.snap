@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  background-color: #fff;
+  border: 1px solid #3023ae;
+  color: #3023ae;
+  cursor: pointer;
+  font-family: Rubik;
+  font-size: 1rem;
+  line-height: 2.375rem;
+  outline: none;
+  padding: 0 1rem;
+}
+
+.c0:hover:not(:disabled) {
+  background-color: #3023ae;
+  color: #fff;
+}
+
+.c0:focus {
+  outline: 1px solid #3023ae;
+  outline-offset: 1px;
+}
+
+.c0:disabled {
+  border-color: #eee;
+  color: #eee;
+  cursor: default;
+}
+
+<button
+  className="c0"
+  disabled={undefined}
+  onClick={[Function]}
+>
+  Test
+</button>
+`;

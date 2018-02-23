@@ -1,6 +1,8 @@
 import React from 'react'
-import Slide from '../Slide'
 import renderer from 'react-test-renderer'
+import 'jest-styled-components'
+
+import Slide from '../Slide'
 
 const MARKDOWN =
   '# Heading 1\n\n---\n\n' +

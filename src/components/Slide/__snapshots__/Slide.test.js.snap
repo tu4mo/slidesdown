@@ -1,17 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  position: relative;
+  height: 450px;
+  width: 800px;
+}
+
+.c0:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.c1 {
+  background-color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 450px;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  width: 800px;
+}
+
+.c1 h1 {
+  -webkit-text-align: center;
+  text-align: center;
+}
+
+.c1 ol,
+.c1 ul {
+  padding-left: 1.5em;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 150%;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 <div
-  className="sc-bdVaJa iftsku"
+  className="c0"
   height={450}
   width={800}
 >
   <div
-    className="sc-bwzfXH kLAijL"
+    className="c1"
     scale={1}
   >
     <div
-      className="slide sc-htpNat OiCPo"
+      className="slide c2"
     >
       <div>
         <h1>
