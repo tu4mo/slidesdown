@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { findDOMNode } from 'react-dom'
 import throttle from 'lodash.throttle'
 
 import Slide from '../Slide'
@@ -21,6 +22,7 @@ class Slides extends Component {
     markdown: PropTypes.string,
     onSlidesCount: PropTypes.func,
     singleSlide: PropTypes.number,
+    slideToFocus: PropTypes.number,
     theme: PropTypes.string
   }
 
@@ -35,14 +37,25 @@ class Slides extends Component {
 
     this.handleSlidesCount()
     this.handleResize()
+    this.scrollToSlide()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.handleSlidesCount()
+
+    if (prevProps.slideToFocus !== this.props.slideToFocus) {
+      this.scrollToSlide()
+    }
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize)
+  }
+
+  scrollToSlide = () => {
+    if (this.scrollToRef) {
+      this.slidesRef.scrollTop = findDOMNode(this.scrollToRef).offsetTop - 32
+    }
   }
 
   handleResize = throttle(() => {
@@ -82,20 +95,27 @@ class Slides extends Component {
   }
 
   render() {
-    const { singleSlide, markdown, theme } = this.props
+    const { singleSlide, slideToFocus, markdown, theme } = this.props
     const { height, scale, width } = this.state
 
     const StyledTheme = THEMES[theme || 'default']
 
-    const slides = splitMarkdownToSlides(markdown).map(slideMarkdown => (
-      <Slide
-        height={height}
-        key={slideMarkdown}
-        markdown={slideMarkdown}
-        scale={scale}
-        width={width}
-      />
-    ))
+    const slides = splitMarkdownToSlides(markdown).map(
+      (slideMarkdown, slideIndex) => (
+        <Slide
+          height={height}
+          key={slideMarkdown}
+          markdown={slideMarkdown}
+          scale={scale}
+          ref={ref => {
+            if (slideIndex === slideToFocus) {
+              this.scrollToRef = ref
+            }
+          }}
+          width={width}
+        />
+      )
+    )
 
     return singleSlide !== undefined ? (
       <StyledTheme>

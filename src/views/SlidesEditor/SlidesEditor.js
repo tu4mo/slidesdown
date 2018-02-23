@@ -35,7 +35,8 @@ class SlidesEditor extends Component {
 
   state = {
     isShared: false,
-    isSharing: false
+    isSharing: false,
+    slideToFocus: 0
   }
 
   async componentDidMount() {
@@ -65,6 +66,8 @@ class SlidesEditor extends Component {
     this.props.setMarkdown(e.target.value)
   }
 
+  handleEditorSlideChange = slide => this.setState({ slideToFocus: slide })
+
   handlePresentationClick = e => {
     const { history, match } = this.props
     const { slidesId } = match.params
@@ -90,7 +93,7 @@ class SlidesEditor extends Component {
   }
 
   render() {
-    const { isShared, isSharing } = this.state
+    const { isShared, isSharing, slideToFocus } = this.state
     const { isLoading, markdown, theme } = this.props
 
     return (
@@ -114,10 +117,18 @@ class SlidesEditor extends Component {
         ) : (
           <Fragment>
             <StyledSidebar>
-              <Editor onChange={this.handleEditorChange} value={markdown} />
+              <Editor
+                onChange={this.handleEditorChange}
+                onSlideChange={this.handleEditorSlideChange}
+                value={markdown}
+              />
             </StyledSidebar>
             <StyledSlidesContainer>
-              <Slides markdown={markdown} theme={theme} />
+              <Slides
+                slideToFocus={slideToFocus}
+                markdown={markdown}
+                theme={theme}
+              />
             </StyledSlidesContainer>
           </Fragment>
         )}
