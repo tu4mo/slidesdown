@@ -5,14 +5,24 @@ import logoSvg from './logo.svg'
 
 const StyledLogo = styled.div`
   align-items: center;
-  font-weight: bold;
   display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  font-weight: bold;
+
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
+    flex-direction: row;
+    font-size: 1rem;
+  }
 `
 
 const StyledImg = styled.img`
   height: 40px;
-  margin-right: 0.5rem;
   width: 40px;
+
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
+    margin-right: 0.5rem;
+  }
 `
 
 const Logo = () => (

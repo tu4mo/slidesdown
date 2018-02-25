@@ -8,10 +8,15 @@ const StyledButton = styled.button`
   color: ${props => props.theme.colors.purple};
   cursor: pointer;
   font-family: ${props => props.theme.fonts.default};
-  font-size: 1rem;
+  font-size: 0.75rem;
   line-height: 2.375rem;
   outline: none;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
+
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 
   &:hover:not(:disabled) {
     background-color: ${props => props.theme.colors.purple};

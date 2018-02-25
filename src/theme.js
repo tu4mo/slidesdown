@@ -1,4 +1,7 @@
 export default {
+  breakpoints: {
+    md: '576px'
+  },
   colors: {
     border: '#eee',
     dimText: '#a4a4a8',

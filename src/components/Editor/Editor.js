@@ -17,6 +17,7 @@ const StyledTextarea = styled.textarea`
   top: 0;
   resize: none;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
 `
 
 class Editor extends Component {

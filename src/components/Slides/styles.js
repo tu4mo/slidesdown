@@ -21,4 +21,5 @@ export const StyledSlidesContainer = styled.div`
   padding: 2rem;
   top: 0;
   width: 100%;
+  -webkit-overflow-scrolling: touch;
 `
