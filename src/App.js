@@ -3,12 +3,14 @@ import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'unistore/react'
 
+import Loadable from './components/Loadable'
+
 import { injectGlobalStyles } from './styles.js'
 import theme from './theme'
 import { store } from './store'
 
-import Presentation from './views/Presentation'
-import SlidesEditor from './views/SlidesEditor'
+const Presentation = Loadable(() => import('./views/Presentation'))
+const SlidesEditor = Loadable(() => import('./views/SlidesEditor'))
 
 injectGlobalStyles()
 
