@@ -7,10 +7,10 @@ exports[`renders correctly 1`] = `
   color: #3023ae;
   cursor: pointer;
   font-family: Rubik;
-  font-size: 1rem;
+  font-size: 0.75rem;
   line-height: 2.375rem;
   outline: none;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
 }
 
 .c0:hover:not(:disabled) {
@@ -27,6 +27,13 @@ exports[`renders correctly 1`] = `
   border-color: #eee;
   color: #eee;
   cursor: default;
+}
+
+@media (min-width:576px) {
+  .c0 {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }
 
 <button
