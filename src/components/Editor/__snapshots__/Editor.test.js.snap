@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  border: 0;
+  color: #646468;
+  font-family: Inconsolata;
+  font-size: 16px;
+  height: 100%;
+  left: 0;
+  outline: none;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  resize: none;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+<textarea
+  autoFocus={true}
+  className="c0"
+  onChange={[MockFunction]}
+  onClick={[Function]}
+  onKeyUp={[Function]}
+  placeholder="Write markdown here"
+  value="Test"
+/>
+`;
