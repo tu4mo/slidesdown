@@ -8,6 +8,7 @@ const StyledNotification = styled.div`
 
 class Notification extends Component {
   static propTypes = {
+    children: PropTypes.node,
     timeout: PropTypes.number
   }
 
@@ -31,10 +32,6 @@ class Notification extends Component {
 
     return !hasTimedOut && <StyledNotification>{children}</StyledNotification>
   }
-}
-
-Notification.propTypes = {
-  children: PropTypes.node
 }
 
 export default Notification
