@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  color: #c86dd7;
+}
+
+<div
+  className="c0"
+>
+  Test
+</div>
+`;
+
+exports[`renders nothing after time has passed 1`] = `null`;
