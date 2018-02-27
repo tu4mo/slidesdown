@@ -1,6 +1,16 @@
-import { getCurrentLineNumber } from './utils'
+import { getCurrentLineNumber, getSlidesFirstLines } from './utils'
 
 it('getCurrentLineNumber', () => {
   const value = 'abc\ndef\nghi\n'
   expect(getCurrentLineNumber(value, 4)).toBe(2)
+})
+
+it('getSlidesFirstLines', () => {
+  const value = 'abc\n---\ndef\n---\nghi\n'
+  expect(getSlidesFirstLines(value)).toEqual([
+    { slide: 0, firstLine: 0 },
+    { slide: 1, firstLine: 2 },
+    { slide: 2, firstLine: 4 }
+  ])
+  expect(getSlidesFirstLines()).toEqual([{ slide: 0, firstLine: 0 }])
 })

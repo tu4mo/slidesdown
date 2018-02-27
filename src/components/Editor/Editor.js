@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { getCurrentLineNumber } from './utils'
+import { getCurrentLineNumber, getSlidesFirstLines } from './utils'
 
 const StyledTextarea = styled.textarea`
   border: 0;
@@ -31,26 +31,19 @@ class Editor extends Component {
   getCurrentCursorPosition = () => this.editor.selectionStart
 
   getCurrentSlide = e => {
-    const { onSlideChange } = this.props
+    const { onSlideChange, value } = this.props
 
     const currentLineNumber = getCurrentLineNumber(
       this.editor.value,
       this.getCurrentCursorPosition()
     )
 
-    const linesThatHaveSlideBreak = this.props.value
-      .split('\n')
-      .reduce(
-        (prev, curr, index) => (curr === '---' ? [...prev, index + 1] : prev),
-        [0]
-      )
-      .map((lines, index) => ({ slide: index, startFrom: lines }))
+    const slides = getSlidesFirstLines(value)
 
     onSlideChange &&
       onSlideChange(
-        linesThatHaveSlideBreak
-          .reverse()
-          .find(slide => currentLineNumber > slide.startFrom).slide
+        slides.reverse().find(slide => currentLineNumber > slide.firstLine)
+          .slide
       )
   }
 
