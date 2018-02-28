@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "start": "parcel src/index.html",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "slides",
@@ -62,6 +63,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "setupFiles": ["<rootDir>/__mocks__/localStorage.js"]
   }
 }
