@@ -18,7 +18,36 @@ const StyledModalContainer = styled.div`
 const StyledModal = styled.div`
   background-color: #fff;
   padding: 2rem;
+  position: relative;
   max-width: 720px;
+`
+
+const StyledModalCloseButton = styled.button`
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 1.5rem;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 1.5rem;
+
+  &::after,
+  &::before {
+    background-color: ${props => props.theme.colors.purple};
+    content: '';
+    display: block;
+    height: 1px;
+    transform: rotate(45deg);
+    position: absolute;
+    width: 1.5rem;
+  }
+
+  &::before {
+    transform: rotate(135deg);
+  }
 `
 
 class Modal extends Component {
@@ -46,7 +75,10 @@ class Modal extends Component {
 
     return (
       <StyledModalContainer onClick={onClose}>
-        <StyledModal onClick={e => e.stopPropagation()}>{children}</StyledModal>
+        <StyledModal onClick={e => e.stopPropagation()}>
+          <StyledModalCloseButton onClick={onClose} />
+          {children}
+        </StyledModal>
       </StyledModalContainer>
     )
   }
