@@ -22,8 +22,10 @@ class Slide extends PureComponent {
     const { markdown, scale, width, height } = this.props
 
     return (
-      <StyledTransformContainer height={height} width={width}>
-        <StyledSlideContainer scale={scale}>
+      <StyledTransformContainer style={{ height: height, width: width }}>
+        <StyledSlideContainer
+          style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
+        >
           <StyledSlide className="slide">
             <Markdown renderers={{ code: CodeBlock }} source={markdown} />
           </StyledSlide>

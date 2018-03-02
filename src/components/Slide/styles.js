@@ -2,8 +2,6 @@ import styled from 'styled-components'
 
 export const StyledTransformContainer = styled.div`
   position: relative;
-  height: ${props => props.height}px;
-  width: ${props => props.width}px;
 
   &:not(:last-child) {
     margin-bottom: 2rem;
@@ -20,7 +18,6 @@ export const StyledSlideContainer = styled.div`
   overflow: hidden;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%) scale(${props => props.scale});
   width: 800px;
 
   h1 {
