@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
 
-import { saveSlides } from '../../firebase'
 import { actions } from '../../store'
 
 import ShareDialog from './ShareDialog'
@@ -11,7 +10,6 @@ import Button from '../../components/Button'
 import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
 import Logo from '../../components/Logo'
-import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 
@@ -34,7 +32,6 @@ class SlidesEditor extends Component {
   }
 
   state = {
-    isShared: false,
     isSharing: false,
     slideToFocus: 0
   }
@@ -79,31 +76,19 @@ class SlidesEditor extends Component {
     this.setState({ isSharing: true })
   }
 
-  handleGetUrlClick = () => {
-    const { history, markdown, theme } = this.props
-
-    saveSlides({ markdown, theme }).then(slidesId => {
-      this.setState({ isSharing: false, isShared: true })
-      history.push(slidesId)
-    })
-  }
-
   handleClose = () => {
     this.setState({ isSharing: false })
   }
 
   render() {
-    const { isShared, isSharing, slideToFocus } = this.state
-    const { isLoading, markdown, theme } = this.props
+    const { isSharing, slideToFocus } = this.state
+    const { history, isLoading, markdown, theme } = this.props
 
     return (
       <StyledMain>
         <StyledHeader>
           <Logo />
           <StyledStatus>
-            {isShared && (
-              <Notification>New URL created. Copy it to share.</Notification>
-            )}
             <ButtonGroup>
               <Button onClick={this.handlePresentationClick}>
                 Presentation
@@ -134,8 +119,10 @@ class SlidesEditor extends Component {
         )}
         {isSharing && (
           <ShareDialog
-            onButtonClick={this.handleGetUrlClick}
+            history={history}
+            markdown={markdown}
             onClose={this.handleClose}
+            theme={theme}
           />
         )}
       </StyledMain>

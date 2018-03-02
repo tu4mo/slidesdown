@@ -44,7 +44,7 @@ const Button = ({ children, disabled, onClick }) => (
 Button.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 }
 
 export default Button
