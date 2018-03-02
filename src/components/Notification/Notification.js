@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-
-const StyledNotification = styled.div`
-  color: ${props => props.theme.colors.magenta};
-`
+import styled, { css } from 'styled-components'
 
 class Notification extends Component {
   static propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     timeout: PropTypes.number
   }
 
@@ -27,11 +24,36 @@ class Notification extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, className } = this.props
     const { hasTimedOut } = this.state
 
-    return !hasTimedOut && <StyledNotification>{children}</StyledNotification>
+    return !hasTimedOut && <div className={className}>{children}</div>
   }
 }
 
-export default Notification
+const StyledNotification = styled(Notification)`
+  color: ${props => props.theme.colors.magenta};
+
+  ${props =>
+    props.slideDown &&
+    css`
+      animation: slide-down 1s ease-out;
+
+      @keyframes slide-down {
+        0% {
+          opacity: 0;
+          transform: translateY(-1rem);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `};
+`
+
+StyledNotification.propTypes = {
+  slideDown: PropTypes.bool
+}
+
+export default StyledNotification
