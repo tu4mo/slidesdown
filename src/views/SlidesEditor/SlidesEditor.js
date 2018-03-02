@@ -4,12 +4,12 @@ import { connect } from 'unistore/react'
 
 import { actions } from '../../store'
 
-import ShareDialog from './ShareDialog'
-
 import Button from '../../components/Button'
 import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
+import Loadable from '../../components/Loadable'
 import Logo from '../../components/Logo'
+import Modal from '../../components/Modal'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 
@@ -20,6 +20,8 @@ import {
   StyledSidebar,
   StyledSlidesContainer
 } from './styles'
+
+const ShareDialog = Loadable(() => import('./ShareDialog'))
 
 class SlidesEditor extends Component {
   static propTypes = {
@@ -118,12 +120,9 @@ class SlidesEditor extends Component {
           </Fragment>
         )}
         {isSharing && (
-          <ShareDialog
-            history={history}
-            markdown={markdown}
-            onClose={this.handleClose}
-            theme={theme}
-          />
+          <Modal onClose={this.handleClose}>
+            <ShareDialog history={history} markdown={markdown} theme={theme} />
+          </Modal>
         )}
       </StyledMain>
     )

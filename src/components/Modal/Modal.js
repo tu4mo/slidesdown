@@ -17,9 +17,11 @@ const StyledModalContainer = styled.div`
 
 const StyledModal = styled.div`
   background-color: #fff;
+  max-width: 720px;
+  min-height: 240px;
+  min-width: 320px;
   padding: 2rem;
   position: relative;
-  max-width: 720px;
 `
 
 const StyledModalCloseButton = styled.button`
@@ -76,8 +78,8 @@ class Modal extends Component {
     return (
       <StyledModalContainer onClick={onClose}>
         <StyledModal onClick={e => e.stopPropagation()}>
-          <StyledModalCloseButton onClick={onClose} />
           {children}
+          <StyledModalCloseButton onClick={onClose} />
         </StyledModal>
       </StyledModalContainer>
     )

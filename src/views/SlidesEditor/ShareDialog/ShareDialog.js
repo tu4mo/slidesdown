@@ -5,7 +5,6 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { saveSlides } from '../../../firebase'
 
 import Button from '../../../components/Button'
-import Modal from '../../../components/Modal'
 
 import {
   StyledHeading,
@@ -21,7 +20,6 @@ class ShareDialog extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     markdown: PropTypes.string,
-    onClose: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
   }
 
@@ -40,11 +38,10 @@ class ShareDialog extends Component {
   }
 
   render() {
-    const { onClose } = this.props
     const { copied, shareURL } = this.state
 
     return (
-      <Modal onClose={onClose}>
+      <Fragment>
         <StyledHeading>How sharing works</StyledHeading>
         <StyledInstructions>
           <StyledInstruction>
@@ -81,7 +78,7 @@ class ShareDialog extends Component {
             <Button onClick={this.handleCreateURLClick}>Create URL</Button>
           )}
         </StyledFooter>
-      </Modal>
+      </Fragment>
     )
   }
 }
