@@ -93,7 +93,7 @@ class Presentation extends Component {
           theme={theme}
         />
         <StyledNoticationContainer>
-          <Notification timeout="4000">
+          <Notification slideDown timeout={5000}>
             Press ESC to exit, space or arrows to change slide.
           </Notification>
         </StyledNoticationContainer>
