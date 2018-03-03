@@ -3,32 +3,13 @@ import styled from 'styled-components'
 
 import logoSvg from './logo.svg'
 
-const StyledLogo = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.75rem;
-  font-weight: bold;
-
-  @media (min-width: ${props => props.theme.breakpoints.md}) {
-    flex-direction: row;
-    font-size: 1rem;
-  }
-`
-
 const StyledImg = styled.img`
-  height: 40px;
-  width: 40px;
-
-  @media (min-width: ${props => props.theme.breakpoints.md}) {
-    margin-right: 0.5rem;
-  }
+  height: 2rem;
+  width: 2rem;
 `
 
 const Logo = () => (
-  <StyledLogo>
-    <StyledImg src={logoSvg} /> Slidesdown
-  </StyledLogo>
+  <StyledImg alt="Slidesdown" src={logoSvg} title="Slidesdown" />
 )
 
 export default Logo

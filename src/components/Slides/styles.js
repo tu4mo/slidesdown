@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledSingleSlideContainer = styled.div`
   align-items: center;
-  background-color: #f4f4f8;
+  background-color: #f7f5f7;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -13,7 +13,7 @@ export const StyledSingleSlideContainer = styled.div`
 `
 
 export const StyledSlidesContainer = styled.div`
-  background-color: #f4f4f8;
+  background-color: #f7f5f7;
   height: 100%;
   left: 0;
   overflow: auto;

@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-family: ${props => props.theme.fonts.default};
   font-size: 0.75rem;
+  font-weight: bold;
   line-height: 2.375rem;
   outline: none;
   padding: 0 0.75rem;

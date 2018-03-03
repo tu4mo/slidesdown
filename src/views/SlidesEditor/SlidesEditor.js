@@ -4,9 +4,9 @@ import { connect } from 'unistore/react'
 
 import { actions } from '../../store'
 
-import Button from '../../components/Button'
 import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
+import Icon from '../../components/Icon'
 // import Loadable from '../../components/Loadable'
 import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
@@ -15,10 +15,10 @@ import Spinner from '../../components/Spinner'
 
 import {
   StyledMain,
-  StyledHeader,
-  StyledStatus,
   StyledSidebar,
-  StyledSlidesContainer
+  StyledSlidesContainer,
+  StyledToolBar,
+  StyledLogoContainer
 } from './styles'
 
 // TODO: Code-splitting ShareDialog seems to cause an issue with
@@ -91,17 +91,6 @@ class SlidesEditor extends Component {
 
     return (
       <StyledMain>
-        <StyledHeader>
-          <Logo />
-          <StyledStatus>
-            <ButtonGroup>
-              <Button onClick={this.handlePresentationClick}>
-                Presentation
-              </Button>
-              <Button onClick={this.handleShareClick}>Share</Button>
-            </ButtonGroup>
-          </StyledStatus>
-        </StyledHeader>
         {isLoading ? (
           <Spinner />
         ) : (
@@ -119,6 +108,23 @@ class SlidesEditor extends Component {
                 slideToFocus={slideToFocus}
                 theme={theme}
               />
+              <StyledToolBar>
+                <StyledLogoContainer>
+                  <Logo />
+                </StyledLogoContainer>
+                <ButtonGroup>
+                  <Icon
+                    onClick={this.handlePresentationClick}
+                    title="Presentation"
+                    type="presentation"
+                  />
+                  <Icon
+                    onClick={this.handleShareClick}
+                    title="Share"
+                    type="share"
+                  />
+                </ButtonGroup>
+              </StyledToolBar>
             </StyledSlidesContainer>
           </Fragment>
         )}

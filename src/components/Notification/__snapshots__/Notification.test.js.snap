@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 .c0 {
-  color: #c86dd7;
+  color: #3023ae;
 }
 
 <div

@@ -7,6 +7,10 @@ export const injectGlobalStyles = () => injectGlobal`
     box-sizing: border-box;
   }
 
+  a {
+    color: ${theme.colors.magenta};
+  }
+
   body {
     font-family: ${theme.fonts.default};
     line-height: 1.4;

@@ -59,7 +59,6 @@ class Editor extends Component {
 
     return (
       <StyledTextarea
-        autoFocus
         innerRef={ref => (this.editor = ref)}
         onChange={onChange}
         onClick={this.getCurrentSlide}

@@ -8,6 +8,7 @@ exports[`renders correctly 1`] = `
   cursor: pointer;
   font-family: Rubik;
   font-size: 0.75rem;
+  font-weight: bold;
   line-height: 2.375rem;
   outline: none;
   padding: 0 0.75rem;

@@ -39,9 +39,10 @@ const StyledModalCloseButton = styled.button`
   &::after,
   &::before {
     background-color: ${props => props.theme.colors.purple};
+    border-radius: 1px;
     content: '';
     display: block;
-    height: 1px;
+    height: 2px;
     transform: rotate(45deg);
     position: absolute;
     width: 1.5rem;

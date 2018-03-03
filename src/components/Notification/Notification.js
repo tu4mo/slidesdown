@@ -32,7 +32,7 @@ class Notification extends Component {
 }
 
 const StyledNotification = styled(Notification)`
-  color: ${props => props.theme.colors.magenta};
+  color: ${props => props.theme.colors.purple};
 
   ${props =>
     props.slideDown &&
