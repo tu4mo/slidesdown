@@ -3,8 +3,6 @@
 exports[`renders correctly 1`] = `
 .c0 {
   position: relative;
-  height: 450px;
-  width: 800px;
 }
 
 .c0:not(:last-child) {
@@ -26,9 +24,6 @@ exports[`renders correctly 1`] = `
   overflow: hidden;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
   width: 800px;
 }
 
@@ -65,12 +60,20 @@ exports[`renders correctly 1`] = `
 
 <div
   className="c0"
-  height={450}
-  width={800}
+  style={
+    Object {
+      "height": 450,
+      "width": 800,
+    }
+  }
 >
   <div
     className="c1"
-    scale={1}
+    style={
+      Object {
+        "transform": "translate(-50%, -50%) scale(1)",
+      }
+    }
   >
     <div
       className="slide c2"
