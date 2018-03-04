@@ -3,7 +3,7 @@ export default {
     md: '576px'
   },
   colors: {
-    border: '#eee',
+    border: '#e4e4e8',
     dimText: '#a4a4a8',
     lightText: '#646468',
     magenta: '#c86dd7',
