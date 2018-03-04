@@ -28,10 +28,10 @@ class ToolBar extends Component {
         <ButtonGroup>
           <Icon
             onClick={onPresentationClick}
-            title="Presentation"
+            tooltip="Presentation"
             type="presentation"
           />
-          <Icon onClick={onShareClick} title="Share" type="share" />
+          <Icon onClick={onShareClick} tooltip="Share" type="share" />
         </ButtonGroup>
       </StyledToolBar>
     )

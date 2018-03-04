@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Tooltip } from 'react-tippy'
+import 'react-tippy/dist/tippy.css'
 
 import presentationSvg from './svg/presentation.svg'
 import shareSvg from './svg/share.svg'
@@ -12,6 +14,7 @@ const ICONS = {
 
 const StyledIcon = styled.img`
   cursor: pointer;
+  display: block;
   transition: transform 0.1s ease-in-out;
 
   &:hover {
@@ -19,13 +22,22 @@ const StyledIcon = styled.img`
   }
 `
 
-const Icon = ({ onClick, title, type }) => (
-  <StyledIcon onClick={onClick} src={ICONS[type]} title={title} />
-)
+const Icon = ({ alt, onClick, tooltip, type }) => {
+  const icon = <StyledIcon alt={alt} onClick={onClick} src={ICONS[type]} />
+
+  return tooltip ? (
+    <Tooltip arrow title={tooltip}>
+      {icon}
+    </Tooltip>
+  ) : (
+    icon
+  )
+}
 
 Icon.propTypes = {
+  alt: PropTypes.string,
   onClick: PropTypes.func,
-  title: PropTypes.string,
+  tooltip: PropTypes.string,
   type: PropTypes.oneOf(Object.keys(ICONS))
 }
 
