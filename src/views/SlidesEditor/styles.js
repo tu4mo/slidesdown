@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledMain = styled.div`
-  display: grid;
-  grid-template: 'editor' 1fr 'slides' 1fr;
+export const StyledSidebar = styled.div`
   height: 100%;
   left: 0;
   position: absolute;
@@ -10,24 +8,17 @@ export const StyledMain = styled.div`
   width: 100%;
 
   @media (min-width: ${props => props.theme.breakpoints.md}) {
-    grid-template: 'editor slides' auto / 1fr 3fr;
-  }
-`
-
-export const StyledSidebar = styled.div`
-  border-bottom: 1px solid ${props => props.theme.colors.border};
-  grid-area: editor;
-  position: relative;
-
-  @media (min-width: ${props => props.theme.breakpoints.md}) {
     border: 0;
-    border-right: 1px solid ${props => props.theme.colors.border};
   }
 `
 
 export const StyledSlidesContainer = styled.div`
-  grid-area: slides;
-  position: relative;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
 `
 
 export const StyledToolBar = styled.div`

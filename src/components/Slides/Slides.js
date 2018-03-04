@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
-import throttle from 'lodash.throttle'
 
 import Slide from '../Slide'
+import WindowResizeObserver from '../WindowResizeObserver'
 
 import { StyledSingleSlideContainer, StyledSlidesContainer } from './styles'
 
@@ -33,10 +33,7 @@ class Slides extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize)
-
     this.handleSlidesCount()
-    this.handleResize()
     this.scrollToSlide()
   }
 
@@ -48,17 +45,13 @@ class Slides extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
-  }
-
   scrollToSlide = () => {
     if (this.scrollToRef) {
       this.slidesRef.scrollTop = findDOMNode(this.scrollToRef).offsetTop - 32
     }
   }
 
-  handleResize = throttle(() => {
+  handleResize = () => {
     const computedStyle = window.getComputedStyle(this.slidesRef)
 
     const maxWidth =
@@ -87,7 +80,7 @@ class Slides extends Component {
       scale: Math.min(width / 800, height / 450),
       width
     })
-  }, 100)
+  }
 
   handleSlidesCount = () => {
     const { markdown, onSlidesCount } = this.props
@@ -117,17 +110,18 @@ class Slides extends Component {
       )
     )
 
-    return singleSlide !== undefined ? (
+    return (
       <StyledTheme>
-        <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
-          {slides[singleSlide]}
-        </StyledSingleSlideContainer>
-      </StyledTheme>
-    ) : (
-      <StyledTheme>
-        <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
-          {slides}
-        </StyledSlidesContainer>
+        {singleSlide !== undefined ? (
+          <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
+            {slides[singleSlide]}
+          </StyledSingleSlideContainer>
+        ) : (
+          <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
+            {slides}
+          </StyledSlidesContainer>
+        )}
+        <WindowResizeObserver onResize={this.handleResize} />
       </StyledTheme>
     )
   }

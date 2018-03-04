@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
+import SplitPane from 'react-split-pane'
 
 import { actions } from '../../store'
+import styledTheme from '../../theme'
 
 import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
@@ -12,9 +14,9 @@ import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
+import WindowResizeObserver from '../../components/WindowResizeObserver'
 
 import {
-  StyledMain,
   StyledSidebar,
   StyledSlidesContainer,
   StyledToolBar,
@@ -81,6 +83,10 @@ class SlidesEditor extends Component {
     this.setState({ isSharing: true })
   }
 
+  handleSplitPaneChange = () => {
+    window.dispatchEvent(new Event('resize'))
+  }
+
   handleClose = () => {
     this.setState({ isSharing: false })
   }
@@ -89,51 +95,65 @@ class SlidesEditor extends Component {
     const { isSharing, slideToFocus } = this.state
     const { history, isLoading, markdown, theme } = this.props
 
-    return (
-      <StyledMain>
-        {isLoading ? (
-          <Spinner />
-        ) : (
+    return isLoading ? (
+      <Spinner />
+    ) : (
+      <WindowResizeObserver>
+        {({ width }) => (
           <Fragment>
-            <StyledSidebar>
-              <Editor
-                onChange={this.handleEditorChange}
-                onSlideChange={this.handleEditorSlideChange}
-                value={markdown}
-              />
-            </StyledSidebar>
-            <StyledSlidesContainer>
-              <Slides
-                markdown={markdown}
-                slideToFocus={slideToFocus}
-                theme={theme}
-              />
-              <StyledToolBar>
-                <StyledLogoContainer>
-                  <Logo />
-                </StyledLogoContainer>
-                <ButtonGroup>
-                  <Icon
-                    onClick={this.handlePresentationClick}
-                    title="Presentation"
-                    type="presentation"
-                  />
-                  <Icon
-                    onClick={this.handleShareClick}
-                    title="Share"
-                    type="share"
-                  />
-                </ButtonGroup>
-              </StyledToolBar>
-            </StyledSlidesContainer>
+            <SplitPane
+              defaultSize={300}
+              onChange={this.handleSplitPaneChange}
+              split={
+                width > parseInt(styledTheme.breakpoints.md, 10)
+                  ? 'vertical'
+                  : 'horizontal'
+              }
+            >
+              <StyledSidebar>
+                <Editor
+                  onChange={this.handleEditorChange}
+                  onSlideChange={this.handleEditorSlideChange}
+                  value={markdown}
+                />
+              </StyledSidebar>
+              <StyledSlidesContainer>
+                <Slides
+                  markdown={markdown}
+                  slideToFocus={slideToFocus}
+                  theme={theme}
+                />
+                <StyledToolBar>
+                  <StyledLogoContainer>
+                    <Logo />
+                  </StyledLogoContainer>
+                  <ButtonGroup>
+                    <Icon
+                      onClick={this.handlePresentationClick}
+                      title="Presentation"
+                      type="presentation"
+                    />
+                    <Icon
+                      onClick={this.handleShareClick}
+                      title="Share"
+                      type="share"
+                    />
+                  </ButtonGroup>
+                </StyledToolBar>
+              </StyledSlidesContainer>
+            </SplitPane>
+            {isSharing && (
+              <Modal onClose={this.handleClose}>
+                <ShareDialog
+                  history={history}
+                  markdown={markdown}
+                  theme={theme}
+                />
+              </Modal>
+            )}
           </Fragment>
         )}
-        {isSharing && (
-          <Modal onClose={this.handleClose}>
-            <ShareDialog history={history} markdown={markdown} theme={theme} />
-          </Modal>
-        )}
-      </StyledMain>
+      </WindowResizeObserver>
     )
   }
 }
