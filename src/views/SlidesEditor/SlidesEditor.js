@@ -6,27 +6,20 @@ import SplitPane from 'react-split-pane'
 import { actions } from '../../store'
 import styledTheme from '../../theme'
 
-import ButtonGroup from '../../components/ButtonGroup'
 import Editor from '../../components/Editor'
-import Icon from '../../components/Icon'
 // import Loadable from '../../components/Loadable'
-import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 import WindowResizeObserver from '../../components/WindowResizeObserver'
 
-import {
-  StyledSidebar,
-  StyledSlidesContainer,
-  StyledToolBar,
-  StyledLogoContainer
-} from './styles'
+import { StyledSidebar, StyledSlidesContainer } from './styles'
 
 // TODO: Code-splitting ShareDialog seems to cause an issue with
 //       styled-components after app is build with Parcel.
 // const ShareDialog = Loadable(() => import('./ShareDialog'))
 import ShareDialog from './ShareDialog'
+import ToolBar from './ToolBar'
 
 class SlidesEditor extends Component {
   static propTypes = {
@@ -123,23 +116,10 @@ class SlidesEditor extends Component {
                   slideToFocus={slideToFocus}
                   theme={theme}
                 />
-                <StyledToolBar>
-                  <StyledLogoContainer>
-                    <Logo />
-                  </StyledLogoContainer>
-                  <ButtonGroup>
-                    <Icon
-                      onClick={this.handlePresentationClick}
-                      title="Presentation"
-                      type="presentation"
-                    />
-                    <Icon
-                      onClick={this.handleShareClick}
-                      title="Share"
-                      type="share"
-                    />
-                  </ButtonGroup>
-                </StyledToolBar>
+                <ToolBar
+                  onPresentationClick={this.handlePresentationClick}
+                  onShareClick={this.handleShareClick}
+                />
               </StyledSlidesContainer>
             </SplitPane>
             {isSharing && (
