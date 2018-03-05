@@ -6,7 +6,7 @@
   "scripts": {
     "build": "parcel build src/index.html --public-url /",
     "deploy": "npm run build && firebase deploy",
-    "format": "prettier --no-semi --single-quote --write \"**/*.{js,md}\"",
+    "format": "prettier --no-semi --single-quote --write \"**/*.{js,json,md}\"",
     "lint": "eslint .",
     "start": "parcel src/index.html",
     "test": "jest",
@@ -70,5 +70,9 @@
     "setupFiles": [
       "<rootDir>/__mocks__/localStorage.js"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu4mo/slidesdown.git"
   }
 }
