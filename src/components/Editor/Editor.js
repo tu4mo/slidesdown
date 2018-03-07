@@ -24,34 +24,46 @@ class Editor extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     onCursorPositionChange: PropTypes.func,
-    onSlideChange: PropTypes.func,
+    onDrop: PropTypes.func,
     value: PropTypes.string
   }
 
   getCurrentCursorPosition = () => this.editor.selectionStart
 
-  getCurrentSlide = e => {
-    const { onSlideChange, value } = this.props
+  getCurrentSlide = () => {
+    const { onCursorPositionChange, value } = this.props
+
+    const cursorPosition = this.getCurrentCursorPosition()
 
     const currentLineNumber = getCurrentLineNumber(
       this.editor.value,
-      this.getCurrentCursorPosition()
+      cursorPosition
     )
 
     const slides = getSlidesFirstLines(value)
+    const slide = slides
+      .reverse()
+      .find(slide => currentLineNumber > slide.firstLine).slide
 
-    onSlideChange &&
-      onSlideChange(
-        slides.reverse().find(slide => currentLineNumber > slide.firstLine)
-          .slide
-      )
+    onCursorPositionChange &&
+      onCursorPositionChange({
+        cursorPosition,
+        slide
+      })
   }
 
-  handleCursorPositionChange = e => {
+  handleCursorPositionChange = () => {
     const { onCursorPositionChange } = this.props
 
     onCursorPositionChange &&
       onCursorPositionChange(this.getCurrentCursorPosition())
+  }
+
+  handleDrop = event => {
+    const { onDrop } = this.props
+
+    event.preventDefault()
+    onDrop && onDrop(event.dataTransfer.files[0])
   }
 
   render() {
@@ -62,6 +74,7 @@ class Editor extends Component {
         innerRef={ref => (this.editor = ref)}
         onChange={onChange}
         onClick={this.getCurrentSlide}
+        onDrop={this.handleDrop}
         onKeyUp={this.getCurrentSlide}
         placeholder="Write markdown here"
         value={value}

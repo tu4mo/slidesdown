@@ -40,7 +40,7 @@ import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-xojo'
 import 'prismjs/components/prism-yaml'
 
-class CodeBlock extends PureComponent {
+class Code extends PureComponent {
   static propTypes = {
     value: PropTypes.string,
     language: PropTypes.string
@@ -69,4 +69,4 @@ class CodeBlock extends PureComponent {
   }
 }
 
-export default CodeBlock
+export default Code

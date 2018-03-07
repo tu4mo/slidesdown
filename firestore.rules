@@ -10,3 +10,11 @@ service cloud.firestore {
     }
   }
 }
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if request.resource.size < 500 * 1024 && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

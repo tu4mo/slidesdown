@@ -8,7 +8,8 @@ import {
   StyledSlide
 } from './styles'
 
-import CodeBlock from './CodeBlock'
+import Code from './renderers/Code'
+import Image from './renderers/Image'
 
 class Slide extends PureComponent {
   static propTypes = {
@@ -27,7 +28,7 @@ class Slide extends PureComponent {
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
           <StyledSlide className="slide">
-            <Markdown renderers={{ code: CodeBlock }} source={markdown} />
+            <Markdown renderers={{ code: Code, image: Image }} source={markdown} />
           </StyledSlide>
         </StyledSlideContainer>
       </StyledTransformContainer>

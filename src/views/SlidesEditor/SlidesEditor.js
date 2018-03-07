@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
 import SplitPane from 'react-split-pane'
 
+import { saveImage } from '../../firebase'
 import { actions } from '../../store'
 import styledTheme from '../../theme'
 
@@ -27,11 +28,13 @@ class SlidesEditor extends Component {
     isLoading: PropTypes.bool.isRequired,
     markdown: PropTypes.string,
     match: PropTypes.object.isRequired,
+    newId: PropTypes.string.isRequired,
     setMarkdown: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
   }
 
   state = {
+    cursorPosition: 0,
     isSharing: false,
     slideToFocus: 0
   }
@@ -63,7 +66,21 @@ class SlidesEditor extends Component {
     this.props.setMarkdown(e.target.value)
   }
 
-  handleEditorSlideChange = slide => this.setState({ slideToFocus: slide })
+  handleEditorDrop = async file => {
+    const { markdown, newId, setMarkdown } = this.props
+    const { cursorPosition } = this.state
+
+    const url = await saveImage({ id: newId, file })
+
+    setMarkdown(
+      `${markdown.slice(0, cursorPosition)}` +
+        `![${file.name}](${url})` +
+        `${markdown.slice(cursorPosition)}`
+    )
+  }
+
+  handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
+    this.setState({ cursorPosition, slideToFocus: slide })
 
   handlePresentationClick = e => {
     const { history, match } = this.props
@@ -106,11 +123,15 @@ class SlidesEditor extends Component {
               <StyledSidebar>
                 <Editor
                   onChange={this.handleEditorChange}
-                  onSlideChange={this.handleEditorSlideChange}
+                  onCursorPositionChange={this.handleEditorCursorPositionChange}
+                  onDrop={this.handleEditorDrop}
                   value={markdown}
                 />
               </StyledSidebar>
-              <StyledSlidesContainer>
+              <StyledSlidesContainer
+                onDragOver={e => e.preventDefault()}
+                onDrop={e => e.preventDefault()}
+              >
                 <Slides
                   markdown={markdown}
                   slideToFocus={slideToFocus}
@@ -134,4 +155,6 @@ class SlidesEditor extends Component {
   }
 }
 
-export default connect('isLoading, markdown, theme', actions)(SlidesEditor)
+export default connect('isLoading, markdown, newId, theme', actions)(
+  SlidesEditor
+)

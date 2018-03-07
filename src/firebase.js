@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDdtbNkoViGcZLJvPMzkLcAVgJtVmOJB_E',
@@ -11,6 +12,7 @@ firebase.initializeApp({
 })
 
 const db = firebase.firestore()
+const storage = firebase.storage().ref()
 
 const SLIDES_COLLECTION = 'slides'
 const VISITS_COLLECTION = 'visits'
@@ -38,3 +40,8 @@ export const saveSlides = ({ id, markdown, theme }) =>
     .catch(error => {
       console.error('Error adding document: ', error)
     })
+
+export const saveImage = async ({ id, file }) => {
+  const snapshot = await storage.child(`images/${id}/${file.name}`).put(file)
+  return snapshot.downloadURL
+}
