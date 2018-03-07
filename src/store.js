@@ -1,6 +1,7 @@
 import createStore from 'unistore'
 import throttle from 'lodash.throttle'
 import queryString from 'query-string'
+import uuid from 'uuid/v4'
 
 import { getSlides } from './firebase'
 
@@ -16,6 +17,7 @@ const getThemeFromUrl = () => queryString.parse(window.location.search).theme
 export const store = createStore({
   isLoading: false,
   markdown: window.localStorage.getItem('markdown') || defaultMarkdown,
+  newId: uuid(),
   theme: getThemeFromUrl() || 'default'
 })
 
@@ -33,6 +35,10 @@ export const actions = store => ({
   setMarkdown(state, markdown) {
     setLocalStorageItem(markdown)
     return { markdown }
+  },
+
+  createNewId(state) {
+    return { newId: uuid() }
   }
 })
 

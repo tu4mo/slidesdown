@@ -58,7 +58,8 @@
     "react-split-pane": "^0.1.77",
     "react-tippy": "^1.2.2",
     "styled-components": "^3.1.6",
-    "unistore": "^3.0.4"
+    "unistore": "^3.0.4",
+    "uuid": "^3.2.1"
   },
   "jest": {
     "collectCoverageFrom": [

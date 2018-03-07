@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import CopyToClipboard from 'react-copy-to-clipboard'
+import { connect } from 'unistore/react'
 
 import { saveSlides } from '../../../firebase'
+import { actions } from '../../../store'
 
 import Button from '../../../components/Button'
 
@@ -18,7 +20,9 @@ import {
 
 class ShareDialog extends Component {
   static propTypes = {
+    createNewId: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    newId: PropTypes.string.isRequired,
     markdown: PropTypes.string,
     theme: PropTypes.string.isRequired
   }
@@ -29,11 +33,12 @@ class ShareDialog extends Component {
   }
 
   handleCreateURLClick = () => {
-    const { history, markdown, theme } = this.props
+    const { createNewId, history, newId, markdown, theme } = this.props
 
-    saveSlides({ markdown, theme }).then(slidesId => {
-      history.push(slidesId)
+    saveSlides({ id: newId, markdown, theme }).then(() => {
+      history.push(newId)
       this.setState({ shareURL: window.location.href })
+      createNewId()
     })
   }
 
@@ -83,4 +88,4 @@ class ShareDialog extends Component {
   }
 }
 
-export default ShareDialog
+export default connect('markdown, newId, theme', actions)(ShareDialog)

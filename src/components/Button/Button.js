@@ -13,6 +13,7 @@ const StyledButton = styled.button`
   line-height: 2.375rem;
   outline: none;
   padding: 0 0.75rem;
+  white-space: nowrap;
 
   @media (min-width: ${props => props.theme.breakpoints.md}) {
     font-size: 1rem;

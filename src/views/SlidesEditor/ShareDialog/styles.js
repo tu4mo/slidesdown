@@ -37,5 +37,8 @@ export const StyledDetails = styled.div`
 export const StyledURL = styled.div`
   border: 1px solid ${props => props.theme.colors.border};
   color: ${props => props.theme.colors.lightText};
+  flex: 1 1 auto;
   padding: 0.5rem;
+  overflow: auto;
+  white-space: nowrap;
 `

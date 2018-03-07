@@ -12,6 +12,7 @@ exports[`renders correctly 1`] = `
   line-height: 2.375rem;
   outline: none;
   padding: 0 0.75rem;
+  white-space: nowrap;
 }
 
 .c0:hover:not(:disabled) {

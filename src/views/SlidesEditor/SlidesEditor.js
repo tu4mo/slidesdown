@@ -124,11 +124,7 @@ class SlidesEditor extends Component {
             </SplitPane>
             {isSharing && (
               <Modal onClose={this.handleClose}>
-                <ShareDialog
-                  history={history}
-                  markdown={markdown}
-                  theme={theme}
-                />
+                <ShareDialog history={history} />
               </Modal>
             )}
           </Fragment>

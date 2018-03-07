@@ -30,11 +30,11 @@ export const getSlides = async id => {
   return doc.data()
 }
 
-export const saveSlides = ({ markdown, theme }) =>
+export const saveSlides = ({ id, markdown, theme }) =>
   db
     .collection(SLIDES_COLLECTION)
-    .add({ createdAt: new Date(), markdown, theme })
-    .then(docRef => docRef.id)
+    .doc(id)
+    .set({ createdAt: new Date(), markdown, theme })
     .catch(error => {
       console.error('Error adding document: ', error)
     })
