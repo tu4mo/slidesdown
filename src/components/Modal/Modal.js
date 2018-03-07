@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledModalContainer = styled.div`
+  animation: fade-modal-container 0.5s ease-out;
   align-items: center;
   background-color: rgba(51, 51, 51, 0.5);
   height: 100%;
@@ -14,10 +15,20 @@ const StyledModalContainer = styled.div`
   top: 0;
   width: 100%;
   z-index: 1;
+
+  @keyframes fade-modal-container {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `
 
 const StyledModal = styled.div`
   background-color: #fff;
+  border-radius: 0.5rem;
   max-width: 720px;
   min-height: 240px;
   min-width: 320px;
