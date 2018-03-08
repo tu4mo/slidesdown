@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/storage'
+import uuid from 'uuid/v4'
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDdtbNkoViGcZLJvPMzkLcAVgJtVmOJB_E',
@@ -42,6 +43,8 @@ export const saveSlides = ({ id, markdown, theme }) =>
     })
 
 export const saveImage = async ({ id, file }) => {
-  const snapshot = await storage.child(`images/${id}/${file.name}`).put(file)
+  const snapshot = await storage
+    .child(`images/${id}/${uuid()}-${file.name}`)
+    .put(file)
   return snapshot.downloadURL
 }
