@@ -21,6 +21,7 @@ exports[`renders correctly 1`] = `
   className="c0"
   onChange={[MockFunction]}
   onClick={[Function]}
+  onDrop={[Function]}
   onKeyUp={[Function]}
   placeholder="Write markdown here"
   value="Test"
