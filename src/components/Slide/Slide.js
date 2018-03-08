@@ -11,6 +11,11 @@ import {
 import Code from './renderers/Code'
 import Image from './renderers/Image'
 
+const renderers = {
+  code: Code,
+  image: Image
+}
+
 class Slide extends PureComponent {
   static propTypes = {
     height: PropTypes.number.isRequired,
@@ -28,7 +33,10 @@ class Slide extends PureComponent {
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
           <StyledSlide className="slide">
-            <Markdown renderers={{ code: Code, image: Image }} source={markdown} />
+            <Markdown
+              renderers={renderers}
+              source={markdown}
+            />
           </StyledSlide>
         </StyledSlideContainer>
       </StyledTransformContainer>
