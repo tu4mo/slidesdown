@@ -25,7 +25,6 @@ class Image extends PureComponent {
   }
 
   render() {
-    console.log(this.props)
     const { src } = this.props
 
     return (
