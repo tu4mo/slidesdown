@@ -19,3 +19,17 @@ it('renders correctly', () => {
 
   expect(tree).toMatchSnapshot()
 })
+
+it('renders correctly with disabled and isLoading', () => {
+  const onChangeMock = jest.fn()
+
+  const tree = renderer
+    .create(
+      <ThemeProvider theme={theme}>
+        <Editor isLoading onChange={onChangeMock} progress={50} value="Test" />
+      </ThemeProvider>
+    )
+    .toJSON()
+
+  expect(tree).toMatchSnapshot()
+})

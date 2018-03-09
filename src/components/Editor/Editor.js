@@ -1,30 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
+import { StyledWrapper, StyledTextarea, StyledProgressBar } from './styles'
 import { getCurrentLineNumber, getSlidesFirstLines } from './utils'
-
-const StyledTextarea = styled.textarea`
-  border: 0;
-  color: ${props => props.theme.colors.lightText};
-  font-family: ${props => props.theme.fonts.monospace};
-  font-size: 16px;
-  height: 100%;
-  left: 0;
-  outline: none;
-  padding: 1rem;
-  position: absolute;
-  top: 0;
-  resize: none;
-  width: 100%;
-  -webkit-overflow-scrolling: touch;
-`
 
 class Editor extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onCursorPositionChange: PropTypes.func,
     onDrop: PropTypes.func,
+    progress: PropTypes.number,
     value: PropTypes.string
   }
 
@@ -67,18 +53,22 @@ class Editor extends Component {
   }
 
   render() {
-    const { onChange, value } = this.props
+    const { isLoading, onChange, progress, value } = this.props
 
     return (
-      <StyledTextarea
-        innerRef={ref => (this.editor = ref)}
-        onChange={onChange}
-        onClick={this.getCurrentSlide}
-        onDrop={this.handleDrop}
-        onKeyUp={this.getCurrentSlide}
-        placeholder="Write markdown here"
-        value={value}
-      />
+      <StyledWrapper>
+        <StyledTextarea
+          disabled={isLoading}
+          innerRef={ref => (this.editor = ref)}
+          onChange={onChange}
+          onClick={this.getCurrentSlide}
+          onDrop={this.handleDrop}
+          onKeyUp={this.getCurrentSlide}
+          placeholder="Write markdown here"
+          value={value}
+        />
+        {isLoading && <StyledProgressBar progress={progress} />}
+      </StyledWrapper>
     )
   }
 }

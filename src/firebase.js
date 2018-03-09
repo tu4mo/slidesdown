@@ -42,9 +42,18 @@ export const saveSlides = ({ id, markdown, theme }) =>
       console.error('Error adding document: ', error)
     })
 
-export const saveImage = async ({ id, file }) => {
-  const snapshot = await storage
+export const saveImage = ({ id, file, onChange, onError, onDone }) => {
+  const uploadTask = storage
     .child(`images/${id}/${uuid()}-${file.name}`)
     .put(file)
-  return snapshot.downloadURL
+
+  uploadTask.on(
+    'state_changed',
+    snapshot =>
+      onChange(
+        Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100)
+      ),
+    error => onError(error),
+    () => onDone(uploadTask.snapshot)
+  )
 }

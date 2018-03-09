@@ -33,10 +33,7 @@ class Slide extends PureComponent {
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
           <StyledSlide className="slide">
-            <Markdown
-              renderers={renderers}
-              source={markdown}
-            />
+            <Markdown renderers={renderers} source={markdown} />
           </StyledSlide>
         </StyledSlideContainer>
       </StyledTransformContainer>

@@ -2,6 +2,14 @@
 
 exports[`renders correctly 1`] = `
 .c0 {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c1 {
   border: 0;
   color: #646468;
   font-family: Inconsolata;
@@ -17,13 +25,101 @@ exports[`renders correctly 1`] = `
   -webkit-overflow-scrolling: touch;
 }
 
-<textarea
+.c1:disabled {
+  opacity: 0.2;
+}
+
+<div
   className="c0"
-  onChange={[MockFunction]}
-  onClick={[Function]}
-  onDrop={[Function]}
-  onKeyUp={[Function]}
-  placeholder="Write markdown here"
-  value="Test"
-/>
+>
+  <textarea
+    className="c1"
+    disabled={undefined}
+    onChange={[MockFunction]}
+    onClick={[Function]}
+    onDrop={[Function]}
+    onKeyUp={[Function]}
+    placeholder="Write markdown here"
+    value="Test"
+  />
+</div>
+`;
+
+exports[`renders correctly with disabled and isLoading 1`] = `
+.c0 {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c1 {
+  border: 0;
+  color: #646468;
+  font-family: Inconsolata;
+  font-size: 16px;
+  height: 100%;
+  left: 0;
+  outline: none;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  resize: none;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c1:disabled {
+  opacity: 0.2;
+}
+
+.c2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c2::after {
+  background-image: linear-gradient( 90deg, #3023ae 0%, #3023ae 50%, #fff 50%, #fff 100% );
+  border: 2px solid #3023ae;
+  border-radius: 1rem;
+  content: '';
+  height: 1rem;
+  display: block;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <textarea
+    className="c1"
+    disabled={true}
+    onChange={[MockFunction]}
+    onClick={[Function]}
+    onDrop={[Function]}
+    onKeyUp={[Function]}
+    placeholder="Write markdown here"
+    value="Test"
+  />
+  <div
+    className="c2"
+  />
+</div>
 `;

@@ -36,7 +36,9 @@ class SlidesEditor extends Component {
   state = {
     cursorPosition: 0,
     isSharing: false,
-    slideToFocus: 0
+    isUploading: false,
+    slideToFocus: 0,
+    uploadProgress: 0
   }
 
   async componentDidMount() {
@@ -67,14 +69,31 @@ class SlidesEditor extends Component {
   }
 
   handleEditorDrop = async file => {
-    const { markdown, newId, setMarkdown } = this.props
+    const { newId } = this.props
+
+    this.setState({ isUploading: true })
+
+    saveImage({
+      id: newId,
+      file,
+      onChange: uploadProgress => this.setState({ uploadProgress }),
+      onError: err => {
+        console.error(err)
+        this.setState({ isUploading: false })
+      },
+      onDone: this.handleUploadDone
+    })
+  }
+
+  handleUploadDone = snapshot => {
+    const { markdown, setMarkdown } = this.props
     const { cursorPosition } = this.state
 
-    const url = await saveImage({ id: newId, file })
+    this.setState({ isUploading: false })
 
     setMarkdown(
       `${markdown.slice(0, cursorPosition)}` +
-        `![${file.name}](${url})` +
+        `![](${snapshot.downloadURL})` +
         `${markdown.slice(cursorPosition)}`
     )
   }
@@ -102,7 +121,7 @@ class SlidesEditor extends Component {
   }
 
   render() {
-    const { isSharing, slideToFocus } = this.state
+    const { isSharing, isUploading, slideToFocus, uploadProgress } = this.state
     const { history, isLoading, markdown, theme } = this.props
 
     return isLoading ? (
@@ -122,9 +141,11 @@ class SlidesEditor extends Component {
             >
               <StyledSidebar>
                 <Editor
+                  isLoading={isUploading}
                   onChange={this.handleEditorChange}
                   onCursorPositionChange={this.handleEditorCursorPositionChange}
                   onDrop={this.handleEditorDrop}
+                  progress={uploadProgress}
                   value={markdown}
                 />
               </StyledSidebar>
