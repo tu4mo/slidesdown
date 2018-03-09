@@ -10,15 +10,3 @@ service cloud.firestore {
     }
   }
 }
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /images {
-      match /{slideId}/{imageId} {
-        allow read;
-        allow write: if request.resource.size < 500 * 1024
-          && request.resource.contentType.matches('image/.*')
-          && resource == null;
-      }
-    }
-  }
-}
