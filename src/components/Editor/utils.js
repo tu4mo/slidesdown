@@ -9,3 +9,11 @@ export const getSlidesFirstLines = (value = '') =>
       [0]
     )
     .map((lines, index) => ({ slide: index, firstLine: lines }))
+
+export const getCurrentSlide = (slides, currentLineNumber) => {
+  const slideObj = [...slides]
+    .reverse()
+    .find(slide => currentLineNumber > slide.firstLine)
+
+  return slideObj && slideObj.slide || 0
+}

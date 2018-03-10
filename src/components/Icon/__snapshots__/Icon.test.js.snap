@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  cursor: pointer;
+  display: block;
+  -webkit-transition: -webkit-transform 0.1s ease-in-out;
+  -webkit-transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+}
+
+.c0:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+<img
+  alt={undefined}
+  className="c0"
+  onClick={undefined}
+  src="test-file-stub"
+/>
+`;
+
+exports[`renders correctly with tooltip 1`] = `
+.c0 {
+  cursor: pointer;
+  display: block;
+  -webkit-transition: -webkit-transform 0.1s ease-in-out;
+  -webkit-transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+}
+
+.c0:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+<Tooltip
+  arrow={true}
+  title="Test"
+>
+  <img
+    alt={undefined}
+    className="c0"
+    onClick={undefined}
+    src="test-file-stub"
+  />
+</Tooltip>
+`;

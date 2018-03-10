@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { StyledWrapper, StyledTextarea, StyledProgressBar } from './styles'
-import { getCurrentLineNumber, getSlidesFirstLines } from './utils'
+import {
+  getCurrentLineNumber,
+  getSlidesFirstLines,
+  getCurrentSlide
+} from './utils'
 
 class Editor extends Component {
   static propTypes = {
@@ -27,9 +31,7 @@ class Editor extends Component {
     )
 
     const slides = getSlidesFirstLines(value)
-    const slide = slides
-      .reverse()
-      .find(slide => currentLineNumber > slide.firstLine).slide
+    const slide = getCurrentSlide(slides, currentLineNumber)
 
     onCursorPositionChange &&
       onCursorPositionChange({
