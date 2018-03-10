@@ -26,8 +26,10 @@ export const getSlides = async id => {
 
   if (doc) {
     await db
+      .collection(SLIDES_COLLECTION)
+      .doc(id)
       .collection(VISITS_COLLECTION)
-      .add({ visitedAt: new Date(), slideId: id })
+      .add({ visitedAt: new Date() })
   }
 
   return doc.data()

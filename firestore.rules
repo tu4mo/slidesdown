@@ -3,10 +3,11 @@ service cloud.firestore {
     match /slides/{slide} {
       allow get, create: if true;
       allow delete, list, update: if false;
-    }
-    match /visits/{visit} {
-      allow get, delete, list, update: if false;
-      allow create: if true;
+
+      match /visits/{visit} {
+        allow get, delete, list, update: if false;
+        allow create: if true;
+      }
     }
   }
 }
