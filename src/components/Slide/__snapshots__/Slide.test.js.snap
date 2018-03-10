@@ -58,6 +58,32 @@ exports[`renders correctly 1`] = `
   width: 100%;
 }
 
+.c3 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c3 img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 <div
   className="c0"
   style={
@@ -180,6 +206,13 @@ console<span class=\\"token punctuation\\">.</span><span class=\\"token function
         <blockquote>
           <p>
             Blockquote
+            <span
+              className="c3"
+            >
+              <img
+                src="http://www.domain.com/image.jpg"
+              />
+            </span>
           </p>
         </blockquote>
       </div>
