@@ -4,6 +4,11 @@ service cloud.firestore {
       allow get, create: if true;
       allow delete, list, update: if false;
 
+      match /images/{image} {
+        allow get, delete, list, update: if false;
+        allow create: if true;
+      }
+
       match /visits/{visit} {
         allow get, delete, list, update: if false;
         allow create: if true;

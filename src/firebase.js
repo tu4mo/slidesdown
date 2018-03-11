@@ -15,6 +15,7 @@ firebase.initializeApp({
 const db = firebase.firestore()
 const storage = firebase.storage().ref()
 
+const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 const VISITS_COLLECTION = 'visits'
 
@@ -44,10 +45,20 @@ export const saveSlides = ({ id, markdown, theme }) =>
       console.error('Error adding document: ', error)
     })
 
-export const saveImage = ({ id, file, onChange, onError, onDone }) => {
-  const uploadTask = storage
-    .child(`images/${id}/${uuid()}-${file.name}`)
-    .put(file)
+export const saveImage = async ({ id, file, onChange, onError, onDone }) => {
+  const imagePath = `images/${id}/${uuid()}-${file.name}`
+
+  const uploadTask = storage.child(imagePath).put(file)
+
+  try {
+    await db
+      .collection(SLIDES_COLLECTION)
+      .doc(id)
+      .collection(IMAGES_COLLECTION)
+      .add({ path: imagePath })
+  } catch (err) {
+    console.error(err)
+  }
 
   uploadTask.on(
     'state_changed',

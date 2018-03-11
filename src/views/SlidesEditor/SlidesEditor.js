@@ -81,21 +81,19 @@ class SlidesEditor extends Component {
         console.error(err)
         this.setState({ isUploading: false })
       },
-      onDone: this.handleUploadDone
+      onDone: snapshot => {
+        const { markdown, setMarkdown } = this.props
+        const { cursorPosition } = this.state
+
+        this.setState({ isUploading: false })
+
+        setMarkdown(
+          `${markdown.slice(0, cursorPosition)}` +
+            `![](${snapshot.downloadURL})` +
+            `${markdown.slice(cursorPosition)}`
+        )
+      }
     })
-  }
-
-  handleUploadDone = snapshot => {
-    const { markdown, setMarkdown } = this.props
-    const { cursorPosition } = this.state
-
-    this.setState({ isUploading: false })
-
-    setMarkdown(
-      `${markdown.slice(0, cursorPosition)}` +
-        `![](${snapshot.downloadURL})` +
-        `${markdown.slice(cursorPosition)}`
-    )
   }
 
   handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
