@@ -69,7 +69,7 @@ class SlidesEditor extends Component {
   }
 
   handleEditorDrop = async file => {
-    const { newId } = this.props
+    const { newId, setError } = this.props
 
     this.setState({ isUploading: true })
 
@@ -77,8 +77,8 @@ class SlidesEditor extends Component {
       id: newId,
       file,
       onChange: uploadProgress => this.setState({ uploadProgress }),
-      onError: err => {
-        console.error(err)
+      onError: () => {
+        setError('Unable to save image')
         this.setState({ isUploading: false })
       },
       onDone: snapshot => {
@@ -163,7 +163,7 @@ class SlidesEditor extends Component {
               </StyledSlidesContainer>
             </SplitPane>
             {isSharing && (
-              <Modal onClose={this.handleClose}>
+              <Modal heading="How sharing works" onClose={this.handleClose}>
                 <ShareDialog history={history} />
               </Modal>
             )}

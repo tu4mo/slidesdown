@@ -9,7 +9,6 @@ import { actions } from '../../../store'
 import Button from '../../../components/Button'
 
 import {
-  StyledHeading,
   StyledInstructions,
   StyledInstruction,
   StyledNumber,
@@ -47,7 +46,6 @@ class ShareDialog extends Component {
 
     return (
       <Fragment>
-        <StyledHeading>How sharing works</StyledHeading>
         <StyledInstructions>
           <StyledInstruction>
             <StyledNumber>1.</StyledNumber>

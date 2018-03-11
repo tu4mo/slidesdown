@@ -15,6 +15,7 @@ const defaultMarkdown =
 const getThemeFromUrl = () => queryString.parse(window.location.search).theme
 
 export const store = createStore({
+  error: '',
   isLoading: false,
   markdown: window.localStorage.getItem('markdown') || defaultMarkdown,
   newId: uuid(),
@@ -39,6 +40,10 @@ export const actions = store => ({
 
   createNewId(state) {
     return { newId: uuid() }
+  },
+
+  setError(state, error) {
+    return { error }
   }
 })
 
