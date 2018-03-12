@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
 import SplitPane from 'react-split-pane'
 
-import { saveImage } from '../../firebase'
+// import { saveImage } from '../../firebase'
 import { actions } from '../../store'
 import styledTheme from '../../theme'
 
@@ -28,7 +28,7 @@ class SlidesEditor extends Component {
     isLoading: PropTypes.bool.isRequired,
     markdown: PropTypes.string,
     match: PropTypes.object.isRequired,
-    newId: PropTypes.string.isRequired,
+    // newId: PropTypes.string.isRequired,
     setMarkdown: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
   }
@@ -69,31 +69,32 @@ class SlidesEditor extends Component {
   }
 
   handleEditorDrop = async file => {
-    const { newId, setError } = this.props
-
-    this.setState({ isUploading: true })
-
-    saveImage({
-      id: newId,
-      file,
-      onChange: uploadProgress => this.setState({ uploadProgress }),
-      onError: () => {
-        setError('Unable to save image')
-        this.setState({ isUploading: false })
-      },
-      onDone: snapshot => {
-        const { markdown, setMarkdown } = this.props
-        const { cursorPosition } = this.state
-
-        this.setState({ isUploading: false })
-
-        setMarkdown(
-          `${markdown.slice(0, cursorPosition)}` +
-            `![](${snapshot.downloadURL})` +
-            `${markdown.slice(cursorPosition)}`
-        )
-      }
-    })
+    // Disable for now
+    // const { newId, setError } = this.props
+    //
+    // this.setState({ isUploading: true })
+    //
+    // saveImage({
+    //   id: newId,
+    //   file,
+    //   onChange: uploadProgress => this.setState({ uploadProgress }),
+    //   onError: () => {
+    //     setError('Unable to save image')
+    //     this.setState({ isUploading: false })
+    //   },
+    //   onDone: snapshot => {
+    //     const { markdown, setMarkdown } = this.props
+    //     const { cursorPosition } = this.state
+    //
+    //     this.setState({ isUploading: false })
+    //
+    //     setMarkdown(
+    //       `${markdown.slice(0, cursorPosition)}` +
+    //         `![](${snapshot.downloadURL})` +
+    //         `${markdown.slice(cursorPosition)}`
+    //     )
+    //   }
+    // })
   }
 
   handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
