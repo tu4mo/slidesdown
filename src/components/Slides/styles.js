@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledSingleSlideContainer = styled.div`
   align-items: center;
-  background-color: #f7f5f7;
+  background-color: ${props => props.theme.colors.background};
   display: flex;
   height: 100%;
   justify-content: center;
@@ -13,13 +13,17 @@ export const StyledSingleSlideContainer = styled.div`
 `
 
 export const StyledSlidesContainer = styled.div`
-  background-color: #f7f5f7;
+  background-color: ${props => props.theme.colors.background};
   height: 100%;
   left: 0;
   overflow: auto;
+  padding: 1rem;
   position: absolute;
-  padding: 2rem;
   top: 0;
   width: 100%;
   -webkit-overflow-scrolling: touch;
+
+  @media (min-width: ${props => props.theme.breakpoints.xl}) {
+    padding: 2rem;
+  }
 `

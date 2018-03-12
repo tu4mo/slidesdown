@@ -23,14 +23,12 @@ export const injectGlobalStyles = () => injectGlobal`
   }
 
   .Resizer {
-    background-color: ${theme.colors.border};
-    background-clip: content-box;
     z-index: 1;
   }
 
   .Resizer.horizontal {
     cursor: row-resize;
-    height: 11px;
+    height: 10px;
     margin: -5px 0;
     padding: 5px 0;
     width: 100%;
@@ -40,6 +38,6 @@ export const injectGlobalStyles = () => injectGlobal`
     cursor: col-resize;
     margin: 0 -5px;
     padding: 0 5px;
-    width: 11px;
+    width: 10px;
   }
 `

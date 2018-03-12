@@ -4,13 +4,18 @@ export const StyledTransformContainer = styled.div`
   position: relative;
 
   &:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+
+    @media (min-width: ${props => props.theme.breakpoints.xl}) {
+      margin-bottom: 2rem;
+    }
   }
 `
 
 export const StyledSlideContainer = styled.div`
   background-color: #fff;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   height: 450px;
