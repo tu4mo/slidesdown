@@ -17,21 +17,20 @@ const storage = firebase.storage().ref()
 
 const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
-const VISITS_COLLECTION = 'visits'
 
 export const getSlides = async id => {
-  const doc = await db
-    .collection(SLIDES_COLLECTION)
-    .doc(id)
-    .get()
-
-  if (doc) {
-    await db
+  const getDoc = () =>
+    db
       .collection(SLIDES_COLLECTION)
       .doc(id)
-      .collection(VISITS_COLLECTION)
-      .add({ visitedAt: new Date() })
-  }
+      .get()
+
+  const updateLastVisit = () =>
+    fetch(
+      `/api/updateLastVisit?id=${id}`
+    )
+
+  const [doc] = await Promise.all([getDoc(), updateLastVisit()])
 
   return doc.data()
 }

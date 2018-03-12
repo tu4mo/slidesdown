@@ -4,6 +4,10 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
+        "source": "/api/updateLastVisit",
+        "function": "updateLastVisit"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
