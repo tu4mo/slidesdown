@@ -1,7 +1,9 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
+import { ThemeProvider } from 'styled-components'
 
+import theme from '../../theme'
 import Slide from '../Slide'
 
 const MARKDOWN =
@@ -15,7 +17,11 @@ const MARKDOWN =
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<Slide height={450} markdown={MARKDOWN} scale={1} width={800} />)
+    .create(
+      <ThemeProvider theme={theme}>
+        <Slide height={450} markdown={MARKDOWN} scale={1} width={800} />
+      </ThemeProvider>
+    )
     .toJSON()
 
   expect(tree).toMatchSnapshot()

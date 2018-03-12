@@ -6,12 +6,13 @@ exports[`renders correctly 1`] = `
 }
 
 .c0:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .c1 {
   background-color: #fff;
-  box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+  box-shadow: 0 0 0.1rem rgba(0,0,0,0.1);
+  border-radius: 0.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -82,6 +83,12 @@ exports[`renders correctly 1`] = `
 .c3 img {
   max-height: 100%;
   max-width: 100%;
+}
+
+@media (min-width:768px) {
+  .c0:not(:last-child) {
+    margin-bottom: 2rem;
+  }
 }
 
 <div
