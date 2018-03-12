@@ -25,10 +25,7 @@ export const getSlides = async id => {
       .doc(id)
       .get()
 
-  const updateLastVisit = () =>
-    fetch(
-      `/api/updateLastVisit?id=${id}`
-    )
+  const updateLastVisit = () => fetch(`/api/updateLastVisit?id=${id}`)
 
   const [doc] = await Promise.all([getDoc(), updateLastVisit()])
 
