@@ -20,16 +20,18 @@ class Slide extends PureComponent {
   static propTypes = {
     height: PropTypes.number.isRequired,
     scale: PropTypes.number.isRequired,
+    single: PropTypes.bool,
     markdown: PropTypes.string,
     width: PropTypes.number.isRequired
   }
 
   render() {
-    const { markdown, scale, width, height } = this.props
+    const { markdown, scale, single, width, height } = this.props
 
     return (
       <StyledTransformContainer style={{ height: height, width: width }}>
         <StyledSlideContainer
+          single={single}
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
           <StyledSlide className="slide">

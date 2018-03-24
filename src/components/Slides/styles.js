@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledSingleSlideContainer = styled.div`
   align-items: center;
-  background-color: ${props => props.theme.colors.background};
+  background-color: #fff;
   display: flex;
   height: 100%;
   justify-content: center;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const StyledTransformContainer = styled.div`
   position: relative;
@@ -14,8 +14,6 @@ export const StyledTransformContainer = styled.div`
 
 export const StyledSlideContainer = styled.div`
   background-color: #fff;
-  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
-  border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   height: 450px;
@@ -24,6 +22,13 @@ export const StyledSlideContainer = styled.div`
   position: absolute;
   top: 50%;
   width: 800px;
+
+  ${props =>
+    !props.single &&
+    css`
+      box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
+      border-radius: 0.25rem;
+    `};
 
   h1 {
     text-align: center;

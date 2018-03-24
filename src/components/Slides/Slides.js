@@ -105,6 +105,7 @@ class Slides extends Component {
             }
           }}
           scale={scale}
+          single={singleSlide !== undefined}
           width={width}
         />
       )
