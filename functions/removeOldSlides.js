@@ -8,10 +8,7 @@ const getOldSlides = db =>
     .where('createdAt', '<', dateThirtyDaysAgo)
     .get()
 
-const removeSlide = slide =>
-  slide.ref.delete().then(() => {
-    console.log(`Deleted document ${slide.id}`)
-  })
+const removeSlide = slide => slide.ref.delete()
 
 module.exports = (event, db) =>
   getOldSlides(db).then(slides => {
@@ -24,11 +21,14 @@ module.exports = (event, db) =>
 
       // Remove when visitedAt is undefined or old
       if (!visitedAt || visitedAt < dateThirtyDaysAgo) {
-        removeSlide(slide)
-        console.log(`${slide.id}: Removed`)
+        return removeSlide(slide).then(() => {
+          console.log(
+            `${slide.id}: Removed (last visit: ${visitedAt.toJSON()})`
+          )
+        })
       } else {
         console.log(
-          `${slide.id}: Not removing, last visit ${visitedAt.toJSON()}`
+          `${slide.id}: Not removing (last visit: ${visitedAt.toJSON()})`
         )
       }
     })
