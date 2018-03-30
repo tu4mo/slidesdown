@@ -1,32 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Tooltip } from 'react-tippy'
 import 'react-tippy/dist/tippy.css'
 
+import { StyledIcon } from './styles'
+
+import crossSvg from './svg/cross.svg'
+import leftSvg from './svg/left.svg'
 import presentationSvg from './svg/presentation.svg'
+import rightSvg from './svg/right.svg'
 import shareSvg from './svg/share.svg'
 
 const ICONS = {
+  cross: crossSvg,
+  left: leftSvg,
   presentation: presentationSvg,
+  right: rightSvg,
   share: shareSvg
 }
 
-const StyledIcon = styled.img`
-  cursor: pointer;
-  display: block;
-  transition: transform 0.1s ease-in-out;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`
-
-const Icon = ({ alt, onClick, tooltip, type }) => {
-  const icon = <StyledIcon alt={alt} onClick={onClick} src={ICONS[type]} />
+const Icon = ({ alt, disabled, onClick, tooltip, type }) => {
+  const icon = (
+    <StyledIcon
+      alt={alt}
+      disabled={disabled}
+      onClick={!disabled ? onClick : null}
+      src={ICONS[type]}
+    />
+  )
 
   return tooltip ? (
-    <Tooltip arrow title={tooltip}>
+    <Tooltip arrow html={tooltip}>
       {icon}
     </Tooltip>
   ) : (
@@ -36,8 +40,9 @@ const Icon = ({ alt, onClick, tooltip, type }) => {
 
 Icon.propTypes = {
   alt: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  tooltip: PropTypes.string,
+  tooltip: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   type: PropTypes.oneOf(Object.keys(ICONS))
 }
 

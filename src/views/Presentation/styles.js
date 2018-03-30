@@ -15,3 +15,15 @@ export const StyledNoticationContainer = styled.div`
   top: 1rem;
   position: fixed;
 `
+
+export const StyledPresentationToolbar = styled.div`
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: ${props => (props.visible ? 1 : 0)};
+  padding: 2rem;
+  position: fixed;
+  transition: opacity 0.1s ease-in;
+  width: 100%;
+`

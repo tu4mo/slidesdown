@@ -20,7 +20,7 @@ import { StyledSidebar, StyledSlidesContainer } from './styles'
 //       styled-components after app is build with Parcel.
 // const ShareDialog = Loadable(() => import('./ShareDialog'))
 import ShareDialog from './ShareDialog'
-import ToolBar from './ToolBar'
+import SlidesToolBar from './SlidesToolBar'
 
 class SlidesEditor extends Component {
   static propTypes = {
@@ -157,7 +157,7 @@ class SlidesEditor extends Component {
                   slideToFocus={slideToFocus}
                   theme={theme}
                 />
-                <ToolBar
+                <SlidesToolBar
                   onPresentationClick={this.handlePresentationClick}
                   onShareClick={this.handleShareClick}
                 />

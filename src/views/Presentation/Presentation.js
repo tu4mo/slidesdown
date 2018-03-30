@@ -4,11 +4,18 @@ import { connect } from 'unistore/react'
 
 import { actions } from '../../store'
 
+import Icon from '../../components/Icon'
+import Key from '../../components/Key'
 import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
+import ToolBar from '../../components/ToolBar'
 
-import { StyledPresentation, StyledNoticationContainer } from './styles'
+import {
+  StyledPresentation,
+  StyledNoticationContainer,
+  StyledPresentationToolbar
+} from './styles'
 
 class Presentation extends Component {
   static propTypes = {
@@ -18,6 +25,13 @@ class Presentation extends Component {
     match: PropTypes.object.isRequired,
     theme: PropTypes.string.isRequired
   }
+
+  state = {
+    isToolbarVisible: false
+  }
+
+  slidesCount = 0
+  toolbarVisibilityTimer = null
 
   async componentDidMount() {
     const { history, loadMarkdown, match } = this.props
@@ -56,13 +70,16 @@ class Presentation extends Component {
     }
   }
 
-  handleKeyUp = e => {
+  close = () => {
     const { history, match } = this.props
     const { slidesId = '' } = match.params
+    history.push(`/${slidesId !== '-' ? slidesId : ''}`)
+  }
 
+  handleKeyUp = e => {
     switch (e.keyCode) {
       case 27: // ESC
-        history.push(`/${slidesId !== '-' ? slidesId : ''}`)
+        this.close()
         break
       case 37: // Left arrow
         this.changeSlide(false)
@@ -78,18 +95,43 @@ class Presentation extends Component {
 
   handleSlidesCount = count => (this.slidesCount = count)
 
+  handlePresentationMouseMove = e => {
+    if (!this.state.isToolbarVisible) {
+      this.setState({
+        isToolbarVisible: true
+      })
+    }
+
+    clearTimeout(this.toolbarVisibilityTimer)
+
+    this.toolbarVisibilityTimer = setTimeout(
+      () =>
+        this.setState({
+          isToolbarVisible: false
+        }),
+      2000
+    )
+  }
+
+  handleToolbarMouseMove = e => {
+    e.stopPropagation()
+    clearTimeout(this.toolbarVisibilityTimer)
+  }
+
   render() {
     const { isLoading, markdown, match, theme } = this.props
-    const { slideNumber = 0 } = match.params
+    const { isToolbarVisible } = this.state
+    const { slideNumber: slideNumberAsString = '0' } = match.params
+    const slideNumber = parseInt(slideNumberAsString, 10)
 
     return isLoading ? (
       <Spinner />
     ) : (
-      <StyledPresentation>
+      <StyledPresentation onMouseMove={this.handlePresentationMouseMove}>
         <Slides
           markdown={markdown}
           onSlidesCount={this.handleSlidesCount}
-          singleSlide={parseInt(slideNumber, 10)}
+          singleSlide={slideNumber}
           theme={theme}
         />
         <StyledNoticationContainer>
@@ -97,6 +139,42 @@ class Presentation extends Component {
             Press ESC to exit, space or arrows to change slide.
           </Notification>
         </StyledNoticationContainer>
+        <StyledPresentationToolbar
+          onMouseMove={this.handleToolbarMouseMove}
+          visible={isToolbarVisible}
+        >
+          <ToolBar>
+            <Icon
+              disabled={slideNumber === 0}
+              onClick={() => this.changeSlide(false)}
+              tooltip={
+                <span>
+                  Previous <Key>←</Key>
+                </span>
+              }
+              type="left"
+            />
+            <Icon
+              onClick={this.close}
+              tooltip={
+                <span>
+                  Close <Key>esc</Key>
+                </span>
+              }
+              type="cross"
+            />
+            <Icon
+              disabled={slideNumber >= this.slidesCount - 1}
+              onClick={this.changeSlide}
+              tooltip={
+                <span>
+                  Next <Key>→</Key>
+                </span>
+              }
+              type="right"
+            />
+          </ToolBar>
+        </StyledPresentationToolbar>
       </StyledPresentation>
     )
   }

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const StyledButton = styled.button`
   background-color: #fff;
   border: 1px solid ${props => props.theme.colors.purple};
+  border-radius: 0.25rem;
   color: ${props => props.theme.colors.purple};
   cursor: pointer;
   font-family: ${props => props.theme.fonts.default};

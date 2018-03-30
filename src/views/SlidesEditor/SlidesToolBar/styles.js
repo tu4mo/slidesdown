@@ -1,12 +1,7 @@
 import styled from 'styled-components'
 
-export const StyledToolBar = styled.div`
-  background-color: #fff;
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: 2rem;
+export const StyledToolBarContainer = styled.div`
   bottom: 1rem;
-  display: flex;
-  padding: 1rem;
   position: absolute;
   right: 1rem;
 `
