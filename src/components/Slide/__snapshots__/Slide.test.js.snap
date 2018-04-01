@@ -46,7 +46,7 @@ exports[`renders correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 150%;
+  font-size: 120%;
   height: 100%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -83,6 +83,23 @@ exports[`renders correctly 1`] = `
 .c3 img {
   max-height: 100%;
   max-width: 100%;
+}
+
+.c4 {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.c5 {
+  border-bottom: 1px solid #000;
+  padding: 0.5rem;
+  -webkit-text-align: left;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.c6 {
+  padding: 0.5rem;
 }
 
 @media (min-width:768px) {
@@ -213,15 +230,62 @@ console<span class=\\"token punctuation\\">.</span><span class=\\"token function
         <blockquote>
           <p>
             Blockquote
-            <span
-              className="c3"
-            >
-              <img
-                src="http://www.domain.com/image.jpg"
-              />
-            </span>
           </p>
         </blockquote>
+        <hr />
+        <p>
+          <span
+            className="c3"
+          >
+            <img
+              src="http://www.domain.com/image.jpg"
+            />
+          </span>
+        </p>
+        <hr />
+        <table
+          className="c4"
+        >
+          <thead>
+            <tr>
+              <th
+                className="c5"
+              >
+                Column 1
+              </th>
+              <th
+                className="c5"
+              >
+                Column 2
+              </th>
+              <th
+                className="c5"
+              >
+                Column 3
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                className="c6"
+              >
+                Cell 1
+              </td>
+              <td
+                className="c6"
+              >
+                Cell 2
+              </td>
+              <td
+                className="c6"
+              >
+                Cell 3
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr />
       </div>
     </div>
   </div>

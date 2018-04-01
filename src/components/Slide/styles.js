@@ -43,7 +43,7 @@ export const StyledSlideContainer = styled.div`
 export const StyledSlide = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 150%;
+  font-size: 120%;
   height: 100%;
   justify-content: center;
   left: 0;

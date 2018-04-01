@@ -12,8 +12,9 @@ const MARKDOWN =
   '### Heading 3\n\n1. Numbered Item 1\n   1. Sub Numbered Item\n2. Numbered Item 2\n3. Numbered Item 3\n4. Numbered Item 4\n5. Numbered Item 5\n\n---\n\n' +
   "#### Heading 4\n\n```javascript\nconst variable = '123'\nconsole.log(variable)\n```\n\n---\n\n" +
   '##### Heading 5\n\n*Italic text*  \n**Bold text**  \n~~Strikethrough text~~\n\n---\n\n' +
-  '###### Heading 6\n\n[Slidesdown](https://slidesdown.com)\n\n> Blockquote' +
-  '![image](http://www.domain.com/image.jpg)'
+  '###### Heading 6\n\n[Slidesdown](https://slidesdown.com)\n\n> Blockquote\n\n---\n\n' +
+  '![image](http://www.domain.com/image.jpg)\n\n---\n\n' +
+  'Column 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n'
 
 it('renders correctly', () => {
   const tree = renderer

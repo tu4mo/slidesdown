@@ -10,10 +10,14 @@ import {
 
 import Code from './renderers/Code'
 import Image from './renderers/Image'
+import Table from './renderers/Table'
+import TableCell from './renderers/TableCell'
 
 const renderers = {
   code: Code,
-  image: Image
+  image: Image,
+  table: Table,
+  tableCell: TableCell
 }
 
 class Slide extends PureComponent {
