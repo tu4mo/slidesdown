@@ -28,7 +28,9 @@ module.exports = (event, db) =>
         })
       } else {
         console.log(
-          `${slide.id}: Not removing (last visit: ${visitedAt.toJSON()})`
+          `${slide.id}: Not removing (last visit: ${
+            visitedAt ? visitedAt.toJSON() : 'unknown'
+          })`
         )
       }
     })

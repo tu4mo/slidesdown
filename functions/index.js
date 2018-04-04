@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
-admin.initializeApp(functions.config().firebase)
+admin.initializeApp()
 
 const db = admin.firestore()
 
@@ -9,7 +9,7 @@ const updateLastVisit = require('./updateLastVisit')
 
 exports.removeOldSlides = functions.firestore
   .document('slides/{slideId}')
-  .onCreate(onCreate => removeOldSlides(onCreate, db))
+  .onCreate(event => removeOldSlides(event, db))
 
 exports.updateLastVisit = functions.https.onRequest((req, res) =>
   updateLastVisit(req, res, db)
