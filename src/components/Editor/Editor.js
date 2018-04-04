@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 
 import { StyledWrapper, StyledTextarea, StyledProgressBar } from './styles'
@@ -18,15 +18,17 @@ class Editor extends Component {
     value: PropTypes.string
   }
 
-  getCurrentCursorPosition = () => this.editor.selectionStart
+  editorRef = createRef()
 
-  getCurrentSlide = () => {
+  getCurrentCursorPosition = () => this.editorRef.current.selectionStart
+
+  handleClickAndKeyUp = () => {
     const { onCursorPositionChange, value } = this.props
 
     const cursorPosition = this.getCurrentCursorPosition()
 
     const currentLineNumber = getCurrentLineNumber(
-      this.editor.value,
+      value,
       cursorPosition
     )
 
@@ -61,11 +63,11 @@ class Editor extends Component {
       <StyledWrapper>
         <StyledTextarea
           disabled={isLoading}
-          innerRef={ref => (this.editor = ref)}
+          innerRef={this.editorRef}
           onChange={onChange}
-          onClick={this.getCurrentSlide}
+          onClick={this.handleClickAndKeyUp}
           onDrop={this.handleDrop}
-          onKeyUp={this.getCurrentSlide}
+          onKeyUp={this.handleClickAndKeyUp}
           placeholder="Write markdown here"
           value={value}
         />

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 
@@ -32,6 +32,8 @@ class Slides extends Component {
     width: 0
   }
 
+  slidesRef = createRef()
+
   componentDidMount() {
     this.handleSlidesCount()
     this.scrollToSlide()
@@ -47,20 +49,20 @@ class Slides extends Component {
 
   scrollToSlide = () => {
     if (this.scrollToRef) {
-      this.slidesRef.scrollTop = findDOMNode(this.scrollToRef).offsetTop - 32
+      this.slidesRef.current.scrollTop = findDOMNode(this.scrollToRef).offsetTop - 32
     }
   }
 
   handleResize = () => {
-    const computedStyle = window.getComputedStyle(this.slidesRef)
+    const computedStyle = window.getComputedStyle(this.slidesRef.current)
 
     const maxWidth =
-      this.slidesRef.clientWidth -
+      this.slidesRef.current.clientWidth -
       parseInt(computedStyle.paddingLeft, 10) -
       parseInt(computedStyle.paddingRight, 10)
 
     const maxHeight =
-      this.slidesRef.clientHeight -
+      this.slidesRef.current.clientHeight -
       parseInt(computedStyle.paddingBottom, 10) -
       parseInt(computedStyle.paddingTop, 10)
 
@@ -114,11 +116,11 @@ class Slides extends Component {
     return (
       <StyledTheme>
         {singleSlide !== undefined ? (
-          <StyledSingleSlideContainer innerRef={ref => (this.slidesRef = ref)}>
+          <StyledSingleSlideContainer innerRef={this.slidesRef}>
             {slides[singleSlide]}
           </StyledSingleSlideContainer>
         ) : (
-          <StyledSlidesContainer innerRef={ref => (this.slidesRef = ref)}>
+          <StyledSlidesContainer innerRef={this.slidesRef}>
             {slides}
           </StyledSlidesContainer>
         )}
