@@ -15,7 +15,7 @@ import Spinner from '../../components/Spinner'
 import WindowResizeObserver from '../../components/WindowResizeObserver'
 
 import SlidesToolBar from './SlidesToolBar'
-import { StyledSidebar, StyledSlidesContainer } from './styles'
+import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
 
 const ShareDialog = Loadable(() => import('./ShareDialog'))
 

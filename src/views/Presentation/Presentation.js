@@ -15,7 +15,7 @@ import {
   StyledPresentation,
   StyledNoticationContainer,
   StyledPresentationToolbar
-} from './styles'
+} from './Presentation.style'
 
 class Presentation extends Component {
   static propTypes = {

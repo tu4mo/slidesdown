@@ -7,7 +7,7 @@ import ErrorDialog from './components/ErrorDialog'
 import Loadable from './components/Loadable'
 import Modal from './components/Modal'
 
-import { injectGlobalStyles } from './styles.js'
+import { injectGlobalStyles } from './App.style'
 import theme from './theme'
 import { actions, store } from './store'
 

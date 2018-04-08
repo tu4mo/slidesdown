@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Tooltip } from 'react-tippy'
 import 'react-tippy/dist/tippy.css'
 
-import { StyledIcon } from './styles'
+import { StyledIcon } from './Icon.style'
 
 import crossSvg from './svg/cross.svg'
 import leftSvg from './svg/left.svg'

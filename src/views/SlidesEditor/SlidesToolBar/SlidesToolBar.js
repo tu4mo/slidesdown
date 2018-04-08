@@ -6,7 +6,10 @@ import Icon from '../../../components/Icon'
 import Logo from '../../../components/Logo'
 import ToolBar from '../../../components/ToolBar'
 
-import { StyledToolBarContainer, StyledLogoContainer } from './styles'
+import {
+  StyledToolBarContainer,
+  StyledLogoContainer
+} from './SlidesToolBar.style'
 
 class SlidesToolBar extends Component {
   static propTypes = {

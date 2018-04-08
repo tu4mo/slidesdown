@@ -15,7 +15,7 @@ import {
   StyledDetails,
   StyledFooter,
   StyledURL
-} from './styles'
+} from './ShareDialog.style'
 
 class ShareDialog extends Component {
   static propTypes = {

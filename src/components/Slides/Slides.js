@@ -5,7 +5,10 @@ import { findDOMNode } from 'react-dom'
 import Slide from '../Slide'
 import WindowResizeObserver from '../WindowResizeObserver'
 
-import { StyledSingleSlideContainer, StyledSlidesContainer } from './styles'
+import {
+  StyledSingleSlideContainer,
+  StyledSlidesContainer
+} from './Slides.style'
 
 import defaultTheme from './themes/default'
 import goforeTheme from './themes/gofore'

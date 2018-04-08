@@ -6,7 +6,7 @@ import {
   StyledModal,
   StyledHeading,
   StyledModalCloseButton
-} from './styles'
+} from './Modal.style'
 
 class Modal extends Component {
   static propTypes = {

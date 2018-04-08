@@ -6,7 +6,7 @@ import {
   StyledTransformContainer,
   StyledSlideContainer,
   StyledSlide
-} from './styles'
+} from './Slide.style'
 
 import Code from './renderers/Code'
 import Image from './renderers/Image'
