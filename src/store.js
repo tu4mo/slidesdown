@@ -5,7 +5,7 @@ import uuid from 'uuid/v4'
 
 import { getSlides } from './firebase'
 
-const defaultMarkdown =
+const DEFAULT_MARKDOWN =
   '# ✨✨✨\n\n# Welcome to Slidesdown\n\n---\n\n' +
   "## What is it?\n\nWith Slidesdown, you can write [markdown](https://en.wikipedia.org/wiki/Markdown) to create a **slideshow**.\n\n### Other features\n\n- No login required\n- Saves slides to your browser's localStorage\n- Code syntax highlighting\n- Sharing slides with unique URL\n\n---\n\n" +
   '## How to get stared\n\n1. Start typing markdown on the editor\n2. Enjoy the realtime preview of slides\n3. Click *Presentation* to view them as a slideshow\n4. Share your slides!\n\n---\n\n' +
@@ -18,7 +18,7 @@ const getThemeFromUrl = () => queryString.parse(window.location.search).theme
 export const store = createStore({
   error: '',
   isLoading: false,
-  markdown: window.localStorage.getItem('markdown') || defaultMarkdown,
+  markdown: window.localStorage.getItem('markdown') || DEFAULT_MARKDOWN,
   newId: uuid(),
   theme: getThemeFromUrl() || 'default'
 })
@@ -30,6 +30,11 @@ export const actions = store => ({
       const slides = await getSlides(id)
       return { isLoading: false, markdown: slides.markdown }
     } catch (err) {
+      store.setState({
+        error: err.message,
+        isLoading: false,
+        markdown: DEFAULT_MARKDOWN
+      })
       throw err
     }
   },

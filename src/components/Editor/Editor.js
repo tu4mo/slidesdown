@@ -27,10 +27,7 @@ class Editor extends Component {
 
     const cursorPosition = this.getCurrentCursorPosition()
 
-    const currentLineNumber = getCurrentLineNumber(
-      value,
-      cursorPosition
-    )
+    const currentLineNumber = getCurrentLineNumber(value, cursorPosition)
 
     const slides = getSlidesFirstLines(value)
     const slide = getCurrentSlide(slides, currentLineNumber)

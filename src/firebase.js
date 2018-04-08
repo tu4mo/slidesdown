@@ -19,17 +19,22 @@ const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 
 export const getSlides = async id => {
-  const getDoc = () =>
-    db
+  try {
+    const doc = await db
       .collection(SLIDES_COLLECTION)
       .doc(id)
       .get()
 
-  const updateLastVisit = () => fetch(`/api/updateLastVisit?id=${id}`)
+    if (doc.exists) {
+      fetch(`/api/updateLastVisit?id=${id}`)
+    } else {
+      throw new Error('Slides do not exist')
+    }
 
-  const [doc] = await Promise.all([getDoc(), updateLastVisit()])
-
-  return doc.data()
+    return doc.data()
+  } catch (err) {
+    throw err
+  }
 }
 
 export const saveSlides = ({ id, markdown, theme }) =>

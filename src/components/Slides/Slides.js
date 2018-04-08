@@ -49,7 +49,8 @@ class Slides extends Component {
 
   scrollToSlide = () => {
     if (this.scrollToRef) {
-      this.slidesRef.current.scrollTop = findDOMNode(this.scrollToRef).offsetTop - 32
+      this.slidesRef.current.scrollTop =
+        findDOMNode(this.scrollToRef).offsetTop - 32
     }
   }
 
