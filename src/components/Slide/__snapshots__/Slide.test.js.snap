@@ -29,7 +29,6 @@ exports[`renders correctly 1`] = `
 }
 
 .c1 h1 {
-  -webkit-text-align: center;
   text-align: center;
 }
 
@@ -93,7 +92,6 @@ exports[`renders correctly 1`] = `
 .c5 {
   border-bottom: 1px solid #000;
   padding: 0.5rem;
-  -webkit-text-align: left;
   text-align: left;
   vertical-align: bottom;
 }

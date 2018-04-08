@@ -8,19 +8,16 @@ import { actions } from '../../store'
 import styledTheme from '../../theme'
 
 import Editor from '../../components/Editor'
-// import Loadable from '../../components/Loadable'
+import Loadable from '../../components/Loadable'
 import Modal from '../../components/Modal'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 import WindowResizeObserver from '../../components/WindowResizeObserver'
 
+import SlidesToolBar from './SlidesToolBar'
 import { StyledSidebar, StyledSlidesContainer } from './styles'
 
-// TODO: Code-splitting ShareDialog seems to cause an issue with
-//       styled-components after app is build with Parcel.
-// const ShareDialog = Loadable(() => import('./ShareDialog'))
-import ShareDialog from './ShareDialog'
-import SlidesToolBar from './SlidesToolBar'
+const ShareDialog = Loadable(() => import('./ShareDialog'))
 
 class SlidesEditor extends Component {
   static propTypes = {
