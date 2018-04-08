@@ -2,9 +2,16 @@ import styled from 'styled-components'
 
 export const StyledInstructions = styled.div`
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
 
-  & > *:not(:last-child) {
-    margin-right: 2rem;
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
+    flex-direction: row;
+  }
+
+  & > * {
+    padding: 0 1rem;
   }
 `
 

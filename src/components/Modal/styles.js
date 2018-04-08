@@ -8,6 +8,7 @@ export const StyledModalContainer = styled.div`
   display: flex;
   justify-content: center;
   left: 0;
+  overflow: auto;
   padding: 1rem;
   position: fixed;
   top: 0;
