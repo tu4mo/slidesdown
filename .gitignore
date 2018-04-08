@@ -1,5 +1,5 @@
-.cache/
 coverage/
 dist/
 node_modules/
+cloud-functions-emulator.log
 firebase-debug.log
