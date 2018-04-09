@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { injectGlobal } from 'styled-components'
 import { Tooltip } from 'react-tippy'
-import 'react-tippy/dist/tippy.css'
 
 import { StyledIcon } from './Icon.style'
 
@@ -10,6 +10,9 @@ import leftSvg from './svg/left.svg'
 import presentationSvg from './svg/presentation.svg'
 import rightSvg from './svg/right.svg'
 import shareSvg from './svg/share.svg'
+
+import tippyCSS from 'react-tippy/dist/tippy.css'
+injectGlobal`${tippyCSS}`
 
 const ICONS = {
   cross: crossSvg,

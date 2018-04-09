@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Prism from 'prismjs'
+import { injectGlobal } from 'styled-components'
 
-import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-csharp'
 import 'prismjs/components/prism-css'
@@ -39,6 +39,9 @@ import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-xojo'
 import 'prismjs/components/prism-yaml'
+
+import prismCSS from 'prismjs/themes/prism.css'
+injectGlobal`${prismCSS}`
 
 class Code extends PureComponent {
   static propTypes = {
