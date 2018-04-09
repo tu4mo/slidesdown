@@ -9,7 +9,7 @@
     "deploy": "npm run build && firebase deploy",
     "format": "prettier --no-semi --single-quote --write \"**/*.{js,json,md}\"",
     "lint": "eslint .",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --hot",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
@@ -64,6 +64,7 @@
     "react": "^16.3.1",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.3.1",
+    "react-hot-loader": "^4.0.1",
     "react-loadable": "^5.3.1",
     "react-markdown": "^3.3.0",
     "react-router-dom": "^4.2.2",

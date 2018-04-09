@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect, Provider } from 'unistore/react'
+import { hot } from 'react-hot-loader'
 
 import ErrorDialog from './components/ErrorDialog'
 import Loadable from './components/Loadable'
@@ -37,8 +38,10 @@ const App = connect('error', actions)(({ error, setError }) => (
   </ThemeProvider>
 ))
 
-export default () => (
+const ProvidedApp = () => (
   <Provider store={store}>
     <App />
   </Provider>
 )
+
+export default hot(module)(ProvidedApp)
