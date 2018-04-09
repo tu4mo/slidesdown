@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledImg = styled.img`
-  height: 2rem;
-  width: 2rem;
+  ${props => props.onClick && 'cursor: pointer'};
+  display: block;
+  height: ${props => (props.large ? '5rem' : '2rem')};
+  width: ${props => (props.large ? '5rem' : '2rem')};
 `
