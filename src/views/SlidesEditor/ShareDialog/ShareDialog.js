@@ -7,6 +7,7 @@ import { saveSlides } from '../../../firebase'
 import { actions } from '../../../store'
 
 import Button from '../../../components/Button'
+import Modal from '../../../components/Modal'
 
 import {
   StyledInstructions,
@@ -23,6 +24,7 @@ class ShareDialog extends Component {
     history: PropTypes.object.isRequired,
     newId: PropTypes.string.isRequired,
     markdown: PropTypes.string,
+    onClose: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
   }
 
@@ -42,10 +44,11 @@ class ShareDialog extends Component {
   }
 
   render() {
+    const { onClose } = this.props
     const { copied, shareURL } = this.state
 
     return (
-      <Fragment>
+      <Modal heading="How sharing works" onClose={onClose}>
         <StyledInstructions>
           <StyledInstruction>
             <StyledNumber>1.</StyledNumber>
@@ -81,7 +84,7 @@ class ShareDialog extends Component {
             <Button onClick={this.handleCreateURLClick}>Create URL</Button>
           )}
         </StyledFooter>
-      </Fragment>
+      </Modal>
     )
   }
 }

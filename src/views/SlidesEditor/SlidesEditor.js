@@ -9,7 +9,6 @@ import styledTheme from '../../theme'
 
 import Editor from '../../components/Editor'
 import Loadable from '../../components/Loadable'
-import Modal from '../../components/Modal'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 import WindowResizeObserver from '../../components/WindowResizeObserver'
@@ -161,9 +160,7 @@ class SlidesEditor extends Component {
               </StyledSlidesContainer>
             </SplitPane>
             {isSharing && (
-              <Modal heading="How sharing works" onClose={this.handleClose}>
-                <ShareDialog history={history} />
-              </Modal>
+              <ShareDialog history={history} onClose={this.handleClose} />
             )}
           </Fragment>
         )}
