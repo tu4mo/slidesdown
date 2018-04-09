@@ -51,6 +51,7 @@ class Presentation extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('keyup', this.handleKeyUp)
+    clearTimeout(this.toolbarVisibilityTimer)
   }
 
   changeSlide = (next = true) => {
