@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 
 import ButtonGroup from '../../../components/ButtonGroup'
 import Icon from '../../../components/Icon'
+import Loadable from '../../../components/Loadable'
 import Logo from '../../../components/Logo'
-import Modal from '../../../components/Modal'
 import ToolBar from '../../../components/ToolBar'
 import Tooltip from '../../../components/Tooltip'
 
 import {
-  StyledAbout,
-  StyledHeading,
   StyledToolBarContainer,
   StyledLogoContainer
 } from './SlidesToolBar.style'
+
+const About = Loadable(() => import('./About'))
 
 class SlidesToolBar extends Component {
   static propTypes = {
@@ -53,15 +53,7 @@ class SlidesToolBar extends Component {
           </ToolBar>
         </StyledToolBarContainer>
         {isAboutVisible && (
-          <Modal onClose={() => this.setState({ isAboutVisible: false })}>
-            <StyledAbout>
-              <Logo large />
-              <StyledHeading>Write&nbsp;markdown, get&nbsp;slides</StyledHeading>
-              <a href="https://github.com/tu4mo/slidesdown" target="_blank">
-                GitHub
-              </a>
-            </StyledAbout>
-          </Modal>
+          <About onClose={() => this.setState({ isAboutVisible: false })} />
         )}
       </Fragment>
     )

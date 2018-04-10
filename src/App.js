@@ -4,14 +4,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect, Provider } from 'unistore/react'
 import { hot } from 'react-hot-loader'
 
-import ErrorDialog from './components/ErrorDialog'
 import Loadable from './components/Loadable'
-import Modal from './components/Modal'
 
 import { injectGlobalStyles } from './App.style'
 import theme from './theme'
 import { actions, store } from './store'
 
+const ErrorDialog = Loadable(() => import('./components/ErrorDialog'))
 const Presentation = Loadable(() => import('./views/Presentation'))
 const SlidesEditor = Loadable(() => import('./views/SlidesEditor'))
 
@@ -29,11 +28,7 @@ const App = connect('error', actions)(({ error, setError }) => (
           <Route component={SlidesEditor} path="/:slidesId?" />
         </Switch>
       </BrowserRouter>
-      {error && (
-        <Modal heading="Error" onClose={() => setError('')}>
-          <ErrorDialog error={error} />
-        </Modal>
-      )}
+      {error && <ErrorDialog error={error} onClose={() => setError('')} />}
     </Fragment>
   </ThemeProvider>
 ))
