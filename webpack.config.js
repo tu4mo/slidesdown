@@ -28,6 +28,9 @@ module.exports = {
       }
     ]
   },
+  output: {
+    publicPath: '/'
+  },
   plugins: [
     new CleanWebpackPlugin('dist'),
     new CopyWebpackPlugin([{ from: 'src/assets' }]),
