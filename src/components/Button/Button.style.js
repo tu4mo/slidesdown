@@ -18,11 +18,6 @@ export const StyledButton = styled.button`
     padding: 0 1rem;
   }
 
-  &:hover:not(:disabled) {
-    background-color: ${props => props.theme.colors.purple};
-    color: #fff;
-  }
-
   &:focus {
     outline: 1px solid ${props => props.theme.colors.purple};
     outline-offset: 1px;
@@ -32,5 +27,10 @@ export const StyledButton = styled.button`
     border-color: ${props => props.theme.colors.border};
     color: ${props => props.theme.colors.border};
     cursor: default;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${props => props.theme.colors.purple};
+    color: #fff;
   }
 `
