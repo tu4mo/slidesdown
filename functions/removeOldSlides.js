@@ -8,7 +8,15 @@ const getOldSlides = db =>
     .where('createdAt', '<', dateThirtyDaysAgo)
     .get()
 
-const removeSlide = slide => slide.ref.delete()
+const getImages = slide => slide.ref.collection('images').get()
+
+// TODO: Remove image from storage
+const removeSlide = slide =>
+  getImages(slide).then(images => {
+    const imageDeleteBatch = []
+    images.forEach(image => imageDeleteBatch.push(image.ref.delete()))
+    Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
+  })
 
 module.exports = (event, db) =>
   getOldSlides(db).then(slides => {
@@ -21,11 +29,17 @@ module.exports = (event, db) =>
 
       // Remove when visitedAt is undefined or old
       if (!visitedAt || visitedAt < dateThirtyDaysAgo) {
-        return removeSlide(slide).then(() => {
-          console.log(
-            `${slide.id}: Removed (last visit: ${visitedAt.toJSON()})`
+        return removeSlide(slide)
+          .then(() => {
+            console.log(
+              `${slide.id}: Removed (last visit: ${
+                visitedAt ? visitedAt.toJSON() : 'unknown'
+              })`
+            )
+          })
+          .catch(err =>
+            console.error(`${slide.id}: Unable to remove (${err.message})`)
           )
-        })
       } else {
         console.log(
           `${slide.id}: Not removing (last visit: ${
