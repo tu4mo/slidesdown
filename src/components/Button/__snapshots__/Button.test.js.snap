@@ -15,11 +15,6 @@ exports[`renders correctly 1`] = `
   white-space: nowrap;
 }
 
-.c0:hover:not(:disabled) {
-  background-color: #3023ae;
-  color: #fff;
-}
-
 .c0:focus {
   outline: 1px solid #3023ae;
   outline-offset: 1px;
@@ -29,6 +24,11 @@ exports[`renders correctly 1`] = `
   border-color: #e4e4e8;
   color: #e4e4e8;
   cursor: default;
+}
+
+.c0:hover:not(:disabled) {
+  background-color: #3023ae;
+  color: #fff;
 }
 
 @media (min-width:576px) {
