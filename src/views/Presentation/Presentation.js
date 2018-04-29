@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
+import Fullscreen from 'react-full-screen'
 
 import { actions } from '../../store'
 
@@ -27,6 +28,7 @@ class Presentation extends Component {
   }
 
   state = {
+    isFullscreen: false,
     isToolbarVisible: false
   }
 
@@ -121,62 +123,80 @@ class Presentation extends Component {
 
   render() {
     const { isLoading, markdown, match, theme } = this.props
-    const { isToolbarVisible } = this.state
+    const { isFullscreen, isToolbarVisible } = this.state
     const { slideNumber: slideNumberAsString = '0' } = match.params
     const slideNumber = parseInt(slideNumberAsString, 10)
 
     return isLoading ? (
       <Spinner />
     ) : (
-      <StyledPresentation onMouseMove={this.handlePresentationMouseMove}>
-        <Slides
-          markdown={markdown}
-          onSlidesCount={this.handleSlidesCount}
-          singleSlide={slideNumber}
-          theme={theme}
-        />
-        <StyledNoticationContainer>
-          <Notification slideDown timeout={5000}>
-            Press ESC to exit, space or arrows to change slide.
-          </Notification>
-        </StyledNoticationContainer>
-        <StyledPresentationToolbar
-          onMouseMove={this.handleToolbarMouseMove}
-          visible={isToolbarVisible}
-        >
-          <ToolBar>
-            <Icon
-              disabled={slideNumber === 0}
-              onClick={() => this.changeSlide(false)}
-              tooltip={
-                <span>
-                  Previous <Key>←</Key>
-                </span>
-              }
-              type="left"
-            />
-            <Icon
-              onClick={this.close}
-              tooltip={
-                <span>
-                  Close <Key>esc</Key>
-                </span>
-              }
-              type="cross"
-            />
-            <Icon
-              disabled={slideNumber >= this.slidesCount - 1}
-              onClick={this.changeSlide}
-              tooltip={
-                <span>
-                  Next <Key>→</Key>
-                </span>
-              }
-              type="right"
-            />
-          </ToolBar>
-        </StyledPresentationToolbar>
-      </StyledPresentation>
+      <Fullscreen
+        enabled={isFullscreen}
+        onChange={isFullscreen => this.setState({ isFullscreen })}
+      >
+        <StyledPresentation onMouseMove={this.handlePresentationMouseMove}>
+          <Slides
+            markdown={markdown}
+            onSlidesCount={this.handleSlidesCount}
+            singleSlide={slideNumber}
+            theme={theme}
+          />
+          <StyledNoticationContainer>
+            <Notification slideDown timeout={5000}>
+              Press ESC to exit, space or arrows to change slide.
+            </Notification>
+          </StyledNoticationContainer>
+          <StyledPresentationToolbar
+            onMouseMove={this.handleToolbarMouseMove}
+            visible={isToolbarVisible}
+          >
+            <ToolBar>
+              <Icon
+                disabled={slideNumber === 0}
+                onClick={() => this.changeSlide(false)}
+                tooltip={
+                  <span>
+                    Previous <Key>←</Key>
+                  </span>
+                }
+                type="left"
+              />
+              {isFullscreen ? (
+                <Icon
+                  onClick={() => this.setState({ isFullscreen: false })}
+                  tooltip={<span>Minimize</span>}
+                  type="minimize"
+                />
+              ) : (
+                <Icon
+                  onClick={() => this.setState({ isFullscreen: true })}
+                  tooltip={<span>Maximize</span>}
+                  type="maximize"
+                />
+              )}
+              <Icon
+                onClick={this.close}
+                tooltip={
+                  <span>
+                    Close <Key>esc</Key>
+                  </span>
+                }
+                type="cross"
+              />
+              <Icon
+                disabled={slideNumber >= this.slidesCount - 1}
+                onClick={this.changeSlide}
+                tooltip={
+                  <span>
+                    Next <Key>→</Key>
+                  </span>
+                }
+                type="right"
+              />
+            </ToolBar>
+          </StyledPresentationToolbar>
+        </StyledPresentation>
+      </Fullscreen>
     )
   }
 }
