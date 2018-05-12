@@ -1,6 +1,6 @@
 <p align="center">
-  <a src="https://slidesdown.com/">
-  <img src="./src/components/Logo/logo.svg" width="256">
+  <a href="https://slidesdown.com">
+    <img src="./src/components/Logo/logo.svg" width="256">
   </a>
 </p>
 
