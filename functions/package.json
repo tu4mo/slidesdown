@@ -1,6 +1,6 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
+  "name": "slidesdown-functions",
+  "private": true,
   "scripts": {
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
@@ -12,5 +12,7 @@
     "firebase-admin": "^5.12.1",
     "firebase-functions": "^1.0.3"
   },
-  "private": true
+  "devDependencies": {
+    "firebase-tools": "^3.18.5"
+  }
 }
