@@ -66,7 +66,7 @@ class ShareDialog extends Component {
           </StyledInstruction>
         </StyledInstructions>
         <StyledDetails>
-          &sup1;) Slides will be removed after 30 continuous days of no
+          &sup1;) Slides will be removed after approx. 30 continuous days of no
           visitors.
         </StyledDetails>
         <StyledFooter>
