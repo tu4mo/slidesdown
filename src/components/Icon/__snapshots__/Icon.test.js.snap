@@ -17,10 +17,7 @@ exports[`renders correctly 1`] = `
 }
 
 <img
-  alt={undefined}
   className="c0"
-  disabled={undefined}
-  onClick={undefined}
   src="test-file-stub"
 />
 `;
@@ -46,10 +43,7 @@ exports[`renders correctly with tooltip 1`] = `
   html="Test"
 >
   <img
-    alt={undefined}
     className="c0"
-    disabled={undefined}
-    onClick={undefined}
     src="test-file-stub"
   />
 </Tooltip>

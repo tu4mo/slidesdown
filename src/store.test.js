@@ -14,10 +14,7 @@ describe('store', () => {
 
   it('setMarkdown', () => {
     const value = actions(store).setMarkdown(null, 'Testing setMarkdown')
-    expect(global.localStorage.setItem).toBeCalledWith(
-      'markdown',
-      'Testing setMarkdown'
-    )
+    expect(localStorage.getItem('markdown')).toEqual('Testing setMarkdown')
     expect(value).toEqual({ markdown: 'Testing setMarkdown' })
   })
 })

@@ -34,7 +34,6 @@ exports[`renders correctly 1`] = `
 >
   <textarea
     className="c1"
-    disabled={undefined}
     onChange={[MockFunction]}
     onClick={[Function]}
     onDrop={[Function]}
