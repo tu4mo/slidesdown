@@ -169,6 +169,7 @@ class SlidesEditor extends Component {
   }
 }
 
-export default connect('isLoading, markdown, newId, theme', actions)(
-  SlidesEditor
-)
+export default connect(
+  'isLoading, markdown, newId, theme',
+  actions
+)(SlidesEditor)

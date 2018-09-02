@@ -89,4 +89,7 @@ class ShareDialog extends Component {
   }
 }
 
-export default connect('markdown, newId, theme', actions)(ShareDialog)
+export default connect(
+  'markdown, newId, theme',
+  actions
+)(ShareDialog)

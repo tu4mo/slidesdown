@@ -1,8 +1,7 @@
 module.exports = (req, res, db) => {
   const { id } = req.query
 
-  db
-    .collection('slides')
+  db.collection('slides')
     .doc(id)
     .update({ visitedAt: new Date() })
     .then(() => {

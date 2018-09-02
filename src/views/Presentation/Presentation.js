@@ -201,4 +201,7 @@ class Presentation extends Component {
   }
 }
 
-export default connect('isLoading, markdown, theme', actions)(Presentation)
+export default connect(
+  'isLoading, markdown, theme',
+  actions
+)(Presentation)

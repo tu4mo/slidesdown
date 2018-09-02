@@ -65,7 +65,7 @@ export const saveImage = async ({ id, file, onChange, onError, onDone }) => {
     'state_changed',
     snapshot =>
       onChange(
-        Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100)
+        Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
       ),
     error => onError(error),
     () => onDone(uploadTask.snapshot)

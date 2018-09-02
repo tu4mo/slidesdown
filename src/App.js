@@ -16,7 +16,10 @@ const SlidesEditor = Loadable(() => import('./views/SlidesEditor'))
 
 injectGlobalStyles()
 
-const App = connect('error', actions)(({ error, setError }) => (
+const App = connect(
+  'error',
+  actions
+)(({ error, setError }) => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <BrowserRouter>
