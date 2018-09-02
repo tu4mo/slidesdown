@@ -16,6 +16,12 @@ exports[`renders correctly 1`] = `
   transform: scale(1.1);
 }
 
+.c0:active {
+  -webkit-transform: scale(0.98);
+  -ms-transform: scale(0.98);
+  transform: scale(0.98);
+}
+
 <img
   className="c0"
   src="test-file-stub"
@@ -36,6 +42,12 @@ exports[`renders correctly with tooltip 1`] = `
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.c0:active {
+  -webkit-transform: scale(0.98);
+  -ms-transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 <Tooltip
