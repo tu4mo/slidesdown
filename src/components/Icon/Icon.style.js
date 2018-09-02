@@ -9,4 +9,8 @@ export const StyledIcon = styled.img.attrs({})`
   &:hover {
     transform: scale(1.1);
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `
