@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/storage'
+import throttle from 'lodash.throttle'
 import uuid from 'uuid/v4'
 
 firebase.initializeApp({
@@ -13,6 +14,8 @@ firebase.initializeApp({
 })
 
 const db = firebase.firestore()
+db.settings({ timestampsInSnapshots: true })
+
 const storage = firebase.storage().ref()
 
 const IMAGES_COLLECTION = 'images'
@@ -45,6 +48,17 @@ export const saveSlides = ({ id, markdown, theme }) =>
     .catch(error => {
       console.error('Error adding document: ', error)
     })
+
+export const updateSlides = ({ id, markdown, theme }) =>
+  db
+    .collection(SLIDES_COLLECTION)
+    .doc(id)
+    .update({ markdown, theme })
+    .catch(error => {
+      console.error('Error updating document: ', error)
+    })
+
+export const updateSlidesThrottled = throttle(updateSlides, 2000)
 
 export const saveImage = async ({ id, file, onChange, onError, onDone }) => {
   const imagePath = `images/${id}/${uuid()}-${file.name}`

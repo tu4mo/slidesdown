@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { connect, Provider } from 'unistore/react'
 import { hot } from 'react-hot-loader'
+import uuid from 'uuid/v4'
 
 import Loadable from './components/Loadable'
 
@@ -17,9 +18,9 @@ const SlidesEditor = Loadable(() => import('./views/SlidesEditor'))
 injectGlobalStyles()
 
 const App = connect(
-  'error',
+  'error, editableId',
   actions
-)(({ error, setError }) => (
+)(({ error, editableId, setError }) => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <BrowserRouter>
@@ -28,7 +29,8 @@ const App = connect(
             component={Presentation}
             path="/presentation/:slidesId?/:slideNumber?"
           />
-          <Route component={SlidesEditor} path="/:slidesId?" />
+          <Route component={SlidesEditor} path="/:slidesId" />
+          <Redirect from="/" to={`/${uuid()}`} />
         </Switch>
       </BrowserRouter>
       {error && <ErrorDialog error={error} onClose={() => setError('')} />}

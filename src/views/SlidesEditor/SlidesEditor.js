@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'unistore/react'
 import SplitPane from 'react-split-pane'
 
-// import { saveImage } from '../../firebase'
+import {
+  getSlides,
+  saveSlides,
+  updateSlidesThrottled /* , saveImage */
+} from '../../firebase'
 import { actions } from '../../store'
 import styledTheme from '../../theme'
 
@@ -18,50 +22,70 @@ import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
 
 const ShareDialog = Loadable(() => import('./ShareDialog'))
 
+const DEFAULT_MARKDOWN =
+  '# ✨✨✨\n\n# Welcome to Slidesdown\n\n---\n\n' +
+  "## What is it?\n\nWith Slidesdown, you can write [markdown](https://en.wikipedia.org/wiki/Markdown) to create a **slideshow**.\n\n### Other features\n\n- No login required\n- Saves slides to your browser's localStorage\n- Code syntax highlighting\n- Sharing slides with unique URL\n\n---\n\n" +
+  '## How to get stared\n\n1. Start typing markdown on the editor\n2. Enjoy the realtime preview of slides\n3. Click *Presentation* to view them as a slideshow\n4. Share your slides!\n\n---\n\n' +
+  "## Some of the features\n\nCode syntax highlighting:\n```javascript\nconst hello = 'world'\nconsole.log(hello)\n```\n\nText formatting:\n\n- *Italic text*\n- **Bold text**\n- ~~Strikethrough text~~\n\n---\n\n" +
+  '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
+  '# 👋\n\n# Have fun!'
+
 class SlidesEditor extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    markdown: PropTypes.string,
     match: PropTypes.object.isRequired,
-    // newId: PropTypes.string.isRequired,
-    setMarkdown: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
   }
 
   state = {
     cursorPosition: 0,
+    isCreated: false,
+    isLoading: true,
     isSharing: false,
     isUploading: false,
+    markdown: '',
     slideToFocus: 0,
     uploadProgress: 0
   }
 
   async componentDidMount() {
-    const { history, loadMarkdown, match } = this.props
+    const { match } = this.props
     const { slidesId } = match.params
 
-    if (slidesId) {
-      try {
-        await loadMarkdown(slidesId)
-      } catch (err) {
-        console.error(err)
-        history.push('/')
-      }
-    } else {
-      this.setState({ isLoading: false })
+    try {
+      const slides = await getSlides(slidesId)
+      this.setState({
+        isCreated: true,
+        isLoading: false,
+        markdown: slides.markdown
+      })
+    } catch (err) {
+      this.setState({ isLoading: false, markdown: DEFAULT_MARKDOWN })
     }
   }
 
   handleEditorChange = e => {
-    const { history, match } = this.props
+    const { match, theme } = this.props
     const { slidesId } = match.params
+    const { isCreated } = this.state
 
-    if (slidesId) {
-      history.push('/')
-    }
-
-    this.props.setMarkdown(e.target.value)
+    this.setState({ markdown: e.target.value }, () => {
+      if (!isCreated) {
+        this.setState({ isCreated: true }, () => {
+          saveSlides({
+            id: slidesId,
+            markdown: this.state.markdown,
+            theme
+          })
+        })
+      } else {
+        updateSlidesThrottled({
+          id: slidesId,
+          markdown: this.state.markdown,
+          theme
+        })
+      }
+    })
   }
 
   handleEditorDrop = async file => {
@@ -116,8 +140,16 @@ class SlidesEditor extends Component {
   }
 
   render() {
-    const { isSharing, isUploading, slideToFocus, uploadProgress } = this.state
-    const { history, isLoading, markdown, theme } = this.props
+    const {
+      isLoading,
+      isSharing,
+      isUploading,
+      markdown,
+      slideToFocus,
+      uploadProgress
+    } = this.state
+
+    const { history, theme } = this.props
 
     return isLoading ? (
       <Spinner />
@@ -170,6 +202,6 @@ class SlidesEditor extends Component {
 }
 
 export default connect(
-  'isLoading, markdown, newId, theme',
+  'theme',
   actions
 )(SlidesEditor)

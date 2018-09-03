@@ -2,7 +2,8 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /slides/{slide} {
       allow get, create: if true;
-      allow delete, list, update: if false;
+      allow delete, list: if false;
+      allow update: if !request.writeFields.hasAny(['createdAt', 'visitedAt']);
 
       match /images/{image} {
         allow get, delete, list, update: if false;
