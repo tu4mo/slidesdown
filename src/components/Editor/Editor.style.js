@@ -10,6 +10,7 @@ export const StyledWrapper = styled.div`
 
 export const StyledTextarea = styled.textarea`
   border: 0;
+  caret-color: ${props => props.theme.colors.purple};
   color: ${props => props.theme.colors.lightText};
   font-family: ${props => props.theme.fonts.monospace};
   font-size: 16px;
@@ -25,6 +26,11 @@ export const StyledTextarea = styled.textarea`
 
   &:disabled {
     opacity: 0.2;
+  }
+
+  &::selection {
+    background-color: ${props => props.theme.colors.purple};
+    color: #fff;
   }
 `
 
