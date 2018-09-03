@@ -44,7 +44,7 @@ export const saveSlides = ({ id, markdown, theme }) =>
   db
     .collection(SLIDES_COLLECTION)
     .doc(id)
-    .set({ createdAt: new Date(), markdown, theme })
+    .set({ createdAt: new Date(), markdown, theme }, { merge: true })
     .catch(error => {
       console.error('Error adding document: ', error)
     })
