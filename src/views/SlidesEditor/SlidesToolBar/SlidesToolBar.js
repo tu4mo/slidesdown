@@ -43,6 +43,7 @@ class SlidesToolBar extends Component {
             </StyledLogoContainer>
             <ButtonGroup>
               <Icon
+                alt="Presentation"
                 onClick={onPresentationClick}
                 tooltip="Presentation"
                 type="presentation"
