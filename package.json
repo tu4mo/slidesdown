@@ -25,6 +25,26 @@
   ],
   "author": "tu4mo",
   "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "firebase": "^5.4.2",
+    "lodash.throttle": "^4.1.1",
+    "prismjs": "^1.15.0",
+    "prop-types": "^15.6.2",
+    "query-string": "^6.1.0",
+    "react": "^16.4.2",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-dom": "^16.4.2",
+    "react-full-screen": "^0.2.3",
+    "react-hot-loader": "^4.3.5",
+    "react-loadable": "^5.5.0",
+    "react-markdown": "^3.4.1",
+    "react-router-dom": "^4.3.1",
+    "react-split-pane": "^0.1.82",
+    "react-tippy": "^1.2.2",
+    "styled-components": "^3.4.5",
+    "uuid": "^3.3.2"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
@@ -61,26 +81,6 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^2.1.5",
     "webpack-dev-server": "^3.1.7"
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "firebase": "^5.4.2",
-    "lodash.throttle": "^4.1.1",
-    "prismjs": "^1.15.0",
-    "prop-types": "^15.6.2",
-    "query-string": "^6.1.0",
-    "react": "^16.4.2",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.4.2",
-    "react-full-screen": "^0.2.3",
-    "react-hot-loader": "^4.3.5",
-    "react-loadable": "^5.5.0",
-    "react-markdown": "^3.4.1",
-    "react-router-dom": "^4.3.1",
-    "react-split-pane": "^0.1.82",
-    "react-tippy": "^1.2.2",
-    "styled-components": "^3.4.5",
-    "uuid": "^3.3.2"
   },
   "jest": {
     "collectCoverageFrom": [
