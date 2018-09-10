@@ -50,17 +50,18 @@ export const getPresentation = async id => {
   }
 }
 
-export const saveSlides = ({ id, markdown, presentationId, theme }) =>
-  db
-    .collection(SLIDES_COLLECTION)
-    .doc(id)
-    .set(
-      { createdAt: new Date(), markdown, presentationId, theme },
-      { merge: true }
-    )
-    .catch(error => {
-      console.error('Error adding document: ', error)
-    })
+export const createSlides = async ({ id, markdown, presentationId, theme }) => {
+  try {
+    db.collection(SLIDES_COLLECTION)
+      .doc(id)
+      .set(
+        { createdAt: new Date(), markdown, presentationId, theme },
+        { merge: true }
+      )
+  } catch (error) {
+    console.error('Error adding document: ', error)
+  }
+}
 
 export const updateSlides = ({ id, markdown, theme }) =>
   db

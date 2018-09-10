@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import ButtonGroup from '../../../components/ButtonGroup'
 import Icon from '../../../components/Icon'
@@ -18,7 +17,7 @@ const About = Loadable(() => import('./About'))
 
 class SlidesToolBar extends Component {
   static propTypes = {
-    presentationId: PropTypes.string.isRequired
+    onPresentationClick: PropTypes.func.isRequired
   }
 
   state = {
@@ -26,14 +25,11 @@ class SlidesToolBar extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.state.isAboutVisible !== nextState.isAboutVisible ||
-      this.props.presentationId !== nextProps.presentationId
-    )
+    return this.state.isAboutVisible !== nextState.isAboutVisible
   }
 
   render() {
-    const { presentationId } = this.props
+    const { onPresentationClick } = this.props
     const { isAboutVisible } = this.state
 
     return (
@@ -46,9 +42,11 @@ class SlidesToolBar extends Component {
               </Tooltip>
             </StyledLogoContainer>
             <ButtonGroup>
-              <Link to={`/${presentationId}`}>
-                <Icon tooltip="Presentation" type="presentation" />
-              </Link>
+              <Icon
+                onClick={onPresentationClick}
+                tooltip="Presentation"
+                type="presentation"
+              />
             </ButtonGroup>
           </ToolBar>
         </StyledToolBarContainer>

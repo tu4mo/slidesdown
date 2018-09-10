@@ -5,8 +5,8 @@ import queryString from 'query-string'
 import uuid from 'uuid/v4'
 
 import {
+  createSlides,
   getSlides,
-  saveSlides,
   updateSlidesThrottled
   // , saveImage
 } from '../../firebase'
@@ -30,6 +30,7 @@ const DEFAULT_MARKDOWN =
 
 class SlidesEditor extends Component {
   static propTypes = {
+    history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired
   }
@@ -67,28 +68,32 @@ class SlidesEditor extends Component {
     }
   }
 
-  handleEditorChange = e => {
+  saveSlides = () => {
     const { match } = this.props
     const { slidesId } = match.params
     const { isCreated, presentationId, theme } = this.state
 
-    this.setState({ markdown: e.target.value }, () => {
-      if (!isCreated) {
-        this.setState({ isCreated: true })
+    if (!isCreated) {
+      this.setState({ isCreated: true })
 
-        saveSlides({
-          id: slidesId,
-          markdown: this.state.markdown,
-          presentationId,
-          theme
-        })
-      } else {
-        updateSlidesThrottled({
-          id: slidesId,
-          markdown: this.state.markdown,
-          theme
-        })
-      }
+      return createSlides({
+        id: slidesId,
+        markdown: this.state.markdown,
+        presentationId,
+        theme
+      })
+    }
+
+    return updateSlidesThrottled({
+      id: slidesId,
+      markdown: this.state.markdown,
+      theme
+    })
+  }
+
+  handleEditorChange = e => {
+    this.setState({ markdown: e.target.value }, () => {
+      this.saveSlides()
     })
   }
 
@@ -123,6 +128,15 @@ class SlidesEditor extends Component {
 
   handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
     this.setState({ cursorPosition, slideToFocus: slide })
+
+  handlePresentationClick = async () => {
+    const { history } = this.props
+    const { presentationId } = this.state
+
+    await this.saveSlides()
+
+    history.push(`/${presentationId}`)
+  }
 
   handleSplitPaneChange = () => {
     window.dispatchEvent(new Event('resize'))
@@ -174,7 +188,7 @@ class SlidesEditor extends Component {
                   theme={theme}
                 />
                 <SlidesToolBar
-                  onShareClick={this.handleShareClick}
+                  onPresentationClick={this.handlePresentationClick}
                   presentationId={presentationId}
                 />
               </StyledSlidesContainer>
