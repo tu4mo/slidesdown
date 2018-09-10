@@ -80,7 +80,6 @@
     "react-split-pane": "^0.1.82",
     "react-tippy": "^1.2.2",
     "styled-components": "^3.4.5",
-    "unistore": "^3.0.6",
     "uuid": "^3.3.2"
   },
   "jest": {

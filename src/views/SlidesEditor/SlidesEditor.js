@@ -1,18 +1,18 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'unistore/react'
 import SplitPane from 'react-split-pane'
+import queryString from 'query-string'
+import uuid from 'uuid/v4'
 
 import {
   getSlides,
   saveSlides,
-  updateSlidesThrottled /* , saveImage */
+  updateSlidesThrottled
+  // , saveImage
 } from '../../firebase'
-import { actions } from '../../store'
 import styledTheme from '../../theme'
 
 import Editor from '../../components/Editor'
-import Loadable from '../../components/Loadable'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
 import WindowResizeObserver from '../../components/WindowResizeObserver'
@@ -20,44 +20,47 @@ import WindowResizeObserver from '../../components/WindowResizeObserver'
 import SlidesToolBar from './SlidesToolBar'
 import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
 
-const ShareDialog = Loadable(() => import('./ShareDialog'))
-
 const DEFAULT_MARKDOWN =
   '# ✨✨✨\n\n# Welcome to Slidesdown\n\n---\n\n' +
-  "## What is it?\n\nWith Slidesdown, you can write [markdown](https://en.wikipedia.org/wiki/Markdown) to create a **slideshow**.\n\n### Other features\n\n- No login required\n- Saves slides to your browser's localStorage\n- Code syntax highlighting\n- Sharing slides with unique URL\n\n---\n\n" +
-  '## How to get stared\n\n1. Start typing markdown on the editor\n2. Enjoy the realtime preview of slides\n3. Click *Presentation* to view them as a slideshow\n4. Share your slides!\n\n---\n\n' +
+  '## What is it?\n\nWith Slidesdown, you can write [markdown](https://en.wikipedia.org/wiki/Markdown) to create a **slideshow**.\n\n### Other features\n\n- No login required\n- Auto-save to cloud\n- Code syntax highlighting\n- Sharing presentation with a unique URL\n- Slides will be removed after ~30 days of inactivity (edits/presentations)\n\n---\n\n' +
+  "## How to get stared\n\n1. Check the address bar, that's your slides' secret editing URL\n2. Start typing markdown on the editor, enjoy the realtime preview of slides\n3. Click *Presentation* to open the slideshow URL\n4. Share presentation URL for read-only access to your slides\n\n---\n\n" +
   "## Some of the features\n\nCode syntax highlighting:\n```javascript\nconst hello = 'world'\nconsole.log(hello)\n```\n\nText formatting:\n\n- *Italic text*\n- **Bold text**\n- ~~Strikethrough text~~\n\n---\n\n" +
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
 class SlidesEditor extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    theme: PropTypes.string.isRequired
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
   }
 
   state = {
     cursorPosition: 0,
     isCreated: false,
     isLoading: true,
-    isSharing: false,
     isUploading: false,
     markdown: '',
+    presentationId: uuid(),
+    theme: '',
     slideToFocus: 0,
     uploadProgress: 0
   }
 
   async componentDidMount() {
-    const { match } = this.props
+    const { location, match } = this.props
     const { slidesId } = match.params
+
+    this.setState({
+      theme: queryString.parse(location.search).theme || 'default'
+    })
 
     try {
       const slides = await getSlides(slidesId)
       this.setState({
         isCreated: true,
         isLoading: false,
-        markdown: slides.markdown
+        markdown: slides.markdown,
+        presentationId: slides.presentationId
       })
     } catch (err) {
       this.setState({ isLoading: false, markdown: DEFAULT_MARKDOWN })
@@ -65,18 +68,19 @@ class SlidesEditor extends Component {
   }
 
   handleEditorChange = e => {
-    const { match, theme } = this.props
+    const { match } = this.props
     const { slidesId } = match.params
-    const { isCreated } = this.state
+    const { isCreated, presentationId, theme } = this.state
 
     this.setState({ markdown: e.target.value }, () => {
       if (!isCreated) {
-        this.setState({ isCreated: true }, () => {
-          saveSlides({
-            id: slidesId,
-            markdown: this.state.markdown,
-            theme
-          })
+        this.setState({ isCreated: true })
+
+        saveSlides({
+          id: slidesId,
+          markdown: this.state.markdown,
+          presentationId,
+          theme
         })
       } else {
         updateSlidesThrottled({
@@ -120,36 +124,20 @@ class SlidesEditor extends Component {
   handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
     this.setState({ cursorPosition, slideToFocus: slide })
 
-  handlePresentationClick = e => {
-    const { history, match } = this.props
-    const { slidesId } = match.params
-
-    history.push(`presentation${slidesId ? `/${match.params.slidesId}` : ''}`)
-  }
-
-  handleShareClick = e => {
-    this.setState({ isSharing: true })
-  }
-
   handleSplitPaneChange = () => {
     window.dispatchEvent(new Event('resize'))
-  }
-
-  handleClose = () => {
-    this.setState({ isSharing: false })
   }
 
   render() {
     const {
       isLoading,
-      isSharing,
       isUploading,
       markdown,
+      presentationId,
       slideToFocus,
+      theme,
       uploadProgress
     } = this.state
-
-    const { history, theme } = this.props
 
     return isLoading ? (
       <Spinner />
@@ -186,14 +174,11 @@ class SlidesEditor extends Component {
                   theme={theme}
                 />
                 <SlidesToolBar
-                  onPresentationClick={this.handlePresentationClick}
                   onShareClick={this.handleShareClick}
+                  presentationId={presentationId}
                 />
               </StyledSlidesContainer>
             </SplitPane>
-            {isSharing && (
-              <ShareDialog history={history} onClose={this.handleClose} />
-            )}
           </Fragment>
         )}
       </WindowResizeObserver>
@@ -201,7 +186,4 @@ class SlidesEditor extends Component {
   }
 }
 
-export default connect(
-  'theme',
-  actions
-)(SlidesEditor)
+export default SlidesEditor

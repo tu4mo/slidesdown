@@ -11,6 +11,7 @@ exports[`renders correctly 1`] = `
 
 .c1 {
   border: 0;
+  caret-color: #3023ae;
   color: #646468;
   font-family: Inconsolata;
   font-size: 16px;
@@ -27,6 +28,11 @@ exports[`renders correctly 1`] = `
 
 .c1:disabled {
   opacity: 0.2;
+}
+
+.c1::selection {
+  background-color: #3023ae;
+  color: #fff;
 }
 
 <div
@@ -55,6 +61,7 @@ exports[`renders correctly with disabled and isLoading 1`] = `
 
 .c1 {
   border: 0;
+  caret-color: #3023ae;
   color: #646468;
   font-family: Inconsolata;
   font-size: 16px;
@@ -71,6 +78,11 @@ exports[`renders correctly with disabled and isLoading 1`] = `
 
 .c1:disabled {
   opacity: 0.2;
+}
+
+.c1::selection {
+  background-color: #3023ae;
+  color: #fff;
 }
 
 .c2 {

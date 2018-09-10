@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'unistore/react'
 import Fullscreen from 'react-full-screen'
 
-import { actions } from '../../store'
+import { getPresentation } from '../../firebase'
 
 import Icon from '../../components/Icon'
 import Key from '../../components/Key'
@@ -21,29 +20,34 @@ import {
 class Presentation extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    markdown: PropTypes.string,
-    match: PropTypes.object.isRequired,
-    theme: PropTypes.string.isRequired
+    match: PropTypes.object.isRequired
   }
 
   state = {
     isFullscreen: false,
-    isToolbarVisible: false
+    isLoading: true,
+    isToolbarVisible: false,
+    markdown: '',
+    theme: ''
   }
 
   slidesCount = 0
   toolbarVisibilityTimer = null
 
   async componentDidMount() {
-    const { history, loadMarkdown, match } = this.props
+    const { history, match } = this.props
     const { slidesId } = match.params
 
     if (slidesId && slidesId !== '-') {
       try {
-        await loadMarkdown(slidesId)
+        const slides = await getPresentation(slidesId)
+
+        this.setState({
+          isLoading: false,
+          markdown: slides.markdown,
+          theme: slides.theme
+        })
       } catch (err) {
-        console.error(err)
         history.push('/')
       }
     }
@@ -59,8 +63,7 @@ class Presentation extends Component {
   changeSlide = (next = true) => {
     const { history, match } = this.props
     const { slidesId = '-', slideNumber = 0 } = match.params
-    const getSlideUrl = slideNumber =>
-      `/presentation/${slidesId}/${slideNumber}`
+    const getSlideUrl = slideNumber => `/${slidesId}/${slideNumber}`
 
     if (next) {
       if (slideNumber < this.slidesCount - 1) {
@@ -81,9 +84,6 @@ class Presentation extends Component {
 
   handleKeyUp = e => {
     switch (e.keyCode) {
-      case 27: // ESC
-        this.close()
-        break
       case 37: // Left arrow
         this.changeSlide(false)
         break
@@ -122,8 +122,14 @@ class Presentation extends Component {
   }
 
   render() {
-    const { isLoading, markdown, match, theme } = this.props
-    const { isFullscreen, isToolbarVisible } = this.state
+    const { match } = this.props
+    const {
+      isFullscreen,
+      isLoading,
+      isToolbarVisible,
+      markdown,
+      theme
+    } = this.state
     const { slideNumber: slideNumberAsString = '0' } = match.params
     const slideNumber = parseInt(slideNumberAsString, 10)
 
@@ -143,7 +149,7 @@ class Presentation extends Component {
           />
           <StyledNoticationContainer>
             <Notification slideDown timeout={5000}>
-              Press ESC to exit, space or arrows to change slide.
+              Press space or arrows to change slide.
             </Notification>
           </StyledNoticationContainer>
           <StyledPresentationToolbar
@@ -163,7 +169,11 @@ class Presentation extends Component {
               />
               {isFullscreen ? (
                 <Icon
-                  onClick={() => this.setState({ isFullscreen: false })}
+                  onClick={() =>
+                    this.setState({
+                      isFullscreen: false
+                    })
+                  }
                   tooltip={<span>Minimize</span>}
                   type="minimize"
                 />
@@ -175,20 +185,11 @@ class Presentation extends Component {
                 />
               )}
               <Icon
-                onClick={this.close}
-                tooltip={
-                  <span>
-                    Close <Key>esc</Key>
-                  </span>
-                }
-                type="cross"
-              />
-              <Icon
                 disabled={slideNumber >= this.slidesCount - 1}
                 onClick={this.changeSlide}
                 tooltip={
                   <span>
-                    Next <Key>→</Key>
+                    Next <Key>→</Key> / <Key>space</Key>
                   </span>
                 }
                 type="right"
@@ -201,7 +202,4 @@ class Presentation extends Component {
   }
 }
 
-export default connect(
-  'isLoading, markdown, theme',
-  actions
-)(Presentation)
+export default Presentation

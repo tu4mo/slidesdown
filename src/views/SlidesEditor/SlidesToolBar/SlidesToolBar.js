@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import ButtonGroup from '../../../components/ButtonGroup'
 import Icon from '../../../components/Icon'
@@ -17,8 +18,7 @@ const About = Loadable(() => import('./About'))
 
 class SlidesToolBar extends Component {
   static propTypes = {
-    onPresentationClick: PropTypes.func.isRequired,
-    onShareClick: PropTypes.func.isRequired
+    presentationId: PropTypes.string.isRequired
   }
 
   state = {
@@ -26,11 +26,14 @@ class SlidesToolBar extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.isAboutVisible !== nextState.isAboutVisible
+    return (
+      this.state.isAboutVisible !== nextState.isAboutVisible ||
+      this.props.presentationId !== nextProps.presentationId
+    )
   }
 
   render() {
-    const { onPresentationClick, onShareClick } = this.props
+    const { presentationId } = this.props
     const { isAboutVisible } = this.state
 
     return (
@@ -38,17 +41,14 @@ class SlidesToolBar extends Component {
         <StyledToolBarContainer>
           <ToolBar>
             <StyledLogoContainer>
-              <Tooltip html="About">
+              <Tooltip html="About Slidesdown">
                 <Logo onClick={() => this.setState({ isAboutVisible: true })} />
               </Tooltip>
             </StyledLogoContainer>
             <ButtonGroup>
-              <Icon
-                onClick={onPresentationClick}
-                tooltip="Presentation"
-                type="presentation"
-              />
-              <Icon onClick={onShareClick} tooltip="Share" type="share" />
+              <Link to={`/${presentationId}`}>
+                <Icon tooltip="Presentation" type="presentation" />
+              </Link>
             </ButtonGroup>
           </ToolBar>
         </StyledToolBarContainer>

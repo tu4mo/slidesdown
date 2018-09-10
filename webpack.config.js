@@ -7,7 +7,15 @@ const path = require('path')
 
 module.exports = {
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+        secure: false,
+        target: 'https://us-central1-slidesdown-2a4ab.cloudfunctions.net'
+      }
+    }
   },
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   mode: isDev ? 'development' : 'production',

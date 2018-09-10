@@ -40,11 +40,24 @@ export const getSlides = async id => {
   }
 }
 
-export const saveSlides = ({ id, markdown, theme }) =>
+export const getPresentation = async id => {
+  try {
+    const response = await fetch(`/api/presentation?id=${id}`)
+    const json = await response.json()
+    return json
+  } catch (err) {
+    throw err
+  }
+}
+
+export const saveSlides = ({ id, markdown, presentationId, theme }) =>
   db
     .collection(SLIDES_COLLECTION)
     .doc(id)
-    .set({ createdAt: new Date(), markdown, theme }, { merge: true })
+    .set(
+      { createdAt: new Date(), markdown, presentationId, theme },
+      { merge: true }
+    )
     .catch(error => {
       console.error('Error adding document: ', error)
     })
