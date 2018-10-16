@@ -120,11 +120,11 @@ class Slides extends Component {
     return (
       <StyledTheme>
         {singleSlide !== undefined ? (
-          <StyledSingleSlideContainer innerRef={this.slidesRef}>
+          <StyledSingleSlideContainer ref={this.slidesRef}>
             {slides[singleSlide]}
           </StyledSingleSlideContainer>
         ) : (
-          <StyledSlidesContainer innerRef={this.slidesRef}>
+          <StyledSlidesContainer ref={this.slidesRef}>
             {slides}
           </StyledSlidesContainer>
         )}

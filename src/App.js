@@ -6,13 +6,11 @@ import uuid from 'uuid/v4'
 
 import Loadable from './components/Loadable'
 
-import { injectGlobalStyles } from './App.style'
+import { GlobalStyle } from './App.style'
 import theme from './theme'
 
 const Presentation = Loadable(() => import('./views/Presentation'))
 const SlidesEditor = Loadable(() => import('./views/SlidesEditor'))
-
-injectGlobalStyles()
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -24,6 +22,7 @@ const App = () => (
           <Route component={Presentation} path="/:slidesId?/:slideNumber?" />
         </Switch>
       </BrowserRouter>
+      <GlobalStyle />
     </Fragment>
   </ThemeProvider>
 )

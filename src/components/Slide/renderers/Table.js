@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledTable = styled.table`
@@ -5,4 +7,10 @@ const StyledTable = styled.table`
   width: 100%;
 `
 
-export default StyledTable
+const Table = ({ children }) => <StyledTable>{children}</StyledTable>
+
+Table.propTypes = {
+  children: PropTypes.node
+}
+
+export default Table

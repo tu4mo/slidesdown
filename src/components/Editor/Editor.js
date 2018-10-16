@@ -65,12 +65,12 @@ class Editor extends Component {
       <StyledWrapper>
         <StyledTextarea
           disabled={isLoading}
-          innerRef={this.editorRef}
           onChange={onChange}
           onClick={this.handleClickAndKeyUp}
           onDrop={this.handleDrop}
           onKeyUp={this.handleClickAndKeyUp}
           placeholder="Write markdown here"
+          ref={this.editorRef}
           value={value}
         />
         {isLoading && <StyledProgressBar progress={progress} />}

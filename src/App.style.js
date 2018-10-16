@@ -1,8 +1,8 @@
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 import theme from './theme'
 
-export const injectGlobalStyles = () => injectGlobal`
+export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }

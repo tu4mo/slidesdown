@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Tooltip } from 'react-tippy'
-import { injectGlobal } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 import tippyCSS from 'react-tippy/dist/tippy.css'
-injectGlobal`${tippyCSS}`
+const GlobalStyle = createGlobalStyle`${tippyCSS}`
 
-export default props => <Tooltip arrow {...props} />
+export default props => (
+  <Fragment>
+    <Tooltip arrow {...props} />
+    <GlobalStyle />
+  </Fragment>
+)
