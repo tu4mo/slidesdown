@@ -52,7 +52,8 @@ export const getPresentation = async id => {
 
 export const createSlides = async ({ id, markdown, presentationId, theme }) => {
   try {
-    db.collection(SLIDES_COLLECTION)
+    await db
+      .collection(SLIDES_COLLECTION)
       .doc(id)
       .set(
         { createdAt: new Date(), markdown, presentationId, theme },

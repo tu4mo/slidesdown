@@ -68,7 +68,7 @@ class SlidesEditor extends Component {
     }
   }
 
-  saveSlides = () => {
+  saveSlides = async () => {
     const { match } = this.props
     const { slidesId } = match.params
     const { isCreated, presentationId, theme } = this.state
@@ -76,12 +76,14 @@ class SlidesEditor extends Component {
     if (!isCreated) {
       this.setState({ isCreated: true })
 
-      return createSlides({
+      await createSlides({
         id: slidesId,
         markdown: this.state.markdown,
         presentationId,
         theme
       })
+
+      return
     }
 
     return updateSlidesThrottled({
