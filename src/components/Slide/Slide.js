@@ -2,11 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
-import {
-  StyledTransformContainer,
-  StyledSlideContainer,
-  StyledSlide
-} from './Slide.style'
+import { StyledTransformContainer, StyledSlideContainer } from './Slide.style'
 
 import Code from './renderers/Code'
 import Image from './renderers/Image'
@@ -38,9 +34,9 @@ class Slide extends PureComponent {
           single={single}
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
-          <StyledSlide className="slide">
+          <div>
             <Markdown renderers={renderers} source={markdown} />
-          </StyledSlide>
+          </div>
         </StyledSlideContainer>
       </StyledTransformContainer>
     )

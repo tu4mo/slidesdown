@@ -13,7 +13,9 @@
     "firebase-functions": "^2.0.5"
   },
   "devDependencies": {
-    "firebase-tools": "^4.2.1"
+    "firebase-tools": "^5.1.1"
   },
-  "engines": { "node": "8" }
+  "engines": {
+    "node": "8"
+  }
 }
