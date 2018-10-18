@@ -42,7 +42,7 @@
     "react-router-dom": "^4.3.1",
     "react-split-pane": "^0.1.84",
     "react-tippy": "^1.2.3",
-    "styled-components": "^4.0.0",
+    "styled-components": "^4.0.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.5.0",
-    "webpack": "^4.20.2",
+    "webpack": "^4.21.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
