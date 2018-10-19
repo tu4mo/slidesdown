@@ -31,7 +31,7 @@ const Theme = styled.div`
   ul {
     list-style-type: none;
 
-    li {
+    & > li {
       position: relative;
 
       &::before {
