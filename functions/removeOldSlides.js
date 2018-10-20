@@ -28,12 +28,12 @@ module.exports = (event, db) =>
       const { visitedAt } = slide.data()
 
       // Remove when visitedAt is undefined or old
-      if (!visitedAt || visitedAt < dateThirtyDaysAgo) {
+      if (!visitedAt || visitedAt.toDate() < dateThirtyDaysAgo) {
         return removeSlide(slide)
           .then(() => {
             console.log(
               `${slide.id}: Removed (last visit: ${
-                visitedAt ? visitedAt.toJSON() : 'unknown'
+                visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
               })`
             )
           })
@@ -43,7 +43,7 @@ module.exports = (event, db) =>
       } else {
         console.log(
           `${slide.id}: Not removing (last visit: ${
-            visitedAt ? visitedAt.toJSON() : 'unknown'
+            visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
           })`
         )
       }
