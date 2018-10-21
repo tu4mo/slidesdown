@@ -64,14 +64,18 @@ export const createSlides = async ({ id, markdown, presentationId, theme }) => {
   }
 }
 
-export const updateSlides = ({ id, markdown, theme }) =>
-  db
-    .collection(SLIDES_COLLECTION)
-    .doc(id)
-    .update({ markdown, theme })
-    .catch(error => {
-      console.error('Error updating document: ', error)
-    })
+export const updateSlides = async ({ id, markdown, theme, callback }) => {
+  try {
+    await db
+      .collection(SLIDES_COLLECTION)
+      .doc(id)
+      .update({ markdown, theme })
+
+    callback()
+  } catch (error) {
+    console.error('Error updating document: ', error)
+  }
+}
 
 export const updateSlidesThrottled = throttle(updateSlides, 2000)
 

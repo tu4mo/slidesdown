@@ -39,6 +39,7 @@ class SlidesEditor extends Component {
     cursorPosition: 0,
     isCreated: false,
     isLoading: true,
+    isSaving: false,
     isUploading: false,
     markdown: '',
     presentationId: uuid(),
@@ -73,6 +74,8 @@ class SlidesEditor extends Component {
     const { slidesId } = match.params
     const { isCreated, presentationId, theme } = this.state
 
+    this.setState({ isSaving: true })
+
     if (!isCreated) {
       this.setState({ isCreated: true })
 
@@ -83,13 +86,16 @@ class SlidesEditor extends Component {
         theme
       })
 
+      this.setState({ isSaving: false })
+
       return
     }
 
-    return updateSlidesThrottled({
+    await updateSlidesThrottled({
       id: slidesId,
       markdown: this.state.markdown,
-      theme
+      theme,
+      callback: () => this.setState({ isSaving: false })
     })
   }
 
@@ -147,6 +153,7 @@ class SlidesEditor extends Component {
   render() {
     const {
       isLoading,
+      isSaving,
       isUploading,
       markdown,
       presentationId,
@@ -190,6 +197,7 @@ class SlidesEditor extends Component {
                   theme={theme}
                 />
                 <SlidesToolBar
+                  isSaving={isSaving}
                   onPresentationClick={this.handlePresentationClick}
                   presentationId={presentationId}
                 />

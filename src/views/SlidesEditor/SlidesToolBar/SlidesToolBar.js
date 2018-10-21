@@ -17,6 +17,7 @@ const About = Loadable(() => import('./About'))
 
 class SlidesToolBar extends Component {
   static propTypes = {
+    isSaving: PropTypes.bool.isRequired,
     onPresentationClick: PropTypes.func.isRequired
   }
 
@@ -25,18 +26,21 @@ class SlidesToolBar extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.isAboutVisible !== nextState.isAboutVisible
+    return (
+      this.state.isAboutVisible !== nextState.isAboutVisible ||
+      this.props.isSaving !== nextProps.isSaving
+    )
   }
 
   render() {
-    const { onPresentationClick } = this.props
+    const { isSaving, onPresentationClick } = this.props
     const { isAboutVisible } = this.state
 
     return (
       <Fragment>
         <StyledToolBarContainer>
           <ToolBar>
-            <StyledLogoContainer>
+            <StyledLogoContainer withNotification={isSaving}>
               <Tooltip html="About Slidesdown">
                 <Logo onClick={() => this.setState({ isAboutVisible: true })} />
               </Tooltip>
