@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import ButtonGroup from '../../../components/ButtonGroup'
 import Icon from '../../../components/Icon'
-import Loadable from '../../../components/Loadable'
 import Logo from '../../../components/Logo'
 import ToolBar from '../../../components/ToolBar'
 import Tooltip from '../../../components/Tooltip'
@@ -13,7 +12,7 @@ import {
   StyledLogoContainer
 } from './SlidesToolBar.style'
 
-const About = Loadable(() => import('./About'))
+import About from './About'
 
 class SlidesToolBar extends Component {
   static propTypes = {
