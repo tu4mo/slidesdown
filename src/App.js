@@ -18,14 +18,8 @@ const App = () => (
         <Suspense fallback={<Spinner />}>
           <Switch>
             <Redirect exact from="/" to={`/edit/${uuid()}`} />
-            <Route
-              component={SlidesEditor}
-              path="/edit/:slidesId"
-            />
-            <Route
-              component={Presentation}
-              path="/:slidesId?/:slideNumber?"
-            />
+            <Route component={SlidesEditor} path="/edit/:slidesId" />
+            <Route component={Presentation} path="/:slidesId?/:slideNumber?" />
           </Switch>
         </Suspense>
       </BrowserRouter>

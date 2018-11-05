@@ -19,6 +19,7 @@ const renderers = {
 class Slide extends PureComponent {
   static propTypes = {
     height: PropTypes.number.isRequired,
+    innerRef: PropTypes.any,
     scale: PropTypes.number.isRequired,
     single: PropTypes.bool,
     markdown: PropTypes.string,
@@ -26,10 +27,10 @@ class Slide extends PureComponent {
   }
 
   render() {
-    const { markdown, scale, single, width, height } = this.props
+    const { innerRef, markdown, scale, single, width, height } = this.props
 
     return (
-      <StyledTransformContainer style={{ height: height, width: width }}>
+      <StyledTransformContainer ref={innerRef} style={{ height, width }}>
         <StyledSlideContainer
           className="slide"
           single={single}
@@ -44,4 +45,6 @@ class Slide extends PureComponent {
   }
 }
 
-export default Slide
+export default React.forwardRef((props, ref) => (
+  <Slide innerRef={ref} {...props} />
+))

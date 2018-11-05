@@ -1,6 +1,5 @@
 import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
-import { findDOMNode } from 'react-dom'
 
 import Slide from '../Slide'
 import WindowResizeObserver from '../WindowResizeObserver'
@@ -36,6 +35,7 @@ class Slides extends Component {
   }
 
   slidesRef = createRef()
+  scrollToRef = createRef()
 
   componentDidMount() {
     this.handleSlidesCount()
@@ -51,9 +51,8 @@ class Slides extends Component {
   }
 
   scrollToSlide = () => {
-    if (this.scrollToRef) {
-      this.slidesRef.current.scrollTop =
-        findDOMNode(this.scrollToRef).offsetTop - 32
+    if (this.scrollToRef.current) {
+      this.slidesRef.current.scrollTop = this.scrollToRef.current.offsetTop - 32
     }
   }
 
@@ -105,11 +104,7 @@ class Slides extends Component {
           height={height}
           key={slideMarkdown}
           markdown={slideMarkdown}
-          ref={ref => {
-            if (slideIndex === slideToFocus) {
-              this.scrollToRef = ref
-            }
-          }}
+          ref={slideIndex === slideToFocus ? this.scrollToRef : null}
           scale={scale}
           single={singleSlide !== undefined}
           width={width}
