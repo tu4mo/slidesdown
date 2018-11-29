@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -8,40 +8,36 @@ import {
   StyledModalCloseButton
 } from './Modal.style'
 
-class Modal extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    heading: PropTypes.string,
-    onClose: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
-  }
-
-  handleKeyDown = e => {
+const Modal = ({ children, heading, onClose }) => {
+  const handleKeyDown = e => {
     if (e.keyCode === 27) {
-      this.props.onClose()
+      onClose()
     }
   }
 
-  render() {
-    const { children, heading, onClose } = this.props
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
 
-    return (
-      <StyledModalContainer onClick={onClose}>
-        <StyledModal onClick={e => e.stopPropagation()}>
-          {heading && <StyledHeading>{heading}</StyledHeading>}
-          {children}
-          <StyledModalCloseButton onClick={onClose} />
-        </StyledModal>
-      </StyledModalContainer>
-    )
-  }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
+  return (
+    <StyledModalContainer onClick={onClose}>
+      <StyledModal onClick={e => e.stopPropagation()}>
+        {heading && <StyledHeading>{heading}</StyledHeading>}
+        {children}
+        <StyledModalCloseButton onClick={onClose} />
+      </StyledModal>
+    </StyledModalContainer>
+  )
+}
+
+Modal.propTypes = {
+  children: PropTypes.node,
+  heading: PropTypes.string,
+  onClose: PropTypes.func.isRequired
 }
 
 export default Modal

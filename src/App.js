@@ -1,7 +1,7 @@
 import React, { Fragment, Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
+import { hot, setConfig } from 'react-hot-loader'
 import uuid from 'uuid/v4'
 import validate from 'uuid-validate'
 
@@ -13,6 +13,10 @@ const Presentation = lazy(() => import('./views/Presentation'))
 const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
 
 const editPath = `/edit/${uuid()}`
+
+setConfig({
+  ignoreSFC: true
+})
 
 const App = () => (
   <ThemeProvider theme={theme}>
