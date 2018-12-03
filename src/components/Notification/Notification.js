@@ -1,34 +1,22 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-class Notification extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    timeout: PropTypes.number
-  }
+const Notification = ({ children, className, timeout }) => {
+  const [hasTimedOut, setHasTimedOut] = useState(false)
 
-  state = {
-    hasTimedOut: false
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => setHasTimedOut(true), timeout || 15000)
+    return () => clearTimeout(timer)
+  }, [])
 
-  componentDidMount() {
-    this.timer = setTimeout(() => {
-      this.setState({ hasTimedOut: true })
-    }, this.props.timeout || 15000)
-  }
+  return !hasTimedOut && <div className={className}>{children}</div>
+}
 
-  componentWillUnmount() {
-    clearTimeout(this.timer)
-  }
-
-  render() {
-    const { children, className } = this.props
-    const { hasTimedOut } = this.state
-
-    return !hasTimedOut && <div className={className}>{children}</div>
-  }
+Notification.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  timeout: PropTypes.number
 }
 
 const StyledNotification = styled(Notification)`

@@ -11,5 +11,3 @@ exports[`renders correctly 1`] = `
   Test
 </div>
 `;
-
-exports[`renders nothing after time has passed 1`] = `null`;
