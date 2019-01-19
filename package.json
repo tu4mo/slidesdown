@@ -5,17 +5,16 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "analyze": "npm run build -s -- --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
-    "build": "NODE_ENV=production webpack",
+    "analyze": "npm run build s -- --stats && webpack-bundle-analyzer build/bundle-stats.json build",
+    "build": "react-scripts build",
     "deploy": "npm run build && firebase deploy",
     "format": "prettier --write '**/*.{md,js,json}'",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint .",
     "lint:css": "stylelint './src/**/*.js'",
-    "start": "webpack-dev-server --hot",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "test:coverage": "npm test -- --coverage"
   },
   "keywords": [
     "slides",
@@ -30,15 +29,14 @@
     "firebase": "^5.5.7",
     "lodash.throttle": "^4.1.1",
     "prismjs": "^1.15.0",
-    "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
-    "react": "^16.7.0-alpha.2",
+    "react": "^16.8.0-alpha.1",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.7.0-alpha.2",
+    "react-dom": "^16.8.0-alpha.1",
     "react-full-screen": "^0.2.3",
-    "react-hot-loader": "^4.5.1",
     "react-markdown": "^4.0.3",
     "react-router-dom": "^4.4.0-beta.6",
+    "react-scripts": "^2.1.3",
     "react-split-pane": "^0.1.84",
     "react-tippy": "^1.2.3",
     "styled-components": "^4.1.2",
@@ -46,54 +44,40 @@
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-dynamic-import-node": "^2.2.0",
-    "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.6.0",
-    "eslint": "^5.7.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.11.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "file-loader": "^2.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
     "firebase-tools": "^6.0.1",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^23.6.0",
+    "http-proxy-middleware": "^0.19.1",
     "jest-styled-components": "^6.2.1",
     "prettier": "^1.15.3",
-    "raw-loader": "^0.5.1",
-    "react-test-renderer": "^16.7.0-alpha.2",
+    "react-test-renderer": "^16.8.0-alpha.1",
     "stylelint": "^9.7.1",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.5.0",
-    "webpack": "^4.24.0",
-    "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack-bundle-analyzer": "^3.0.3"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    ]
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/tu4mo/slidesdown.git"
-  }
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

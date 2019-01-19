@@ -93,6 +93,8 @@ class Presentation extends Component {
       case 32: // Space
         this.changeSlide()
         break
+      default:
+        break
     }
   }
 

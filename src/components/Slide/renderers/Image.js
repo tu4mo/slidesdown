@@ -29,7 +29,7 @@ class Image extends PureComponent {
 
     return (
       <StyledImageContainer>
-        <img src={src} />
+        <img alt="" src={src} />
       </StyledImageContainer>
     )
   }

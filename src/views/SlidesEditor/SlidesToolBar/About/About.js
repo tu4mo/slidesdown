@@ -11,7 +11,11 @@ const About = ({ onClose }) => (
     <StyledAbout>
       <Logo large />
       <StyledHeading>Write&nbsp;markdown, get&nbsp;slides</StyledHeading>
-      <a href="https://github.com/tu4mo/slidesdown" target="_blank">
+      <a
+        href="https://github.com/tu4mo/slidesdown"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         GitHub
       </a>
     </StyledAbout>

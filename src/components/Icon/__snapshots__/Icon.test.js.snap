@@ -24,7 +24,7 @@ exports[`renders correctly 1`] = `
 
 <img
   className="c0"
-  src="test-file-stub"
+  src="presentation.svg"
 />
 `;
 
@@ -56,7 +56,7 @@ exports[`renders correctly with tooltip 1`] = `
 >
   <img
     className="c0"
-    src="test-file-stub"
+    src="share.svg"
   />
 </Tooltip>
 `;
