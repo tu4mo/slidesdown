@@ -26,6 +26,10 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.21",
+    "@types/react": "^16.8.1",
+    "@types/react-dom": "^16.0.11",
     "firebase": "^5.5.7",
     "lodash.throttle": "^4.1.1",
     "prismjs": "^1.15.0",
@@ -40,6 +44,7 @@
     "react-split-pane": "^0.1.84",
     "react-tippy": "^1.2.3",
     "styled-components": "^4.1.2",
+    "typescript": "^3.3.1",
     "uuid": "^3.3.2",
     "uuid-validate": "0.0.3"
   },

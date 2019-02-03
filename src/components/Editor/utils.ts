@@ -1,7 +1,12 @@
-export const getCurrentLineNumber = (value, cursorPosition) =>
+interface Slide {
+  slide: number
+  firstLine: number
+}
+
+export const getCurrentLineNumber = (value: string, cursorPosition: number) =>
   value.substr(0, cursorPosition).split('\n').length
 
-export const getSlidesFirstLines = (value = '') =>
+export const getSlidesFirstLines = (value = ''): Slide[] =>
   value
     .split('\n')
     .reduce(
@@ -10,7 +15,10 @@ export const getSlidesFirstLines = (value = '') =>
     )
     .map((lines, index) => ({ slide: index, firstLine: lines }))
 
-export const getCurrentSlide = (slides, currentLineNumber) => {
+export const getCurrentSlide = (
+  slides: Slide[],
+  currentLineNumber: number
+): number => {
   const slideObj = [...slides]
     .reverse()
     .find(slide => currentLineNumber > slide.firstLine)
