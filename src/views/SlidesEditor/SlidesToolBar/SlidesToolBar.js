@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import ButtonGroup from '../../../components/ButtonGroup'
@@ -14,52 +14,36 @@ import {
 
 import About from './About'
 
-class SlidesToolBar extends Component {
-  static propTypes = {
-    isSaving: PropTypes.bool.isRequired,
-    onPresentationClick: PropTypes.func.isRequired
-  }
+const SlidesToolBar = ({ isSaving, onPresentationClick }) => {
+  const [isAboutVisible, setIsAboutVisible] = useState(false)
 
-  state = {
-    isAboutVisible: false
-  }
+  return (
+    <>
+      <StyledToolBarContainer>
+        <ToolBar>
+          <StyledLogoContainer withNotification={isSaving}>
+            <Tooltip html="About Slidesdown">
+              <Logo onClick={() => setIsAboutVisible(true)} />
+            </Tooltip>
+          </StyledLogoContainer>
+          <ButtonGroup>
+            <Icon
+              alt="Presentation"
+              onClick={onPresentationClick}
+              tooltip="Presentation"
+              type="presentation"
+            />
+          </ButtonGroup>
+        </ToolBar>
+      </StyledToolBarContainer>
+      {isAboutVisible && <About onClose={() => setIsAboutVisible(false)} />}
+    </>
+  )
+}
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.state.isAboutVisible !== nextState.isAboutVisible ||
-      this.props.isSaving !== nextProps.isSaving
-    )
-  }
-
-  render() {
-    const { isSaving, onPresentationClick } = this.props
-    const { isAboutVisible } = this.state
-
-    return (
-      <Fragment>
-        <StyledToolBarContainer>
-          <ToolBar>
-            <StyledLogoContainer withNotification={isSaving}>
-              <Tooltip html="About Slidesdown">
-                <Logo onClick={() => this.setState({ isAboutVisible: true })} />
-              </Tooltip>
-            </StyledLogoContainer>
-            <ButtonGroup>
-              <Icon
-                alt="Presentation"
-                onClick={onPresentationClick}
-                tooltip="Presentation"
-                type="presentation"
-              />
-            </ButtonGroup>
-          </ToolBar>
-        </StyledToolBarContainer>
-        {isAboutVisible && (
-          <About onClose={() => this.setState({ isAboutVisible: false })} />
-        )}
-      </Fragment>
-    )
-  }
+SlidesToolBar.propTypes = {
+  isSaving: PropTypes.bool.isRequired,
+  onPresentationClick: PropTypes.func.isRequired
 }
 
 export default SlidesToolBar
