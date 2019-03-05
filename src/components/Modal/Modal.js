@@ -21,7 +21,7 @@ const Modal = ({ children, heading, onClose }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  })
+  }, [])
 
   return (
     <StyledModalContainer onClick={onClose}>
