@@ -3,7 +3,6 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 
 const db = admin.firestore()
-db.settings({ timestampsInSnapshots: true })
 
 const presentation = require('./presentation')
 const removeOldSlides = require('./removeOldSlides')
