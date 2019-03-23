@@ -21,7 +21,7 @@ const storage = firebase.storage().ref()
 const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 
-export const getSlides = async id => {
+export const getSlides = async (id: string) => {
   try {
     const doc = await db
       .collection(SLIDES_COLLECTION)
@@ -40,7 +40,7 @@ export const getSlides = async id => {
   }
 }
 
-export const getPresentation = async id => {
+export const getPresentation = async (id: string) => {
   try {
     const response = await fetch(`/api/presentation?id=${id}`)
     const json = await response.json()
@@ -50,7 +50,17 @@ export const getPresentation = async id => {
   }
 }
 
-export const createSlides = async ({ id, markdown, presentationId, theme }) => {
+export const createSlides = async ({
+  id,
+  markdown,
+  presentationId,
+  theme
+}: {
+  id: string
+  markdown: string
+  presentationId: string
+  theme: string
+}) => {
   try {
     await db
       .collection(SLIDES_COLLECTION)
@@ -64,7 +74,17 @@ export const createSlides = async ({ id, markdown, presentationId, theme }) => {
   }
 }
 
-export const updateSlides = async ({ id, markdown, theme, callback }) => {
+export const updateSlides = async ({
+  id,
+  markdown,
+  theme,
+  callback
+}: {
+  id: string
+  markdown: string
+  theme: string
+  callback(): void
+}) => {
   try {
     await db
       .collection(SLIDES_COLLECTION)
@@ -79,7 +99,19 @@ export const updateSlides = async ({ id, markdown, theme, callback }) => {
 
 export const updateSlidesThrottled = throttle(updateSlides, 2000)
 
-export const saveImage = async ({ id, file, onChange, onError, onDone }) => {
+export const saveImage = async ({
+  id,
+  file,
+  onChange,
+  onError,
+  onDone
+}: {
+  id: string
+  file: File
+  onChange(progress: number): void
+  onError(error: Error): void
+  onDone(snapshot: any): void
+}) => {
   const imagePath = `images/${id}/${uuid()}-${file.name}`
 
   const uploadTask = storage.child(imagePath).put(file)
@@ -96,7 +128,7 @@ export const saveImage = async ({ id, file, onChange, onError, onDone }) => {
 
   uploadTask.on(
     'state_changed',
-    snapshot =>
+    (snapshot: any) =>
       onChange(
         Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
       ),
