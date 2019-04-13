@@ -22,13 +22,13 @@ const App = () => (
             <Redirect exact from="/" to={editPath} />
             <Route
               path="/edit/:slidesId?"
-              render={props => {
-                return validate(props.match.params.slidesId) ? (
+              render={props =>
+                validate(props.match.params.slidesId) ? (
                   <SlidesEditor {...props} />
                 ) : (
                   <Redirect to={editPath} />
                 )
-              }}
+              }
             />
             <Route component={Presentation} path="/:slidesId?/:slideNumber?" />
           </Switch>
