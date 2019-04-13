@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 import { StyledButton } from './Button.style'
 
 interface ButtonProps {
   children: ReactNode
-  disabled: boolean
+  disabled?: boolean
   onClick(): void
 }
 
-const Button = ({ children, disabled, onClick }: ButtonProps) => (
+const Button: FC<ButtonProps> = ({ children, disabled, onClick }) => (
   <StyledButton disabled={disabled} onClick={onClick}>
     {children}
   </StyledButton>
