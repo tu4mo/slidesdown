@@ -9,19 +9,19 @@ import {
 } from './Modal.style'
 
 const Modal = ({ children, heading, onClose }) => {
-  const handleKeyDown = e => {
-    if (e.keyCode === 27) {
-      onClose()
-    }
-  }
-
   useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.keyCode === 27) {
+        onClose()
+      }
+    }
+
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [onClose])
 
   return (
     <StyledModalContainer onClick={onClose}>

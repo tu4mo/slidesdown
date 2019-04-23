@@ -7,7 +7,6 @@ import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-csharp'
 import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-diff'
-import 'prismjs/components/prism-django'
 import 'prismjs/components/prism-docker'
 import 'prismjs/components/prism-elixir'
 import 'prismjs/components/prism-elm'
@@ -56,7 +55,7 @@ class Code extends PureComponent {
     const html =
       value &&
       Prism.languages[language] &&
-      Prism.highlight(this.props.value, Prism.languages[language])
+      Prism.highlight(this.props.value, Prism.languages[language], language)
 
     return (
       <pre>

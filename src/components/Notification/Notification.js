@@ -8,7 +8,7 @@ const Notification = ({ children, className, timeout }) => {
   useEffect(() => {
     const timer = setTimeout(() => setHasTimedOut(true), timeout || 15000)
     return () => clearTimeout(timer)
-  }, [])
+  }, [timeout])
 
   return !hasTimedOut && <div className={className}>{children}</div>
 }
