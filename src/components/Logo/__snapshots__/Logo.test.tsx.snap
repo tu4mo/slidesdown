@@ -10,7 +10,6 @@ exports[`renders correctly 1`] = `
 <img
   alt="Slidesdown"
   className="c0"
-  onClick={null}
   src="Logo"
 />
 `;
