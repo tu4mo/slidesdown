@@ -39,8 +39,6 @@ import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-xojo'
 import 'prismjs/components/prism-yaml'
 
-import 'prismjs/themes/prism.css'
-
 class Code extends PureComponent {
   static propTypes = {
     value: PropTypes.string,

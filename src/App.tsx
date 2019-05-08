@@ -8,6 +8,9 @@ import { GlobalStyle } from './App.style'
 import theme from './theme'
 import Spinner from './components/Spinner'
 
+import 'prismjs/themes/prism.css'
+import 'react-tippy/dist/tippy.css'
+
 const Presentation = lazy(() => import('./views/Presentation'))
 const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
 
