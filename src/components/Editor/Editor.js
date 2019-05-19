@@ -64,6 +64,7 @@ class Editor extends Component {
     return (
       <StyledWrapper>
         <StyledTextarea
+          aria-label="Markdown"
           disabled={isLoading}
           onChange={onChange}
           onClick={this.handleClickAndKeyUp}
