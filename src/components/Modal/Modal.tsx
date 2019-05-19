@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { FC, useEffect, ReactNode } from 'react'
 
 import {
   StyledModalContainer,
@@ -8,9 +7,15 @@ import {
   StyledModalCloseButton
 } from './Modal.style'
 
-const Modal = ({ children, heading, onClose }) => {
+interface Props {
+  children: ReactNode
+  heading?: string
+  onClose(): void
+}
+
+const Modal: FC<Props> = ({ children, heading, onClose }) => {
   useEffect(() => {
-    const handleKeyDown = e => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 27) {
         onClose()
       }
@@ -18,9 +23,7 @@ const Modal = ({ children, heading, onClose }) => {
 
     document.addEventListener('keydown', handleKeyDown)
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
+    return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onClose])
 
   return (
@@ -32,12 +35,6 @@ const Modal = ({ children, heading, onClose }) => {
       </StyledModal>
     </StyledModalContainer>
   )
-}
-
-Modal.propTypes = {
-  children: PropTypes.node,
-  heading: PropTypes.string,
-  onClose: PropTypes.func.isRequired
 }
 
 export default Modal

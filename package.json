@@ -26,15 +26,15 @@
   "dependencies": {
     "@types/jest": "^24.0.12",
     "@types/lodash.throttle": "^4.1.6",
-    "@types/node": "^11.13.10",
+    "@types/node": "^12.0.2",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/styled-components": "^4.1.14",
+    "@types/styled-components": "^4.1.15",
     "@types/uuid": "^3.4.4",
     "@types/uuid-validate": "0.0.1",
-    "firebase": "^5.11.1",
+    "firebase": "^6.0.2",
     "lodash.throttle": "^4.1.1",
     "prismjs": "^1.16.0",
     "query-string": "^6.5.0",
@@ -53,16 +53,16 @@
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^3.0.1",
-    "firebase-tools": "^6.9.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "firebase-tools": "^6.10.0",
     "http-proxy-middleware": "^0.19.1",
     "jest-styled-components": "^6.2.1",
-    "prettier": "^1.17.0",
+    "prettier": "^1.17.1",
     "react-test-renderer": "^16.8.6",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.6.0"
+    "stylelint-processor-styled-components": "^1.7.0"
   },
   "jest": {
     "collectCoverageFrom": [

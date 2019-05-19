@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { FC, ReactNode, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-const Notification = ({ children, className, timeout }) => {
+interface Props {
+  children: ReactNode
+  className?: string
+  timeout: number
+}
+
+const Notification: FC<Props> = ({ children, className, timeout }) => {
   const [hasTimedOut, setHasTimedOut] = useState(false)
 
   useEffect(() => {
@@ -10,16 +15,10 @@ const Notification = ({ children, className, timeout }) => {
     return () => clearTimeout(timer)
   }, [timeout])
 
-  return !hasTimedOut && <div className={className}>{children}</div>
+  return !hasTimedOut ? <div className={className}>{children}</div> : null
 }
 
-Notification.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  timeout: PropTypes.number
-}
-
-const StyledNotification = styled(Notification)`
+const StyledNotification = styled(Notification)<{ slideDown: boolean }>`
   color: ${props => props.theme.colors.purple};
 
   ${props =>
@@ -39,9 +38,5 @@ const StyledNotification = styled(Notification)`
       }
     `};
 `
-
-StyledNotification.propTypes = {
-  slideDown: PropTypes.bool
-}
 
 export default StyledNotification
