@@ -16,7 +16,11 @@ export const StyledNoticationContainer = styled.div`
   position: fixed;
 `
 
-export const StyledPresentationToolbar = styled.div`
+interface Props {
+  visible?: boolean
+}
+
+export const StyledPresentationToolbar = styled.div<Props>`
   bottom: 0;
   display: flex;
   justify-content: center;

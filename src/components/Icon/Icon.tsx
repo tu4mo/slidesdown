@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC, ReactNode } from 'react'
 
 import Tooltip from '../Tooltip'
 
@@ -23,25 +22,25 @@ const ICONS = {
   share: shareSvg
 }
 
-const Icon = ({ alt, disabled, onClick, tooltip, type }) => {
+interface Props {
+  alt?: string
+  disabled?: boolean
+  onClick?(): void
+  tooltip?: ReactNode
+  type: keyof typeof ICONS
+}
+
+const Icon: FC<Props> = ({ alt, disabled = false, onClick, tooltip, type }) => {
   const icon = (
     <StyledIcon
       alt={alt}
       disabled={disabled}
-      onClick={!disabled ? onClick : null}
+      onClick={!disabled ? onClick : undefined}
       src={ICONS[type]}
     />
   )
 
   return tooltip ? <Tooltip html={tooltip}>{icon}</Tooltip> : icon
-}
-
-Icon.propTypes = {
-  alt: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  tooltip: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  type: PropTypes.oneOf(Object.keys(ICONS))
 }
 
 export default Icon
