@@ -39,6 +39,7 @@ exports[`renders correctly 1`] = `
   className="c0"
 >
   <textarea
+    aria-label="Markdown"
     className="c1"
     onChange={[MockFunction]}
     onClick={[Function]}
@@ -120,6 +121,7 @@ exports[`renders correctly with disabled and isLoading 1`] = `
   className="c0"
 >
   <textarea
+    aria-label="Markdown"
     className="c1"
     disabled={true}
     onChange={[MockFunction]}
