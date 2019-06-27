@@ -9,7 +9,8 @@ import Tooltip from '../../../components/Tooltip'
 
 import {
   StyledToolBarContainer,
-  StyledLogoContainer
+  StyledLogoContainer,
+  StyledIconWrapper
 } from './SlidesToolBar.style'
 
 import About from './About'
@@ -21,18 +22,20 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }) => {
     <>
       <StyledToolBarContainer>
         <ToolBar>
-          <StyledLogoContainer withNotification={isSaving}>
+          <StyledLogoContainer>
             <Tooltip html="About Slidesdown">
               <Logo onClick={() => setIsAboutVisible(true)} />
             </Tooltip>
           </StyledLogoContainer>
           <ButtonGroup>
-            <Icon
-              alt="Presentation"
-              onClick={onPresentationClick}
-              tooltip="Presentation"
-              type="presentation"
-            />
+            <StyledIconWrapper withNotification={isSaving}>
+              <Icon
+                alt="Presentation"
+                onClick={onPresentationClick}
+                tooltip="Presentation"
+                type="presentation"
+              />
+            </StyledIconWrapper>
           </ButtonGroup>
         </ToolBar>
       </StyledToolBarContainer>

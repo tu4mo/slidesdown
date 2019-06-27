@@ -15,6 +15,10 @@ export const StyledLogoContainer = styled.div`
   margin-top: -1rem;
   padding-right: 1rem;
   position: relative;
+`
+
+export const StyledIconWrapper = styled.div`
+  position: relative;
 
   ${props =>
     props.withNotification &&
@@ -25,9 +29,10 @@ export const StyledLogoContainer = styled.div`
         border: 2px solid #fff;
         content: '';
         height: 0.75rem;
+        pointer-events: none;
         position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
+        top: 0;
+        right: 0;
         width: 0.75rem;
       }
     `};
