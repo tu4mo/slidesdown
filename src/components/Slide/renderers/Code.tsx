@@ -1,5 +1,4 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
 import Prism from 'prismjs'
 
 import 'prismjs/components/prism-bash'
@@ -39,33 +38,26 @@ import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-xojo'
 import 'prismjs/components/prism-yaml'
 
-class Code extends PureComponent {
-  static propTypes = {
-    value: PropTypes.string,
-    language: PropTypes.string
-  }
+interface Props {
+  value: string
+  language: string
+}
 
-  render() {
-    const { language, value } = this.props
+const Code: FC<Props> = ({ value, language }) => {
+  const html =
+    value &&
+    Prism.languages[language] &&
+    Prism.highlight(value, Prism.languages[language], language)
 
-    const html =
-      value &&
-      Prism.languages[language] &&
-      Prism.highlight(this.props.value, Prism.languages[language], language)
-
-    return (
-      <pre>
-        {html ? (
-          <code
-            className={this.props.language}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        ) : (
-          <code>{value}</code>
-        )}
-      </pre>
-    )
-  }
+  return (
+    <pre>
+      {html ? (
+        <code className={language} dangerouslySetInnerHTML={{ __html: html }} />
+      ) : (
+        <code>{value}</code>
+      )}
+    </pre>
+  )
 }
 
 export default Code

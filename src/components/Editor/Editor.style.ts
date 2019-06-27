@@ -34,7 +34,11 @@ export const StyledTextarea = styled.textarea`
   }
 `
 
-export const StyledProgressBar = styled.div`
+interface Props {
+  progress: number
+}
+
+export const StyledProgressBar = styled.div<Props>`
   align-items: center;
   display: flex;
   height: 100%;
