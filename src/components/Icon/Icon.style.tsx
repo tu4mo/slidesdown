@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 interface Props {
-  disabled: boolean
+  isDisabled: boolean
 }
 
 export const StyledIcon = styled.img.attrs({})<Props>`
   cursor: pointer;
   display: block;
-  opacity: ${props => (props.disabled ? 0.1 : 1)};
+  opacity: ${props => (props.isDisabled ? 0.1 : 1)};
   transition: transform 0.1s ease-in-out;
 
   &:hover {

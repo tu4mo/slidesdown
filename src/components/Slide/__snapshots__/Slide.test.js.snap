@@ -101,7 +101,7 @@ exports[`renders correctly 1`] = `
   }
 >
   <div
-    className="slide c1"
+    className="c1 slide"
     style={
       Object {
         "transform": "translate(-50%, -50%) scale(1)",

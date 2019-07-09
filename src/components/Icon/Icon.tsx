@@ -34,7 +34,7 @@ const Icon: FC<Props> = ({ alt, disabled = false, onClick, tooltip, type }) => {
   const icon = (
     <StyledIcon
       alt={alt}
-      disabled={disabled}
+      isDisabled={disabled}
       onClick={!disabled ? onClick : undefined}
       src={ICONS[type]}
     />

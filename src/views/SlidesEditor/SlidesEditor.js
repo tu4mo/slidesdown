@@ -29,6 +29,7 @@ const DEFAULT_MARKDOWN =
   '# 👋\n\n# Have fun!'
 
 const SlidesEditor = ({ history, location, match }) => {
+  /* eslint-disable no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
   const [isCreated, setIsCreated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -39,6 +40,7 @@ const SlidesEditor = ({ history, location, match }) => {
   const [theme, setTheme] = useState('')
   const [slideToFocus, setSlideToFocus] = useState(0)
   const [uploadProgress, setUploadProgress] = useState(0)
+  /* eslint-enable no-unused-vars */
 
   useEffect(() => {
     setTheme(queryString.parse(location.search).theme || 'default')

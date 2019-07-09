@@ -1,24 +1,23 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 interface Props {
-  children: ReactNode
   className?: string
-  timeout: number
+  timeout?: number
 }
 
-const Notification: FC<Props> = ({ children, className, timeout }) => {
+const Notification: FC<Props> = ({ children, className, timeout = 15000 }) => {
   const [hasTimedOut, setHasTimedOut] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setHasTimedOut(true), timeout || 15000)
+    const timer = setTimeout(() => setHasTimedOut(true), timeout)
     return () => clearTimeout(timer)
   }, [timeout])
 
   return !hasTimedOut ? <div className={className}>{children}</div> : null
 }
 
-const StyledNotification = styled(Notification)<{ slideDown: boolean }>`
+const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
   color: ${props => props.theme.colors.purple};
 
   ${props =>
