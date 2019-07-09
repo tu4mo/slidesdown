@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import SplitPane from 'react-split-pane'
 import queryString from 'query-string'
@@ -28,84 +28,71 @@ const DEFAULT_MARKDOWN =
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
-class SlidesEditor extends Component {
-  static propTypes = {
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired
-  }
+const SlidesEditor = ({ history, location, match }) => {
+  const [cursorPosition, setCursorPosition] = useState(0)
+  const [isCreated, setIsCreated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
+  const [markdown, setMarkdown] = useState('')
+  const [presentationId, setPresentationId] = useState(uuid())
+  const [theme, setTheme] = useState('')
+  const [slideToFocus, setSlideToFocus] = useState(0)
+  const [uploadProgress, setUploadProgress] = useState(0)
 
-  state = {
-    cursorPosition: 0,
-    isCreated: false,
-    isLoading: true,
-    isSaving: false,
-    isUploading: false,
-    markdown: '',
-    presentationId: uuid(),
-    theme: '',
-    slideToFocus: 0,
-    uploadProgress: 0
-  }
+  useEffect(() => {
+    setTheme(queryString.parse(location.search).theme || 'default')
 
-  async componentDidMount() {
-    const { location, match } = this.props
-    const { slidesId } = match.params
-
-    this.setState({
-      theme: queryString.parse(location.search).theme || 'default'
-    })
-
-    try {
-      const slides = await getSlides(slidesId)
-      this.setState({
-        isCreated: true,
-        isLoading: false,
-        markdown: slides.markdown,
-        presentationId: slides.presentationId
-      })
-    } catch (err) {
-      this.setState({ isLoading: false, markdown: DEFAULT_MARKDOWN })
+    const fetchSlides = async () => {
+      try {
+        const slides = await getSlides(match.params.slidesId)
+        setIsCreated(true)
+        setIsLoading(false)
+        setMarkdown(slides.markdown)
+        setPresentationId(slides.presentationId)
+      } catch (err) {
+        setIsLoading(false)
+        setMarkdown(DEFAULT_MARKDOWN)
+      }
     }
-  }
 
-  saveSlides = async () => {
-    const { match } = this.props
+    fetchSlides()
+  }, [location.search, match.params.slidesId])
+
+  const saveSlides = async () => {
     const { slidesId } = match.params
-    const { isCreated, presentationId, theme } = this.state
 
-    this.setState({ isSaving: true })
+    setIsSaving(true)
 
     if (!isCreated) {
-      this.setState({ isCreated: true })
+      setIsCreated(true)
 
       await createSlides({
         id: slidesId,
-        markdown: this.state.markdown,
+        markdown,
         presentationId,
         theme
       })
 
-      this.setState({ isSaving: false })
+      setIsSaving(false)
 
       return
     }
 
     await updateSlidesThrottled({
       id: slidesId,
-      markdown: this.state.markdown,
+      markdown,
       theme,
-      callback: () => this.setState({ isSaving: false })
+      callback: () => setIsSaving(false)
     })
   }
 
-  handleEditorChange = e => {
-    this.setState({ markdown: e.target.value }, () => {
-      this.saveSlides()
-    })
+  const handleEditorChange = e => {
+    setMarkdown(e.target.value)
+    saveSlides()
   }
 
-  handleEditorDrop = async file => {
+  const handleEditorDrop = async file => {
     // Disable for now
     // const { newId, setError } = this.props
     //
@@ -134,80 +121,69 @@ class SlidesEditor extends Component {
     // })
   }
 
-  handleEditorCursorPositionChange = ({ cursorPosition, slide }) =>
-    this.setState({ cursorPosition, slideToFocus: slide })
+  const handleEditorCursorPositionChange = ({ cursorPosition, slide }) => {
+    setCursorPosition(cursorPosition)
+    setSlideToFocus(slide)
+  }
 
-  handlePresentationClick = async () => {
-    const { history } = this.props
-    const { presentationId } = this.state
-
-    await this.saveSlides()
-
+  const handlePresentationClick = async () => {
+    await saveSlides()
     history.push(`/${presentationId}`)
   }
 
-  handleSplitPaneChange = () => {
+  const handleSplitPaneChange = () => {
     window.dispatchEvent(new Event('resize'))
   }
 
-  render() {
-    const {
-      isLoading,
-      isSaving,
-      isUploading,
-      markdown,
-      presentationId,
-      slideToFocus,
-      theme,
-      uploadProgress
-    } = this.state
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    <WindowResizeObserver>
+      {({ width }) => (
+        <SplitPane
+          defaultSize={300}
+          onChange={handleSplitPaneChange}
+          split={
+            width > parseInt(styledTheme.breakpoints.md, 10)
+              ? 'vertical'
+              : 'horizontal'
+          }
+        >
+          <StyledSidebar>
+            <Editor
+              isLoading={isUploading}
+              onChange={handleEditorChange}
+              onCursorPositionChange={handleEditorCursorPositionChange}
+              onDrop={handleEditorDrop}
+              progress={uploadProgress}
+              value={markdown}
+            />
+          </StyledSidebar>
+          <StyledSlidesContainer
+            onDragOver={e => e.preventDefault()}
+            onDrop={e => e.preventDefault()}
+          >
+            <Slides
+              markdown={markdown}
+              slideToFocus={slideToFocus}
+              theme={theme}
+            />
+            <SlidesToolBar
+              isSaving={isSaving}
+              onPresentationClick={handlePresentationClick}
+              presentationId={presentationId}
+            />
+          </StyledSlidesContainer>
+        </SplitPane>
+      )}
+    </WindowResizeObserver>
+  )
+}
 
-    return isLoading ? (
-      <Spinner />
-    ) : (
-      <WindowResizeObserver>
-        {({ width }) => (
-          <Fragment>
-            <SplitPane
-              defaultSize={300}
-              onChange={this.handleSplitPaneChange}
-              split={
-                width > parseInt(styledTheme.breakpoints.md, 10)
-                  ? 'vertical'
-                  : 'horizontal'
-              }
-            >
-              <StyledSidebar>
-                <Editor
-                  isLoading={isUploading}
-                  onChange={this.handleEditorChange}
-                  onCursorPositionChange={this.handleEditorCursorPositionChange}
-                  onDrop={this.handleEditorDrop}
-                  progress={uploadProgress}
-                  value={markdown}
-                />
-              </StyledSidebar>
-              <StyledSlidesContainer
-                onDragOver={e => e.preventDefault()}
-                onDrop={e => e.preventDefault()}
-              >
-                <Slides
-                  markdown={markdown}
-                  slideToFocus={slideToFocus}
-                  theme={theme}
-                />
-                <SlidesToolBar
-                  isSaving={isSaving}
-                  onPresentationClick={this.handlePresentationClick}
-                  presentationId={presentationId}
-                />
-              </StyledSlidesContainer>
-            </SplitPane>
-          </Fragment>
-        )}
-      </WindowResizeObserver>
-    )
-  }
+SlidesEditor.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 }
 
 export default SlidesEditor
