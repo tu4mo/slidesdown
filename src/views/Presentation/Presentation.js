@@ -53,8 +53,6 @@ const Presentation = ({ history, match }) => {
           changeSlide(false)
           break
         case 'ArrowRight':
-          changeSlide()
-          break
         case 'Space':
           changeSlide()
           break
