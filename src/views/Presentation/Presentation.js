@@ -140,9 +140,9 @@ const Presentation = ({ history, match }) => {
               disabled={slideNumber === 0}
               onClick={() => changeSlide(false)}
               tooltip={
-                <span>
+                <>
                   Previous <Key>←</Key>
-                </span>
+                </>
               }
               type="left"
             />
@@ -163,9 +163,9 @@ const Presentation = ({ history, match }) => {
               disabled={slideNumber >= slidesCount.current - 1}
               onClick={changeSlide}
               tooltip={
-                <span>
+                <>
                   Next <Key>→</Key> / <Key>space</Key>
-                </span>
+                </>
               }
               type="right"
             />
