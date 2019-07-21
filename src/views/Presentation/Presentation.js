@@ -55,7 +55,7 @@ const Presentation = ({ history, match }) => {
         case 'ArrowRight':
           changeSlide()
           break
-        case 'Space': // Space
+        case 'Space':
           changeSlide()
           break
         default:
