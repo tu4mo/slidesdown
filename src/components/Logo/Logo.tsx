@@ -5,11 +5,11 @@ import { StyledImg } from './Logo.style'
 import logoSvg from './logo.svg'
 
 interface Props {
-  onClick?(): void
   large?: boolean
+  onClick?(): void
 }
 
-const Logo: FC<Props> = ({ onClick, large }) => (
+const Logo: FC<Props> = ({ large, onClick }) => (
   <StyledImg
     alt="Slidesdown"
     large={large}
