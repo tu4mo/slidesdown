@@ -24,6 +24,7 @@
   "author": "tu4mo",
   "license": "ISC",
   "dependencies": {
+    "@tippy.js/react": "^2.2.2",
     "@types/jest": "^24.0.15",
     "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^12.6.8",
@@ -47,7 +48,6 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "react-split-pane": "^0.1.87",
-    "react-tippy": "^1.2.3",
     "styled-components": "^5.0.0-beta.6-ej4",
     "typescript": "^3.5.3",
     "uuid": "^3.3.2",

@@ -1,13 +1,8 @@
-import React, { FC, ReactNode } from 'react'
-import { Tooltip as Tippy } from 'react-tippy'
+import React, { FC } from 'react'
+import Tippy, { TippyProps } from '@tippy.js/react'
 
-interface Props {
-  children: ReactNode
-  html: ReactNode
-}
-
-const Tooltip: FC<Props> = ({ children, html, ...rest }) => (
-  <Tippy arrow html={html} {...rest}>
+const Tooltip: FC<TippyProps> = ({ children, content, ...rest }) => (
+  <Tippy arrow content={content} {...rest}>
     {children}
   </Tippy>
 )

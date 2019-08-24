@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactElement } from 'react'
 
 import Tooltip from '../Tooltip'
 
@@ -26,7 +26,7 @@ interface Props {
   alt?: string
   disabled?: boolean
   onClick?(): void
-  tooltip?: ReactNode
+  tooltip?: ReactElement
   type: keyof typeof ICONS
 }
 
@@ -40,7 +40,7 @@ const Icon: FC<Props> = ({ alt, disabled = false, onClick, tooltip, type }) => {
     />
   )
 
-  return tooltip ? <Tooltip html={tooltip}>{icon}</Tooltip> : icon
+  return tooltip ? <Tooltip content={tooltip}>{icon}</Tooltip> : icon
 }
 
 export default Icon

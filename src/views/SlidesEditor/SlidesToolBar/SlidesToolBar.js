@@ -23,7 +23,7 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }) => {
       <StyledToolBarContainer>
         <ToolBar>
           <StyledLogoContainer>
-            <Tooltip html="About Slidesdown">
+            <Tooltip content="About Slidesdown">
               <Logo onClick={() => setIsAboutVisible(true)} />
             </Tooltip>
           </StyledLogoContainer>
