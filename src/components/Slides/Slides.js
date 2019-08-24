@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Slide from '../Slide'
@@ -19,53 +19,45 @@ const THEMES = {
 
 const splitMarkdownToSlides = markdown => markdown.split('\n---\n')
 
-class Slides extends Component {
-  static propTypes = {
-    markdown: PropTypes.string,
-    onSlidesCount: PropTypes.func,
-    singleSlide: PropTypes.number,
-    slideToFocus: PropTypes.number,
-    theme: PropTypes.string
-  }
+const Slides = ({
+  markdown,
+  onSlidesCount,
+  singleSlide,
+  slideToFocus,
+  theme
+}) => {
+  const [height, setHeight] = useState(0)
+  const [scale, setScale] = useState(1)
+  const [width, setWidth] = useState(0)
 
-  state = {
-    height: 0,
-    scale: 1,
-    width: 0
-  }
+  const slidesRef = useRef(null)
+  const scrollToRef = useRef(null)
 
-  slidesRef = createRef()
-  scrollToRef = createRef()
+  useEffect(() => {
+    const handleSlidesCount = () => {
+      onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
+    }
 
-  componentDidMount() {
-    this.handleSlidesCount()
-    this.scrollToSlide()
-  }
+    handleSlidesCount()
+    scrollToSlide()
+  }, [markdown, onSlidesCount, slideToFocus])
 
-  componentDidUpdate(prevProps) {
-    this.handleSlidesCount()
-
-    if (prevProps.slideToFocus !== this.props.slideToFocus) {
-      this.scrollToSlide()
+  const scrollToSlide = () => {
+    if (scrollToRef.current) {
+      slidesRef.current.scrollTop = scrollToRef.current.offsetTop - 32
     }
   }
 
-  scrollToSlide = () => {
-    if (this.scrollToRef.current) {
-      this.slidesRef.current.scrollTop = this.scrollToRef.current.offsetTop - 32
-    }
-  }
-
-  handleResize = () => {
-    const computedStyle = window.getComputedStyle(this.slidesRef.current)
+  const handleResize = () => {
+    const computedStyle = window.getComputedStyle(slidesRef.current)
 
     const maxWidth =
-      this.slidesRef.current.clientWidth -
+      slidesRef.current.clientWidth -
       parseInt(computedStyle.paddingLeft, 10) -
       parseInt(computedStyle.paddingRight, 10)
 
     const maxHeight =
-      this.slidesRef.current.clientHeight -
+      slidesRef.current.clientHeight -
       parseInt(computedStyle.paddingBottom, 10) -
       parseInt(computedStyle.paddingTop, 10)
 
@@ -74,59 +66,53 @@ class Slides extends Component {
 
     const RATIO = 0.5625
 
-    if (this.props.singleSlide === undefined || maxHeight > maxWidth * RATIO) {
+    if (singleSlide === undefined || maxHeight > maxWidth * RATIO) {
       height = maxWidth * RATIO
     } else {
       width = maxHeight / RATIO
     }
 
-    this.setState({
-      height,
-      scale: Math.min(width / 800, height / 450),
-      width
-    })
+    setHeight(height)
+    setScale(Math.min(width / 800, height / 450))
+    setWidth(width)
   }
 
-  handleSlidesCount = () => {
-    const { markdown, onSlidesCount } = this.props
-    onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
-  }
+  const StyledTheme = THEMES[theme || 'default']
 
-  render() {
-    const { singleSlide, slideToFocus, markdown, theme } = this.props
-    const { height, scale, width } = this.state
-
-    const StyledTheme = THEMES[theme || 'default']
-
-    const slides = splitMarkdownToSlides(markdown).map(
-      (slideMarkdown, slideIndex) => (
-        <Slide
-          height={height}
-          key={slideMarkdown}
-          markdown={slideMarkdown}
-          ref={slideIndex === slideToFocus ? this.scrollToRef : null}
-          scale={scale}
-          single={singleSlide !== undefined}
-          width={width}
-        />
-      )
+  const slides = splitMarkdownToSlides(markdown).map(
+    (slideMarkdown, slideIndex) => (
+      <Slide
+        height={height}
+        key={slideMarkdown}
+        markdown={slideMarkdown}
+        ref={slideIndex === slideToFocus ? scrollToRef : null}
+        scale={scale}
+        single={singleSlide !== undefined}
+        width={width}
+      />
     )
+  )
 
-    return (
-      <StyledTheme>
-        {singleSlide !== undefined ? (
-          <StyledSingleSlideContainer ref={this.slidesRef}>
-            {slides[singleSlide]}
-          </StyledSingleSlideContainer>
-        ) : (
-          <StyledSlidesContainer ref={this.slidesRef}>
-            {slides}
-          </StyledSlidesContainer>
-        )}
-        <WindowResizeObserver onResize={this.handleResize} />
-      </StyledTheme>
-    )
-  }
+  return (
+    <StyledTheme>
+      {singleSlide !== undefined ? (
+        <StyledSingleSlideContainer ref={slidesRef}>
+          {slides[singleSlide]}
+        </StyledSingleSlideContainer>
+      ) : (
+        <StyledSlidesContainer ref={slidesRef}>{slides}</StyledSlidesContainer>
+      )}
+      <WindowResizeObserver onResize={handleResize} />
+    </StyledTheme>
+  )
+}
+
+Slides.propTypes = {
+  markdown: PropTypes.string,
+  onSlidesCount: PropTypes.func,
+  singleSlide: PropTypes.number,
+  slideToFocus: PropTypes.number,
+  theme: PropTypes.string
 }
 
 export default Slides
