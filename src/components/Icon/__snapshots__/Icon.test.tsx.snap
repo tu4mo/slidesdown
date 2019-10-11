@@ -52,7 +52,7 @@ exports[`renders correctly with tooltip 1`] = `
 
 <Tooltip
   arrow={true}
-  html="Test"
+  content="Test"
 >
   <img
     className="c0"

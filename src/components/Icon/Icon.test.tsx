@@ -4,9 +4,7 @@ import 'jest-styled-components'
 
 import Icon from '../Icon'
 
-jest.mock('react-tippy', () => ({
-  Tooltip: 'Tooltip'
-}))
+jest.mock('@tippy.js/react', () => 'Tooltip')
 
 it('renders correctly', () => {
   const tree = renderer.create(<Icon type="presentation" />).toJSON()
