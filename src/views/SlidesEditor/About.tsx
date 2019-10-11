@@ -1,12 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
 
 import { StyledAbout, StyledHeading } from './About.style'
 
-const About = ({ onClose }) => (
+interface Props {
+  onClose(): void
+}
+
+const About = ({ onClose }: Props) => (
   <Modal onClose={onClose}>
     <StyledAbout>
       <Logo large />
@@ -21,9 +24,5 @@ const About = ({ onClose }) => (
     </StyledAbout>
   </Modal>
 )
-
-About.propTypes = {
-  onClose: PropTypes.func.isRequired
-}
 
 export default About

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react'
+import React, { ComponentProps } from 'react'
 
 import Tooltip from '../Tooltip'
 
@@ -26,11 +26,11 @@ interface Props {
   alt?: string
   disabled?: boolean
   onClick?(): void
-  tooltip?: ReactElement
+  tooltip?: ComponentProps<typeof Tooltip>['content']
   type: keyof typeof ICONS
 }
 
-const Icon: FC<Props> = ({ alt, disabled = false, onClick, tooltip, type }) => {
+const Icon = ({ alt, disabled = false, onClick, tooltip, type }: Props) => {
   const icon = (
     <StyledIcon
       alt={alt}

@@ -17,7 +17,7 @@ export const StyledLogoContainer = styled.div`
   position: relative;
 `
 
-export const StyledIconWrapper = styled.div`
+export const StyledIconWrapper = styled.div<{ withNotification: boolean }>`
   position: relative;
 
   ${props =>

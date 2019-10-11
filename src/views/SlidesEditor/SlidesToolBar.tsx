@@ -15,7 +15,12 @@ import {
 
 import About from './About'
 
-const SlidesToolBar = ({ isSaving, onPresentationClick }) => {
+interface Props {
+  isSaving: boolean
+  onPresentationClick(): void
+}
+
+const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
   const [isAboutVisible, setIsAboutVisible] = useState(false)
 
   return (
