@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Logo from '../../../../components/Logo'
-import Modal from '../../../../components/Modal'
+import Logo from '../../components/Logo'
+import Modal from '../../components/Modal'
 
 import { StyledAbout, StyledHeading } from './About.style'
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import ButtonGroup from '../../../components/ButtonGroup'
-import Icon from '../../../components/Icon'
-import Logo from '../../../components/Logo'
-import ToolBar from '../../../components/ToolBar'
-import Tooltip from '../../../components/Tooltip'
+import ButtonGroup from '../../components/ButtonGroup'
+import Icon from '../../components/Icon'
+import Logo from '../../components/Logo'
+import ToolBar from '../../components/ToolBar'
+import Tooltip from '../../components/Tooltip'
 
 import {
   StyledToolBarContainer,
