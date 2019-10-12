@@ -130,7 +130,7 @@ const SlidesEditor = ({ history, location, match }) => {
 
   const handlePresentationClick = async () => {
     await saveSlides()
-    history.push(`/${presentationId}`)
+    history.push(`/${presentationId}`, { slidesId: match.params.slidesId })
   }
 
   const handleSplitPaneChange = () => {

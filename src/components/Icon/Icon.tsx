@@ -5,6 +5,7 @@ import Tooltip from '../Tooltip'
 import { StyledIcon } from './Icon.style'
 
 import crossSvg from './svg/cross.svg'
+import editSvg from './svg/edit.svg'
 import leftSvg from './svg/left.svg'
 import maximizeSvg from './svg/maximize.svg'
 import minimizeSvg from './svg/minimize.svg'
@@ -14,6 +15,7 @@ import shareSvg from './svg/share.svg'
 
 const ICONS = {
   cross: crossSvg,
+  edit: editSvg,
   left: leftSvg,
   maximize: maximizeSvg,
   minimize: minimizeSvg,

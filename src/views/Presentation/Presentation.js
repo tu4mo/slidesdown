@@ -9,7 +9,7 @@ import Key from '../../components/Key'
 import Notification from '../../components/Notification'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
-import ToolBar from '../../components/ToolBar'
+import ToolBar, { ToolBarDivider } from '../../components/ToolBar'
 
 import {
   StyledPresentation,
@@ -17,13 +17,14 @@ import {
   StyledPresentationToolbar
 } from './Presentation.style'
 
-const Presentation = ({ history, match }) => {
+const Presentation = ({ history, location, match }) => {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const [markdown, setMarkdown] = useState('')
   const [theme, setTheme] = useState('')
 
+  const slidesId = useRef(null)
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef(null)
 
@@ -45,6 +46,13 @@ const Presentation = ({ history, match }) => {
     },
     [history, match.params.slidesId, match.params.slideNumber]
   )
+
+  useEffect(() => {
+    if (!slidesId.current) {
+      slidesId.current =
+        (location && location.state && location.state.slidesId) || null
+    }
+  }, [location])
 
   useEffect(() => {
     const handleKeyUp = e => {
@@ -169,6 +177,22 @@ const Presentation = ({ history, match }) => {
               }
               type="right"
             />
+            {slidesId.current && (
+              <>
+                <ToolBarDivider />
+                <Icon
+                  onClick={() => history.push(`/edit/${slidesId.current}`)}
+                  tooltip={
+                    <>
+                      Edit
+                      <br />
+                      (available when coming from editor)
+                    </>
+                  }
+                  type="edit"
+                />
+              </>
+            )}
           </ToolBar>
         </StyledPresentationToolbar>
       </StyledPresentation>
