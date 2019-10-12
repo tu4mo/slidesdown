@@ -12,11 +12,7 @@ export const StyledTransformContainer = styled.div`
   }
 `
 
-interface Props {
-  single: boolean
-}
-
-export const StyledSlideContainer = styled.div<Props>`
+export const StyledSlideContainer = styled.div<{ single?: boolean }>`
   background-color: #fff;
   display: flex;
   flex-direction: column;
