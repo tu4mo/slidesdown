@@ -14,7 +14,7 @@ import {
 
 interface Props {
   isLoading: boolean
-  onChange(): void
+  onChange: React.HTMLProps<HTMLTextAreaElement>['onChange']
   onCursorPositionChange({
     cursorPosition,
     slide

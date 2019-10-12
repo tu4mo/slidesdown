@@ -169,7 +169,6 @@ const SlidesEditor = ({ history, location, match }) => {
         <SlidesToolBar
           isSaving={isSaving}
           onPresentationClick={handlePresentationClick}
-          presentationId={presentationId}
         />
       </StyledSlidesContainer>
     </SplitPane>
