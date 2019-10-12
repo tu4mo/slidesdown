@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Slide from '../Slide'
-import WindowResizeObserver from '../WindowResizeObserver'
+import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
 
 import {
   StyledSingleSlideContainer,
@@ -34,21 +34,14 @@ const Slides = ({
   const scrollToRef = useRef(null)
 
   useEffect(() => {
-    const handleSlidesCount = () => {
-      onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
-    }
+    onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
 
-    handleSlidesCount()
-    scrollToSlide()
-  }, [markdown, onSlidesCount, slideToFocus])
-
-  const scrollToSlide = () => {
     if (scrollToRef.current) {
       slidesRef.current.scrollTop = scrollToRef.current.offsetTop - 32
     }
-  }
+  }, [markdown, onSlidesCount, slideToFocus])
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     const computedStyle = window.getComputedStyle(slidesRef.current)
 
     const maxWidth =
@@ -75,7 +68,7 @@ const Slides = ({
     setHeight(height)
     setScale(Math.min(width / 800, height / 450))
     setWidth(width)
-  }
+  }, [singleSlide])
 
   const StyledTheme = THEMES[theme || 'default']
 
@@ -93,6 +86,8 @@ const Slides = ({
     )
   )
 
+  useWindowResizeObserver(handleResize)
+
   return (
     <StyledTheme>
       {singleSlide !== undefined ? (
@@ -102,7 +97,6 @@ const Slides = ({
       ) : (
         <StyledSlidesContainer ref={slidesRef}>{slides}</StyledSlidesContainer>
       )}
-      <WindowResizeObserver onResize={handleResize} />
     </StyledTheme>
   )
 }

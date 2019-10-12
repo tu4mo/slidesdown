@@ -15,7 +15,7 @@ import styledTheme from '../../theme'
 import Editor from '../../components/Editor'
 import Slides from '../../components/Slides'
 import Spinner from '../../components/Spinner'
-import WindowResizeObserver from '../../components/WindowResizeObserver'
+import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
 
 import SlidesToolBar from './SlidesToolBar'
 import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
@@ -137,48 +137,42 @@ const SlidesEditor = ({ history, location, match }) => {
     window.dispatchEvent(new Event('resize'))
   }
 
+  const width = useWindowResizeObserver()
+
   return isLoading ? (
     <Spinner />
   ) : (
-    <WindowResizeObserver>
-      {({ width }) => (
-        <SplitPane
-          defaultSize={300}
-          onChange={handleSplitPaneChange}
-          split={
-            width > parseInt(styledTheme.breakpoints.md, 10)
-              ? 'vertical'
-              : 'horizontal'
-          }
-        >
-          <StyledSidebar>
-            <Editor
-              isLoading={isUploading}
-              onChange={handleEditorChange}
-              onCursorPositionChange={handleEditorCursorPositionChange}
-              onDrop={handleEditorDrop}
-              progress={uploadProgress}
-              value={markdown}
-            />
-          </StyledSidebar>
-          <StyledSlidesContainer
-            onDragOver={e => e.preventDefault()}
-            onDrop={e => e.preventDefault()}
-          >
-            <Slides
-              markdown={markdown}
-              slideToFocus={slideToFocus}
-              theme={theme}
-            />
-            <SlidesToolBar
-              isSaving={isSaving}
-              onPresentationClick={handlePresentationClick}
-              presentationId={presentationId}
-            />
-          </StyledSlidesContainer>
-        </SplitPane>
-      )}
-    </WindowResizeObserver>
+    <SplitPane
+      defaultSize={300}
+      onChange={handleSplitPaneChange}
+      split={
+        width > parseInt(styledTheme.breakpoints.md, 10)
+          ? 'vertical'
+          : 'horizontal'
+      }
+    >
+      <StyledSidebar>
+        <Editor
+          isLoading={isUploading}
+          onChange={handleEditorChange}
+          onCursorPositionChange={handleEditorCursorPositionChange}
+          onDrop={handleEditorDrop}
+          progress={uploadProgress}
+          value={markdown}
+        />
+      </StyledSidebar>
+      <StyledSlidesContainer
+        onDragOver={e => e.preventDefault()}
+        onDrop={e => e.preventDefault()}
+      >
+        <Slides markdown={markdown} slideToFocus={slideToFocus} theme={theme} />
+        <SlidesToolBar
+          isSaving={isSaving}
+          onPresentationClick={handlePresentationClick}
+          presentationId={presentationId}
+        />
+      </StyledSlidesContainer>
+    </SplitPane>
   )
 }
 
