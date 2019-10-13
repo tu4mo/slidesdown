@@ -24,7 +24,7 @@
   "author": "tu4mo",
   "license": "ISC",
   "dependencies": {
-    "@tippy.js/react": "^2.2.3",
+    "@tippy.js/react": "^3.1.0",
     "@types/jest": "^24.0.18",
     "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^12.7.12",
