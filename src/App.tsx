@@ -32,7 +32,10 @@ const App = () => (
                 )
               }
             />
-            <Route component={Presentation} path="/:slidesId?/:slideNumber?" />
+            <Route
+              component={Presentation}
+              path="/:presentationId?/:slideNumber?"
+            />
           </Switch>
         </Suspense>
       </BrowserRouter>

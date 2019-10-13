@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import Fullscreen from 'react-full-screen'
+import { RouteChildrenProps } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 import { getPresentation } from '../../firebase'
 
@@ -17,7 +18,10 @@ import {
   StyledPresentationToolbar
 } from './Presentation.style'
 
-const Presentation = ({ history, location, match }) => {
+const Presentation = ({
+  history,
+  location
+}: RouteChildrenProps<{ slideNumber: string; slidesId: string }>) => {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
@@ -26,25 +30,27 @@ const Presentation = ({ history, location, match }) => {
 
   const slidesId = useRef(null)
   const slidesCount = useRef(0)
-  const toolbarVisibilityTimer = useRef(null)
+  const toolbarVisibilityTimer = useRef(0)
+
+  const { slideNumber = '0', presentationId = '-' } = useParams()
+  const slideNumberAsNumber = parseInt(slideNumber)
 
   const changeSlide = useCallback(
     (next = true) => {
-      const slideNumber = match.params.slideNumber || 0
-      const getSlideUrl = slideNumber =>
-        `/${match.params.slidesId || '-'}/${slideNumber}`
+      const getSlideUrl = (slideNumber: number) =>
+        `/${presentationId || '-'}/${slideNumber}`
 
       if (next) {
-        if (slideNumber < slidesCount.current - 1) {
-          history.push(getSlideUrl(parseInt(slideNumber, 10) + 1))
+        if (slideNumberAsNumber < slidesCount.current - 1) {
+          history.push(getSlideUrl(slideNumberAsNumber + 1))
         }
       } else {
-        if (slideNumber > 0) {
-          history.push(getSlideUrl(parseInt(slideNumber, 10) - 1))
+        if (slideNumberAsNumber > 0) {
+          history.push(getSlideUrl(slideNumberAsNumber - 1))
         }
       }
     },
-    [history, match.params.slidesId, match.params.slideNumber]
+    [history, presentationId, slideNumberAsNumber]
   )
 
   useEffect(() => {
@@ -55,7 +61,7 @@ const Presentation = ({ history, location, match }) => {
   }, [location])
 
   useEffect(() => {
-    const handleKeyUp = e => {
+    const handleKeyUp = (e: KeyboardEvent) => {
       switch (e.code) {
         case 'ArrowLeft':
           changeSlide(false)
@@ -78,11 +84,9 @@ const Presentation = ({ history, location, match }) => {
   }, [changeSlide])
 
   useEffect(() => {
-    const slidesId = match.params.slidesId
-
     const fetchPresentation = async () => {
       try {
-        const slides = await getPresentation(slidesId)
+        const slides = await getPresentation(presentationId)
 
         setIsLoading(false)
         setMarkdown(slides.markdown)
@@ -92,12 +96,12 @@ const Presentation = ({ history, location, match }) => {
       }
     }
 
-    if (slidesId && slidesId !== '-') {
+    if (presentationId && presentationId !== '-') {
       fetchPresentation()
     }
-  }, [history, match.params.slidesId])
+  }, [history, presentationId])
 
-  const handleSlidesCount = count => (slidesCount.current = count)
+  const handleSlidesCount = (count: number) => (slidesCount.current = count)
 
   const handlePresentationMouseMove = () => {
     if (!isToolbarVisible) {
@@ -112,13 +116,10 @@ const Presentation = ({ history, location, match }) => {
     )
   }
 
-  const handleToolbarMouseMove = e => {
+  const handleToolbarMouseMove = (e: React.MouseEvent) => {
     e.stopPropagation()
     clearTimeout(toolbarVisibilityTimer.current)
   }
-
-  const { slideNumber: slideNumberAsString = '0' } = match.params
-  const slideNumber = parseInt(slideNumberAsString, 10)
 
   return isLoading ? (
     <Spinner />
@@ -131,7 +132,7 @@ const Presentation = ({ history, location, match }) => {
         <Slides
           markdown={markdown}
           onSlidesCount={handleSlidesCount}
-          singleSlide={slideNumber}
+          singleSlide={slideNumberAsNumber}
           theme={theme}
         />
         <StyledNoticationContainer>
@@ -145,7 +146,7 @@ const Presentation = ({ history, location, match }) => {
         >
           <ToolBar>
             <Icon
-              disabled={slideNumber === 0}
+              disabled={slideNumberAsNumber === 0}
               onClick={() => changeSlide(false)}
               tooltip={
                 <>
@@ -168,7 +169,7 @@ const Presentation = ({ history, location, match }) => {
               />
             )}
             <Icon
-              disabled={slideNumber >= slidesCount.current - 1}
+              disabled={slideNumberAsNumber >= slidesCount.current - 1}
               onClick={changeSlide}
               tooltip={
                 <>
@@ -198,11 +199,6 @@ const Presentation = ({ history, location, match }) => {
       </StyledPresentation>
     </Fullscreen>
   )
-}
-
-Presentation.propTypes = {
-  history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
 }
 
 export default Presentation
