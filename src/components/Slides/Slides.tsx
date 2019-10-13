@@ -1,23 +1,34 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
-
-import Slide from '../Slide'
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  ReactType
+} from 'react'
 import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
-
+import Slide from '../Slide'
 import {
   StyledSingleSlideContainer,
   StyledSlidesContainer
 } from './Slides.style'
-
 import defaultTheme from './themes/default'
 import goforeTheme from './themes/gofore'
 
-const THEMES = {
+const THEMES: { [key: string]: ReactType } = {
   default: defaultTheme,
   gofore: goforeTheme
 }
 
-const splitMarkdownToSlides = markdown => markdown.split('\n---\n')
+const splitMarkdownToSlides = (markdown: string = '') =>
+  markdown.split('\n---\n')
+
+interface SlidesProps {
+  markdown?: string
+  onSlidesCount?(count: number): void
+  singleSlide?: number
+  slideToFocus?: number
+  theme?: string
+}
 
 const Slides = ({
   markdown,
@@ -25,34 +36,38 @@ const Slides = ({
   singleSlide,
   slideToFocus,
   theme
-}) => {
+}: SlidesProps) => {
   const [height, setHeight] = useState(0)
   const [scale, setScale] = useState(1)
   const [width, setWidth] = useState(0)
 
-  const slidesRef = useRef(null)
-  const scrollToRef = useRef(null)
+  const slidesRef = useRef<HTMLDivElement>(null)
+  const scrollToRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
 
-    if (scrollToRef.current) {
+    if (slidesRef.current && scrollToRef.current) {
       slidesRef.current.scrollTop = scrollToRef.current.offsetTop - 32
     }
   }, [markdown, onSlidesCount, slideToFocus])
 
   const handleResize = useCallback(() => {
+    if (!slidesRef.current) {
+      return
+    }
+
     const computedStyle = window.getComputedStyle(slidesRef.current)
 
     const maxWidth =
       slidesRef.current.clientWidth -
-      parseInt(computedStyle.paddingLeft, 10) -
-      parseInt(computedStyle.paddingRight, 10)
+      parseInt(computedStyle.paddingLeft || '', 10) -
+      parseInt(computedStyle.paddingRight || '', 10)
 
     const maxHeight =
       slidesRef.current.clientHeight -
-      parseInt(computedStyle.paddingBottom, 10) -
-      parseInt(computedStyle.paddingTop, 10)
+      parseInt(computedStyle.paddingBottom || '', 10) -
+      parseInt(computedStyle.paddingTop || '', 10)
 
     let width = maxWidth
     let height = maxHeight
@@ -99,14 +114,6 @@ const Slides = ({
       )}
     </StyledTheme>
   )
-}
-
-Slides.propTypes = {
-  markdown: PropTypes.string,
-  onSlidesCount: PropTypes.func,
-  singleSlide: PropTypes.number,
-  slideToFocus: PropTypes.number,
-  theme: PropTypes.string
 }
 
 export default Slides
