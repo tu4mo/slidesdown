@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 
 import ButtonGroup from '../../components/ButtonGroup'
 import Icon from '../../components/Icon'
@@ -47,11 +46,6 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
       {isAboutVisible && <About onClose={() => setIsAboutVisible(false)} />}
     </>
   )
-}
-
-SlidesToolBar.propTypes = {
-  isSaving: PropTypes.bool.isRequired,
-  onPresentationClick: PropTypes.func.isRequired
 }
 
 export default SlidesToolBar

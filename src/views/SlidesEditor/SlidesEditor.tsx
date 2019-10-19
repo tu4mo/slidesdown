@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import SplitPane from 'react-split-pane'
 import queryString from 'query-string'
 import uuid from 'uuid/v4'
+import { RouteChildrenProps } from 'react-router'
 
 import {
   createSlides,
@@ -28,8 +28,12 @@ const DEFAULT_MARKDOWN =
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
-const SlidesEditor = ({ history, location, match }) => {
-  /* eslint-disable no-unused-vars */
+const SlidesEditor = ({
+  history,
+  location,
+  match
+}: RouteChildrenProps<{ slidesId: string }>) => {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
   const [isCreated, setIsCreated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -40,18 +44,30 @@ const SlidesEditor = ({ history, location, match }) => {
   const [theme, setTheme] = useState('')
   const [slideToFocus, setSlideToFocus] = useState(0)
   const [uploadProgress, setUploadProgress] = useState(0)
-  /* eslint-enable no-unused-vars */
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+
+  const slidesId = match ? match.params.slidesId : undefined
 
   useEffect(() => {
-    setTheme(queryString.parse(location.search).theme || 'default')
+    const { theme } = queryString.parse(location.search)
+    setTheme((Array.isArray(theme) ? theme[0] : theme) || 'default')
+  }, [location.search])
 
+  useEffect(() => {
     const fetchSlides = async () => {
+      if (!slidesId) {
+        return
+      }
+
       try {
-        const slides = await getSlides(match.params.slidesId)
-        setIsCreated(true)
-        setIsLoading(false)
-        setMarkdown(slides.markdown)
-        setPresentationId(slides.presentationId)
+        const slides = await getSlides(slidesId)
+
+        if (slides) {
+          setIsCreated(true)
+          setIsLoading(false)
+          setMarkdown(slides.markdown)
+          setPresentationId(slides.presentationId)
+        }
       } catch (err) {
         setIsLoading(false)
         setMarkdown(DEFAULT_MARKDOWN)
@@ -59,10 +75,12 @@ const SlidesEditor = ({ history, location, match }) => {
     }
 
     fetchSlides()
-  }, [location.search, match.params.slidesId])
+  }, [slidesId])
 
   const saveSlides = async () => {
-    const { slidesId } = match.params
+    if (!slidesId) {
+      return
+    }
 
     setIsSaving(true)
 
@@ -89,12 +107,12 @@ const SlidesEditor = ({ history, location, match }) => {
     })
   }
 
-  const handleEditorChange = e => {
+  const handleEditorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(e.target.value)
     saveSlides()
   }
 
-  const handleEditorDrop = async file => {
+  const handleEditorDrop = async (file: File) => {
     // Disable for now
     // const { newId, setError } = this.props
     //
@@ -123,14 +141,20 @@ const SlidesEditor = ({ history, location, match }) => {
     // })
   }
 
-  const handleEditorCursorPositionChange = ({ cursorPosition, slide }) => {
+  const handleEditorCursorPositionChange = ({
+    cursorPosition,
+    slide
+  }: {
+    cursorPosition: number
+    slide: number
+  }) => {
     setCursorPosition(cursorPosition)
     setSlideToFocus(slide)
   }
 
   const handlePresentationClick = async () => {
     await saveSlides()
-    history.push(`/${presentationId}`, { slidesId: match.params.slidesId })
+    history.push(`/${presentationId}`, { slidesId })
   }
 
   const handleSplitPaneChange = () => {
@@ -173,12 +197,6 @@ const SlidesEditor = ({ history, location, match }) => {
       </StyledSlidesContainer>
     </SplitPane>
   )
-}
-
-SlidesEditor.propTypes = {
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
 }
 
 export default SlidesEditor
