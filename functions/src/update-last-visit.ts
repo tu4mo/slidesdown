@@ -1,4 +1,11 @@
-module.exports = (req, res, db) => {
+import * as admin from 'firebase-admin'
+import * as functions from 'firebase-functions'
+
+export default (
+  req: functions.Request,
+  res: functions.Response,
+  db: admin.firestore.Firestore
+) => {
   const { id } = req.query
 
   db.collection('slides')

@@ -1,4 +1,11 @@
-module.exports = async (req, res, db) => {
+import * as admin from 'firebase-admin'
+import * as functions from 'firebase-functions'
+
+export default async (
+  req: functions.Request,
+  res: functions.Response,
+  db: admin.firestore.Firestore
+) => {
   const { id } = req.query
 
   try {

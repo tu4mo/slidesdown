@@ -1,12 +1,13 @@
-const functions = require('firebase-functions')
-const admin = require('firebase-admin')
+import * as functions from 'firebase-functions'
+import * as admin from 'firebase-admin'
+
+import presentation from './presentation'
+import removeOldSlides from './remove-old-slides'
+import updateLastVisit from './update-last-visit'
+
 admin.initializeApp()
 
 const db = admin.firestore()
-
-const presentation = require('./presentation')
-const removeOldSlides = require('./removeOldSlides')
-const updateLastVisit = require('./updateLastVisit')
 
 exports.presentation = functions.https.onRequest((req, res) =>
   presentation(req, res, db)
@@ -14,7 +15,7 @@ exports.presentation = functions.https.onRequest((req, res) =>
 
 exports.removeOldSlides = functions.firestore
   .document('slides/{slideId}')
-  .onCreate(event => removeOldSlides(event, db))
+  .onCreate(() => removeOldSlides(db))
 
 exports.updateLastVisit = functions.https.onRequest((req, res) =>
   updateLastVisit(req, res, db)

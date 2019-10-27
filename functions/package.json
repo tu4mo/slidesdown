@@ -1,7 +1,9 @@
 {
   "name": "slidesdown-functions",
   "private": true,
+  "main": "lib/index.js",
   "scripts": {
+    "build": "./node_modules/.bin/tslint --project tsconfig.json && ./node_modules/.bin/tsc",
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
@@ -13,7 +15,9 @@
     "firebase-functions": "^3.3.0"
   },
   "devDependencies": {
-    "firebase-tools": "^7.6.1"
+    "firebase-tools": "^7.6.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4"
   },
   "engines": {
     "node": "8"

@@ -1,24 +1,27 @@
+import * as admin from 'firebase-admin'
+
 const DATE_OFFSET = 1000 * 60 * 60 * 24 * 30
 const dateThirtyDaysAgo = new Date()
 dateThirtyDaysAgo.setTime(dateThirtyDaysAgo.getTime() - DATE_OFFSET)
 
-const getOldSlides = db =>
+const getOldSlides = (db: admin.firestore.Firestore) =>
   db
     .collection('slides')
     .where('createdAt', '<', dateThirtyDaysAgo)
     .get()
 
-const getImages = slide => slide.ref.collection('images').get()
+const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
+  slide.ref.collection('images').get()
 
 // TODO: Remove image from storage
-const removeSlide = slide =>
+const removeSlide = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
   getImages(slide).then(images => {
-    const imageDeleteBatch = []
+    const imageDeleteBatch: Promise<FirebaseFirestore.WriteResult>[] = []
     images.forEach(image => imageDeleteBatch.push(image.ref.delete()))
     Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
   })
 
-module.exports = (event, db) =>
+export default (db: admin.firestore.Firestore) =>
   getOldSlides(db).then(slides => {
     console.log(
       `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`
