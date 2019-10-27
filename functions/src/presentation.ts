@@ -17,7 +17,8 @@ export default async (
 
     const firstDocument = querySnapshot.docs[0]
 
-    db.collection('slides')
+    await db
+      .collection('slides')
       .doc(firstDocument.id)
       .update({ visitedAt: new Date() })
 

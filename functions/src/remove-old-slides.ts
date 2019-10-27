@@ -14,41 +14,41 @@ const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
   slide.ref.collection('images').get()
 
 // TODO: Remove image from storage
-const removeSlide = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
-  getImages(slide).then(images => {
-    const imageDeleteBatch: Promise<FirebaseFirestore.WriteResult>[] = []
-    images.forEach(image => imageDeleteBatch.push(image.ref.delete()))
-    Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
-  })
+const removeSlide = async (slide: FirebaseFirestore.QueryDocumentSnapshot) => {
+  const images = await getImages(slide)
+  const imageDeleteBatch: Promise<FirebaseFirestore.WriteResult>[] = []
+  images.forEach(image => imageDeleteBatch.push(image.ref.delete()))
+  return Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
+}
 
-export default (db: admin.firestore.Firestore) =>
-  getOldSlides(db).then(slides => {
-    console.log(
-      `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`
-    )
+export default async (db: admin.firestore.Firestore) => {
+  const slides = await getOldSlides(db)
 
-    slides.forEach(slide => {
-      const { visitedAt } = slide.data()
+  console.log(
+    `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`
+  )
 
-      // Remove when visitedAt is undefined or old
-      if (!visitedAt || visitedAt.toDate() < dateThirtyDaysAgo) {
-        return removeSlide(slide)
-          .then(() => {
-            console.log(
-              `${slide.id}: Removed (last visit: ${
-                visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
-              })`
-            )
-          })
-          .catch(err =>
-            console.error(`${slide.id}: Unable to remove (${err.message})`)
-          )
-      } else {
+  slides.forEach(async slide => {
+    const { visitedAt } = slide.data()
+
+    // Remove when visitedAt is undefined or old
+    if (!visitedAt || visitedAt.toDate() < dateThirtyDaysAgo) {
+      try {
+        await removeSlide(slide)
         console.log(
-          `${slide.id}: Not removing (last visit: ${
+          `${slide.id}: Removed (last visit: ${
             visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
           })`
         )
+      } catch (err) {
+        console.error(`${slide.id}: Unable to remove (${err.message})`)
       }
-    })
+    } else {
+      console.log(
+        `${slide.id}: Not removing (last visit: ${
+          visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
+        })`
+      )
+    }
   })
+}

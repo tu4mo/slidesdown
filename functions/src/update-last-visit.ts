@@ -1,14 +1,15 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
 
-export default (
+export default async (
   req: functions.Request,
   res: functions.Response,
   db: admin.firestore.Firestore
 ) => {
   const { id } = req.query
 
-  db.collection('slides')
+  await db
+    .collection('slides')
     .doc(id)
     .update({ visitedAt: new Date() })
     .then(() => {
