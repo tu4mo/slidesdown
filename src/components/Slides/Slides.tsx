@@ -87,19 +87,19 @@ const Slides = ({
 
   const StyledTheme = THEMES[theme || 'default']
 
-  const slides = splitMarkdownToSlides(markdown).map(
-    (slideMarkdown, slideIndex) => (
-      <Slide
-        height={height}
-        key={slideMarkdown}
-        markdown={slideMarkdown}
-        ref={slideIndex === slideToFocus ? scrollToRef : null}
-        scale={scale}
-        single={singleSlide !== undefined}
-        width={width}
-      />
-    )
-  )
+  const slides = splitMarkdownToSlides(
+    markdown
+  ).map((slideMarkdown, slideIndex) => (
+    <Slide
+      height={height}
+      key={slideMarkdown}
+      markdown={slideMarkdown}
+      ref={slideIndex === slideToFocus ? scrollToRef : null}
+      scale={scale}
+      single={singleSlide !== undefined}
+      width={width}
+    />
+  ))
 
   useWindowResizeObserver(handleResize)
 

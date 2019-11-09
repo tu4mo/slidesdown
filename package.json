@@ -7,7 +7,7 @@
   "scripts": {
     "build": "react-scripts build",
     "deploy": "npm run build && firebase deploy",
-    "format": "prettier --write '**/*.{md,js,json}'",
+    "format": "prettier --write '**/*.{md,js,json,ts,tsx}'",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint .",
     "lint:css": "stylelint './src/**/*.js'",
