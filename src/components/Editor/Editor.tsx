@@ -38,7 +38,7 @@ const Editor: FC<Props> = ({
   const editorRef = useRef<HTMLTextAreaElement>(null)
 
   const getCurrentCursorPosition = (): number =>
-    editorRef && editorRef.current ? editorRef.current.selectionStart : 0
+    editorRef.current?.selectionStart ?? 0
 
   const handleClickAndKeyUp = () => {
     const cursorPosition = getCurrentCursorPosition()
@@ -46,16 +46,15 @@ const Editor: FC<Props> = ({
     const slides = getSlidesFirstLines(value)
     const slide = getCurrentSlide(slides, currentLineNumber)
 
-    onCursorPositionChange &&
-      onCursorPositionChange({
-        cursorPosition,
-        slide
-      })
+    onCursorPositionChange({
+      cursorPosition,
+      slide
+    })
   }
 
   const handleDrop = (event: React.DragEvent) => {
     event.preventDefault()
-    onDrop && event && event.dataTransfer && onDrop(event.dataTransfer.files[0])
+    onDrop(event.dataTransfer.files[0])
   }
 
   return (

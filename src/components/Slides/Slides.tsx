@@ -45,7 +45,7 @@ const Slides = ({
   const scrollToRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    onSlidesCount && onSlidesCount(splitMarkdownToSlides(markdown).length)
+    onSlidesCount?.(splitMarkdownToSlides(markdown).length)
 
     if (slidesRef.current && scrollToRef.current) {
       slidesRef.current.scrollTop = scrollToRef.current.offsetTop - 32

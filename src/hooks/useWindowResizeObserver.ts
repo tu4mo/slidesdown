@@ -9,7 +9,7 @@ const useWindowResizeObserver = (onResize?: () => void) => {
   useEffect(() => {
     const handleResize = throttle(() => {
       setWidth(getWidth())
-      onResize && onResize()
+      onResize?.()
     }, 100)
 
     window.addEventListener('resize', handleResize)
