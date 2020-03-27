@@ -1,7 +1,7 @@
 import React, { Fragment, Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import uuid from 'uuid/v4'
+import { v4 as uuid } from 'uuid'
 import validate from 'uuid-validate'
 
 import { GlobalStyle } from './App.style'
@@ -24,7 +24,7 @@ const App = () => (
             <Redirect exact from="/" to={editPath} />
             <Route
               path="/edit/:slidesId?"
-              render={props =>
+              render={(props) =>
                 validate(props.match.params.slidesId) ? (
                   <SlidesEditor {...props} />
                 ) : (

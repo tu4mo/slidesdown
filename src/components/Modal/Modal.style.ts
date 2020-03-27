@@ -59,7 +59,7 @@ export const StyledModalCloseButton = styled.button`
 
   &::after,
   &::before {
-    background-color: ${props => props.theme.colors.purple};
+    background-color: ${(props) => props.theme.colors.purple};
     border-radius: 1px;
     content: '';
     display: block;

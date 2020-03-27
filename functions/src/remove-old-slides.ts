@@ -5,10 +5,7 @@ const dateThirtyDaysAgo = new Date()
 dateThirtyDaysAgo.setTime(dateThirtyDaysAgo.getTime() - DATE_OFFSET)
 
 const getOldSlides = (db: admin.firestore.Firestore) =>
-  db
-    .collection('slides')
-    .where('createdAt', '<', dateThirtyDaysAgo)
-    .get()
+  db.collection('slides').where('createdAt', '<', dateThirtyDaysAgo).get()
 
 const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
   slide.ref.collection('images').get()
@@ -17,7 +14,7 @@ const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
 const removeSlide = async (slide: FirebaseFirestore.QueryDocumentSnapshot) => {
   const images = await getImages(slide)
   const imageDeleteBatch: Promise<FirebaseFirestore.WriteResult>[] = []
-  images.forEach(image => imageDeleteBatch.push(image.ref.delete()))
+  images.forEach((image) => imageDeleteBatch.push(image.ref.delete()))
   return Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
 }
 
@@ -28,7 +25,7 @@ export default async (db: admin.firestore.Firestore) => {
     `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`
   )
 
-  slides.forEach(async slide => {
+  slides.forEach(async (slide) => {
     const { visitedAt } = slide.data()
 
     // Remove when visitedAt is undefined or old

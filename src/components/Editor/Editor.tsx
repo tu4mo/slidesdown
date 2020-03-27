@@ -3,13 +3,13 @@ import React, { FC, useRef } from 'react'
 import {
   StyledWrapper,
   StyledTextarea,
-  StyledProgressBar
+  StyledProgressBar,
 } from './Editor.style'
 
 import {
   getCurrentLineNumber,
   getSlidesFirstLines,
-  getCurrentSlide
+  getCurrentSlide,
 } from './utils'
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
   onChange: React.HTMLProps<HTMLTextAreaElement>['onChange']
   onCursorPositionChange({
     cursorPosition,
-    slide
+    slide,
   }: {
     cursorPosition: number
     slide: number
@@ -33,7 +33,7 @@ const Editor: FC<Props> = ({
   onCursorPositionChange,
   onDrop,
   progress,
-  value
+  value,
 }) => {
   const editorRef = useRef<HTMLTextAreaElement>(null)
 
@@ -48,7 +48,7 @@ const Editor: FC<Props> = ({
 
     onCursorPositionChange({
       cursorPosition,
-      slide
+      slide,
     })
   }
 

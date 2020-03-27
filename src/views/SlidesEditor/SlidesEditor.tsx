@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
 import queryString from 'query-string'
-import uuid from 'uuid/v4'
+import { v4 as uuid } from 'uuid'
 import { RouteChildrenProps } from 'react-router'
 
 import {
   createSlides,
   getSlides,
-  updateSlidesThrottled
+  updateSlidesThrottled,
   // , saveImage
 } from '../../firebase'
 import styledTheme from '../../theme'
@@ -31,7 +31,7 @@ const DEFAULT_MARKDOWN =
 const SlidesEditor = ({
   history,
   location,
-  match
+  match,
 }: RouteChildrenProps<{ slidesId: string }>) => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
@@ -91,7 +91,7 @@ const SlidesEditor = ({
         id: slidesId,
         markdown,
         presentationId,
-        theme
+        theme,
       })
 
       setIsSaving(false)
@@ -103,7 +103,7 @@ const SlidesEditor = ({
       id: slidesId,
       markdown,
       theme,
-      callback: () => setIsSaving(false)
+      callback: () => setIsSaving(false),
     })
   }
 
@@ -143,7 +143,7 @@ const SlidesEditor = ({
 
   const handleEditorCursorPositionChange = ({
     cursorPosition,
-    slide
+    slide,
   }: {
     cursorPosition: number
     slide: number
@@ -186,8 +186,8 @@ const SlidesEditor = ({
         />
       </StyledSidebar>
       <StyledSlidesContainer
-        onDragOver={e => e.preventDefault()}
-        onDrop={e => e.preventDefault()}
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => e.preventDefault()}
       >
         <Slides markdown={markdown} slideToFocus={slideToFocus} theme={theme} />
         <SlidesToolBar

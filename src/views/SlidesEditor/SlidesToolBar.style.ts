@@ -8,7 +8,7 @@ export const StyledToolBarContainer = styled.div`
 
 export const StyledLogoContainer = styled.div`
   align-items: center;
-  border-right: 1px solid ${props => props.theme.colors.border};
+  border-right: 1px solid ${(props) => props.theme.colors.border};
   display: flex;
   margin-bottom: -1rem;
   margin-right: 1rem;
@@ -20,7 +20,7 @@ export const StyledLogoContainer = styled.div`
 export const StyledIconWrapper = styled.div<{ withNotification: boolean }>`
   position: relative;
 
-  ${props =>
+  ${(props) =>
     props.withNotification &&
     css`
       &::after {

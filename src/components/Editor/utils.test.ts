@@ -1,7 +1,7 @@
 import {
   getCurrentLineNumber,
   getSlidesFirstLines,
-  getCurrentSlide
+  getCurrentSlide,
 } from './utils'
 
 it('getCurrentLineNumber', () => {
@@ -14,7 +14,7 @@ it('getSlidesFirstLines', () => {
   expect(getSlidesFirstLines(value)).toEqual([
     { slide: 0, firstLine: 0 },
     { slide: 1, firstLine: 2 },
-    { slide: 2, firstLine: 4 }
+    { slide: 2, firstLine: 4 },
   ])
   expect(getSlidesFirstLines()).toEqual([{ slide: 0, firstLine: 0 }])
 })
@@ -23,7 +23,7 @@ it('getCurrentSlide', () => {
   const slides = [
     { slide: 0, firstLine: 0 },
     { slide: 1, firstLine: 10 },
-    { slide: 2, firstLine: 20 }
+    { slide: 2, firstLine: 20 },
   ]
 
   const value0 = getCurrentSlide(slides, 0)

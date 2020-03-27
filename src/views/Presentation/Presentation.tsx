@@ -15,12 +15,12 @@ import ToolBar, { ToolBarDivider } from '../../components/ToolBar'
 import {
   StyledPresentation,
   StyledNoticationContainer,
-  StyledPresentationToolbar
+  StyledPresentationToolbar,
 } from './Presentation.style'
 
 const Presentation = ({
   history,
-  location
+  location,
 }: RouteChildrenProps<{ slideNumber: string; slidesId: string }>) => {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -126,7 +126,7 @@ const Presentation = ({
   ) : (
     <Fullscreen
       enabled={isFullscreen}
-      onChange={isFullscreen => setIsFullscreen(isFullscreen)}
+      onChange={(isFullscreen) => setIsFullscreen(isFullscreen)}
     >
       <StyledPresentation onMouseMove={handlePresentationMouseMove}>
         <Slides

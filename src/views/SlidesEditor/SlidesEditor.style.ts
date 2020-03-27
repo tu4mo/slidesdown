@@ -9,7 +9,7 @@ export const StyledSidebar = styled.div`
   width: 100%;
   z-index: 1;
 
-  @media (min-width: ${props => props.theme.breakpoints.md}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
     border: 0;
   }
 `

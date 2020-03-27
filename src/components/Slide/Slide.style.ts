@@ -6,7 +6,7 @@ export const StyledTransformContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: 1rem;
 
-    @media (min-width: ${props => props.theme.breakpoints.xl}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
       margin-bottom: 2rem;
     }
   }
@@ -26,7 +26,7 @@ export const StyledSlideContainer = styled.div<{ single?: boolean }>`
   top: 50%;
   width: 800px;
 
-  ${props =>
+  ${(props) =>
     !props.single &&
     css`
       box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);

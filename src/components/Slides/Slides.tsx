@@ -3,20 +3,20 @@ import React, {
   useEffect,
   useRef,
   useState,
-  ReactType
+  ReactType,
 } from 'react'
 import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
 import Slide from '../Slide'
 import {
   StyledSingleSlideContainer,
-  StyledSlidesContainer
+  StyledSlidesContainer,
 } from './Slides.style'
 import defaultTheme from './themes/default'
 import goforeTheme from './themes/gofore'
 
 const THEMES: { [key: string]: ReactType } = {
   default: defaultTheme,
-  gofore: goforeTheme
+  gofore: goforeTheme,
 }
 
 const splitMarkdownToSlides = (markdown: string = '') =>
@@ -35,7 +35,7 @@ const Slides = ({
   onSlidesCount,
   singleSlide,
   slideToFocus,
-  theme
+  theme,
 }: SlidesProps) => {
   const [height, setHeight] = useState(0)
   const [scale, setScale] = useState(1)

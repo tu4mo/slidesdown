@@ -12,7 +12,7 @@ const renderers = {
   code: Code,
   image: Image,
   table: Table,
-  tableCell: TableCell
+  tableCell: TableCell,
 }
 
 interface SlideProps {

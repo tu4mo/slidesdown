@@ -18,9 +18,9 @@ const Notification: FC<Props> = ({ children, className, timeout = 15000 }) => {
 }
 
 const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
-  color: ${props => props.theme.colors.purple};
+  color: ${(props) => props.theme.colors.purple};
 
-  ${props =>
+  ${(props) =>
     props.slideDown &&
     css`
       animation: slide-down 1s ease-out;

@@ -21,7 +21,7 @@ export const getCurrentSlide = (
 ): number => {
   const slideObj = [...slides]
     .reverse()
-    .find(slide => currentLineNumber > slide.firstLine)
+    .find((slide) => currentLineNumber > slide.firstLine)
 
   return slideObj?.slide ?? 0
 }

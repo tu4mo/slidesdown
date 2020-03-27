@@ -14,7 +14,7 @@ const Td = styled.td`
 
 const TableCell = ({
   children,
-  isHeader
+  isHeader,
 }: {
   children?: ReactNode
   isHeader?: boolean

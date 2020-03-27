@@ -13,7 +13,7 @@ export const StyledSingleSlideContainer = styled.div`
 `
 
 export const StyledSlidesContainer = styled.div`
-  background-color: ${props => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.background};
   height: 100%;
   left: 0;
   overflow: auto;
@@ -23,7 +23,7 @@ export const StyledSlidesContainer = styled.div`
   width: 100%;
   -webkit-overflow-scrolling: touch;
 
-  @media (min-width: ${props => props.theme.breakpoints.xl}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
     padding: 2rem;
   }
 `

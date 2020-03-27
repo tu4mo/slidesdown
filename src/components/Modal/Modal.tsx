@@ -4,7 +4,7 @@ import {
   StyledModalContainer,
   StyledModal,
   StyledHeading,
-  StyledModalCloseButton
+  StyledModalCloseButton,
 } from './Modal.style'
 
 interface Props {
@@ -28,7 +28,7 @@ const Modal: FC<Props> = ({ children, heading, onClose }) => {
 
   return (
     <StyledModalContainer onClick={onClose}>
-      <StyledModal onClick={e => e.stopPropagation()}>
+      <StyledModal onClick={(e) => e.stopPropagation()}>
         {heading && <StyledHeading>{heading}</StyledHeading>}
         {children}
         <StyledModalCloseButton onClick={onClose} />

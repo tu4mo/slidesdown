@@ -25,7 +25,7 @@ export const StyledPresentationToolbar = styled.div<Props>`
   display: flex;
   justify-content: center;
   left: 0;
-  opacity: ${props => (props.visible ? 1 : 0)};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   padding: 2rem;
   position: fixed;
   transition: opacity 0.1s ease-in;

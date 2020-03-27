@@ -5,8 +5,8 @@ interface Props {
 }
 
 export const StyledImg = styled.img<Props>`
-  ${props => props.onClick && 'cursor: pointer'};
+  ${(props) => props.onClick && 'cursor: pointer'};
   display: block;
-  height: ${props => (props.large ? '5rem' : '2rem')};
-  width: ${props => (props.large ? '5rem' : '2rem')};
+  height: ${(props) => (props.large ? '5rem' : '2rem')};
+  width: ${(props) => (props.large ? '5rem' : '2rem')};
 `

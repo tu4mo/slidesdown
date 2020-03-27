@@ -9,7 +9,7 @@ import Tooltip from '../../components/Tooltip'
 import {
   StyledToolBarContainer,
   StyledLogoContainer,
-  StyledIconWrapper
+  StyledIconWrapper,
 } from './SlidesToolBar.style'
 
 import About from './About'

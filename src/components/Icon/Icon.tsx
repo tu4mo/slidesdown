@@ -21,7 +21,7 @@ const ICONS = {
   minimize: minimizeSvg,
   presentation: presentationSvg,
   right: rightSvg,
-  share: shareSvg
+  share: shareSvg,
 }
 
 interface Props {
