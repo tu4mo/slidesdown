@@ -1,12 +1,13 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 interface Props {
+  children: ReactNode
   className?: string
   timeout?: number
 }
 
-const Notification: FC<Props> = ({ children, className, timeout = 15000 }) => {
+const Notification = ({ children, className, timeout = 15000 }: Props) => {
   const [hasTimedOut, setHasTimedOut] = useState(false)
 
   useEffect(() => {

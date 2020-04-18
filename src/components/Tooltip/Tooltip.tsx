@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import React from 'react'
 import Tippy, { TippyProps } from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
 
-const Tooltip: FC<TippyProps> = ({ children, content, ...rest }) => (
+const Tooltip = ({ children, content, ...rest }: TippyProps) => (
   <Tippy arrow content={content} {...rest}>
     {children}
   </Tippy>

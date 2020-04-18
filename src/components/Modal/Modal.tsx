@@ -1,4 +1,4 @@
-import React, { FC, useEffect, ReactNode } from 'react'
+import React, { useEffect, ReactNode } from 'react'
 
 import {
   StyledModalContainer,
@@ -13,7 +13,7 @@ interface Props {
   onClose(): void
 }
 
-const Modal: FC<Props> = ({ children, heading, onClose }) => {
+const Modal = ({ children, heading, onClose }: Props) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 27) {

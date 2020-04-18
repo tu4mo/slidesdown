@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { useRef } from 'react'
 
 import {
   StyledWrapper,
@@ -27,14 +27,14 @@ interface Props {
   value: string
 }
 
-const Editor: FC<Props> = ({
+const Editor = ({
   isLoading,
   onChange,
   onCursorPositionChange,
   onDrop,
   progress,
   value,
-}) => {
+}: Props) => {
   const editorRef = useRef<HTMLTextAreaElement>(null)
 
   const getCurrentCursorPosition = (): number =>

@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { StyledButton } from './Button.style'
 
@@ -8,7 +8,7 @@ interface ButtonProps {
   onClick(): void
 }
 
-const Button: FC<ButtonProps> = ({ children, disabled, onClick }) => (
+const Button = ({ children, disabled, onClick }: ButtonProps) => (
   <StyledButton disabled={disabled} onClick={onClick}>
     {children}
   </StyledButton>
