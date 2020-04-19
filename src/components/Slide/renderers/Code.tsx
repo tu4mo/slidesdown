@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import Prism from 'prismjs'
 
 import 'prismjs/components/prism-bash'
@@ -43,7 +43,7 @@ interface Props {
   language: string
 }
 
-const Code: FC<Props> = ({ value, language }) => {
+const Code = ({ value, language }: Props) => {
   const html =
     value &&
     Prism.languages[language] &&
