@@ -21,14 +21,14 @@ import {
 const Presentation = ({
   history,
   location,
-}: RouteChildrenProps<{ slideNumber: string; slidesId: string }>) => {
+}: RouteChildrenProps<{}, { slideNumber: string; slidesId: string }>) => {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const [markdown, setMarkdown] = useState('')
   const [theme, setTheme] = useState('')
 
-  const slidesId = useRef(null)
+  const slidesId = useRef('')
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef(0)
 
@@ -55,10 +55,9 @@ const Presentation = ({
 
   useEffect(() => {
     if (!slidesId.current) {
-      slidesId.current =
-        (location && location.state && location.state.slidesId) || null
+      slidesId.current = location.state?.slidesId || ''
     }
-  }, [location])
+  }, [location.state])
 
   useEffect(() => {
     const handleKeyUp = (e: KeyboardEvent) => {
