@@ -8,6 +8,10 @@ export default async (
 ) => {
   const { id } = req.query
 
+  if (typeof id !== 'string') {
+    return
+  }
+
   await db
     .collection('slides')
     .doc(id)
