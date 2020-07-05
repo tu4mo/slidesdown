@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
-import queryString from 'query-string'
 import { v4 as uuid } from 'uuid'
 import { RouteChildrenProps } from 'react-router'
 
@@ -49,7 +48,8 @@ const SlidesEditor = ({
   const slidesId = match ? match.params.slidesId : undefined
 
   useEffect(() => {
-    const { theme } = queryString.parse(location.search)
+    const searchParams = new URLSearchParams(location.search)
+    const theme = searchParams.get('theme')
     setTheme((Array.isArray(theme) ? theme[0] : theme) || 'default')
   }, [location.search])
 
