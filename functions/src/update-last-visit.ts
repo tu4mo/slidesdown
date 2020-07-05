@@ -12,17 +12,12 @@ export default async (
     return
   }
 
-  await db
-    .collection('slides')
-    .doc(id)
-    .update({ visitedAt: new Date() })
-    .then(() => {
-      console.log(`${id}: visitedAt updated`)
-    })
-    .catch(() => {
-      console.error(`${id}: doesn't exist`)
-    })
-    .then(() => {
-      res.sendStatus(200)
-    })
+  try {
+    await db.collection('slides').doc(id).update({ visitedAt: new Date() })
+    console.log(`${id}: visitedAt updated`)
+  } catch (err) {
+    console.error(`${id}: doesn't exist (${err.message})`)
+  }
+
+  res.sendStatus(200)
 }

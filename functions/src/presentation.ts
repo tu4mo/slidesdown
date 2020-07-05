@@ -24,9 +24,10 @@ export default async (
 
     console.log(`${firstDocument.id}: visitedAt updated`)
 
-    return res.send(firstDocument.data())
+    res.send(firstDocument.data())
   } catch (err) {
     console.error(err)
-    return res.sendStatus(404)
+
+    res.sendStatus(404)
   }
 }
