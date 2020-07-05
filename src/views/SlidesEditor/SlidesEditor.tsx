@@ -49,8 +49,8 @@ const SlidesEditor = ({
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
-    const theme = searchParams.get('theme')
-    setTheme((Array.isArray(theme) ? theme[0] : theme) || 'default')
+    const theme = searchParams.get('theme') || 'default'
+    setTheme(theme)
   }, [location.search])
 
   useEffect(() => {
