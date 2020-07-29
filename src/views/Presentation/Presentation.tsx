@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import Fullscreen from 'react-full-screen'
+import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { RouteChildrenProps } from 'react-router'
 import { useParams } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ const Presentation = ({
   history,
   location,
 }: RouteChildrenProps<{}, { slideNumber: string; slidesId: string }>) => {
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const fullscreen = useFullScreenHandle()
   const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const [markdown, setMarkdown] = useState('')
@@ -123,10 +123,7 @@ const Presentation = ({
   return isLoading ? (
     <Spinner />
   ) : (
-    <Fullscreen
-      enabled={isFullscreen}
-      onChange={(isFullscreen) => setIsFullscreen(isFullscreen)}
-    >
+    <FullScreen handle={fullscreen}>
       <StyledPresentation onMouseMove={handlePresentationMouseMove}>
         <Slides
           markdown={markdown}
@@ -154,15 +151,15 @@ const Presentation = ({
               }
               type="left"
             />
-            {isFullscreen ? (
+            {fullscreen.active ? (
               <Icon
-                onClick={() => setIsFullscreen(false)}
+                onClick={fullscreen.exit}
                 tooltip={<span>Minimize</span>}
                 type="minimize"
               />
             ) : (
               <Icon
-                onClick={() => setIsFullscreen(true)}
+                onClick={fullscreen.enter}
                 tooltip={<span>Maximize</span>}
                 type="maximize"
               />
@@ -196,7 +193,7 @@ const Presentation = ({
           </ToolBar>
         </StyledPresentationToolbar>
       </StyledPresentation>
-    </Fullscreen>
+    </FullScreen>
   )
 }
 
