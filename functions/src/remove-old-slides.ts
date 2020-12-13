@@ -18,7 +18,7 @@ const removeSlide = async (slide: FirebaseFirestore.QueryDocumentSnapshot) => {
   return Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
 }
 
-export default async (db: admin.firestore.Firestore) => {
+export const removeOldSlides = async (db: admin.firestore.Firestore) => {
   const slides = await getOldSlides(db)
 
   console.log(

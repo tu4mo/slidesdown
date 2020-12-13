@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  ReactType,
-} from 'react'
+import { useCallback, useEffect, useRef, useState, ReactType } from 'react'
 import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
 import Slide from '../Slide'
 import {

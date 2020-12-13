@@ -15,4 +15,4 @@ export default {
     default: 'Rubik',
     monospace: 'Inconsolata',
   },
-}
+} as const

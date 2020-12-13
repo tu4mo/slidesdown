@@ -2,5 +2,7 @@
 build/
 coverage/
 node_modules/
+
+.eslintcache
 cloud-functions-emulator.log
 firebase-debug.log

@@ -1,3 +1,5 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
-export default ({ children }: { children: ReactNode }) => <>{children}</>
+const Theme = ({ children }: { children: ReactNode }) => <>{children}</>
+
+export default Theme

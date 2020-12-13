@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
 

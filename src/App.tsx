@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, lazy } from 'react'
+import { Fragment, Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'

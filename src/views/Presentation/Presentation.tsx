@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { RouteChildrenProps } from 'react-router'
 import { useParams } from 'react-router-dom'
@@ -32,7 +32,11 @@ const Presentation = ({
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef(0)
 
-  const { slideNumber = '0', presentationId = '-' } = useParams()
+  const { slideNumber = '0', presentationId = '-' } = useParams<{
+    slideNumber?: string
+    presentationId?: string
+  }>()
+
   const slideNumberAsNumber = parseInt(slideNumber)
 
   const changeSlide = useCallback(

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
 import { v4 as uuid } from 'uuid'
 import { RouteChildrenProps } from 'react-router'

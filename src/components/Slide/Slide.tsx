@@ -1,5 +1,6 @@
-import React, { forwardRef, memo } from 'react'
+import { ElementType, forwardRef, memo } from 'react'
 import Markdown from 'react-markdown'
+import gfm from 'remark-gfm'
 
 import { StyledTransformContainer, StyledSlideContainer } from './Slide.style'
 
@@ -8,18 +9,18 @@ import Image from './renderers/Image'
 import Table from './renderers/Table'
 import TableCell from './renderers/TableCell'
 
-const renderers = {
-  code: Code,
-  image: Image,
-  table: Table,
-  tableCell: TableCell,
+const renderers: { [nodeType: string]: ElementType } = {
+  code: ({ node, ...props }) => <Code {...props} />,
+  image: ({ node, ...props }) => <Image {...props} />,
+  table: ({ node, ...props }) => <Table {...props} />,
+  tableCell: ({ node, ...props }) => <TableCell {...props} />,
 }
 
 interface SlideProps {
   height: number
   scale: number
   single?: boolean
-  markdown?: string
+  markdown: string
   width: number
 }
 
@@ -32,7 +33,9 @@ const Slide = memo(
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
         <div>
-          <Markdown renderers={renderers} source={markdown} />
+          <Markdown plugins={[gfm]} renderers={renderers}>
+            {markdown}
+          </Markdown>
         </div>
       </StyledSlideContainer>
     </StyledTransformContainer>

@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions'
 
-export default async (
+export const updateLastVisit = async (
   req: functions.Request,
   res: functions.Response,
   db: admin.firestore.Firestore
