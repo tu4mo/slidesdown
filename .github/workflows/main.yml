@@ -1,0 +1,29 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Firebase Deploy
+      run: |
+        npx firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+    - name: Build Functions
+      run:
+        npm ci
+        npm run build
+      working-directory: functions
+    - name: Firebase Deploy Functions
+      run: |
+        npx firebase deploy --only functions --token ${{ secrets.FIREBASE_TOKEN }}
