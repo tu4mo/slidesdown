@@ -13,17 +13,17 @@ import {
 } from './utils'
 
 interface Props {
-  isLoading: boolean
+  isLoading?: boolean
   onChange: React.HTMLProps<HTMLTextAreaElement>['onChange']
-  onCursorPositionChange({
+  onCursorPositionChange?({
     cursorPosition,
     slide,
   }: {
     cursorPosition: number
     slide: number
   }): void
-  onDrop(file: File): void
-  progress: number
+  onDrop?(file: File): void
+  progress?: number
   value: string
 }
 
@@ -46,7 +46,7 @@ const Editor = ({
     const slides = getSlidesFirstLines(value)
     const slide = getCurrentSlide(slides, currentLineNumber)
 
-    onCursorPositionChange({
+    onCursorPositionChange?.({
       cursorPosition,
       slide,
     })
@@ -54,7 +54,7 @@ const Editor = ({
 
   const handleDrop = (event: React.DragEvent) => {
     event.preventDefault()
-    onDrop(event.dataTransfer.files[0])
+    onDrop?.(event.dataTransfer.files[0])
   }
 
   return (
@@ -70,7 +70,7 @@ const Editor = ({
         ref={editorRef}
         value={value}
       />
-      {isLoading && <StyledProgressBar progress={progress} />}
+      {isLoading && <StyledProgressBar progress={progress || 0} />}
     </StyledWrapper>
   )
 }
