@@ -16,7 +16,9 @@ export const updateLastVisit = async (
     await db.collection('slides').doc(id).update({ visitedAt: new Date() })
     console.log(`${id}: visitedAt updated`)
   } catch (err) {
-    console.error(`${id}: doesn't exist (${err.message})`)
+    if (err instanceof Error) {
+      console.error(`${id}: doesn't exist (${err.message})`)
+    }
   }
 
   res.sendStatus(200)

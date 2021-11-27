@@ -38,7 +38,9 @@ export const removeOldSlides = async (db: admin.firestore.Firestore) => {
           })`
         )
       } catch (err) {
-        console.error(`${slide.id}: Unable to remove (${err.message})`)
+        if (err instanceof Error) {
+          console.error(`${slide.id}: Unable to remove (${err.message})`)
+        }
       }
     } else {
       console.log(
