@@ -11,15 +11,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
       - name: Build
-        run: |
-          npm ci
-          npm run build
+        run: npm run build
+
       - name: Build Functions
         working-directory: functions
         run: |
           npm ci
           npm run build
-      - name: Firebase Deploy
+
+      - name: Deploy
         run: |
           npx firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
