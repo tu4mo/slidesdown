@@ -58,7 +58,7 @@
     "firebase-tools": "^8.19.0",
     "http-proxy-middleware": "^1.0.6",
     "jest-styled-components": "^7.0.3",
-    "prettier": "^2.2.1",
+    "prettier": "^2.5.0",
     "react-test-renderer": "^17.0.1",
     "stylelint": "^13.8.0",
     "stylelint-config-recommended": "^3.0.0",

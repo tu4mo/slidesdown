@@ -1,3 +1,4 @@
 build/
+functions/lib/
 coverage/
 package-lock.json
