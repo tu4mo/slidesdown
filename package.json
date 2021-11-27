@@ -36,7 +36,7 @@
     "@types/uuid-validate": "0.0.1",
     "firebase": "^8.2.0",
     "lodash.throttle": "^4.1.1",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^17.0.2",
