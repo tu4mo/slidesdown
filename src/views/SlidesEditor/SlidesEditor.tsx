@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
 import { v4 as uuid } from 'uuid'
-import { RouteChildrenProps } from 'react-router'
+import { useLocation, useHistory, useParams } from 'react-router'
 
 import {
   createSlides,
@@ -27,11 +27,7 @@ const DEFAULT_MARKDOWN =
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
-const SlidesEditor = ({
-  history,
-  location,
-  match,
-}: RouteChildrenProps<{ slidesId: string }>) => {
+const SlidesEditor = () => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
   const [isCreated, setIsCreated] = useState(false)
@@ -45,7 +41,9 @@ const SlidesEditor = ({
   const [uploadProgress, setUploadProgress] = useState(0)
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
-  const slidesId = match ? match.params.slidesId : undefined
+  const history = useHistory()
+  const location = useLocation()
+  const { slidesId = undefined } = useParams<{ slidesId?: string }>()
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)

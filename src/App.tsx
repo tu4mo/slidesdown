@@ -21,21 +21,20 @@ const App = () => (
       <BrowserRouter>
         <Suspense fallback={<Spinner />}>
           <Switch>
-            <Redirect exact from="/" to={editPath} />
+            <Route exact path="/" render={() => <Redirect to={editPath} />} />
             <Route
               path="/edit/:slidesId?"
               render={(props) =>
                 validate(props.match.params.slidesId) ? (
-                  <SlidesEditor {...props} />
+                  <SlidesEditor />
                 ) : (
                   <Redirect to={editPath} />
                 )
               }
             />
-            <Route
-              component={Presentation}
-              path="/:presentationId?/:slideNumber?"
-            />
+            <Route path="/:presentationId?/:slideNumber?">
+              <Presentation />
+            </Route>
           </Switch>
         </Suspense>
       </BrowserRouter>

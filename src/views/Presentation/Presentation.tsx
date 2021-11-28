@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import { RouteChildrenProps } from 'react-router'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import { getPresentation } from '../../firebase'
 
@@ -18,20 +17,18 @@ import {
   StyledPresentationToolbar,
 } from './Presentation.style'
 
-const Presentation = ({
-  history,
-  location,
-}: RouteChildrenProps<{}, { slideNumber: string; slidesId: string }>) => {
+const Presentation = () => {
   const fullscreen = useFullScreenHandle()
   const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const [markdown, setMarkdown] = useState('')
   const [theme, setTheme] = useState('')
 
-  const slidesId = useRef('')
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
 
+  const history = useHistory()
+  const location = useLocation<{ slidesId?: string }>()
   const { slideNumber = '0', presentationId = '-' } = useParams<{
     slideNumber?: string
     presentationId?: string
@@ -56,12 +53,6 @@ const Presentation = ({
     },
     [history, presentationId, slideNumberAsNumber]
   )
-
-  useEffect(() => {
-    if (!slidesId.current) {
-      slidesId.current = location.state?.slidesId || ''
-    }
-  }, [location.state])
 
   useEffect(() => {
     const handleKeyUp = (e: KeyboardEvent) => {
@@ -186,11 +177,13 @@ const Presentation = ({
               }
               type="right"
             />
-            {slidesId.current && (
+            {location.state?.slidesId && (
               <>
                 <ToolBarDivider />
                 <Icon
-                  onClick={() => history.push(`/edit/${slidesId.current}`)}
+                  onClick={() =>
+                    history.push(`/edit/${location.state.slidesId}`)
+                  }
                   tooltip={
                     <>
                       Edit
