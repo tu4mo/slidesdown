@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import theme from '../../theme'
 
 export const StyledTransformContainer = styled.div`
   position: relative;
@@ -6,7 +7,7 @@ export const StyledTransformContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: 1rem;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    @media (min-width: ${theme.breakpoints.xl}) {
       margin-bottom: 2rem;
     }
   }
@@ -14,6 +15,8 @@ export const StyledTransformContainer = styled.div`
 
 export const StyledSlideContainer = styled.div<{ single?: boolean }>`
   background-color: #fff;
+  box-shadow: ${(props) => !props.single && '0 0 0.1rem rgba(0, 0, 0, 0.1)'};
+  border-radius: ${(props) => !props.single && '0.25rem'};
   display: flex;
   flex-direction: column;
   font-size: 120%;
@@ -25,13 +28,6 @@ export const StyledSlideContainer = styled.div<{ single?: boolean }>`
   position: absolute;
   top: 50%;
   width: 800px;
-
-  ${(props) =>
-    !props.single &&
-    css`
-      box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
-      border-radius: 0.25rem;
-    `};
 
   h1 {
     text-align: center;

@@ -35,5 +35,5 @@ export const StyledIconWrapper = styled.div<{ withNotification: boolean }>`
         right: 0;
         width: 0.75rem;
       }
-    `};
+    `}
 `

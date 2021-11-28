@@ -51,6 +51,7 @@
     "uuid-validate": "0.0.3"
   },
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.37.2",
     "@types/prismjs": "^1.16.6",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
@@ -60,10 +61,9 @@
     "jest-styled-components": "^7.0.3",
     "prettier": "^2.5.0",
     "react-test-renderer": "^17.0.1",
-    "stylelint": "^13.8.0",
-    "stylelint-config-recommended": "^3.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "stylelint": "^14.1.0",
+    "stylelint-config-recommended": "^6.0.0",
+    "stylelint-config-styled-components": "^0.1.1"
   },
   "jest": {
     "collectCoverageFrom": [
