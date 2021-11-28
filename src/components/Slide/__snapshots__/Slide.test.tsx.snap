@@ -11,6 +11,8 @@ exports[`renders correctly 1`] = `
 
 .c1 {
   background-color: #fff;
+  box-shadow: 0 0 0.1rem rgba(0,0,0,0.1);
+  border-radius: 0.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30,8 +32,6 @@ exports[`renders correctly 1`] = `
   position: absolute;
   top: 50%;
   width: 800px;
-  box-shadow: 0 0 0.1rem rgba(0,0,0,0.1);
-  border-radius: 0.25rem;
 }
 
 .c1 h1 {
