@@ -75,7 +75,7 @@ const SlidesEditor = () => {
     fetchSlides()
   }, [slidesId])
 
-  const saveSlides = async () => {
+  const saveSlides = async (markdown: string) => {
     if (!slidesId) {
       return
     }
@@ -106,8 +106,9 @@ const SlidesEditor = () => {
   }
 
   const handleEditorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMarkdown(e.target.value)
-    saveSlides()
+    const { value } = e.target
+    setMarkdown(value)
+    saveSlides(value)
   }
 
   const handleEditorDrop = async (file: File) => {
@@ -151,7 +152,7 @@ const SlidesEditor = () => {
   }
 
   const handlePresentationClick = async () => {
-    await saveSlides()
+    await saveSlides(markdown)
     history.push(`/${presentationId}`, { slidesId })
   }
 
