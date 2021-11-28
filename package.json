@@ -12,7 +12,7 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-markdown))/\"",
     "test:coverage": "npm test -- --coverage"
   },
   "keywords": [

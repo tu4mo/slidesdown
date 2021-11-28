@@ -52,14 +52,10 @@ const Code = ({ children, className, inline }: Props) => {
     Prism.languages[language] &&
     Prism.highlight(String(children), Prism.languages[language], language)
 
-  return (
-    <pre>
-      {html ? (
-        <code dangerouslySetInnerHTML={{ __html: html }} />
-      ) : (
-        <code>{children}</code>
-      )}
-    </pre>
+  return html ? (
+    <code dangerouslySetInnerHTML={{ __html: html }} />
+  ) : (
+    <code>{children}</code>
   )
 }
 
