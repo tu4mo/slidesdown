@@ -1,4 +1,4 @@
-import { ElementType, forwardRef, memo } from 'react'
+import { ComponentProps, forwardRef, memo } from 'react'
 import Markdown from 'react-markdown'
 import gfm from 'remark-gfm'
 
@@ -9,11 +9,12 @@ import Image from './renderers/Image'
 import Table from './renderers/Table'
 import TableCell from './renderers/TableCell'
 
-const renderers: { [nodeType: string]: ElementType } = {
+const components: ComponentProps<typeof Markdown>['components'] = {
   code: ({ node, ...props }) => <Code {...props} />,
-  image: ({ node, ...props }) => <Image {...props} />,
+  img: ({ node, ...props }) => <Image {...props} />,
   table: ({ node, ...props }) => <Table {...props} />,
-  tableCell: ({ node, ...props }) => <TableCell {...props} />,
+  th: ({ node, ...props }) => <TableCell {...props} />,
+  td: ({ node, ...props }) => <TableCell {...props} />,
 }
 
 interface SlideProps {
@@ -33,7 +34,7 @@ const Slide = memo(
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
         <div>
-          <Markdown plugins={[gfm]} renderers={renderers}>
+          <Markdown plugins={[gfm]} components={components}>
             {markdown}
           </Markdown>
         </div>

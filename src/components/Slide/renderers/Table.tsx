@@ -6,7 +6,7 @@ const StyledTable = styled.table`
   width: 100%;
 `
 
-const Table = ({ children }: { children?: ReactNode }) => (
+const Table = ({ children }: { children: ReactNode }) => (
   <StyledTable>{children}</StyledTable>
 )
 

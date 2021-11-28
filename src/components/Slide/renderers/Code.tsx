@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import Prism from 'prismjs'
 
 import 'prismjs/components/prism-bash'
@@ -34,26 +35,29 @@ import 'prismjs/components/prism-stylus'
 import 'prismjs/components/prism-swift'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-xojo'
 import 'prismjs/components/prism-yaml'
 
 interface Props {
-  value: string
-  language: string
+  children: ReactNode
+  className?: string
+  inline?: boolean
 }
 
-const Code = ({ value, language }: Props) => {
+const Code = ({ children, className, inline }: Props) => {
+  const language = className?.replace('language-', '')
+
   const html =
-    value &&
+    children &&
+    language &&
     Prism.languages[language] &&
-    Prism.highlight(value, Prism.languages[language], language)
+    Prism.highlight(String(children), Prism.languages[language], language)
 
   return (
     <pre>
       {html ? (
-        <code className={language} dangerouslySetInnerHTML={{ __html: html }} />
+        <code dangerouslySetInnerHTML={{ __html: html }} />
       ) : (
-        <code>{value}</code>
+        <code>{children}</code>
       )}
     </pre>
   )
