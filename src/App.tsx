@@ -24,7 +24,7 @@ const App = () => (
             <Route
               path="/edit/:slidesId?"
               render={(props) =>
-                validate(props.match.params.slidesId) ? (
+                validate(props.match.params.slidesId || '') ? (
                   <SlidesEditor />
                 ) : (
                   <Redirect to={editPath} />

@@ -43,7 +43,7 @@ const SlidesEditor = () => {
 
   const history = useHistory()
   const location = useLocation()
-  const { slidesId = undefined } = useParams<{ slidesId?: string }>()
+  const { slidesId } = useParams<{ slidesId?: string }>()
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
