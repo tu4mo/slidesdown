@@ -38,8 +38,7 @@
     "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.3",
     "typescript": "^4.5.2",
-    "uuid": "^8.3.2",
-    "uuid-validate": "0.0.3"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "^0.37.2",
