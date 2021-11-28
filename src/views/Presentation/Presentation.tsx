@@ -30,7 +30,7 @@ const Presentation = ({
 
   const slidesId = useRef('')
   const slidesCount = useRef(0)
-  const toolbarVisibilityTimer = useRef(0)
+  const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
 
   const { slideNumber = '0', presentationId = '-' } = useParams<{
     slideNumber?: string
@@ -82,7 +82,10 @@ const Presentation = ({
 
     return () => {
       window.removeEventListener('keyup', handleKeyUp)
-      clearTimeout(toolbarVisibilityTimer.current)
+
+      if (toolbarVisibilityTimer.current) {
+        clearTimeout(toolbarVisibilityTimer.current)
+      }
     }
   }, [changeSlide])
 
@@ -111,7 +114,9 @@ const Presentation = ({
       setIsToolbarVisible(true)
     }
 
-    clearTimeout(toolbarVisibilityTimer.current)
+    if (toolbarVisibilityTimer.current) {
+      clearTimeout(toolbarVisibilityTimer.current)
+    }
 
     toolbarVisibilityTimer.current = setTimeout(
       () => setIsToolbarVisible(false),
@@ -121,7 +126,10 @@ const Presentation = ({
 
   const handleToolbarMouseMove = (e: React.MouseEvent) => {
     e.stopPropagation()
-    clearTimeout(toolbarVisibilityTimer.current)
+
+    if (toolbarVisibilityTimer.current) {
+      clearTimeout(toolbarVisibilityTimer.current)
+    }
   }
 
   return isLoading ? (
