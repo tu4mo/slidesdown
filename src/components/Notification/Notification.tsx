@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 interface Props {
   children: ReactNode
@@ -31,7 +31,12 @@ const slideDown = keyframes`
 `
 
 const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
-  animation: ${(props) => props.slideDown && `${slideDown} 1s ease-out`};
+  animation: ${(props) =>
+    props.slideDown &&
+    css`
+      ${slideDown} 1s ease-out
+    `};
+
   color: ${(props) => props.theme.colors.purple};
 `
 
