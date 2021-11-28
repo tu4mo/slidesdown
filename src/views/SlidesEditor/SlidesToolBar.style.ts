@@ -8,7 +8,7 @@ export const StyledToolBarContainer = styled.div`
 
 export const StyledLogoContainer = styled.div`
   align-items: center;
-  border-right: 1px solid ${(props) => props.theme.colors.border};
+  border-right: 1px solid var(--color-border);
   display: flex;
   margin-bottom: -1rem;
   margin-right: 1rem;

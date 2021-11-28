@@ -3,10 +3,10 @@ import theme from '../../theme'
 
 export const StyledButton = styled.button`
   background-color: #fff;
-  border: 1px solid ${theme.colors.purple};
-  color: ${theme.colors.purple};
+  border: 1px solid var(--color-purple);
+  color: var(--color-purple);
   cursor: pointer;
-  font-family: ${theme.fonts.default};
+  font-family: var(--font-default);
   font-size: 0.75rem;
   font-weight: bold;
   line-height: 2.375rem;
@@ -20,18 +20,18 @@ export const StyledButton = styled.button`
   }
 
   &:focus {
-    outline: 1px solid ${theme.colors.purple};
+    outline: 1px solid var(--color-purple);
     outline-offset: 1px;
   }
 
   &:disabled {
-    border-color: ${theme.colors.border};
-    color: ${theme.colors.border};
+    border-color: var(--color-border);
+    color: var(--color-border);
     cursor: default;
   }
 
   &:hover:not(:disabled) {
-    background-color: ${theme.colors.purple};
+    background-color: var(--color-purple);
     color: #fff;
   }
 `

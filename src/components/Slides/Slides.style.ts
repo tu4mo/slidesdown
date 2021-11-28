@@ -14,7 +14,7 @@ export const StyledSingleSlideContainer = styled.div`
 `
 
 export const StyledSlidesContainer = styled.div`
-  background-color: ${theme.colors.background};
+  background-color: var(--color-background);
   height: 100%;
   left: 0;
   overflow: auto;

@@ -37,7 +37,7 @@ const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
       ${slideDown} 1s ease-out
     `};
 
-  color: ${(props) => props.theme.colors.purple};
+  color: var(--color-purple);
 `
 
 export default StyledNotification

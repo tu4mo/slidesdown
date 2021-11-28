@@ -10,9 +10,9 @@ export const StyledWrapper = styled.div`
 
 export const StyledTextarea = styled.textarea`
   border: 0;
-  caret-color: ${(props) => props.theme.colors.purple};
-  color: ${(props) => props.theme.colors.lightText};
-  font-family: ${(props) => props.theme.fonts.monospace};
+  caret-color: var(--color-purple);
+  color: var(--color-light-text);
+  font-family: var(--font-monospace);
   font-size: 16px;
   height: 100%;
   left: 0;
@@ -29,7 +29,7 @@ export const StyledTextarea = styled.textarea`
   }
 
   &::selection {
-    background-color: ${(props) => props.theme.colors.purple};
+    background-color: var(--color-purple);
     color: #fff;
   }
 `
@@ -52,12 +52,12 @@ export const StyledProgressBar = styled.div<Props>`
   &::after {
     background-image: linear-gradient(
       90deg,
-      ${(props) => props.theme.colors.purple} 0%,
-      ${(props) => props.theme.colors.purple} ${(props) => props.progress}%,
+      var(--color-purple) 0%,
+      var(--color-purple) ${(props) => props.progress}%,
       #fff ${(props) => props.progress}%,
       #fff 100%
     );
-    border: 2px solid ${(props) => props.theme.colors.purple};
+    border: 2px solid var(--color-purple);
     border-radius: 1rem;
     content: '';
     height: 1rem;

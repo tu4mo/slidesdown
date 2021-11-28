@@ -11,9 +11,9 @@ exports[`renders correctly 1`] = `
 
 .c1 {
   border: 0;
-  caret-color: #3023ae;
-  color: #646468;
-  font-family: Inconsolata;
+  caret-color: var(--color-purple);
+  color: var(--color-light-text);
+  font-family: var(--font-monospace);
   font-size: 16px;
   height: 100%;
   left: 0;
@@ -31,7 +31,7 @@ exports[`renders correctly 1`] = `
 }
 
 .c1::selection {
-  background-color: #3023ae;
+  background-color: var(--color-purple);
   color: #fff;
 }
 
@@ -62,9 +62,9 @@ exports[`renders correctly with disabled and isLoading 1`] = `
 
 .c1 {
   border: 0;
-  caret-color: #3023ae;
-  color: #646468;
-  font-family: Inconsolata;
+  caret-color: var(--color-purple);
+  color: var(--color-light-text);
+  font-family: var(--font-monospace);
   font-size: 16px;
   height: 100%;
   left: 0;
@@ -82,7 +82,7 @@ exports[`renders correctly with disabled and isLoading 1`] = `
 }
 
 .c1::selection {
-  background-color: #3023ae;
+  background-color: var(--color-purple);
   color: #fff;
 }
 
@@ -108,8 +108,8 @@ exports[`renders correctly with disabled and isLoading 1`] = `
 }
 
 .c2::after {
-  background-image: linear-gradient( 90deg, #3023ae 0%, #3023ae 50%, #fff 50%, #fff 100% );
-  border: 2px solid #3023ae;
+  background-image: linear-gradient( 90deg, var(--color-purple) 0%, var(--color-purple) 50%, #fff 50%, #fff 100% );
+  border: 2px solid var(--color-purple);
   border-radius: 1rem;
   content: '';
   height: 1rem;

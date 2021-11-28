@@ -13,7 +13,7 @@ const StyledSpinner = styled.div`
   &::after {
     animation: spinner-animation 1s infinite;
     animation-fill-mode: forwards;
-    border: 2px solid ${(props) => props.theme.colors.purple};
+    border: 2px solid var(--color-purple);
     border-radius: 4px;
     content: '';
     height: 2rem;
