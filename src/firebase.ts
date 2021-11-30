@@ -1,10 +1,18 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/storage'
+import { initializeApp } from 'firebase/app'
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore'
+import { getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import throttle from 'lodash.throttle'
 import { v4 as uuid } from 'uuid'
 
-firebase.initializeApp({
+const firebaseApp = initializeApp({
   apiKey: 'AIzaSyDdtbNkoViGcZLJvPMzkLcAVgJtVmOJB_E',
   authDomain: 'slidesdown-2a4ab.firebaseapp.com',
   databaseURL: 'https://slidesdown-2a4ab.firebaseio.com',
@@ -13,24 +21,23 @@ firebase.initializeApp({
   messagingSenderId: '313406118926',
 })
 
-const db = firebase.firestore()
-
-const storage = firebase.storage().ref()
+const db = getFirestore(firebaseApp)
+const storage = getStorage(firebaseApp)
 
 const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 
 export const getSlides = async (id: string) => {
   try {
-    const doc = await db.collection(SLIDES_COLLECTION).doc(id).get()
+    const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
 
-    if (doc.exists) {
+    if (docSnap.exists()) {
       fetch(`/api/updateLastVisit?id=${id}`)
     } else {
       throw new Error('Slides do not exist')
     }
 
-    return doc.data()
+    return docSnap.data()
   } catch (err) {
     throw err
   }
@@ -58,13 +65,11 @@ export const createSlides = async ({
   theme: string
 }) => {
   try {
-    await db
-      .collection(SLIDES_COLLECTION)
-      .doc(id)
-      .set(
-        { createdAt: new Date(), markdown, presentationId, theme },
-        { merge: true }
-      )
+    await setDoc(
+      doc(db, SLIDES_COLLECTION, id),
+      { createdAt: new Date(), markdown, presentationId, theme },
+      { merge: true }
+    )
   } catch (error) {
     console.error('Error adding document: ', error)
   }
@@ -82,7 +87,7 @@ export const updateSlides = async ({
   callback(): void
 }) => {
   try {
-    await db.collection(SLIDES_COLLECTION).doc(id).update({ markdown, theme })
+    await updateDoc(doc(db, SLIDES_COLLECTION, id), { markdown, theme })
 
     callback()
   } catch (error) {
@@ -107,14 +112,12 @@ export const saveImage = async ({
 }) => {
   const imagePath = `images/${id}/${uuid()}-${file.name}`
 
-  const uploadTask = storage.child(imagePath).put(file)
+  const uploadTask = uploadBytesResumable(ref(storage, imagePath), file)
 
   try {
-    await db
-      .collection(SLIDES_COLLECTION)
-      .doc(id)
-      .collection(IMAGES_COLLECTION)
-      .add({ path: imagePath })
+    await addDoc(collection(db, SLIDES_COLLECTION, id, IMAGES_COLLECTION), {
+      path: imagePath,
+    })
   } catch (err) {
     console.error(err)
   }
