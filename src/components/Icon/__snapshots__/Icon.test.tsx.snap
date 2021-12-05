@@ -2,12 +2,18 @@
 
 exports[`renders correctly 1`] = `
 .c0 {
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
   display: block;
-  opacity: 1;
+  padding: 0;
   -webkit-transition: -webkit-transform 0.1s ease-in-out;
   -webkit-transition: transform 0.1s ease-in-out;
   transition: transform 0.1s ease-in-out;
+}
+
+.c0:disabled {
+  opacity: 0.1;
 }
 
 .c0:hover {
@@ -22,20 +28,35 @@ exports[`renders correctly 1`] = `
   transform: scale(0.98);
 }
 
-<img
+.c1 {
+  display: block;
+}
+
+<button
   className="c0"
-  src="presentation.svg"
-/>
+  disabled={false}
+>
+  <img
+    className="c1"
+    src="presentation.svg"
+  />
+</button>
 `;
 
 exports[`renders correctly with tooltip 1`] = `
 .c0 {
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
   display: block;
-  opacity: 1;
+  padding: 0;
   -webkit-transition: -webkit-transform 0.1s ease-in-out;
   -webkit-transition: transform 0.1s ease-in-out;
   transition: transform 0.1s ease-in-out;
+}
+
+.c0:disabled {
+  opacity: 0.1;
 }
 
 .c0:hover {
@@ -48,15 +69,24 @@ exports[`renders correctly with tooltip 1`] = `
   -webkit-transform: scale(0.98);
   -ms-transform: scale(0.98);
   transform: scale(0.98);
+}
+
+.c1 {
+  display: block;
 }
 
 <Tooltip
   arrow={true}
   content="Test"
 >
-  <img
+  <button
     className="c0"
-    src="share.svg"
-  />
+    disabled={false}
+  >
+    <img
+      className="c1"
+      src="share.svg"
+    />
+  </button>
 </Tooltip>
 `;

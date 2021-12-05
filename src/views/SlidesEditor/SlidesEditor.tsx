@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
-import { v4 as uuid } from 'uuid'
-import { useLocation, useHistory, useParams } from 'react-router'
+import { v4 as uuid, validate } from 'uuid'
+import { useLocation, useNavigate, useParams } from 'react-router'
 
 import {
   createSlides,
@@ -41,9 +41,13 @@ const SlidesEditor = () => {
   const [uploadProgress, setUploadProgress] = useState(0)
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
-  const { slidesId } = useParams<{ slidesId?: string }>()
+  const { slidesId } = useParams<'slidesId'>()
+
+  if (!validate(slidesId || '')) {
+    navigate('/')
+  }
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -153,7 +157,7 @@ const SlidesEditor = () => {
 
   const handlePresentationClick = async () => {
     await saveSlides(markdown)
-    history.push(`/${presentationId}`, { slidesId })
+    navigate(`/${presentationId}`, { state: { slidesId } })
   }
 
   const handleSplitPaneChange = () => {

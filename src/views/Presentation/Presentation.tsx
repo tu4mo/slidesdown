@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 import { getPresentation } from '../../firebase'
 
@@ -27,31 +27,32 @@ const Presentation = () => {
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
 
-  const history = useHistory()
-  const location = useLocation<{ slidesId?: string }>()
-  const { slideNumber = '0', presentationId = '-' } = useParams<{
-    slideNumber?: string
-    presentationId?: string
-  }>()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { slideNumber = '0', presentationId = '-' } = useParams<any>()
 
   const slideNumberAsNumber = parseInt(slideNumber)
 
   const changeSlide = useCallback(
     (next = true) => {
       const getSlideUrl = (slideNumber: number) =>
-        `/${presentationId || '-'}/${slideNumber}`
+        `/${presentationId}/${slideNumber}`
 
       if (next) {
         if (slideNumberAsNumber < slidesCount.current - 1) {
-          history.push(getSlideUrl(slideNumberAsNumber + 1))
+          navigate(getSlideUrl(slideNumberAsNumber + 1), {
+            state: location.state,
+          })
         }
       } else {
         if (slideNumberAsNumber > 0) {
-          history.push(getSlideUrl(slideNumberAsNumber - 1))
+          navigate(getSlideUrl(slideNumberAsNumber - 1), {
+            state: location.state,
+          })
         }
       }
     },
-    [history, presentationId, slideNumberAsNumber]
+    [location.state, navigate, presentationId, slideNumberAsNumber]
   )
 
   useEffect(() => {
@@ -89,14 +90,14 @@ const Presentation = () => {
         setMarkdown(slides.markdown)
         setTheme(slides.theme)
       } catch (err) {
-        history.push('/')
+        navigate('/')
       }
     }
 
     if (presentationId && presentationId !== '-') {
       fetchPresentation()
     }
-  }, [history, presentationId])
+  }, [navigate, presentationId])
 
   const handleSlidesCount = (count: number) => (slidesCount.current = count)
 
@@ -177,13 +178,11 @@ const Presentation = () => {
               }
               type="right"
             />
-            {location.state?.slidesId && (
+            {location.state.slidesId && (
               <>
                 <ToolBarDivider />
                 <Icon
-                  onClick={() =>
-                    history.push(`/edit/${location.state.slidesId}`)
-                  }
+                  onClick={() => navigate(`/edit/${location.state.slidesId}`)}
                   tooltip={
                     <>
                       Edit

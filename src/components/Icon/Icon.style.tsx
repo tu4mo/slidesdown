@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
-interface Props {
-  isDisabled: boolean
-}
-
-export const StyledIcon = styled.img.attrs({})<Props>`
+export const StyledButton = styled.button`
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
   display: block;
-  opacity: ${(props) => (props.isDisabled ? 0.1 : 1)};
+  padding: 0;
   transition: transform 0.1s ease-in-out;
+
+  &:disabled {
+    opacity: 0.1;
+  }
 
   &:hover {
     transform: scale(1.1);
@@ -17,4 +19,8 @@ export const StyledIcon = styled.img.attrs({})<Props>`
   &:active {
     transform: scale(0.98);
   }
+`
+
+export const StyledIcon = styled.img`
+  display: block;
 `

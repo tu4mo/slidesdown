@@ -1,7 +1,7 @@
 import { Fragment, Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import { v4 as uuid, validate } from 'uuid'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import { GlobalStyle } from './App.style'
 import theme from './theme'
@@ -12,29 +12,22 @@ import 'prismjs/themes/prism.css'
 const Presentation = lazy(() => import('./views/Presentation'))
 const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
 
-const editPath = `/edit/${uuid()}`
+const newFilePath = `/edit/${uuid()}`
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <BrowserRouter>
         <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to={editPath} />} />
+          <Routes>
+            <Route path="/" element={<Navigate to={newFilePath} />} />
+            <Route path="/edit/:slidesId" element={<SlidesEditor />} />
+            <Route path="/:presentationId" element={<Presentation />} />
             <Route
-              path="/edit/:slidesId?"
-              render={(props) =>
-                validate(props.match.params.slidesId || '') ? (
-                  <SlidesEditor />
-                ) : (
-                  <Redirect to={editPath} />
-                )
-              }
+              path="/:presentationId/:slideNumber"
+              element={<Presentation />}
             />
-            <Route path="/:presentationId?/:slideNumber?">
-              <Presentation />
-            </Route>
-          </Switch>
+          </Routes>
         </Suspense>
       </BrowserRouter>
       <GlobalStyle />

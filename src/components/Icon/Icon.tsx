@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 
 import Tooltip from '../Tooltip'
 
-import { StyledIcon } from './Icon.style'
+import { StyledButton, StyledIcon } from './Icon.style'
 
 import crossSvg from './svg/cross.svg'
 import editSvg from './svg/edit.svg'
@@ -34,12 +34,13 @@ interface Props {
 
 const Icon = ({ alt, disabled = false, onClick, tooltip, type }: Props) => {
   const icon = (
-    <StyledIcon
-      alt={alt}
-      isDisabled={disabled}
+    <StyledButton
+      aria-label={alt}
+      disabled={disabled}
       onClick={!disabled ? onClick : undefined}
-      src={ICONS[type]}
-    />
+    >
+      <StyledIcon src={ICONS[type]} />
+    </StyledButton>
   )
 
   return tooltip ? <Tooltip content={tooltip}>{icon}</Tooltip> : icon
