@@ -1,37 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-.c0 {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  display: block;
-  padding: 0;
-  -webkit-transition: -webkit-transform 0.1s ease-in-out;
-  -webkit-transition: transform 0.1s ease-in-out;
-  transition: transform 0.1s ease-in-out;
-}
-
-.c0:disabled {
-  opacity: 0.1;
-}
-
-.c0:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.c0:active {
-  -webkit-transform: scale(0.98);
-  -ms-transform: scale(0.98);
-  transform: scale(0.98);
-}
-
-.c1 {
-  display: block;
-}
-
 <button
   className="c0"
   disabled={false}
@@ -44,37 +13,6 @@ exports[`renders correctly 1`] = `
 `;
 
 exports[`renders correctly with tooltip 1`] = `
-.c0 {
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  display: block;
-  padding: 0;
-  -webkit-transition: -webkit-transform 0.1s ease-in-out;
-  -webkit-transition: transform 0.1s ease-in-out;
-  transition: transform 0.1s ease-in-out;
-}
-
-.c0:disabled {
-  opacity: 0.1;
-}
-
-.c0:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.c0:active {
-  -webkit-transform: scale(0.98);
-  -ms-transform: scale(0.98);
-  transform: scale(0.98);
-}
-
-.c1 {
-  display: block;
-}
-
 <Tooltip
   arrow={true}
   content="Test"
