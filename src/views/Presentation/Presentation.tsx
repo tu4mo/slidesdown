@@ -178,7 +178,7 @@ const Presentation = () => {
               }
               type="right"
             />
-            {location.state.slidesId && (
+            {location.state?.slidesId && (
               <>
                 <ToolBarDivider />
                 <Icon
