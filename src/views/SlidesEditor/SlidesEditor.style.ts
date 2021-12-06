@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import theme from '../../theme'
 
 export const StyledSidebar = styled.div`
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-big);
   height: 100%;
   left: 0;
   position: absolute;

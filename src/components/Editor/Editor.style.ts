@@ -9,6 +9,7 @@ export const StyledWrapper = styled.div`
 `
 
 export const StyledTextarea = styled.textarea`
+  background-color: var(--color-editor);
   border: 0;
   caret-color: var(--color-purple);
   color: var(--color-light-text);

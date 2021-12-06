@@ -26,7 +26,7 @@ export const StyledIconWrapper = styled.div<{ withNotification: boolean }>`
       &::after {
         background-color: #d0021b;
         border-radius: 50%;
-        border: 2px solid #fff;
+        border: 2px solid var(--color-background);
         content: '';
         height: 0.75rem;
         pointer-events: none;

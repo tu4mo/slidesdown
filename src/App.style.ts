@@ -2,14 +2,29 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --color-background:#edf1f5;
+    --color-background: #edf1f5;
     --color-border: #e4e4e8;
-    --color-dim-text: #a4a4a8;
+    --color-editor: #fff;
     --color-light-text: #646468;
     --color-magenta: #c86dd7;
-    --color-purple: #3023ae;
+    --color-purple: #3023ae; 
+    --color-slide: #fff;
+    --color-text: #000;
+
     --font-default: Rubik;
     --font-monospace: Inconsolata;
+    --shadow-big: 0 0 2rem rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] {
+    --color-background: #1e293b;
+    --color-border: #0f172a;
+    --color-editor: #334155;
+    --color-light-text: #cbd5e1;
+    --color-magenta: #c86dd7;
+    --color-purple: #fff;
+    --color-slide: #334155;
+    --color-text: #e2e8f0;
   }
 
   * {
