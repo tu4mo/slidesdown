@@ -14,12 +14,23 @@ const component = renderer.create(
 )
 
 it('renders correctly', () => {
-  expect(component.toJSON()).toMatchSnapshot()
+  expect(component.toJSON()).toMatchInlineSnapshot(`
+    <div
+      className="lcvhlL"
+    >
+      Test
+    </div>
+  `)
 })
 
-// Disabled until there's a way to test useEffect
 // it('renders nothing after time has passed', () => {
 //   jest.runAllTimers()
 //   expect(setTimeout).toHaveBeenCalledTimes(1)
-//   expect(component.toJSON()).toMatchSnapshot()
+//   expect(component.toJSON()).toMatchInlineSnapshot(`
+//     <div
+//       className="lcvhlL"
+//     >
+//       Test
+//     </div>
+//   `)
 // })

@@ -16,7 +16,22 @@ it('renders correctly', () => {
     )
     .toJSON()
 
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="c0"
+    >
+      <textarea
+        aria-label="Markdown"
+        className="c1"
+        onChange={[MockFunction]}
+        onClick={[Function]}
+        onDrop={[Function]}
+        onKeyUp={[Function]}
+        placeholder="Write markdown here"
+        value="Test"
+      />
+    </div>
+  `)
 })
 
 it('renders correctly with disabled and isLoading', () => {
@@ -30,5 +45,24 @@ it('renders correctly with disabled and isLoading', () => {
     )
     .toJSON()
 
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="c0"
+    >
+      <textarea
+        aria-label="Markdown"
+        className="c1"
+        disabled={true}
+        onChange={[MockFunction]}
+        onClick={[Function]}
+        onDrop={[Function]}
+        onKeyUp={[Function]}
+        placeholder="Write markdown here"
+        value="Test"
+      />
+      <div
+        className="c2"
+      />
+    </div>
+  `)
 })

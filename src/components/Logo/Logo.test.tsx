@@ -16,5 +16,11 @@ it('renders correctly', () => {
     )
     .toJSON()
 
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchInlineSnapshot(`
+    <img
+      alt="Slidesdown"
+      className="c0"
+      src="Logo"
+    />
+  `)
 })

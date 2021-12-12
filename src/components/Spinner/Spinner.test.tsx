@@ -13,5 +13,9 @@ it('renders correctly', () => {
       </ThemeProvider>
     )
     .toJSON()
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="c0"
+    />
+  `)
 })

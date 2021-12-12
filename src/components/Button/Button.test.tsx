@@ -14,5 +14,12 @@ it('renders correctly', () => {
     )
     .toJSON()
 
-  expect(tree).toMatchSnapshot()
+  expect(tree).toMatchInlineSnapshot(`
+    <button
+      className="c0"
+      onClick={[Function]}
+    >
+      Test
+    </button>
+  `)
 })
