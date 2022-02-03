@@ -34,7 +34,7 @@ const Slide = memo(
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
         <div>
-          <Markdown plugins={[gfm]} components={components}>
+          <Markdown remarkPlugins={[gfm]} components={components}>
             {markdown}
           </Markdown>
         </div>

@@ -28,7 +28,7 @@ const Presentation = () => {
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
 
   const navigate = useNavigate()
-  const location = useLocation()
+  const { state } = useLocation()
   const { slideNumber = '0', presentationId = '-' } = useParams<any>()
 
   const slideNumberAsNumber = parseInt(slideNumber)
@@ -40,19 +40,15 @@ const Presentation = () => {
 
       if (next) {
         if (slideNumberAsNumber < slidesCount.current - 1) {
-          navigate(getSlideUrl(slideNumberAsNumber + 1), {
-            state: location.state,
-          })
+          navigate(getSlideUrl(slideNumberAsNumber + 1), { state })
         }
       } else {
         if (slideNumberAsNumber > 0) {
-          navigate(getSlideUrl(slideNumberAsNumber - 1), {
-            state: location.state,
-          })
+          navigate(getSlideUrl(slideNumberAsNumber - 1), { state })
         }
       }
     },
-    [location.state, navigate, presentationId, slideNumberAsNumber]
+    [state, navigate, presentationId, slideNumberAsNumber]
   )
 
   useEffect(() => {
@@ -178,11 +174,11 @@ const Presentation = () => {
               }
               type="right"
             />
-            {location.state?.slidesId && (
+            {state && (
               <>
                 <ToolBarDivider />
                 <Icon
-                  onClick={() => navigate(`/edit/${location.state.slidesId}`)}
+                  onClick={() => navigate(`/edit/${(state as any).slidesId}`)}
                   tooltip={
                     <>
                       Edit
