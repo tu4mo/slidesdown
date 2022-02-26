@@ -53,7 +53,7 @@
     "@types/uuid": "^8.3.3",
     "@types/uuid-validate": "0.0.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "firebase-tools": "^9.23.1",
+    "firebase-tools": "^10.2.1",
     "http-proxy-middleware": "^2.0.1",
     "jest-styled-components": "^7.0.8",
     "prettier": "^2.5.1",
