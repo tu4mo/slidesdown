@@ -19,7 +19,12 @@ it('renders correctly', () => {
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
-        <Slide height={450} markdown={MARKDOWN} scale={1} width={800} />
+        <Slide
+          height={450}
+          markdown={MARKDOWN}
+          scale={1}
+          width={800}
+        />
       </ThemeProvider>
     )
     .toJSON()

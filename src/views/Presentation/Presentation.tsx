@@ -132,7 +132,10 @@ const Presentation = () => {
           theme={theme}
         />
         <StyledNoticationContainer>
-          <Notification slideDown timeout={5000}>
+          <Notification
+            slideDown
+            timeout={5000}
+          >
             Press space or arrows to change slide.
           </Notification>
         </StyledNoticationContainer>

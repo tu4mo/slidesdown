@@ -19,7 +19,10 @@ const StyledImageContainer = styled.span`
 
 const Image = ({ src }: { src?: string }) => (
   <StyledImageContainer>
-    <img alt="" src={src} />
+    <img
+      alt=""
+      src={src}
+    />
   </StyledImageContainer>
 )
 

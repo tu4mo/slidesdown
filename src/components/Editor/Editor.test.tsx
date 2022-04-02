@@ -11,7 +11,10 @@ it('renders correctly', () => {
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
-        <Editor onChange={onChangeMock} value="Test" />
+        <Editor
+          onChange={onChangeMock}
+          value="Test"
+        />
       </ThemeProvider>
     )
     .toJSON()
@@ -40,7 +43,12 @@ it('renders correctly with disabled and isLoading', () => {
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
-        <Editor isLoading onChange={onChangeMock} progress={50} value="Test" />
+        <Editor
+          isLoading
+          onChange={onChangeMock}
+          progress={50}
+          value="Test"
+        />
       </ThemeProvider>
     )
     .toJSON()

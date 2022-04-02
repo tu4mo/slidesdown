@@ -192,7 +192,11 @@ const SlidesEditor = () => {
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => e.preventDefault()}
       >
-        <Slides markdown={markdown} slideToFocus={slideToFocus} theme={theme} />
+        <Slides
+          markdown={markdown}
+          slideToFocus={slideToFocus}
+          theme={theme}
+        />
         <SlidesToolBar
           isSaving={isSaving}
           onPresentationClick={handlePresentationClick}

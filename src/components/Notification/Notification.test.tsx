@@ -16,7 +16,7 @@ const component = renderer.create(
 it('renders correctly', () => {
   expect(component.toJSON()).toMatchInlineSnapshot(`
     <div
-      className="lcvhlL"
+      className="ctiUMU"
     >
       Test
     </div>

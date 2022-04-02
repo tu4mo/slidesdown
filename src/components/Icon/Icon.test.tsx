@@ -22,7 +22,14 @@ it('renders correctly', () => {
 })
 
 it('renders correctly with tooltip', () => {
-  const tree = renderer.create(<Icon tooltip="Test" type="share" />).toJSON()
+  const tree = renderer
+    .create(
+      <Icon
+        tooltip="Test"
+        type="share"
+      />
+    )
+    .toJSON()
 
   expect(tree).toMatchInlineSnapshot(`
     <Tooltip

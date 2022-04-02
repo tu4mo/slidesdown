@@ -20,9 +20,18 @@ const App = () => (
       <BrowserRouter>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<Navigate to={newFilePath} />} />
-            <Route path="/edit/:slidesId" element={<SlidesEditor />} />
-            <Route path="/:presentationId" element={<Presentation />} />
+            <Route
+              path="/"
+              element={<Navigate to={newFilePath} />}
+            />
+            <Route
+              path="/edit/:slidesId"
+              element={<SlidesEditor />}
+            />
+            <Route
+              path="/:presentationId"
+              element={<Presentation />}
+            />
             <Route
               path="/:presentationId/:slideNumber"
               element={<Presentation />}
