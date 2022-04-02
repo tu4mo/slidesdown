@@ -26,21 +26,29 @@ interface SlideProps {
 }
 
 const Slide = memo(
-  forwardRef(({ markdown, scale, single, width, height }: SlideProps, ref) => (
-    <StyledTransformContainer ref={ref as any} style={{ height, width }}>
-      <StyledSlideContainer
-        className="slide"
-        single={single}
-        style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
+  forwardRef<HTMLDivElement, SlideProps>(
+    ({ markdown, scale, single, width, height }, ref) => (
+      <StyledTransformContainer
+        ref={ref}
+        style={{ height, width }}
       >
-        <div>
-          <Markdown remarkPlugins={[gfm]} components={components}>
-            {markdown}
-          </Markdown>
-        </div>
-      </StyledSlideContainer>
-    </StyledTransformContainer>
-  ))
+        <StyledSlideContainer
+          className="slide"
+          single={single}
+          style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
+        >
+          <div>
+            <Markdown
+              remarkPlugins={[gfm]}
+              components={components}
+            >
+              {markdown}
+            </Markdown>
+          </div>
+        </StyledSlideContainer>
+      </StyledTransformContainer>
+    )
+  )
 )
 
 export default Slide

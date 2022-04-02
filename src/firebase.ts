@@ -8,7 +8,12 @@ import {
   setDoc,
   updateDoc,
 } from 'firebase/firestore'
-import { getStorage, ref, uploadBytesResumable } from 'firebase/storage'
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  UploadTaskSnapshot,
+} from 'firebase/storage'
 import throttle from 'lodash.throttle'
 import { v4 as uuid } from 'uuid'
 
@@ -108,7 +113,7 @@ export const saveImage = async ({
   file: File
   onChange(progress: number): void
   onError(error: Error): void
-  onDone(snapshot: any): void
+  onDone(snapshot: UploadTaskSnapshot): void
 }) => {
   const imagePath = `images/${id}/${uuid()}-${file.name}`
 
@@ -124,7 +129,7 @@ export const saveImage = async ({
 
   uploadTask.on(
     'state_changed',
-    (snapshot: any) =>
+    (snapshot) =>
       onChange(
         Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
       ),
