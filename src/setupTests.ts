@@ -1,5 +1,5 @@
-import { setStyleSheetSerializerOptions } from 'jest-styled-components/serializer'
+import { styleSheetSerializer } from 'jest-styled-components'
 
-setStyleSheetSerializerOptions({
+styleSheetSerializer.setStyleSheetSerializerOptions({
   addStyles: false,
 })
