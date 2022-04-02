@@ -20,6 +20,7 @@ export const StyledSlidesContainer = styled.div`
   overflow: auto;
   padding: 1rem;
   position: absolute;
+  scroll-behavior: smooth;
   top: 0;
   width: 100%;
   -webkit-overflow-scrolling: touch;
