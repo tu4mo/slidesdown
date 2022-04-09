@@ -123,80 +123,84 @@ const Presentation = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <FullScreen handle={fullscreen}>
-      <StyledPresentation onMouseMove={handlePresentationMouseMove}>
-        <Slides
-          markdown={markdown}
-          onSlidesCount={handleSlidesCount}
-          singleSlide={slideNumberAsNumber}
-          theme={theme}
-        />
-        <StyledNoticationContainer>
-          <Notification
-            slideDown
-            timeout={5000}
+    <>
+      {/* @ts-expect-error */}
+      <FullScreen handle={fullscreen}>
+        <StyledPresentation onMouseMove={handlePresentationMouseMove}>
+          <Slides
+            markdown={markdown}
+            onSlidesCount={handleSlidesCount}
+            singleSlide={slideNumberAsNumber}
+            theme={theme}
+          />
+          <StyledNoticationContainer>
+            <Notification
+              slideDown
+              timeout={5000}
+            >
+              Press space or arrows to change slide.
+            </Notification>
+          </StyledNoticationContainer>
+          <StyledPresentationToolbar
+            onMouseMove={handleToolbarMouseMove}
+            visible={isToolbarVisible}
           >
-            Press space or arrows to change slide.
-          </Notification>
-        </StyledNoticationContainer>
-        <StyledPresentationToolbar
-          onMouseMove={handleToolbarMouseMove}
-          visible={isToolbarVisible}
-        >
-          <ToolBar>
-            <Icon
-              disabled={slideNumberAsNumber === 0}
-              onClick={() => changeSlide(false)}
-              tooltip={
-                <>
-                  Previous <Key>←</Key>
-                </>
-              }
-              type="left"
-            />
-            {fullscreen.active ? (
+            {/* @ts-expect-error */}
+            <ToolBar>
               <Icon
-                onClick={fullscreen.exit}
-                tooltip={<span>Minimize</span>}
-                type="minimize"
+                disabled={slideNumberAsNumber === 0}
+                onClick={() => changeSlide(false)}
+                tooltip={
+                  <>
+                    Previous <Key>←</Key>
+                  </>
+                }
+                type="left"
               />
-            ) : (
-              <Icon
-                onClick={fullscreen.enter}
-                tooltip={<span>Maximize</span>}
-                type="maximize"
-              />
-            )}
-            <Icon
-              disabled={slideNumberAsNumber >= slidesCount.current - 1}
-              onClick={changeSlide}
-              tooltip={
-                <>
-                  Next <Key>→</Key> / <Key>space</Key>
-                </>
-              }
-              type="right"
-            />
-            {state && (
-              <>
-                <ToolBarDivider />
+              {fullscreen.active ? (
                 <Icon
-                  onClick={() => navigate(`/edit/${(state as any).slidesId}`)}
-                  tooltip={
-                    <>
-                      Edit
-                      <br />
-                      (available when coming from editor)
-                    </>
-                  }
-                  type="edit"
+                  onClick={fullscreen.exit}
+                  tooltip={<span>Minimize</span>}
+                  type="minimize"
                 />
-              </>
-            )}
-          </ToolBar>
-        </StyledPresentationToolbar>
-      </StyledPresentation>
-    </FullScreen>
+              ) : (
+                <Icon
+                  onClick={fullscreen.enter}
+                  tooltip={<span>Maximize</span>}
+                  type="maximize"
+                />
+              )}
+              <Icon
+                disabled={slideNumberAsNumber >= slidesCount.current - 1}
+                onClick={changeSlide}
+                tooltip={
+                  <>
+                    Next <Key>→</Key> / <Key>space</Key>
+                  </>
+                }
+                type="right"
+              />
+              {state && (
+                <>
+                  <ToolBarDivider />
+                  <Icon
+                    onClick={() => navigate(`/edit/${(state as any).slidesId}`)}
+                    tooltip={
+                      <>
+                        Edit
+                        <br />
+                        (available when coming from editor)
+                      </>
+                    }
+                    type="edit"
+                  />
+                </>
+              )}
+            </ToolBar>
+          </StyledPresentationToolbar>
+        </StyledPresentation>
+      </FullScreen>
+    </>
   )
 }
 

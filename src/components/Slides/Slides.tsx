@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useRef, useState, ReactType } from 'react'
+import {
+  ElementType,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
 import Slide from '../Slide'
 import {
@@ -8,7 +15,7 @@ import {
 import defaultTheme from './themes/default'
 import goforeTheme from './themes/gofore'
 
-const THEMES: { [key: string]: ReactType } = {
+const THEMES: { [key: string]: ElementType<{ children: ReactNode }> } = {
   default: defaultTheme,
   gofore: goforeTheme,
 }

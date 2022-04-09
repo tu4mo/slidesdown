@@ -169,40 +169,43 @@ const SlidesEditor = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <SplitPane
-      defaultSize={300}
-      onChange={handleSplitPaneChange}
-      split={
-        width > parseInt(styledTheme.breakpoints.md, 10)
-          ? 'vertical'
-          : 'horizontal'
-      }
-    >
-      <StyledSidebar>
-        <Editor
-          isLoading={isUploading}
-          onChange={handleEditorChange}
-          onCursorPositionChange={handleEditorCursorPositionChange}
-          onDrop={handleEditorDrop}
-          progress={uploadProgress}
-          value={markdown}
-        />
-      </StyledSidebar>
-      <StyledSlidesContainer
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => e.preventDefault()}
+    <>
+      {/* @ts-expect-error */}
+      <SplitPane
+        defaultSize={300}
+        onChange={handleSplitPaneChange}
+        split={
+          width > parseInt(styledTheme.breakpoints.md, 10)
+            ? 'vertical'
+            : 'horizontal'
+        }
       >
-        <Slides
-          markdown={markdown}
-          slideToFocus={slideToFocus}
-          theme={theme}
-        />
-        <SlidesToolBar
-          isSaving={isSaving}
-          onPresentationClick={handlePresentationClick}
-        />
-      </StyledSlidesContainer>
-    </SplitPane>
+        <StyledSidebar>
+          <Editor
+            isLoading={isUploading}
+            onChange={handleEditorChange}
+            onCursorPositionChange={handleEditorCursorPositionChange}
+            onDrop={handleEditorDrop}
+            progress={uploadProgress}
+            value={markdown}
+          />
+        </StyledSidebar>
+        <StyledSlidesContainer
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => e.preventDefault()}
+        >
+          <Slides
+            markdown={markdown}
+            slideToFocus={slideToFocus}
+            theme={theme}
+          />
+          <SlidesToolBar
+            isSaving={isSaving}
+            onPresentationClick={handlePresentationClick}
+          />
+        </StyledSlidesContainer>
+      </SplitPane>
+    </>
   )
 }
 
