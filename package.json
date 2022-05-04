@@ -41,7 +41,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@stylelint/postcss-css-in-js": "^0.37.3",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/jest": "^27.5.0",
     "@types/lodash.throttle": "^4.1.7",
     "@types/prismjs": "^1.26.0",
