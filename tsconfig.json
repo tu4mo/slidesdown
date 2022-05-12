@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -11,10 +11,11 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "target": "es6"
   },
   "include": ["src"]
 }

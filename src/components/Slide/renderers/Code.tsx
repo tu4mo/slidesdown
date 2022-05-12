@@ -39,8 +39,8 @@ import 'prismjs/components/prism-yaml'
 
 interface Props {
   children: ReactNode
-  className?: string
-  inline?: boolean
+  className?: string | undefined
+  inline?: boolean | undefined
 }
 
 const Code = ({ children, className, inline }: Props) => {

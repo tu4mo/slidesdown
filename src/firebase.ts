@@ -32,6 +32,12 @@ const storage = getStorage(firebaseApp)
 const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 
+interface Slide {
+  markdown: string
+  presentationId: string
+  theme: string
+}
+
 export const getSlides = async (id: string) => {
   try {
     const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
@@ -42,7 +48,7 @@ export const getSlides = async (id: string) => {
       throw new Error('Slides do not exist')
     }
 
-    return docSnap.data()
+    return docSnap.data() as Slide
   } catch (err) {
     throw err
   }

@@ -17,7 +17,7 @@ const StyledImageContainer = styled.span`
   }
 `
 
-const Image = ({ src }: { src?: string }) => (
+const Image = ({ src }: { src?: string | undefined }) => (
   <StyledImageContainer>
     <img
       alt=""

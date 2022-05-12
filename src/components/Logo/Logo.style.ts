@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface Props {
-  large?: boolean
+  large?: boolean | undefined
 }
 
 export const StyledImg = styled.img<Props>`
