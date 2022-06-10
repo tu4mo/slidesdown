@@ -1,7 +1,6 @@
 import { Fragment, Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 
 import { GlobalStyle } from './App.style'
 import theme from './theme'
@@ -12,7 +11,7 @@ import 'prismjs/themes/prism.css'
 const Presentation = lazy(() => import('./views/Presentation'))
 const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
 
-const newFilePath = `/edit/${uuid()}`
+const newFilePath = `/edit/${crypto.randomUUID()}`
 
 const App = () => (
   <ThemeProvider theme={theme}>

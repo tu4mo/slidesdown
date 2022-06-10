@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
-import { v4 as uuid, validate } from 'uuid'
+import { validate } from 'uuid'
 import { useLocation, useNavigate, useParams } from 'react-router'
 
 import {
@@ -35,7 +35,7 @@ const SlidesEditor = () => {
   const [isSaving, setIsSaving] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [markdown, setMarkdown] = useState('')
-  const [presentationId, setPresentationId] = useState(uuid())
+  const [presentationId, setPresentationId] = useState(crypto.randomUUID())
   const [theme, setTheme] = useState('')
   const [slideToFocus, setSlideToFocus] = useState(0)
   const [uploadProgress, setUploadProgress] = useState(0)

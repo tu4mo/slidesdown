@@ -15,7 +15,6 @@ import {
   UploadTaskSnapshot,
 } from 'firebase/storage'
 import throttle from 'lodash.throttle'
-import { v4 as uuid } from 'uuid'
 
 const firebaseApp = initializeApp({
   apiKey: 'AIzaSyDdtbNkoViGcZLJvPMzkLcAVgJtVmOJB_E',
@@ -121,7 +120,7 @@ export const saveImage = async ({
   onError(error: Error): void
   onDone(snapshot: UploadTaskSnapshot): void
 }) => {
-  const imagePath = `images/${id}/${uuid()}-${file.name}`
+  const imagePath = `images/${id}/${crypto.randomUUID()}-${file.name}`
 
   const uploadTask = uploadBytesResumable(ref(storage, imagePath), file)
 
