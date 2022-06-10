@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps --no-audit
 
       - name: Test
         run: npm test
