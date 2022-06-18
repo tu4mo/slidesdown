@@ -1,5 +1,4 @@
 import renderer from 'react-test-renderer'
-import 'jest-styled-components'
 import { ThemeProvider } from 'styled-components'
 
 import theme from '../../theme'
