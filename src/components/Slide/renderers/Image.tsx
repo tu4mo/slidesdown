@@ -26,4 +26,4 @@ const Image = ({ src }: { src?: string | undefined }) => (
   </StyledImageContainer>
 )
 
-export default Image
+export { Image }

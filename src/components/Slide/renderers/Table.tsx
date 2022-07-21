@@ -10,4 +10,4 @@ const Table = ({ children }: { children: ReactNode }) => (
   <StyledTable>{children}</StyledTable>
 )
 
-export default Table
+export { Table }

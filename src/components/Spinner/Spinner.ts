@@ -30,4 +30,4 @@ const StyledSpinner = styled.div`
   }
 `
 
-export default StyledSpinner
+export { StyledSpinner as Spinner }

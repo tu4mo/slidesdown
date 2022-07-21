@@ -1,2 +1,2 @@
-export { default } from './ToolBar'
-export { default as ToolBarDivider } from './ToolBarDivider'
+export { ToolBar } from './ToolBar'
+export { ToolBarDivider } from './ToolBarDivider'

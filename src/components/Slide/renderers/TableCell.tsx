@@ -20,4 +20,4 @@ const TableCell = ({
   isHeader?: boolean
 }) => (isHeader ? <Th>{children}</Th> : <Td>{children}</Td>)
 
-export default TableCell
+export { TableCell }

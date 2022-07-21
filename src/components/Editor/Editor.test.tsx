@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import Editor from '../Editor'
+import { theme } from '../../theme'
+import { Editor } from '.'
 
 it('renders correctly', () => {
   const onChangeMock = jest.fn()

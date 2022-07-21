@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import Logo from './Logo'
+import { theme } from '../../theme'
+import { Logo } from '.'
 
 jest.mock('./logo.svg', () => 'Logo')
 

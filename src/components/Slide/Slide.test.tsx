@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import Slide from '../Slide'
+import { theme } from '../../theme'
+import { Slide } from '.'
 
 const MARKDOWN =
   '# Heading 1\n\n---\n\n' +

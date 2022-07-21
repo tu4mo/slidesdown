@@ -17,4 +17,4 @@ const Button = ({ children, disabled, onClick }: ButtonProps) => (
   </StyledButton>
 )
 
-export default Button
+export { Button }

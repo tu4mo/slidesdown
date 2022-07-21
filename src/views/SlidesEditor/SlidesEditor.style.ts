@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import theme from '../../theme'
+import { theme } from '../../theme'
 
 export const StyledSidebar = styled.div`
   box-shadow: var(--shadow-big);

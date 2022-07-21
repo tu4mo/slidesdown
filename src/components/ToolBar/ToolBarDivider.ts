@@ -5,4 +5,4 @@ const StyledToolBarDivider = styled.div`
   margin: 0 1rem;
 `
 
-export default StyledToolBarDivider
+export { StyledToolBarDivider as ToolBarDivider }

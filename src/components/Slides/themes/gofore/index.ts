@@ -48,4 +48,4 @@ const Theme = styled.div`
   }
 `
 
-export default Theme
+export { Theme }

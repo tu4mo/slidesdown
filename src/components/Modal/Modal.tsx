@@ -37,4 +37,4 @@ const Modal = ({ children, heading, onClose }: Props) => {
   )
 }
 
-export default Modal
+export { Modal }

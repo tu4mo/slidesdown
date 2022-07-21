@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import Button from './Button'
+import { theme } from '../../theme'
+import { Button } from '.'
 
 it('renders correctly', () => {
   const tree = renderer

@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react'
 
-import Tooltip from '../Tooltip'
+import { Tooltip } from '../Tooltip'
 
 import { StyledButton, StyledIcon } from './Icon.style'
 
@@ -46,4 +46,4 @@ const Icon = ({ alt, disabled = false, onClick, tooltip, type }: Props) => {
   return tooltip ? <Tooltip content={tooltip}>{icon}</Tooltip> : icon
 }
 
-export default Icon
+export { Icon }

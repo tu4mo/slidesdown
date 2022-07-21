@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-import ButtonGroup from '../../components/ButtonGroup'
-import Icon from '../../components/Icon'
-import Logo from '../../components/Logo'
-import ToolBar from '../../components/ToolBar'
-import Tooltip from '../../components/Tooltip'
+import { ButtonGroup } from '../../components/ButtonGroup'
+import { Icon } from '../../components/Icon'
+import { Logo } from '../../components/Logo'
+import { ToolBar } from '../../components/ToolBar'
+import { Tooltip } from '../../components/Tooltip'
 
 import {
   StyledToolBarContainer,
@@ -12,7 +12,7 @@ import {
   StyledIconWrapper,
 } from './SlidesToolBar.style'
 
-import About from './About'
+import { About } from './About'
 
 interface Props {
   isSaving: boolean
@@ -48,4 +48,4 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
   )
 }
 
-export default SlidesToolBar
+export { SlidesToolBar }

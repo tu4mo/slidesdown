@@ -1,1 +1,1 @@
-export { default } from './Slides'
+export { Slides } from './Slides'

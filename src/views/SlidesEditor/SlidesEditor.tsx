@@ -9,14 +9,14 @@ import {
   updateSlidesThrottled,
   // , saveImage
 } from '../../firebase'
-import styledTheme from '../../theme'
+import { theme as styledTheme } from '../../theme'
 
-import Editor from '../../components/Editor'
-import Slides from '../../components/Slides'
-import Spinner from '../../components/Spinner'
-import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
+import { Editor } from '../../components/Editor'
+import { Slides } from '../../components/Slides'
+import { Spinner } from '../../components/Spinner'
+import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
 
-import SlidesToolBar from './SlidesToolBar'
+import { SlidesToolBar } from './SlidesToolBar'
 import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
 
 const DEFAULT_MARKDOWN =

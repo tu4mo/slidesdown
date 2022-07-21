@@ -4,12 +4,12 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom'
 
 import { getPresentation } from '../../firebase'
 
-import Icon from '../../components/Icon'
-import Key from '../../components/Key'
-import Notification from '../../components/Notification'
-import Slides from '../../components/Slides'
-import Spinner from '../../components/Spinner'
-import ToolBar, { ToolBarDivider } from '../../components/ToolBar'
+import { Icon } from '../../components/Icon'
+import { Key } from '../../components/Key'
+import { Notification } from '../../components/Notification'
+import { Slides } from '../../components/Slides'
+import { Spinner } from '../../components/Spinner'
+import { ToolBar, ToolBarDivider } from '../../components/ToolBar'
 
 import {
   StyledPresentation,

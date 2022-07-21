@@ -7,4 +7,4 @@ const Key = styled.span`
   padding: 0.25rem;
 `
 
-export default Key
+export { Key }

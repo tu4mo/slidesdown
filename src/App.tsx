@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { GlobalStyle } from './App.style'
-import theme from './theme'
-import Spinner from './components/Spinner'
+import { theme } from './theme'
+import { Spinner } from './components/Spinner'
 
 import 'prismjs/themes/prism.css'
 

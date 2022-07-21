@@ -4,14 +4,12 @@ import { StyledImg } from './Logo.style'
 
 import logoSvg from './logo.svg'
 
-type Ref = HTMLImageElement
-
 interface Props {
   large?: boolean
   onClick?(): void
 }
 
-const Logo = forwardRef<Ref, Props>(({ large, onClick }, ref) => (
+const Logo = forwardRef<HTMLImageElement, Props>(({ large, onClick }, ref) => (
   <StyledImg
     alt="Slidesdown"
     large={large}
@@ -21,4 +19,4 @@ const Logo = forwardRef<Ref, Props>(({ large, onClick }, ref) => (
   />
 ))
 
-export default Logo
+export { Logo }

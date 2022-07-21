@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../../theme'
-import Notification from './Notification'
+import { theme } from '../../theme'
+import { Notification } from '.'
 
 jest.useFakeTimers()
 

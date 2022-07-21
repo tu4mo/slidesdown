@@ -6,14 +6,14 @@ import {
   useRef,
   useState,
 } from 'react'
-import useWindowResizeObserver from '../../hooks/useWindowResizeObserver'
-import Slide from '../Slide'
+import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
+import { Slide } from '../Slide'
 import {
   StyledSingleSlideContainer,
   StyledSlidesContainer,
 } from './Slides.style'
-import defaultTheme from './themes/default'
-import goforeTheme from './themes/gofore'
+import { Theme as defaultTheme } from './themes/default'
+import { Theme as goforeTheme } from './themes/gofore'
 
 const THEMES: { [key: string]: ElementType<{ children: ReactNode }> } = {
   default: defaultTheme,
@@ -117,4 +117,4 @@ const Slides = ({
   )
 }
 
-export default Slides
+export { Slides }

@@ -40,4 +40,4 @@ const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
   color: var(--color-purple);
 `
 
-export default StyledNotification
+export { StyledNotification as Notification }

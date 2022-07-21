@@ -59,4 +59,4 @@ const Code = ({ children, className, inline }: Props) => {
   )
 }
 
-export default Code
+export { Code }

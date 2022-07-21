@@ -4,10 +4,10 @@ import gfm from 'remark-gfm'
 
 import { StyledTransformContainer, StyledSlideContainer } from './Slide.style'
 
-import Code from './renderers/Code'
-import Image from './renderers/Image'
-import Table from './renderers/Table'
-import TableCell from './renderers/TableCell'
+import { Code } from './renderers/Code'
+import { Image } from './renderers/Image'
+import { Table } from './renderers/Table'
+import { TableCell } from './renderers/TableCell'
 
 const components: ComponentProps<typeof Markdown>['components'] = {
   code: ({ node, ...props }) => <Code {...props} />,
@@ -51,4 +51,4 @@ const Slide = memo(
   )
 )
 
-export default Slide
+export { Slide }

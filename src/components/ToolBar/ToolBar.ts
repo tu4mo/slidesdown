@@ -9,4 +9,4 @@ const StyledToolBar = styled.div`
   padding: 1rem;
 `
 
-export default StyledToolBar
+export { StyledToolBar as ToolBar }

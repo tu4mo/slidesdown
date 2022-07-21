@@ -11,4 +11,4 @@ const Tooltip = ({ children, content, ...rest }: TippyProps) => (
   </Tippy>
 )
 
-export default Tooltip
+export { Tooltip }

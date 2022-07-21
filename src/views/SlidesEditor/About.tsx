@@ -1,5 +1,5 @@
-import Logo from '../../components/Logo'
-import Modal from '../../components/Modal'
+import { Logo } from '../../components/Logo'
+import { Modal } from '../../components/Modal'
 
 import { StyledAbout, StyledHeading } from './About.style'
 
@@ -23,4 +23,4 @@ const About = ({ onClose }: Props) => (
   </Modal>
 )
 
-export default About
+export { About }

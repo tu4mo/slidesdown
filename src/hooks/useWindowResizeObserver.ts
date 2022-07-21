@@ -21,4 +21,4 @@ const useWindowResizeObserver = (onResize?: () => void) => {
   return width
 }
 
-export default useWindowResizeObserver
+export { useWindowResizeObserver }
