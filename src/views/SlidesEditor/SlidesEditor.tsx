@@ -166,9 +166,11 @@ const SlidesEditor = () => {
 
   const width = useWindowResizeObserver()
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  return (
     <>
       {/* @ts-expect-error */}
       <SplitPane
