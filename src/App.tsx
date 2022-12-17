@@ -1,10 +1,12 @@
-import { Fragment, Suspense, lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { GlobalStyle } from './App.style'
 import { theme } from './theme'
 import { Spinner } from './components/Spinner'
+
+import { getPresentation } from './firebase'
 
 import 'prismjs/themes/prism.css'
 
@@ -13,33 +15,30 @@ const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
 
 const newFilePath = `/edit/${crypto.randomUUID()}`
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Navigate to={newFilePath} />,
+  },
+  {
+    path: '/edit/:slidesId',
+    element: <SlidesEditor />,
+  },
+  {
+    path: '/:presentationId/:slideNumber?',
+    element: <Presentation />,
+    loader: async ({ params }) =>
+      await getPresentation(params['presentationId']!),
+    errorElement: <Navigate to="/" />,
+  },
+])
+
 const App = () => (
   <ThemeProvider theme={theme}>
-    <Fragment>
-      <BrowserRouter>
-        <Suspense fallback={<Spinner />}>
-          <Routes>
-            <Route
-              path="/"
-              element={<Navigate to={newFilePath} />}
-            />
-            <Route
-              path="/edit/:slidesId"
-              element={<SlidesEditor />}
-            />
-            <Route
-              path="/:presentationId"
-              element={<Presentation />}
-            />
-            <Route
-              path="/:presentationId/:slideNumber"
-              element={<Presentation />}
-            />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-      <GlobalStyle />
-    </Fragment>
+    <GlobalStyle />
+    <Suspense fallback={<Spinner />}>
+      <RouterProvider router={router} />
+    </Suspense>
   </ThemeProvider>
 )
 

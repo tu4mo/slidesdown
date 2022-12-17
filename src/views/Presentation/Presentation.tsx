@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
-
-import { getPresentation } from '../../firebase'
+import {
+  useParams,
+  useNavigate,
+  useLocation,
+  useLoaderData,
+} from 'react-router-dom'
 
 import { Icon } from '../../components/Icon'
 import { Key } from '../../components/Key'
 import { Notification } from '../../components/Notification'
 import { Slides } from '../../components/Slides'
-import { Spinner } from '../../components/Spinner'
 import { ToolBar, ToolBarDivider } from '../../components/ToolBar'
 
 import {
@@ -19,17 +21,15 @@ import {
 
 const Presentation = () => {
   const fullscreen = useFullScreenHandle()
-  const [isLoading, setIsLoading] = useState(true)
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
-  const [markdown, setMarkdown] = useState('')
-  const [theme, setTheme] = useState('')
+  const slides = useLoaderData() as { markdown: string; theme: string }
 
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
 
   const navigate = useNavigate()
   const { state } = useLocation()
-  const { slideNumber = '0', presentationId = '-' } = useParams<any>()
+  const { slideNumber = '0', presentationId = '-' } = useParams()
 
   const slideNumberAsNumber = parseInt(slideNumber)
 
@@ -77,24 +77,6 @@ const Presentation = () => {
     }
   }, [changeSlide])
 
-  useEffect(() => {
-    const fetchPresentation = async () => {
-      try {
-        const slides = await getPresentation(presentationId)
-
-        setIsLoading(false)
-        setMarkdown(slides.markdown)
-        setTheme(slides.theme)
-      } catch (err) {
-        navigate('/')
-      }
-    }
-
-    if (presentationId && presentationId !== '-') {
-      fetchPresentation()
-    }
-  }, [navigate, presentationId])
-
   const handleSlidesCount = (count: number) => (slidesCount.current = count)
 
   const handlePresentationMouseMove = () => {
@@ -120,16 +102,14 @@ const Presentation = () => {
     }
   }
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <FullScreen handle={fullscreen}>
       <StyledPresentation onMouseMove={handlePresentationMouseMove}>
         <Slides
-          markdown={markdown}
+          markdown={slides.markdown}
           onSlidesCount={handleSlidesCount}
           singleSlide={slideNumberAsNumber}
-          theme={theme}
+          theme={slides.theme}
         />
         <StyledNoticationContainer>
           <Notification
