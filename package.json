@@ -50,7 +50,7 @@
     "@types/styled-components": "^5.1.25",
     "@types/uuid": "^8.3.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "firebase-tools": "^11.1.0",
+    "firebase-tools": "^11.18.0",
     "http-proxy-middleware": "^2.0.6",
     "jest-styled-components": "^7.0.8",
     "prettier": "^2.7.1",
