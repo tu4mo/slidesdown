@@ -1,6 +1,11 @@
 import { Suspense, lazy } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  defer,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom'
 
 import { GlobalStyle } from './App.style'
 import { theme } from './theme'
@@ -25,10 +30,11 @@ const router = createBrowserRouter([
     element: <SlidesEditor />,
   },
   {
-    path: '/:presentationId/:slideNumber?',
+    path: '/:presentationId',
     element: <Presentation />,
-    loader: async ({ params }) =>
-      await getPresentation(params['presentationId']!),
+    loader: ({ params }) => {
+      return defer({ slides: getPresentation(params['presentationId']!) })
+    },
     errorElement: <Navigate to="/" />,
   },
 ])
