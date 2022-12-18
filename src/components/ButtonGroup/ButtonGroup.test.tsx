@@ -7,7 +7,7 @@ it('renders correctly', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="c0"
+      className="c0 c1"
     >
       Test
     </div>
