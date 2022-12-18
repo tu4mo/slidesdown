@@ -16,16 +16,12 @@ export const StyledNoticationContainer = styled.div`
   position: fixed;
 `
 
-interface Props {
-  visible?: boolean
-}
-
-export const StyledPresentationToolbar = styled.div<Props>`
+export const StyledPresentationToolbar = styled.div<{ $visible?: boolean }>`
   bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  opacity: ${(props) => (props.$visible ? 1 : 0)};
   padding: 2rem;
   position: fixed;
   transition: opacity 0.1s ease-in;

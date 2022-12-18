@@ -70,7 +70,7 @@ const Editor = ({
         ref={editorRef}
         value={value}
       />
-      {isLoading && <StyledProgressBar progress={progress || 0} />}
+      {isLoading && <StyledProgressBar $progress={progress || 0} />}
     </StyledWrapper>
   )
 }

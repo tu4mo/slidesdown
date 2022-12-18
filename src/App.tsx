@@ -41,10 +41,12 @@ const router = createBrowserRouter([
 
 const App = () => (
   <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Suspense fallback={<Spinner />}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <>
+      <GlobalStyle />
+      <Suspense fallback={<Spinner />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </>
   </ThemeProvider>
 )
 

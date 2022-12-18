@@ -30,9 +30,9 @@ const slideDown = keyframes`
   }
 `
 
-const StyledNotification = styled(Notification)<{ slideDown?: boolean }>`
+const StyledNotification = styled(Notification)<{ $slideDown?: boolean }>`
   animation: ${(props) =>
-    props.slideDown &&
+    props.$slideDown &&
     css`
       ${slideDown} 1s ease-out
     `};

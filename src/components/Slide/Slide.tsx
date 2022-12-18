@@ -33,8 +33,8 @@ const Slide = memo(
         style={{ height, width }}
       >
         <StyledSlideContainer
+          $single={single}
           className="slide"
-          single={single}
           style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         >
           <div>

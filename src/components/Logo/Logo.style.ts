@@ -1,12 +1,8 @@
 import styled from 'styled-components'
 
-interface Props {
-  large?: boolean | undefined
-}
-
-export const StyledImg = styled.img<Props>`
+export const StyledImg = styled.img<{ $large?: boolean | undefined }>`
   cursor: ${(props) => props.onClick && 'pointer'};
   display: block;
-  height: ${(props) => (props.large ? '5rem' : '2rem')};
-  width: ${(props) => (props.large ? '5rem' : '2rem')};
+  height: ${(props) => (props.$large ? '5rem' : '2rem')};
+  width: ${(props) => (props.$large ? '5rem' : '2rem')};
 `

@@ -11,8 +11,8 @@ interface Props {
 
 const Logo = forwardRef<HTMLImageElement, Props>(({ large, onClick }, ref) => (
   <StyledImg
+    $large={large}
     alt="Slidesdown"
-    large={large}
     onClick={onClick}
     ref={ref}
     src={logoSvg}

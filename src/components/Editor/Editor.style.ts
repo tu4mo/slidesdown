@@ -35,11 +35,7 @@ export const StyledTextarea = styled.textarea`
   }
 `
 
-interface Props {
-  progress: number
-}
-
-export const StyledProgressBar = styled.div<Props>`
+export const StyledProgressBar = styled.div<{ $progress: number }>`
   align-items: center;
   display: flex;
   height: 100%;
@@ -54,8 +50,8 @@ export const StyledProgressBar = styled.div<Props>`
     background-image: linear-gradient(
       90deg,
       var(--color-purple) 0%,
-      var(--color-purple) ${(props) => props.progress}%,
-      #fff ${(props) => props.progress}%,
+      var(--color-purple) ${(props) => props.$progress}%,
+      #fff ${(props) => props.$progress}%,
       #fff 100%
     );
     border: 2px solid var(--color-purple);

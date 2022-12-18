@@ -17,11 +17,11 @@ export const StyledLogoContainer = styled.div`
   position: relative;
 `
 
-export const StyledIconWrapper = styled.div<{ withNotification: boolean }>`
+export const StyledIconWrapper = styled.div<{ $withNotification: boolean }>`
   position: relative;
 
   ${(props) =>
-    props.withNotification &&
+    props.$withNotification &&
     css`
       &::after {
         background-color: #d0021b;

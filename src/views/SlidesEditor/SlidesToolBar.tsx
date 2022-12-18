@@ -32,7 +32,7 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
             </Tooltip>
           </StyledLogoContainer>
           <ButtonGroup>
-            <StyledIconWrapper withNotification={isSaving}>
+            <StyledIconWrapper $withNotification={isSaving}>
               <Icon
                 alt="Presentation"
                 onClick={onPresentationClick}

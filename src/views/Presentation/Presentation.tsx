@@ -117,7 +117,7 @@ const Presentation = () => {
               />
               <StyledNoticationContainer>
                 <Notification
-                  slideDown
+                  $slideDown
                   timeout={5000}
                 >
                   Press space or arrows to change slide.
@@ -125,7 +125,7 @@ const Presentation = () => {
               </StyledNoticationContainer>
               <StyledPresentationToolbar
                 onMouseMove={handleToolbarMouseMove}
-                visible={isToolbarVisible}
+                $visible={isToolbarVisible}
               >
                 <ToolBar>
                   <Icon

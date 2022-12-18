@@ -14,11 +14,11 @@ export const StyledTransformContainer = styled.div`
 `
 
 export const StyledSlideContainer = styled.div<{
-  single?: boolean | undefined
+  $single?: boolean | undefined
 }>`
   background-color: var(--color-slide);
-  box-shadow: ${(props) => !props.single && '0 0 0.1rem rgba(0, 0, 0, 0.1)'};
-  border-radius: ${(props) => !props.single && '0.25rem'};
+  box-shadow: ${(props) => !props.$single && '0 0 0.1rem rgba(0, 0, 0, 0.1)'};
+  border-radius: ${(props) => !props.$single && '0.25rem'};
   color: var(--color-text);
   display: flex;
   flex-direction: column;
