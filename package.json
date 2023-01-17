@@ -36,7 +36,7 @@
     "react-scripts": "^5.0.1",
     "react-split-pane": "^0.1.92",
     "remark-gfm": "^3.0.1",
-    "styled-components": "^6.0.0-beta.6",
+    "styled-components": "^6.0.0-beta.9",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
