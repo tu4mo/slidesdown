@@ -1,4 +1,13 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const spinnerAnimation = keyframes`
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+`
 
 const StyledSpinner = styled.div`
   align-items: center;
@@ -11,22 +20,13 @@ const StyledSpinner = styled.div`
   width: 100%;
 
   &::after {
-    animation: spinner-animation 1s infinite;
+    animation: ${spinnerAnimation} 1s infinite;
     animation-fill-mode: forwards;
     border: 2px solid var(--color-purple);
     border-radius: 4px;
     content: '';
     height: 2rem;
     width: 2rem;
-  }
-
-  @keyframes spinner-animation {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(180deg);
-    }
   }
 `
 

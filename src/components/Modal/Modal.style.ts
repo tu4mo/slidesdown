@@ -1,7 +1,16 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeModalContainer = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 export const StyledModalContainer = styled.div`
-  animation: fade-modal-container 0.2s ease-out;
+  animation: ${fadeModalContainer} 0.2s ease-out;
   align-items: center;
   background-color: rgba(51, 51, 51, 0.5);
   height: 100%;
@@ -14,19 +23,19 @@ export const StyledModalContainer = styled.div`
   top: 0;
   width: 100%;
   z-index: 1;
+`
 
-  @keyframes fade-modal-container {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+const fadeModal = keyframes`
+  0% {
+    transform: scale(0.96) translateY(1rem);
+  }
+  100% {
+    transform: scale(1) translateY(0);
   }
 `
 
 export const StyledModal = styled.div`
-  animation: fade-modal 0.2s ease-out;
+  animation: ${fadeModal} 0.2s ease-out;
   background-color: #fff;
   border-radius: 0.5rem;
   max-width: 720px;
@@ -34,15 +43,6 @@ export const StyledModal = styled.div`
   min-width: 320px;
   padding: 2rem;
   position: relative;
-
-  @keyframes fade-modal {
-    0% {
-      transform: scale(0.96) translateY(1rem);
-    }
-    100% {
-      transform: scale(1) translateY(0);
-    }
-  }
 `
 
 export const StyledModalCloseButton = styled.button`
