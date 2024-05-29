@@ -4,7 +4,7 @@ import * as functions from 'firebase-functions'
 export const presentation = async (
   req: functions.Request,
   res: functions.Response,
-  db: admin.firestore.Firestore
+  db: admin.firestore.Firestore,
 ) => {
   const { id } = req.query
 

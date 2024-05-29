@@ -12,7 +12,7 @@ it('renders correctly', () => {
           onChange={() => {}}
           value="Test"
         />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     .toJSON()
 
@@ -44,7 +44,7 @@ it('renders correctly with disabled and isLoading', () => {
           progress={50}
           value="Test"
         />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     .toJSON()
 

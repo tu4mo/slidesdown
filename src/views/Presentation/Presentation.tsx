@@ -49,7 +49,7 @@ const Presentation = () => {
         }
       }
     },
-    [state, navigate, presentationId, slideNumberAsNumber]
+    [state, navigate, presentationId, slideNumberAsNumber],
   )
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const Presentation = () => {
 
     toolbarVisibilityTimer.current = setTimeout(
       () => setIsToolbarVisible(false),
-      2000
+      2000,
     )
   }
 

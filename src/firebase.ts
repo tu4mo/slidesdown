@@ -70,7 +70,7 @@ export const createSlides = async ({
     await setDoc(
       doc(db, SLIDES_COLLECTION, id),
       { createdAt: new Date(), markdown, presentationId, theme },
-      { merge: true }
+      { merge: true },
     )
   } catch (error) {
     console.error('Error adding document: ', error)
@@ -128,9 +128,9 @@ export const saveImage = async ({
     'state_changed',
     (snapshot) =>
       onChange(
-        Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100),
       ),
     (error) => onError(error),
-    () => onDone(uploadTask.snapshot)
+    () => onDone(uploadTask.snapshot),
   )
 }

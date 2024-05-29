@@ -24,7 +24,7 @@ it('renders correctly', () => {
           scale={1}
           width={800}
         />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     .toJSON()
 

@@ -99,7 +99,7 @@ const Slides = ({
         single={singleSlide !== undefined}
         width={width}
       />
-    )
+    ),
   )
 
   useWindowResizeObserver(handleResize)

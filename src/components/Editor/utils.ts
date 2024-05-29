@@ -11,13 +11,13 @@ export const getSlidesFirstLines = (value = ''): Slide[] =>
     .split('\n')
     .reduce(
       (prev, curr, index) => (curr === '---' ? [...prev, index + 1] : prev),
-      [0]
+      [0],
     )
     .map((lines, index) => ({ slide: index, firstLine: lines }))
 
 export const getCurrentSlide = (
   slides: Slide[],
-  currentLineNumber: number
+  currentLineNumber: number,
 ): number => {
   const slideObj = [...slides]
     .reverse()

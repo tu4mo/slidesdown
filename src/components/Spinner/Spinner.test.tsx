@@ -9,7 +9,7 @@ it('renders correctly', () => {
     .create(
       <ThemeProvider theme={theme}>
         <Spinner />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     .toJSON()
 

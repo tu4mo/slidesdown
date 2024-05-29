@@ -22,7 +22,7 @@ export const removeOldSlides = async (db: admin.firestore.Firestore) => {
   const slides = await getOldSlides(db)
 
   console.log(
-    `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`
+    `${slides.size} slides created before ${dateThirtyDaysAgo.toJSON()}`,
   )
 
   slides.forEach(async (slide) => {
@@ -35,7 +35,7 @@ export const removeOldSlides = async (db: admin.firestore.Firestore) => {
         console.log(
           `${slide.id}: Removed (last visit: ${
             visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
-          })`
+          })`,
         )
       } catch (err) {
         if (err instanceof Error) {
@@ -46,7 +46,7 @@ export const removeOldSlides = async (db: admin.firestore.Firestore) => {
       console.log(
         `${slide.id}: Not removing (last visit: ${
           visitedAt ? visitedAt.toDate().toJSON() : 'unknown'
-        })`
+        })`,
       )
     }
   })

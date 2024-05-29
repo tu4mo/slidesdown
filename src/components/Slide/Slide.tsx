@@ -49,8 +49,8 @@ const Slide = memo(
           </div>
         </StyledSlideContainer>
       </StyledTransformContainer>
-    )
-  )
+    ),
+  ),
 )
 
 export { Slide }

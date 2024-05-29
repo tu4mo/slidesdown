@@ -9,7 +9,7 @@ it('renders correctly', () => {
     .create(
       <ThemeProvider theme={theme}>
         <Button onClick={() => {}}>Test</Button>
-      </ThemeProvider>
+      </ThemeProvider>,
     )
     .toJSON()
 

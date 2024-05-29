@@ -7,7 +7,7 @@ import { Notification } from '.'
 const component = renderer.create(
   <ThemeProvider theme={theme}>
     <Notification>Test</Notification>
-  </ThemeProvider>
+  </ThemeProvider>,
 )
 
 it('renders correctly', () => {

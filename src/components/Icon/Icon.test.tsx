@@ -31,7 +31,7 @@ it('renders correctly with tooltip', () => {
       <Icon
         tooltip="Test"
         type="share"
-      />
+      />,
     )
     .toJSON()
 

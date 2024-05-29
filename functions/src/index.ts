@@ -10,7 +10,7 @@ admin.initializeApp()
 const db = admin.firestore()
 
 exports.presentation = functions.https.onRequest((req, res) =>
-  presentation(req, res, db)
+  presentation(req, res, db),
 )
 
 exports.removeOldSlides = functions.firestore
@@ -18,5 +18,5 @@ exports.removeOldSlides = functions.firestore
   .onCreate(() => removeOldSlides(db))
 
 exports.updateLastVisit = functions.https.onRequest((req, res) =>
-  updateLastVisit(req, res, db)
+  updateLastVisit(req, res, db),
 )
