@@ -15,7 +15,7 @@ it('renders correctly', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <button
-      className="c0"
+      className="sc-CgPeM jWFTZe"
       onClick={[Function]}
     >
       Test

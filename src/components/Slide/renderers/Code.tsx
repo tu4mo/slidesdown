@@ -40,10 +40,9 @@ import 'prismjs/components/prism-yaml'
 interface Props {
   children: ReactNode
   className?: string | undefined
-  inline?: boolean | undefined
 }
 
-const Code = ({ children, className, inline }: Props) => {
+const Code = ({ children, className }: Props) => {
   const language = className?.replace('language-', '')
 
   const html =

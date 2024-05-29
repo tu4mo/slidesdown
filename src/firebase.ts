@@ -33,34 +33,26 @@ const SLIDES_COLLECTION = 'slides'
 
 interface Slide {
   markdown: string
-  presentationId: string
+  presentationId: `${string}-${string}-${string}-${string}-${string}`
   theme: string
 }
 
 export const getSlides = async (id: string) => {
-  try {
-    const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
+  const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
 
-    if (docSnap.exists()) {
-      fetch(`/api/updateLastVisit?id=${id}`)
-    } else {
-      throw new Error('Slides do not exist')
-    }
-
-    return docSnap.data() as Slide
-  } catch (err) {
-    throw err
+  if (docSnap.exists()) {
+    fetch(`/api/updateLastVisit?id=${id}`)
+  } else {
+    throw new Error('Slides do not exist')
   }
+
+  return docSnap.data() as Slide
 }
 
 export const getPresentation = async (id: string) => {
-  try {
-    const response = await fetch(`/api/presentation?id=${id}`)
-    const json = await response.json()
-    return json
-  } catch (err) {
-    throw err
-  }
+  const response = await fetch(`/api/presentation?id=${id}`)
+  const json = await response.json()
+  return json
 }
 
 export const createSlides = async ({

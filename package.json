@@ -5,15 +5,16 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "react-scripts build",
+    "build": "vite build",
     "deploy": "npm run build && firebase deploy",
     "format": "prettier --write .",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint .",
     "lint:css": "stylelint './src/**/*.{ts,tsx}'",
-    "start": "react-scripts start",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-markdown))/\"",
-    "test:coverage": "npm test -- --coverage"
+    "lint:js": "eslint .",
+    "serve": "vite preview",
+    "start": "vite",
+    "test": "vitest",
+    "type-check": "tsc"
   },
   "keywords": [
     "slides",
@@ -33,7 +34,6 @@
     "react-full-screen": "^1.1.1",
     "react-markdown": "^8.0.3",
     "react-router-dom": "^6.9.0",
-    "react-scripts": "^5.0.1",
     "react-split-pane": "^0.1.92",
     "remark-gfm": "^3.0.1",
     "styled-components": "^6.0.0-beta.14",
@@ -41,48 +41,32 @@
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@types/jest": "^27.5.2",
     "@types/lodash.throttle": "^4.1.7",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "@types/react-test-renderer": "^18.0.0",
     "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.34.1",
     "firebase-tools": "^11.18.0",
-    "http-proxy-middleware": "^2.0.6",
-    "jest-styled-components": "^7.1.1",
+    "postcss-styled-syntax": "^0.6.4",
     "prettier": "^2.7.1",
     "react-test-renderer": "^18.2.0",
-    "stylelint": "^14.9.1",
-    "stylelint-config-recommended": "^8.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "typescript": "^4.8.2"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "stylelint": "^16.5.0",
+    "stylelint-config-recommended": "^14.0.0",
+    "typescript": "^4.9.5",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/tu4mo/slidesdown.git"
   },
-  "eslintConfig": {
-    "extends": "react-app",
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "workspaces": [
     "functions"
   ]

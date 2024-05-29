@@ -161,13 +161,11 @@ const Presentation = () => {
                     }
                     type="right"
                   />
-                  {state ? (
+                  {state.slidesId ? (
                     <>
                       <ToolBarDivider />
                       <Icon
-                        onClick={() =>
-                          navigate(`/edit/${(state as any).slidesId}`)
-                        }
+                        onClick={() => navigate(`/edit/${state.slidesId}`)}
                         tooltip={
                           <>
                             Edit

@@ -19,4 +19,6 @@ const Logo = forwardRef<HTMLImageElement, Props>(({ large, onClick }, ref) => (
   />
 ))
 
+Logo.displayName = 'Logo'
+
 export { Logo }

@@ -4,8 +4,6 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 import { Logo } from '.'
 
-jest.mock('./logo.svg', () => 'Logo')
-
 it('renders correctly', () => {
   const tree = renderer
     .create(
@@ -18,8 +16,8 @@ it('renders correctly', () => {
   expect(tree).toMatchInlineSnapshot(`
     <img
       alt="Slidesdown"
-      className="c0"
-      src="Logo"
+      className="sc-CgPeM dVPtji"
+      src="/src/components/Logo/logo.svg"
     />
   `)
 })

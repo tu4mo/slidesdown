@@ -15,7 +15,7 @@ it('renders correctly', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="c0"
+      className="sc-CgPeM eNecAl"
     />
   `)
 })

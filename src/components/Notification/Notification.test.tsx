@@ -4,8 +4,6 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../theme'
 import { Notification } from '.'
 
-jest.useFakeTimers()
-
 const component = renderer.create(
   <ThemeProvider theme={theme}>
     <Notification>Test</Notification>
@@ -15,21 +13,9 @@ const component = renderer.create(
 it('renders correctly', () => {
   expect(component.toJSON()).toMatchInlineSnapshot(`
     <div
-      className="wwxAF"
+      className="sc-CgPeM drytiR"
     >
       Test
     </div>
   `)
 })
-
-// it('renders nothing after time has passed', () => {
-//   jest.runAllTimers()
-//   expect(setTimeout).toHaveBeenCalledTimes(1)
-//   expect(component.toJSON()).toMatchInlineSnapshot(`
-//     <div
-//       className="lcvhlL"
-//     >
-//       Test
-//     </div>
-//   `)
-// })

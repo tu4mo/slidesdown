@@ -31,10 +31,10 @@ const slideDown = keyframes`
 `
 
 const StyledNotification = styled(Notification)<{ $slideDown?: boolean }>`
-  animation: ${(props) =>
+  ${(props) =>
     props.$slideDown &&
     css`
-      ${slideDown} 1s ease-out
+      animation: ${slideDown} 1s ease-out;
     `};
 
   color: var(--color-purple);

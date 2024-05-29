@@ -30,18 +30,18 @@ it('renders correctly', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="c0"
+      className="sc-CgPeM btxtsH"
       style={
-        Object {
+        {
           "height": 450,
           "width": 800,
         }
       }
     >
       <div
-        className="c1 slide"
+        className="sc-bQesnH iCGswJ slide"
         style={
-          Object {
+          {
             "transform": "translate(-50%, -50%) scale(1)",
           }
         }
@@ -167,9 +167,9 @@ it('renders correctly', () => {
           <pre>
             <code
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<span class=\\"token keyword\\">const</span> variable <span class=\\"token operator\\">=</span> <span class=\\"token string\\">'123'</span>
-    console<span class=\\"token punctuation\\">.</span><span class=\\"token function\\">log</span><span class=\\"token punctuation\\">(</span>variable<span class=\\"token punctuation\\">)</span>
+                {
+                  "__html": "<span class="token keyword">const</span> variable <span class="token operator">=</span> <span class="token string">'123'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span>
     ",
                 }
               }
@@ -237,7 +237,7 @@ it('renders correctly', () => {
 
           <p>
             <span
-              className="c2"
+              className="sc-izzqae efSCpI"
             >
               <img
                 alt=""
@@ -251,22 +251,22 @@ it('renders correctly', () => {
           
 
           <table
-            className="c3"
+            className="sc-knITMB gGfkLb"
           >
             <thead>
               <tr>
                 <th
-                  className="c4"
+                  className="sc-fHIiac jGjooM"
                 >
                   Column 1
                 </th>
                 <th
-                  className="c4"
+                  className="sc-fHIiac jGjooM"
                 >
                   Column 2
                 </th>
                 <th
-                  className="c4"
+                  className="sc-fHIiac jGjooM"
                 >
                   Column 3
                 </th>
@@ -275,17 +275,17 @@ it('renders correctly', () => {
             <tbody>
               <tr>
                 <td
-                  className="c5"
+                  className="sc-gVFLiX tYegz"
                 >
                   Cell 1
                 </td>
                 <td
-                  className="c5"
+                  className="sc-gVFLiX tYegz"
                 >
                   Cell 2
                 </td>
                 <td
-                  className="c5"
+                  className="sc-gVFLiX tYegz"
                 >
                   Cell 3
                 </td>

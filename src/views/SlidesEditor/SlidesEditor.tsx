@@ -115,34 +115,34 @@ const SlidesEditor = () => {
     saveSlides(value)
   }
 
-  const handleEditorDrop = async (file: File) => {
-    // Disable for now
-    // const { newId, setError } = this.props
-    //
-    // this.setState({ isUploading: true })
-    //
-    // saveImage({
-    //   id: newId,
-    //   file,
-    //   onChange: uploadProgress => this.setState({ uploadProgress }),
-    //   onError: () => {
-    //     setError('Unable to save image')
-    //     this.setState({ isUploading: false })
-    //   },
-    //   onDone: snapshot => {
-    //     const { markdown, setMarkdown } = this.props
-    //     const { cursorPosition } = this.state
-    //
-    //     this.setState({ isUploading: false })
-    //
-    //     setMarkdown(
-    //       `${markdown.slice(0, cursorPosition)}` +
-    //         `![](${snapshot.downloadURL})` +
-    //         `${markdown.slice(cursorPosition)}`
-    //     )
-    //   }
-    // })
-  }
+  // Disable for now
+  // const handleEditorDrop = async (file: File) => {
+  //   const { newId, setError } = this.props
+
+  //   this.setState({ isUploading: true })
+
+  //   saveImage({
+  //     id: newId,
+  //     file,
+  //     onChange: (uploadProgress) => this.setState({ uploadProgress }),
+  //     onError: () => {
+  //       setError('Unable to save image')
+  //       this.setState({ isUploading: false })
+  //     },
+  //     onDone: (snapshot) => {
+  //       const { markdown, setMarkdown } = this.props
+  //       const { cursorPosition } = this.state
+
+  //       this.setState({ isUploading: false })
+
+  //       setMarkdown(
+  //         `${markdown.slice(0, cursorPosition)}` +
+  //           `![](${snapshot.downloadURL})` +
+  //           `${markdown.slice(cursorPosition)}`
+  //       )
+  //     },
+  //   })
+  // }
 
   const handleEditorCursorPositionChange = ({
     cursorPosition,
@@ -172,7 +172,7 @@ const SlidesEditor = () => {
 
   return (
     <>
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error Switch to modern split component */}
       <SplitPane
         defaultSize={300}
         onChange={handleSplitPaneChange}
@@ -187,7 +187,7 @@ const SlidesEditor = () => {
             isLoading={isUploading}
             onChange={handleEditorChange}
             onCursorPositionChange={handleEditorCursorPositionChange}
-            onDrop={handleEditorDrop}
+            // onDrop={handleEditorDrop}
             progress={uploadProgress}
             value={markdown}
           />

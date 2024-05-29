@@ -10,11 +10,13 @@ import { Table } from './renderers/Table'
 import { TableCell } from './renderers/TableCell'
 
 const components: ComponentProps<typeof Markdown>['components'] = {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   code: ({ node, ...props }) => <Code {...props} />,
   img: ({ node, ...props }) => <Image {...props} />,
   table: ({ node, ...props }) => <Table {...props} />,
   th: ({ node, ...props }) => <TableCell {...props} />,
   td: ({ node, ...props }) => <TableCell {...props} />,
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 }
 
 interface SlideProps {

@@ -1,20 +1,25 @@
 import renderer from 'react-test-renderer'
 
 import { Icon } from '.'
+import { ReactNode } from 'react'
 
-jest.mock('@tippy.js/react', () => 'Tooltip')
+vi.mock('@tippy.js/react', async () => {
+  return {
+    default: ({ children }: { children: ReactNode }) => <>{children}</>,
+  }
+})
 
 it('renders correctly', () => {
   const tree = renderer.create(<Icon type="presentation" />).toJSON()
 
   expect(tree).toMatchInlineSnapshot(`
     <button
-      className="c0"
+      className="sc-CgPeM bEOWvL"
       disabled={false}
     >
       <img
-        className="c1"
-        src="presentation.svg"
+        className="sc-bQesnH gqHeSB"
+        src="/src/components/Icon/svg/presentation.svg"
       />
     </button>
   `)
@@ -31,19 +36,14 @@ it('renders correctly with tooltip', () => {
     .toJSON()
 
   expect(tree).toMatchInlineSnapshot(`
-    <Tooltip
-      arrow={true}
-      content="Test"
+    <button
+      className="sc-CgPeM bEOWvL"
+      disabled={false}
     >
-      <button
-        className="c0"
-        disabled={false}
-      >
-        <img
-          className="c1"
-          src="share.svg"
-        />
-      </button>
-    </Tooltip>
+      <img
+        className="sc-bQesnH gqHeSB"
+        src="/src/components/Icon/svg/share.svg"
+      />
+    </button>
   `)
 })

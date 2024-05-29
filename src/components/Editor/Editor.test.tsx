@@ -5,13 +5,11 @@ import { theme } from '../../theme'
 import { Editor } from '.'
 
 it('renders correctly', () => {
-  const onChangeMock = jest.fn()
-
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
         <Editor
-          onChange={onChangeMock}
+          onChange={() => {}}
           value="Test"
         />
       </ThemeProvider>
@@ -20,12 +18,12 @@ it('renders correctly', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="c0"
+      className="sc-CgPeM bOzJlu"
     >
       <textarea
         aria-label="Markdown"
-        className="c1"
-        onChange={[MockFunction]}
+        className="sc-bQesnH hFbfqQ"
+        onChange={[Function]}
         onClick={[Function]}
         onDrop={[Function]}
         onKeyUp={[Function]}
@@ -37,14 +35,12 @@ it('renders correctly', () => {
 })
 
 it('renders correctly with disabled and isLoading', () => {
-  const onChangeMock = jest.fn()
-
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
         <Editor
           isLoading
-          onChange={onChangeMock}
+          onChange={() => {}}
           progress={50}
           value="Test"
         />
@@ -54,13 +50,13 @@ it('renders correctly with disabled and isLoading', () => {
 
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="c0"
+      className="sc-CgPeM bOzJlu"
     >
       <textarea
         aria-label="Markdown"
-        className="c1"
+        className="sc-bQesnH hFbfqQ"
         disabled={true}
-        onChange={[MockFunction]}
+        onChange={[Function]}
         onClick={[Function]}
         onDrop={[Function]}
         onKeyUp={[Function]}
@@ -68,7 +64,7 @@ it('renders correctly with disabled and isLoading', () => {
         value="Test"
       />
       <div
-        className="c2"
+        className="sc-izzqae fwihUx"
       />
     </div>
   `)

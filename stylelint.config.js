@@ -1,10 +1,13 @@
 module.exports = {
-  customSyntax: '@stylelint/postcss-css-in-js',
-  extends: [
-    'stylelint-config-recommended',
-    'stylelint-config-styled-components',
+  extends: ['stylelint-config-recommended'],
+  overrides: [
+    {
+      files: ['**/*.tsx', '**/*.ts'],
+      customSyntax: 'postcss-styled-syntax',
+    },
   ],
   rules: {
     'function-no-unknown': null,
+    'media-query-no-invalid': null,
   },
 }
