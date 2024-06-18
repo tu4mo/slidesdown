@@ -37,7 +37,7 @@
     "react-split-pane": "^0.1.92",
     "remark-gfm": "^3.0.1",
     "styled-components": "^6.0.0-beta.14",
-    "uuid": "^8.3.2"
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "^0.38.0",
