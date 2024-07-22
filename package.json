@@ -55,7 +55,7 @@
     "eslint-plugin-react": "^7.34.3",
     "firebase-tools": "^13.13.0",
     "postcss-styled-syntax": "^0.6.4",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "react-test-renderer": "^18.3.1",
     "stylelint": "^16.7.0",
     "stylelint-config-recommended": "^14.0.1",
