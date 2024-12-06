@@ -14,7 +14,12 @@ const components: ComponentProps<typeof Markdown>['components'] = {
   code: ({ node, ...props }) => <Code {...props} />,
   img: ({ node, ...props }) => <Image {...props} />,
   table: ({ node, ...props }) => <Table {...props} />,
-  th: ({ node, ...props }) => <TableCell {...props} />,
+  th: ({ node, ...props }) => (
+    <TableCell
+      isHeader
+      {...props}
+    />
+  ),
   td: ({ node, ...props }) => <TableCell {...props} />,
   /* eslint-enable @typescript-eslint/no-unused-vars */
 }
