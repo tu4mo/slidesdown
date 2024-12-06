@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef, memo } from 'react'
+import { ComponentProps, memo, Ref } from 'react'
 import Markdown from 'react-markdown'
 import gfm from 'remark-gfm'
 
@@ -21,6 +21,7 @@ const components: ComponentProps<typeof Markdown>['components'] = {
 
 interface SlideProps {
   height: number
+  ref?: Ref<HTMLDivElement>
   scale: number
   single?: boolean
   markdown: string
@@ -28,29 +29,29 @@ interface SlideProps {
 }
 
 const Slide = memo(
-  forwardRef<HTMLDivElement, SlideProps>(
-    ({ markdown, scale, single, width, height }, ref) => (
-      <StyledTransformContainer
-        ref={ref}
-        style={{ height, width }}
+  ({ markdown, ref, scale, single, width, height }: SlideProps) => (
+    <StyledTransformContainer
+      ref={ref}
+      style={{ height, width }}
+    >
+      <StyledSlideContainer
+        $single={single}
+        className="slide"
+        style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
-        <StyledSlideContainer
-          $single={single}
-          className="slide"
-          style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
-        >
-          <div>
-            <Markdown
-              remarkPlugins={[gfm]}
-              components={components}
-            >
-              {markdown}
-            </Markdown>
-          </div>
-        </StyledSlideContainer>
-      </StyledTransformContainer>
-    ),
+        <div>
+          <Markdown
+            remarkPlugins={[gfm]}
+            components={components}
+          >
+            {markdown}
+          </Markdown>
+        </div>
+      </StyledSlideContainer>
+    </StyledTransformContainer>
   ),
 )
+
+Slide.displayName = 'Slide'
 
 export { Slide }
