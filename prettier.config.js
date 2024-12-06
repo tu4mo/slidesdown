@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   arrowParens: 'always',
   semi: false,
   singleAttributePerLine: true,
