@@ -13,7 +13,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "firebase-admin": "12.4.0",
+    "firebase-admin": "13.0.1",
     "firebase-functions": "5.1.1"
   },
   "private": true
