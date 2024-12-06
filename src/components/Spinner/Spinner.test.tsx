@@ -1,21 +1,21 @@
-import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
 import { theme } from '../../theme'
 import { Spinner } from '.'
+import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <Spinner />
-      </ThemeProvider>,
-    )
-    .toJSON()
+  const { asFragment } = render(
+    <ThemeProvider theme={theme}>
+      <Spinner />
+    </ThemeProvider>,
+  )
 
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="sc-CgPeM eNecAl"
-    />
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <div
+        class="sc-blHHSb fPkpAo"
+      />
+    </DocumentFragment>
   `)
 })

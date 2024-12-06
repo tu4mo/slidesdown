@@ -1,24 +1,23 @@
-import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
 import { theme } from '../../theme'
 import { Button } from '.'
+import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <Button onClick={() => {}}>Test</Button>
-      </ThemeProvider>,
-    )
-    .toJSON()
+  const { asFragment } = render(
+    <ThemeProvider theme={theme}>
+      <Button onClick={() => {}}>Test</Button>
+    </ThemeProvider>,
+  )
 
-  expect(tree).toMatchInlineSnapshot(`
-    <button
-      className="sc-CgPeM jWFTZe"
-      onClick={[Function]}
-    >
-      Test
-    </button>
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <button
+        class="sc-blHHSb fnnvxy"
+      >
+        Test
+      </button>
+    </DocumentFragment>
   `)
 })

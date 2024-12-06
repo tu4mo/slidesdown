@@ -1,8 +1,8 @@
-import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
 import { theme } from '../../theme'
 import { Slide } from '.'
+import { render } from '@testing-library/react'
 
 const MARKDOWN =
   '# Heading 1\n\n---\n\n' +
@@ -15,288 +15,312 @@ const MARKDOWN =
   'Column 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n'
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <Slide
-          height={450}
-          markdown={MARKDOWN}
-          scale={1}
-          width={800}
-        />
-      </ThemeProvider>,
-    )
-    .toJSON()
+  const { asFragment } = render(
+    <ThemeProvider theme={theme}>
+      <Slide
+        height={450}
+        markdown={MARKDOWN}
+        scale={1}
+        width={800}
+      />
+    </ThemeProvider>,
+  )
 
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="sc-CgPeM btxtsH"
-      style={
-        {
-          "height": 450,
-          "width": 800,
-        }
-      }
-    >
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
       <div
-        className="sc-bQesnH iCGswJ slide"
-        style={
-          {
-            "transform": "translate(-50%, -50%) scale(1)",
-          }
-        }
+        class="sc-blHHSb uATcL"
+        style="height: 450px; width: 800px;"
       >
-        <div>
-          <h1>
-            Heading 1
-          </h1>
-          
-
-          <hr />
-          
-
-          <h2>
-            Heading 2
-          </h2>
-          
-
-          <ul>
+        <div
+          class="sc-gtLWhw zwDwc slide"
+          style="transform: translate(-50%, -50%) scale(1);"
+        >
+          <div>
+            <h1>
+              Heading 1
+            </h1>
             
 
-            <li>
-              List Item 1
+            <hr />
+            
+
+            <h2>
+              Heading 2
+            </h2>
+            
+
+            <ul>
               
 
-              <ul>
+              <li>
+                List Item 1
+
+                <ul>
+                  
+
+                  <li>
+                    Sub List Item
+                  </li>
+                  
+
+                </ul>
                 
 
-                <li>
-                  Sub List Item
-                </li>
-                
-
-              </ul>
+              </li>
               
 
-            </li>
-            
-
-            <li>
-              List Item 2
-            </li>
-            
-
-            <li>
-              List Item 3
-            </li>
-            
-
-            <li>
-              List Item 4
-            </li>
-            
-
-            <li>
-              List Item 5
-            </li>
-            
-
-          </ul>
-          
-
-          <hr />
-          
-
-          <h3>
-            Heading 3
-          </h3>
-          
-
-          <ol>
-            
-
-            <li>
-              Numbered Item 1
+              <li>
+                List Item 2
+              </li>
               
 
-              <ol>
-                
-
-                <li>
-                  Sub Numbered Item
-                </li>
-                
-
-              </ol>
+              <li>
+                List Item 3
+              </li>
               
 
-            </li>
+              <li>
+                List Item 4
+              </li>
+              
+
+              <li>
+                List Item 5
+              </li>
+              
+
+            </ul>
             
 
-            <li>
-              Numbered Item 2
-            </li>
+            <hr />
             
 
-            <li>
-              Numbered Item 3
-            </li>
+            <h3>
+              Heading 3
+            </h3>
             
 
-            <li>
-              Numbered Item 4
-            </li>
+            <ol>
+              
+
+              <li>
+                Numbered Item 1
+
+                <ol>
+                  
+
+                  <li>
+                    Sub Numbered Item
+                  </li>
+                  
+
+                </ol>
+                
+
+              </li>
+              
+
+              <li>
+                Numbered Item 2
+              </li>
+              
+
+              <li>
+                Numbered Item 3
+              </li>
+              
+
+              <li>
+                Numbered Item 4
+              </li>
+              
+
+              <li>
+                Numbered Item 5
+              </li>
+              
+
+            </ol>
             
 
-            <li>
-              Numbered Item 5
-            </li>
+            <hr />
             
 
-          </ol>
-          
-
-          <hr />
-          
-
-          <h4>
-            Heading 4
-          </h4>
-          
-
-          <pre>
-            <code
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<span class="token keyword">const</span> variable <span class="token operator">=</span> <span class="token string">'123'</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>variable<span class="token punctuation">)</span>
-    ",
-                }
-              }
-            />
-          </pre>
-          
-
-          <hr />
-          
-
-          <h5>
-            Heading 5
-          </h5>
-          
-
-          <p>
-            <em>
-              Italic text
-            </em>
-            <br />
+            <h4>
+              Heading 4
+            </h4>
             
 
-            <strong>
-              Bold text
-            </strong>
-            <br />
+            <pre>
+              <code>
+                <span
+                  class="token keyword"
+                >
+                  const
+                </span>
+                 variable 
+                <span
+                  class="token operator"
+                >
+                  =
+                </span>
+                 
+                <span
+                  class="token string"
+                >
+                  '123'
+                </span>
+                
+    console
+                <span
+                  class="token punctuation"
+                >
+                  .
+                </span>
+                <span
+                  class="token function"
+                >
+                  log
+                </span>
+                <span
+                  class="token punctuation"
+                >
+                  (
+                </span>
+                variable
+                <span
+                  class="token punctuation"
+                >
+                  )
+                </span>
+                
+
+              </code>
+            </pre>
             
 
-            <del>
-              Strikethrough text
-            </del>
-          </p>
-          
+            <hr />
+            
 
-          <hr />
-          
-
-          <h6>
-            Heading 6
-          </h6>
-          
-
-          <p>
-            <a
-              href="https://slidesdown.com"
-            >
-              Slidesdown
-            </a>
-          </p>
-          
-
-          <blockquote>
+            <h5>
+              Heading 5
+            </h5>
             
 
             <p>
-              Blockquote
+              <em>
+                Italic text
+              </em>
+              <br />
+              
+
+              <strong>
+                Bold text
+              </strong>
+              <br />
+              
+
+              <del>
+                Strikethrough text
+              </del>
             </p>
             
 
-          </blockquote>
-          
+            <hr />
+            
 
-          <hr />
-          
+            <h6>
+              Heading 6
+            </h6>
+            
 
-          <p>
-            <span
-              className="sc-izzqae efSCpI"
+            <p>
+              <a
+                href="https://slidesdown.com"
+              >
+                Slidesdown
+              </a>
+            </p>
+            
+
+            <blockquote>
+              
+
+              <p>
+                Blockquote
+              </p>
+              
+
+            </blockquote>
+            
+
+            <hr />
+            
+
+            <p>
+              <span
+                class="sc-egkSDF ePahb"
+              >
+                <img
+                  alt=""
+                  src="http://www.domain.com/image.jpg"
+                />
+              </span>
+            </p>
+            
+
+            <hr />
+            
+
+            <table
+              class="sc-fAUdSK byDheB"
             >
-              <img
-                alt=""
-                src="http://www.domain.com/image.jpg"
-              />
-            </span>
-          </p>
-          
+              <thead>
+                <tr>
+                  <th
+                    class="sc-dntaoT jjJBOH"
+                  >
+                    Column 1
+                  </th>
+                  <th
+                    class="sc-dntaoT jjJBOH"
+                  >
+                    Column 2
+                  </th>
+                  <th
+                    class="sc-dntaoT jjJBOH"
+                  >
+                    Column 3
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class="sc-ivxoEo jqUkVs"
+                  >
+                    Cell 1
+                  </td>
+                  <td
+                    class="sc-ivxoEo jqUkVs"
+                  >
+                    Cell 2
+                  </td>
+                  <td
+                    class="sc-ivxoEo jqUkVs"
+                  >
+                    Cell 3
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
 
-          <hr />
-          
-
-          <table
-            className="sc-knITMB gGfkLb"
-          >
-            <thead>
-              <tr>
-                <th
-                  className="sc-fHIiac jGjooM"
-                >
-                  Column 1
-                </th>
-                <th
-                  className="sc-fHIiac jGjooM"
-                >
-                  Column 2
-                </th>
-                <th
-                  className="sc-fHIiac jGjooM"
-                >
-                  Column 3
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  className="sc-gVFLiX tYegz"
-                >
-                  Cell 1
-                </td>
-                <td
-                  className="sc-gVFLiX tYegz"
-                >
-                  Cell 2
-                </td>
-                <td
-                  className="sc-gVFLiX tYegz"
-                >
-                  Cell 3
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          
-
-          <hr />
+            <hr />
+          </div>
         </div>
       </div>
-    </div>
+    </DocumentFragment>
   `)
 })

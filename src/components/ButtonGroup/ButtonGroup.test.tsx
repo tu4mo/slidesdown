@@ -1,15 +1,16 @@
-import renderer from 'react-test-renderer'
-
 import { ButtonGroup } from '.'
+import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
-  const tree = renderer.create(<ButtonGroup>Test</ButtonGroup>).toJSON()
+  const { asFragment } = render(<ButtonGroup>Test</ButtonGroup>)
 
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="sc-CgPeM kmKwtc"
-    >
-      Test
-    </div>
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <div
+        class="sc-blHHSb jPqcIs"
+      >
+        Test
+      </div>
+    </DocumentFragment>
   `)
 })

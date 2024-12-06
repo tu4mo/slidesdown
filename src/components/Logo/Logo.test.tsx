@@ -1,23 +1,17 @@
-import renderer from 'react-test-renderer'
-import { ThemeProvider } from 'styled-components'
+import { render } from '@testing-library/react'
 
-import { theme } from '../../theme'
 import { Logo } from '.'
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(
-      <ThemeProvider theme={theme}>
-        <Logo />
-      </ThemeProvider>,
-    )
-    .toJSON()
+  const { asFragment } = render(<Logo />)
 
-  expect(tree).toMatchInlineSnapshot(`
-    <img
-      alt="Slidesdown"
-      className="sc-CgPeM dVPtji"
-      src="/src/components/Logo/logo.svg"
-    />
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <img
+        alt="Slidesdown"
+        class="sc-blHHSb irXyoh"
+        src="/src/components/Logo/logo.svg"
+      />
+    </DocumentFragment>
   `)
 })

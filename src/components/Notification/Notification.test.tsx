@@ -1,21 +1,23 @@
-import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
 
 import { theme } from '../../theme'
 import { Notification } from '.'
-
-const component = renderer.create(
-  <ThemeProvider theme={theme}>
-    <Notification>Test</Notification>
-  </ThemeProvider>,
-)
+import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
-  expect(component.toJSON()).toMatchInlineSnapshot(`
-    <div
-      className="sc-CgPeM drytiR"
-    >
-      Test
-    </div>
+  const { asFragment } = render(
+    <ThemeProvider theme={theme}>
+      <Notification>Test</Notification>
+    </ThemeProvider>,
+  )
+
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <div
+        class="sc-blHHSb kZZaZY"
+      >
+        Test
+      </div>
+    </DocumentFragment>
   `)
 })

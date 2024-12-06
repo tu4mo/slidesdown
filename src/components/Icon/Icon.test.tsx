@@ -1,7 +1,6 @@
-import renderer from 'react-test-renderer'
-
 import { Icon } from '.'
 import { ReactNode } from 'react'
+import { render } from '@testing-library/react'
 
 vi.mock('@tippy.js/react', async () => {
   return {
@@ -10,40 +9,40 @@ vi.mock('@tippy.js/react', async () => {
 })
 
 it('renders correctly', () => {
-  const tree = renderer.create(<Icon type="presentation" />).toJSON()
+  const { asFragment } = render(<Icon type="presentation" />)
 
-  expect(tree).toMatchInlineSnapshot(`
-    <button
-      className="sc-CgPeM bEOWvL"
-      disabled={false}
-    >
-      <img
-        className="sc-bQesnH gqHeSB"
-        src="/src/components/Icon/svg/presentation.svg"
-      />
-    </button>
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <button
+        class="sc-blHHSb evDhHP"
+      >
+        <img
+          class="sc-gtLWhw iqsKKO"
+          src="/src/components/Icon/svg/presentation.svg"
+        />
+      </button>
+    </DocumentFragment>
   `)
 })
 
 it('renders correctly with tooltip', () => {
-  const tree = renderer
-    .create(
-      <Icon
-        tooltip="Test"
-        type="share"
-      />,
-    )
-    .toJSON()
+  const { asFragment } = render(
+    <Icon
+      tooltip="Test"
+      type="share"
+    />,
+  )
 
-  expect(tree).toMatchInlineSnapshot(`
-    <button
-      className="sc-CgPeM bEOWvL"
-      disabled={false}
-    >
-      <img
-        className="sc-bQesnH gqHeSB"
-        src="/src/components/Icon/svg/share.svg"
-      />
-    </button>
+  expect(asFragment()).toMatchInlineSnapshot(`
+    <DocumentFragment>
+      <button
+        class="sc-blHHSb evDhHP"
+      >
+        <img
+          class="sc-gtLWhw iqsKKO"
+          src="/src/components/Icon/svg/share.svg"
+        />
+      </button>
+    </DocumentFragment>
   `)
 })
