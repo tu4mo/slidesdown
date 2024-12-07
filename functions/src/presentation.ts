@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin'
-import * as functions from 'firebase-functions'
+import * as functions from 'firebase-functions/v1'
 
 export const presentation = async (
   req: functions.Request,
