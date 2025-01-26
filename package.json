@@ -37,7 +37,7 @@
     "react-router-dom": "^6.26.2",
     "react-split-pane": "^0.1.92",
     "remark-gfm": "^4.0.0",
-    "styled-components": "^6.1.13",
+    "styled-components": "^6.1.14",
     "uuid": "^11.0.5"
   },
   "devDependencies": {
