@@ -43,7 +43,7 @@
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.1.0",
+    "@testing-library/react": "^16.2.0",
     "@types/lodash.throttle": "^4.1.9",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^19.0.1",
