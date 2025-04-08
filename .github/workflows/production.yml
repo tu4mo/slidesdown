@@ -38,4 +38,4 @@ jobs:
 
       - name: Deploy
         run: |
-          npx firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+          npx firebase deploy --force --token ${{ secrets.FIREBASE_TOKEN }}
