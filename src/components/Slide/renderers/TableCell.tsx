@@ -16,7 +16,7 @@ const TableCell = ({
   children,
   isHeader,
 }: {
-  children: ReactNode
+  children?: ReactNode
   isHeader?: boolean
 }) => (isHeader ? <Th>{children}</Th> : <Td>{children}</Td>)
 

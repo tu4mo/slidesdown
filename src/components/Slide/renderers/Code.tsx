@@ -38,7 +38,7 @@ import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-yaml'
 
 interface Props {
-  children: ReactNode
+  children?: ReactNode
   className?: string | undefined
 }
 
