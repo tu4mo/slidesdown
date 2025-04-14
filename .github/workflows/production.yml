@@ -29,12 +29,7 @@ jobs:
         run: npm test
 
       - name: Build
-        run: npm run build
-
-      - name: Build Functions
-        working-directory: functions
-        run: |
-          npm run build
+        run: npm run Build
 
       - name: Deploy
         run: |
