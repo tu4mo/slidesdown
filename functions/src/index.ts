@@ -9,14 +9,14 @@ admin.initializeApp()
 
 const db = admin.firestore()
 
-exports.presentation = functions.https.onRequest((req, res) =>
+export const onPresentationRequest = functions.https.onRequest((req, res) =>
   presentation(req, res, db),
 )
 
-exports.removeOldSlides = functions.firestore
+export const onSlideCreate = functions.firestore
   .document('slides/{slideId}')
   .onCreate(() => removeOldSlides(db))
 
-exports.updateLastVisit = functions.https.onRequest((req, res) =>
+export const onRequest = functions.https.onRequest((req, res) =>
   updateLastVisit(req, res, db),
 )
