@@ -1,9 +1,9 @@
 import * as functions from 'firebase-functions/v1'
 import * as admin from 'firebase-admin'
 
-import { presentation } from './presentation'
-import { removeOldSlides } from './remove-old-slides'
-import { updateLastVisit } from './update-last-visit'
+import { presentation } from './presentation.js'
+import { removeOldSlides } from './remove-old-slides.js'
+import { updateLastVisit } from './update-last-visit.js'
 
 admin.initializeApp()
 

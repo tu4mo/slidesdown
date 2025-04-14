@@ -1,5 +1,6 @@
 {
   "name": "slidesdown-functions",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "serve": "npm run build && firebase serve --only functions",
@@ -15,6 +16,9 @@
   "dependencies": {
     "firebase-admin": "13.0.1",
     "firebase-functions": "6.3.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "22.0.1"
   },
   "private": true
 }

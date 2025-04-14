@@ -1,14 +1,11 @@
 {
+  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
-    "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
-    "target": "es2018",
-    "types": []
+    "strict": true
   },
   "compileOnSave": true,
   "include": ["src"]
