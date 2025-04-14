@@ -1,10 +1,10 @@
-import * as admin from 'firebase-admin'
+import { Firestore } from 'firebase-admin/firestore'
 import * as functions from 'firebase-functions/v1'
 
 export const presentation = async (
   req: functions.Request,
   res: functions.Response,
-  db: admin.firestore.Firestore,
+  db: Firestore,
 ) => {
   const { id } = req.query
 

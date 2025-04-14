@@ -1,10 +1,10 @@
-import * as admin from 'firebase-admin'
+import { Firestore } from 'firebase-admin/firestore'
 
 const DATE_OFFSET = 1000 * 60 * 60 * 24 * 30
 const dateThirtyDaysAgo = new Date()
 dateThirtyDaysAgo.setTime(dateThirtyDaysAgo.getTime() - DATE_OFFSET)
 
-const getOldSlides = (db: admin.firestore.Firestore) =>
+const getOldSlides = (db: Firestore) =>
   db.collection('slides').where('createdAt', '<', dateThirtyDaysAgo).get()
 
 const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
@@ -18,7 +18,7 @@ const removeSlide = async (slide: FirebaseFirestore.QueryDocumentSnapshot) => {
   return Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
 }
 
-export const removeOldSlides = async (db: admin.firestore.Firestore) => {
+export const removeOldSlides = async (db: Firestore) => {
   const slides = await getOldSlides(db)
 
   console.log(

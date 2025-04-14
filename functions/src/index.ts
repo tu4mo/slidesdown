@@ -1,13 +1,14 @@
 import * as functions from 'firebase-functions/v1'
-import * as admin from 'firebase-admin'
+import { initializeApp } from 'firebase-admin/app'
+import { getFirestore } from 'firebase-admin/firestore'
 
 import { presentation } from './presentation.js'
 import { removeOldSlides } from './remove-old-slides.js'
 import { updateLastVisit } from './update-last-visit.js'
 
-admin.initializeApp()
+initializeApp()
 
-const db = admin.firestore()
+const db = getFirestore()
 
 export const onPresentationRequest = functions.https.onRequest((req, res) =>
   presentation(req, res, db),
