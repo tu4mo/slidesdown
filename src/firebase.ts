@@ -41,7 +41,7 @@ export const getSlides = async (id: string) => {
   const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
 
   if (docSnap.exists()) {
-    fetch(`/api/updateLastVisit?id=${id}`)
+    fetch(`/api/onRequest?id=${id}`)
   } else {
     throw new Error('Slides do not exist')
   }
@@ -50,7 +50,7 @@ export const getSlides = async (id: string) => {
 }
 
 export const getPresentation = async (id: string) => {
-  const response = await fetch(`/api/presentation?id=${id}`)
+  const response = await fetch(`/api/onPresentationRequest?id=${id}`)
   const json = await response.json()
   return json
 }
