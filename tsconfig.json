@@ -12,6 +12,7 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,

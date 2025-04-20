@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-import { ButtonGroup } from '../../components/ButtonGroup'
 import { Icon } from '../../components/Icon'
 import { Logo } from '../../components/Logo'
 import { ToolBar } from '../../components/ToolBar'
@@ -31,16 +30,14 @@ const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
               <Logo onClick={() => setIsAboutVisible(true)} />
             </Tooltip>
           </StyledLogoContainer>
-          <ButtonGroup>
-            <StyledIconWrapper $withNotification={isSaving}>
-              <Icon
-                alt="Presentation"
-                onClick={onPresentationClick}
-                tooltip="Presentation"
-                type="presentation"
-              />
-            </StyledIconWrapper>
-          </ButtonGroup>
+          <StyledIconWrapper $withNotification={isSaving}>
+            <Icon
+              alt="Presentation"
+              onClick={onPresentationClick}
+              tooltip="Presentation"
+              type="presentation"
+            />
+          </StyledIconWrapper>
         </ToolBar>
       </StyledToolBarContainer>
       {isAboutVisible && <About onClose={() => setIsAboutVisible(false)} />}

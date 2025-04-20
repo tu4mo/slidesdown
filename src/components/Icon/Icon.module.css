@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-
-export const StyledButton = styled.button`
+.button {
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -19,8 +17,8 @@ export const StyledButton = styled.button`
   &:active {
     transform: scale(0.98);
   }
-`
+}
 
-export const StyledIcon = styled.img`
+.icon {
   display: block;
-`
+}
