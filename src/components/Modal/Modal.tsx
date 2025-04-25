@@ -7,7 +7,7 @@ import {
   StyledModalCloseButton,
 } from './Modal.style'
 
-interface Props {
+type Props = {
   children: ReactNode
   heading?: string
   onClose(): void

@@ -3,7 +3,7 @@ import { Modal } from '../../components/Modal'
 
 import { StyledAbout, StyledHeading } from './About.style'
 
-interface Props {
+type Props = {
   onClose(): void
 }
 

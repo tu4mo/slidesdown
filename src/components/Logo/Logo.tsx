@@ -3,7 +3,7 @@ import { StyledImg } from './Logo.style'
 
 import logoSvg from './logo.svg'
 
-interface Props {
+type Props = {
   large?: boolean
   onClick?(): void
   ref?: Ref<HTMLImageElement>

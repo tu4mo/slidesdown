@@ -24,7 +24,7 @@ const ICONS = {
   share: shareSvg,
 }
 
-interface Props {
+type Props = {
   alt?: string
   disabled?: boolean
   onClick?(): void

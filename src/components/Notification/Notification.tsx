@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
-interface Props {
+type Props = {
   children: ReactNode
   className?: string
   timeout?: number

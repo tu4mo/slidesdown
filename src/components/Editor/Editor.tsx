@@ -12,7 +12,7 @@ import {
   getCurrentSlide,
 } from './utils'
 
-interface Props {
+type Props = {
   isLoading?: boolean
   onChange: React.HTMLProps<HTMLTextAreaElement>['onChange']
   onCursorPositionChange?({

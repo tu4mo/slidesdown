@@ -13,7 +13,7 @@ import {
 
 import { About } from './About'
 
-interface Props {
+type Props = {
   isSaving: boolean
   onPresentationClick(): void
 }

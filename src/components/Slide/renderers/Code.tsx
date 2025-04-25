@@ -37,7 +37,7 @@ import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-yaml'
 
-interface Props {
+type Props = {
   children?: ReactNode
   className?: string | undefined
 }
