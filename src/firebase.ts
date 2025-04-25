@@ -7,7 +7,7 @@ import {
   getFirestore,
   setDoc,
   updateDoc,
-} from 'firebase/firestore'
+} from 'firebase/firestore/lite'
 import {
   getStorage,
   ref,
