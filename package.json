@@ -52,7 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^8.31.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^8.57.0",
+    "eslint": "^9.28.0",
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.5",
     "firebase-tools": "^14.4.0",
