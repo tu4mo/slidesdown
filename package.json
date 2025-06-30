@@ -58,7 +58,7 @@
     "firebase-tools": "^14.8.0",
     "jsdom": "^26.1.0",
     "postcss-styled-syntax": "^0.7.1",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "stylelint": "^16.21.0",
     "stylelint-config-recommended": "^16.0.0",
     "typescript": "^5.8.3",
