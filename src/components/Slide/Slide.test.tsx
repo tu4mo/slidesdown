@@ -24,7 +24,7 @@ it('renders correctly', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-blHHSb uATcL"
+        class="sc-blHHSb iednfj"
         style="height: 450px; width: 800px;"
       >
         <div
