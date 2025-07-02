@@ -7,7 +7,7 @@ it('renders correctly', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-blHHSb kZZaZY"
+        class="sc-bRKDuR djBVPF"
       >
         Test
       </div>

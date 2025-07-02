@@ -24,11 +24,11 @@ it('renders correctly', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-blHHSb iednfj"
+        class="sc-bRKDuR fsIIfS"
         style="height: 450px; width: 800px;"
       >
         <div
-          class="sc-gtLWhw zwDwc slide"
+          class="sc-hvigdm jXKUBY slide"
           style="transform: translate(-50%, -50%) scale(1);"
         >
           <div>
@@ -255,7 +255,7 @@ it('renders correctly', () => {
 
             <p>
               <span
-                class="sc-egkSDF ePahb"
+                class="sc-fhHczv UnEHc"
               >
                 <img
                   alt=""
@@ -269,22 +269,22 @@ it('renders correctly', () => {
             
 
             <table
-              class="sc-fAUdSK byDheB"
+              class="sc-ggWZvA efxoaf"
             >
               <thead>
                 <tr>
                   <th
-                    class="sc-dntaoT jjJBOH"
+                    class="sc-dTvVRJ bGJWmh"
                   >
                     Column 1
                   </th>
                   <th
-                    class="sc-dntaoT jjJBOH"
+                    class="sc-dTvVRJ bGJWmh"
                   >
                     Column 2
                   </th>
                   <th
-                    class="sc-dntaoT jjJBOH"
+                    class="sc-dTvVRJ bGJWmh"
                   >
                     Column 3
                   </th>
@@ -293,17 +293,17 @@ it('renders correctly', () => {
               <tbody>
                 <tr>
                   <td
-                    class="sc-ivxoEo jqUkVs"
+                    class="sc-jwTyAe jLfAuY"
                   >
                     Cell 1
                   </td>
                   <td
-                    class="sc-ivxoEo jqUkVs"
+                    class="sc-jwTyAe jLfAuY"
                   >
                     Cell 2
                   </td>
                   <td
-                    class="sc-ivxoEo jqUkVs"
+                    class="sc-jwTyAe jLfAuY"
                   >
                     Cell 3
                   </td>
