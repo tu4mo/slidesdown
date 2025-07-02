@@ -69,7 +69,7 @@ const SlidesEditor = () => {
           setMarkdown(slides.markdown)
           setPresentationId(slides.presentationId)
         }
-      } catch (err) {
+      } catch {
         setIsLoading(false)
         setMarkdown(DEFAULT_MARKDOWN)
       }
