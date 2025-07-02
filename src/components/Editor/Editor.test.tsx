@@ -1,17 +1,12 @@
-import { ThemeProvider } from 'styled-components'
-
-import { theme } from '../../theme'
 import { Editor } from '.'
 import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
   const { asFragment } = render(
-    <ThemeProvider theme={theme}>
-      <Editor
-        onChange={() => {}}
-        value="Test"
-      />
-    </ThemeProvider>,
+    <Editor
+      onChange={() => {}}
+      value="Test"
+    />,
   )
 
   expect(asFragment()).toMatchInlineSnapshot(`
@@ -33,14 +28,12 @@ it('renders correctly', () => {
 
 it('renders correctly with disabled and isLoading', () => {
   const { asFragment } = render(
-    <ThemeProvider theme={theme}>
-      <Editor
-        isLoading
-        onChange={() => {}}
-        progress={50}
-        value="Test"
-      />
-    </ThemeProvider>,
+    <Editor
+      isLoading
+      onChange={() => {}}
+      progress={50}
+      value="Test"
+    />,
   )
 
   expect(asFragment()).toMatchInlineSnapshot(`

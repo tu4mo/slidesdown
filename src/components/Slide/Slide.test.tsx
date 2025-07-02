@@ -1,6 +1,3 @@
-import { ThemeProvider } from 'styled-components'
-
-import { theme } from '../../theme'
 import { Slide } from '.'
 import { render } from '@testing-library/react'
 
@@ -16,14 +13,12 @@ const MARKDOWN =
 
 it('renders correctly', () => {
   const { asFragment } = render(
-    <ThemeProvider theme={theme}>
-      <Slide
-        height={450}
-        markdown={MARKDOWN}
-        scale={1}
-        width={800}
-      />
-    </ThemeProvider>,
+    <Slide
+      height={450}
+      markdown={MARKDOWN}
+      scale={1}
+      width={800}
+    />,
   )
 
   expect(asFragment()).toMatchInlineSnapshot(`

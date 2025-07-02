@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
 
 export const StyledButton = styled.button`
   background-color: #fff;
@@ -14,7 +13,7 @@ export const StyledButton = styled.button`
   padding: 0 0.75rem;
   white-space: nowrap;
 
-  @media (min-width: ${theme.breakpoints.md}) {
+  @media (min-width: 576px) {
     font-size: 1rem;
     padding: 0 1rem;
   }

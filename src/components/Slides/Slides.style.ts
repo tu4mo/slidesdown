@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
 
 export const StyledSingleSlideContainer = styled.div`
   align-items: center;
@@ -25,7 +24,7 @@ export const StyledSlidesContainer = styled.div`
   width: 100%;
   -webkit-overflow-scrolling: touch;
 
-  @media (min-width: ${theme.breakpoints.xl}) {
+  @media (min-width: 768px) {
     padding: 2rem;
   }
 `

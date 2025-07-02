@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
 
 export const StyledTransformContainer = styled.div`
   position: relative;
@@ -7,7 +6,7 @@ export const StyledTransformContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: 1rem;
 
-    @media (min-width: ${theme.breakpoints.xl}) {
+    @media (min-width: 768px) {
       margin-bottom: 2rem;
     }
   }

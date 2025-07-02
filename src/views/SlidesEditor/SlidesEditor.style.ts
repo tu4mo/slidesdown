@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
 
 export const StyledSidebar = styled.div`
   box-shadow: var(--shadow-big);
@@ -10,7 +9,7 @@ export const StyledSidebar = styled.div`
   width: 100%;
   z-index: 1;
 
-  @media (min-width: ${theme.breakpoints.md}) {
+  @media (min-width: 576px) {
     border: 0;
   }
 `

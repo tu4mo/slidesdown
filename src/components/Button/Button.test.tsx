@@ -1,15 +1,8 @@
-import { ThemeProvider } from 'styled-components'
-
-import { theme } from '../../theme'
 import { Button } from '.'
 import { render } from '@testing-library/react'
 
 it('renders correctly', () => {
-  const { asFragment } = render(
-    <ThemeProvider theme={theme}>
-      <Button onClick={() => {}}>Test</Button>
-    </ThemeProvider>,
-  )
+  const { asFragment } = render(<Button onClick={() => {}}>Test</Button>)
 
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>

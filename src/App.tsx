@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react'
-import { ThemeProvider } from 'styled-components'
 import {
   createBrowserRouter,
   defer,
@@ -8,7 +7,6 @@ import {
 } from 'react-router-dom'
 
 import { GlobalStyle } from './App.style'
-import { theme } from './theme'
 import { Spinner } from './components/Spinner'
 
 import { getPresentation } from './firebase'
@@ -40,14 +38,12 @@ const router = createBrowserRouter([
 ])
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <>
-      <GlobalStyle />
-      <Suspense fallback={<Spinner />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </>
-  </ThemeProvider>
+  <>
+    <GlobalStyle />
+    <Suspense fallback={<Spinner />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  </>
 )
 
 export default App

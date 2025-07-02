@@ -9,12 +9,11 @@ import {
   updateSlidesThrottled,
   // , saveImage
 } from '../../firebase'
-import { theme as styledTheme } from '../../theme'
+import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
 
 import { Editor } from '../../components/Editor'
 import { Slides } from '../../components/Slides'
 import { Spinner } from '../../components/Spinner'
-import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
 
 import { SlidesToolBar } from './SlidesToolBar'
 import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
@@ -176,11 +175,7 @@ const SlidesEditor = () => {
       <SplitPane
         defaultSize={300}
         onChange={handleSplitPaneChange}
-        split={
-          width > parseInt(styledTheme.breakpoints.md, 10)
-            ? 'vertical'
-            : 'horizontal'
-        }
+        split={width > 576 ? 'vertical' : 'horizontal'}
       >
         <StyledSidebar>
           <Editor
