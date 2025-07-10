@@ -6,12 +6,12 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import { GlobalStyle } from './App.style'
 import { Spinner } from './components/Spinner'
 
 import { getPresentation } from './firebase'
 
 import 'prismjs/themes/prism.css'
+import './styles.css'
 
 const Presentation = lazy(() => import('./views/Presentation'))
 const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
@@ -37,13 +37,10 @@ const router = createBrowserRouter([
   },
 ])
 
-const App = () => (
-  <>
-    <GlobalStyle />
+export function App() {
+  return (
     <Suspense fallback={<Spinner />}>
       <RouterProvider router={router} />
     </Suspense>
-  </>
-)
-
-export default App
+  )
+}
