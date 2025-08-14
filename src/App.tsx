@@ -1,10 +1,5 @@
 import { Suspense, lazy } from 'react'
-import {
-  createBrowserRouter,
-  defer,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router'
 
 import { Spinner } from './components/Spinner'
 
@@ -31,7 +26,7 @@ const router = createBrowserRouter([
     path: '/:presentationId',
     element: <Presentation />,
     loader: ({ params }) => {
-      return defer({ slides: getPresentation(params['presentationId']!) })
+      return { slides: getPresentation(params['presentationId']!) }
     },
     errorElement: <Navigate to="/" />,
   },

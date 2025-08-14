@@ -6,7 +6,7 @@ import {
   useLocation,
   useLoaderData,
   Await,
-} from 'react-router-dom'
+} from 'react-router'
 
 import { Icon } from '../../components/Icon'
 import { Key } from '../../components/Key'
@@ -24,7 +24,7 @@ import {
 const Presentation = () => {
   const fullscreen = useFullScreenHandle()
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
-  const data = useLoaderData() as { slides: unknown }
+  const data = useLoaderData<{ slides: { markdown: string; theme: string } }>()
 
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
