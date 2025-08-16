@@ -12,11 +12,12 @@ it('renders correctly', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-bRKDuR dKhGqj"
+        class="_wrapper_b9116a"
       >
         <textarea
           aria-label="Markdown"
-          class="sc-hvigdm bTxqCD"
+          class="_textarea_b9116a"
+          name="markdown"
           placeholder="Write markdown here"
         >
           Test
@@ -39,18 +40,19 @@ it('renders correctly with disabled and isLoading', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-bRKDuR dKhGqj"
+        class="_wrapper_b9116a"
       >
         <textarea
           aria-label="Markdown"
-          class="sc-hvigdm bTxqCD"
+          class="_textarea_b9116a"
           disabled=""
+          name="markdown"
           placeholder="Write markdown here"
         >
           Test
         </textarea>
         <div
-          class="sc-fhHczv lmcsWf"
+          style="--progress: 50%;"
         />
       </div>
     </DocumentFragment>
