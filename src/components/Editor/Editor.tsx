@@ -1,10 +1,6 @@
-import { useRef } from 'react'
+import { CSSProperties, useRef } from 'react'
 
-import {
-  StyledWrapper,
-  StyledTextarea,
-  StyledProgressBar,
-} from './Editor.style'
+import styles from './Editor.module.css'
 
 import {
   getCurrentLineNumber,
@@ -58,10 +54,12 @@ const Editor = ({
   }
 
   return (
-    <StyledWrapper>
-      <StyledTextarea
+    <div className={styles.wrapper}>
+      <textarea
+        className={styles.textarea}
         aria-label="Markdown"
         disabled={isLoading}
+        name="markdown"
         onChange={onChange}
         onClick={handleClickAndKeyUp}
         onDrop={handleDrop}
@@ -70,8 +68,10 @@ const Editor = ({
         ref={editorRef}
         value={value}
       />
-      {isLoading && <StyledProgressBar $progress={progress || 0} />}
-    </StyledWrapper>
+      {isLoading && (
+        <div style={{ '--progress': `${progress || 0}%` } as CSSProperties} />
+      )}
+    </div>
   )
 }
 

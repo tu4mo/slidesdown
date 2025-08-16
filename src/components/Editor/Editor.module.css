@@ -1,14 +1,12 @@
-import styled from 'styled-components'
-
-export const StyledWrapper = styled.div`
+.wrapper {
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   width: 100%;
-`
+}
 
-export const StyledTextarea = styled.textarea`
+.textarea {
   background-color: var(--color-editor);
   border: 0;
   caret-color: var(--color-purple);
@@ -23,7 +21,6 @@ export const StyledTextarea = styled.textarea`
   top: 0;
   resize: none;
   width: 100%;
-  -webkit-overflow-scrolling: touch;
 
   &:disabled {
     opacity: 0.2;
@@ -33,9 +30,9 @@ export const StyledTextarea = styled.textarea`
     background-color: var(--color-purple);
     color: #fff;
   }
-`
+}
 
-export const StyledProgressBar = styled.div<{ $progress: number }>`
+.progress {
   align-items: center;
   display: flex;
   height: 100%;
@@ -50,8 +47,8 @@ export const StyledProgressBar = styled.div<{ $progress: number }>`
     background-image: linear-gradient(
       90deg,
       var(--color-purple) 0%,
-      var(--color-purple) ${(props) => props.$progress}%,
-      #fff ${(props) => props.$progress}%,
+      var(--color-purple) var(--progress),
+      #fff var(--progress),
       #fff 100%
     );
     border: 2px solid var(--color-purple);
@@ -61,4 +58,4 @@ export const StyledProgressBar = styled.div<{ $progress: number }>`
     display: block;
     width: 100%;
   }
-`
+}
