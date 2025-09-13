@@ -23,14 +23,14 @@ type Props = {
   value: string
 }
 
-const Editor = ({
+function Editor({
   isLoading,
   onChange,
   onCursorPositionChange,
   onDrop,
   progress,
   value,
-}: Props) => {
+}: Props) {
   const editorRef = useRef<HTMLTextAreaElement>(null)
 
   const getCurrentCursorPosition = (): number =>

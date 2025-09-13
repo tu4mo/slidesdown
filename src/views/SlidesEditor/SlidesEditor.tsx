@@ -26,7 +26,7 @@ const DEFAULT_MARKDOWN =
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
-const SlidesEditor = () => {
+function SlidesEditor() {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
   const [isCreated, setIsCreated] = useState(false)

@@ -9,15 +9,17 @@ type Props = {
   ref?: Ref<HTMLImageElement>
 }
 
-const Logo = ({ large, onClick, ref }: Props) => (
-  <StyledImg
-    $large={large}
-    alt="Slidesdown"
-    onClick={onClick}
-    ref={ref}
-    src={logoSvg}
-  />
-)
+function Logo({ large, onClick, ref }: Props) {
+  return (
+    <StyledImg
+      $large={large}
+      alt="Slidesdown"
+      onClick={onClick}
+      ref={ref}
+      src={logoSvg}
+    />
+  )
+}
 
 Logo.displayName = 'Logo'
 

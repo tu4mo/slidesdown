@@ -32,7 +32,7 @@ type Props = {
   type: keyof typeof ICONS
 }
 
-const Icon = ({ alt, disabled = false, onClick, tooltip, type }: Props) => {
+function Icon({ alt, disabled = false, onClick, tooltip, type }: Props) {
   const icon = (
     <button
       aria-label={alt}

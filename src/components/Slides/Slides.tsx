@@ -20,8 +20,9 @@ const THEMES: { [key: string]: ElementType<{ children: ReactNode }> } = {
   gofore: goforeTheme,
 }
 
-const splitMarkdownToSlides = (markdown: string = '') =>
-  markdown.split('\n---\n')
+function splitMarkdownToSlides(markdown: string = '') {
+  return markdown.split('\n---\n')
+}
 
 interface SlidesProps {
   markdown?: string
@@ -31,13 +32,13 @@ interface SlidesProps {
   theme?: string
 }
 
-const Slides = ({
+function Slides({
   markdown,
   onSlidesCount,
   singleSlide,
   slideToFocus,
   theme,
-}: SlidesProps) => {
+}: SlidesProps) {
   const [height, setHeight] = useState(0)
   const [scale, setScale] = useState(1)
   const [width, setWidth] = useState(0)

@@ -7,7 +7,7 @@ type Props = {
   timeout?: number
 }
 
-const Notification = ({ children, className, timeout = 15000 }: Props) => {
+function Notification({ children, className, timeout = 15000 }: Props) {
   const [hasTimedOut, setHasTimedOut] = useState(false)
 
   useEffect(() => {

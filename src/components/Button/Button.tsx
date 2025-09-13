@@ -8,13 +8,15 @@ interface ButtonProps {
   onClick(): void
 }
 
-const Button = ({ children, disabled, onClick }: ButtonProps) => (
-  <StyledButton
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {children}
-  </StyledButton>
-)
+function Button({ children, disabled, onClick }: ButtonProps) {
+  return (
+    <StyledButton
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </StyledButton>
+  )
+}
 
 export { Button }

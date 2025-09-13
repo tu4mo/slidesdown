@@ -13,7 +13,7 @@ type Props = {
   onClose(): void
 }
 
-const Modal = ({ children, heading, onClose }: Props) => {
+function Modal({ children, heading, onClose }: Props) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {

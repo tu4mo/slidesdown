@@ -21,7 +21,7 @@ import {
   StyledPresentationToolbar,
 } from './Presentation.style'
 
-const Presentation = () => {
+function Presentation() {
   const fullscreen = useFullScreenHandle()
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const data = useLoaderData<{ slides: { markdown: string; theme: string } }>()

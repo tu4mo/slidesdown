@@ -18,7 +18,7 @@ type Props = {
   onPresentationClick(): void
 }
 
-const SlidesToolBar = ({ isSaving, onPresentationClick }: Props) => {
+function SlidesToolBar({ isSaving, onPresentationClick }: Props) {
   const [isAboutVisible, setIsAboutVisible] = useState(false)
 
   return (
