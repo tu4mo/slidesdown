@@ -2,4 +2,4 @@
 
 ## General Guidance
 
-- For standalone functions, use function declaration, instead of expression
+- Use function declarations (`function myFunction() {...}`), while using arrow functions for callbacks.

@@ -1,11 +1,11 @@
 import { Firestore } from 'firebase-admin/firestore'
 import * as functions from 'firebase-functions/v1'
 
-export const presentation = async (
+export async function presentation(
   req: functions.Request,
   res: functions.Response,
   db: Firestore,
-) => {
+) {
   const { id } = req.query
 
   try {

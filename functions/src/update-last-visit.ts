@@ -1,11 +1,11 @@
 import { Firestore } from 'firebase-admin/firestore'
 import * as functions from 'firebase-functions/v1'
 
-export const updateLastVisit = async (
+export async function updateLastVisit(
   req: functions.Request,
   res: functions.Response,
   db: Firestore,
-) => {
+) {
   const { id } = req.query
 
   if (typeof id !== 'string') {
