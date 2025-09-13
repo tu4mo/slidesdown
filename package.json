@@ -59,7 +59,7 @@
     "jsdom": "^26.1.0",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.6.2",
-    "stylelint": "^16.23.1",
+    "stylelint": "^16.24.0",
     "stylelint-config-recommended": "^17.0.0",
     "typescript": "^5.9.2",
     "typescript-plugin-css-modules": "^5.2.0",
