@@ -1,24 +1,34 @@
 import { Firestore } from 'firebase-admin/firestore'
 
-const DATE_OFFSET = 1000 * 60 * 60 * 24 * 30
-const dateThirtyDaysAgo = new Date()
-dateThirtyDaysAgo.setTime(dateThirtyDaysAgo.getTime() - DATE_OFFSET)
+const DATE_OFFSET = 1000 * 60 * 60 * 24 * 30 // 30 days in milliseconds
 
-const getOldSlides = (db: Firestore) =>
-  db.collection('slides').where('createdAt', '<', dateThirtyDaysAgo).get()
+function getDateThirtyDaysAgo() {
+  const date = new Date()
+  date.setTime(date.getTime() - DATE_OFFSET)
+  return date
+}
 
-const getImages = (slide: FirebaseFirestore.QueryDocumentSnapshot) =>
-  slide.ref.collection('images').get()
+function getOldSlides(db: Firestore) {
+  return db
+    .collection('slides')
+    .where('createdAt', '<', getDateThirtyDaysAgo())
+    .get()
+}
+
+function getImages(slide: FirebaseFirestore.QueryDocumentSnapshot) {
+  return slide.ref.collection('images').get()
+}
 
 // TODO: Remove image from storage
-const removeSlide = async (slide: FirebaseFirestore.QueryDocumentSnapshot) => {
+async function removeSlide(slide: FirebaseFirestore.QueryDocumentSnapshot) {
   const images = await getImages(slide)
   const imageDeleteBatch: Promise<FirebaseFirestore.WriteResult>[] = []
   images.forEach((image) => imageDeleteBatch.push(image.ref.delete()))
   return Promise.all(imageDeleteBatch).then(() => slide.ref.delete())
 }
 
-export const removeOldSlides = async (db: Firestore) => {
+export async function removeOldSlides(db: Firestore) {
+  const dateThirtyDaysAgo = getDateThirtyDaysAgo()
   const slides = await getOldSlides(db)
 
   console.log(

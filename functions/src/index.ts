@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions/v1'
+import { onSchedule } from 'firebase-functions/v2/scheduler'
 import { initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 
@@ -14,9 +15,9 @@ export const onPresentationRequest = functions.https.onRequest((req, res) =>
   presentation(req, res, db),
 )
 
-export const onSlideCreate = functions.firestore
-  .document('slides/{slideId}')
-  .onCreate(() => removeOldSlides(db))
+export const scheduleRemoveOldSlides = onSchedule('0 0 * * 0', () =>
+  removeOldSlides(db),
+)
 
 export const onRequest = functions.https.onRequest((req, res) =>
   updateLastVisit(req, res, db),
