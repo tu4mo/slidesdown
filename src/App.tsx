@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { Suspense } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router'
 
 import { Spinner } from './components/Spinner'
@@ -7,9 +7,8 @@ import { getPresentation } from './firebase'
 
 import 'prismjs/themes/prism.css'
 import './styles.css'
-
-const Presentation = lazy(() => import('./views/Presentation'))
-const SlidesEditor = lazy(() => import('./views/SlidesEditor'))
+import SlidesEditor from './views/SlidesEditor'
+import Presentation from './views/Presentation'
 
 const newFilePath = `/edit/${crypto.randomUUID()}`
 
