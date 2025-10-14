@@ -11,11 +11,16 @@ service cloud.firestore {
           ['createdAt', 'markdown', 'presentationId', 'theme']
         )
         && request.resource.data.createdAt == request.time
-        && request.resource.data.presentationId is string
         && request.resource.data.markdown is string
-        && request.resource.data.theme is string;
+        && request.resource.data.presentationId is string
+        && request.resource.data.theme == 'default';
 
-      allow update: if !request.writeFields.hasAny(['createdAt', 'presentationId', 'visitedAt']);
+      allow update:
+        if request.resource.data.diff(resource.data).affectedKeys().hasOnly(
+          ['markdown', 'theme']
+        )
+        && request.resource.data.markdown is string
+        && request.resource.data.theme == 'default';
 
       // match /images/{image} {
       //   allow get, delete, list, update: if false;

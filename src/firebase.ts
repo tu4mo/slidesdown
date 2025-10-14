@@ -68,11 +68,12 @@ export const createSlides = async ({
   theme: string
 }) => {
   try {
-    await setDoc(
-      doc(db, SLIDES_COLLECTION, id),
-      { createdAt: serverTimestamp(), markdown, presentationId, theme },
-      { merge: true },
-    )
+    await setDoc(doc(db, SLIDES_COLLECTION, id), {
+      createdAt: serverTimestamp(),
+      markdown,
+      presentationId,
+      theme,
+    })
   } catch (error) {
     console.error('Error adding document: ', error)
   }
