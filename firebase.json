@@ -8,10 +8,6 @@
         "function": "presentation"
       },
       {
-        "source": "/api/updateLastVisit",
-        "function": "updateLastVisit"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }

@@ -5,7 +5,6 @@ import { getFirestore } from 'firebase-admin/firestore'
 
 import { presentation } from './presentation.js'
 import { removeOldSlides } from './remove-old-slides.js'
-import { updateLastVisit } from './update-last-visit.js'
 
 initializeApp()
 
@@ -17,8 +16,4 @@ export const onPresentationRequest = functions.https.onRequest((req, res) =>
 
 export const scheduleRemoveOldSlides = onSchedule('0 0 * * 0', () =>
   removeOldSlides(db),
-)
-
-export const onRequest = functions.https.onRequest((req, res) =>
-  updateLastVisit(req, res, db),
 )
