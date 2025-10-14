@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   getFirestore,
+  serverTimestamp,
   setDoc,
   updateDoc,
 } from 'firebase/firestore/lite'
@@ -69,7 +70,7 @@ export const createSlides = async ({
   try {
     await setDoc(
       doc(db, SLIDES_COLLECTION, id),
-      { createdAt: new Date(), markdown, presentationId, theme },
+      { createdAt: serverTimestamp(), markdown, presentationId, theme },
       { merge: true },
     )
   } catch (error) {
