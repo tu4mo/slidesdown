@@ -24,8 +24,8 @@ const router = createBrowserRouter([
   {
     path: '/:presentationId',
     element: <Presentation />,
-    loader: ({ params }) => {
-      return { slides: getPresentation(params['presentationId']!) }
+    loader: async ({ params }) => {
+      return { slides: await getPresentation(params['presentationId']!) }
     },
     errorElement: <Navigate to="/" />,
   },

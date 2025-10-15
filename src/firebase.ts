@@ -41,9 +41,7 @@ interface Slide {
 export const getSlides = async (id: string) => {
   const docSnap = await getDoc(doc(db, SLIDES_COLLECTION, id))
 
-  if (docSnap.exists()) {
-    fetch(`/api/onRequest?id=${id}`)
-  } else {
+  if (!docSnap.exists()) {
     throw new Error('Slides do not exist')
   }
 

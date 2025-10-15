@@ -1,18 +1,16 @@
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import {
   useParams,
   useNavigate,
   useLocation,
   useLoaderData,
-  Await,
 } from 'react-router'
 
 import { Icon } from '../../components/Icon'
 import { Key } from '../../components/Key'
 import { Notification } from '../../components/Notification'
 import { Slides } from '../../components/Slides'
-import { Spinner } from '../../components/Spinner'
 import { ToolBar, ToolBarDivider } from '../../components/ToolBar'
 
 import {
@@ -24,7 +22,9 @@ import {
 function Presentation() {
   const fullscreen = useFullScreenHandle()
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
-  const data = useLoaderData<{ slides: { markdown: string; theme: string } }>()
+  const { slides } = useLoaderData<{
+    slides: { markdown: string; theme: string }
+  }>()
 
   const slidesCount = useRef(0)
   const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
@@ -104,86 +104,80 @@ function Presentation() {
   }
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <Await resolve={data.slides}>
-        {(slides) => (
-          <FullScreen handle={fullscreen}>
-            <StyledPresentation onMouseMove={handlePresentationMouseMove}>
-              <Slides
-                markdown={slides.markdown}
-                onSlidesCount={handleSlidesCount}
-                singleSlide={slideNumberAsNumber}
-                theme={slides.theme}
+    <FullScreen handle={fullscreen}>
+      <StyledPresentation onMouseMove={handlePresentationMouseMove}>
+        <Slides
+          markdown={slides.markdown}
+          onSlidesCount={handleSlidesCount}
+          singleSlide={slideNumberAsNumber}
+          theme={slides.theme}
+        />
+        <StyledNoticationContainer>
+          <Notification
+            $slideDown
+            timeout={5000}
+          >
+            Press space or arrows to change slide.
+          </Notification>
+        </StyledNoticationContainer>
+        <StyledPresentationToolbar
+          onMouseMove={handleToolbarMouseMove}
+          $visible={isToolbarVisible}
+        >
+          <ToolBar>
+            <Icon
+              disabled={slideNumberAsNumber === 0}
+              onClick={() => changeSlide(false)}
+              tooltip={
+                <>
+                  Previous <Key>←</Key>
+                </>
+              }
+              type="left"
+            />
+            {fullscreen.active ? (
+              <Icon
+                onClick={fullscreen.exit}
+                tooltip={<span>Minimize</span>}
+                type="minimize"
               />
-              <StyledNoticationContainer>
-                <Notification
-                  $slideDown
-                  timeout={5000}
-                >
-                  Press space or arrows to change slide.
-                </Notification>
-              </StyledNoticationContainer>
-              <StyledPresentationToolbar
-                onMouseMove={handleToolbarMouseMove}
-                $visible={isToolbarVisible}
-              >
-                <ToolBar>
-                  <Icon
-                    disabled={slideNumberAsNumber === 0}
-                    onClick={() => changeSlide(false)}
-                    tooltip={
-                      <>
-                        Previous <Key>←</Key>
-                      </>
-                    }
-                    type="left"
-                  />
-                  {fullscreen.active ? (
-                    <Icon
-                      onClick={fullscreen.exit}
-                      tooltip={<span>Minimize</span>}
-                      type="minimize"
-                    />
-                  ) : (
-                    <Icon
-                      onClick={fullscreen.enter}
-                      tooltip={<span>Maximize</span>}
-                      type="maximize"
-                    />
-                  )}
-                  <Icon
-                    disabled={slideNumberAsNumber >= slidesCount.current - 1}
-                    onClick={changeSlide}
-                    tooltip={
-                      <>
-                        Next <Key>→</Key> / <Key>space</Key>
-                      </>
-                    }
-                    type="right"
-                  />
-                  {state.slidesId ? (
+            ) : (
+              <Icon
+                onClick={fullscreen.enter}
+                tooltip={<span>Maximize</span>}
+                type="maximize"
+              />
+            )}
+            <Icon
+              disabled={slideNumberAsNumber >= slidesCount.current - 1}
+              onClick={changeSlide}
+              tooltip={
+                <>
+                  Next <Key>→</Key> / <Key>space</Key>
+                </>
+              }
+              type="right"
+            />
+            {state?.slidesId ? (
+              <>
+                <ToolBarDivider />
+                <Icon
+                  onClick={() => navigate(`/edit/${state.slidesId}`)}
+                  tooltip={
                     <>
-                      <ToolBarDivider />
-                      <Icon
-                        onClick={() => navigate(`/edit/${state.slidesId}`)}
-                        tooltip={
-                          <>
-                            Edit
-                            <br />
-                            (available when coming from editor)
-                          </>
-                        }
-                        type="edit"
-                      />
+                      Edit
+                      <br />
+                      (available when coming from editor)
                     </>
-                  ) : undefined}
-                </ToolBar>
-              </StyledPresentationToolbar>
-            </StyledPresentation>
-          </FullScreen>
-        )}
-      </Await>
-    </Suspense>
+                  }
+                  type="edit"
+                />
+              </>
+            ) : undefined}
+          </ToolBar>
+        </StyledPresentationToolbar>
+      </StyledPresentation>
+    </FullScreen>
   )
 }
 
