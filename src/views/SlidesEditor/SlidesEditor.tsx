@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
-import { validate } from 'uuid'
 import { useLocation, useNavigate, useParams } from 'react-router'
 
 import {
@@ -26,6 +25,12 @@ const DEFAULT_MARKDOWN =
   '## Also tables\n\nColumn 1 | Column 2 | Column 3\n--- | --- | ---\nCell 1 | Cell 2 | Cell 3\n\n---\n\n' +
   '# 👋\n\n# Have fun!'
 
+function isValidUUID(uuid: string): boolean {
+  const uuidRegex =
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  return uuidRegex.test(uuid)
+}
+
 function SlidesEditor() {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
@@ -44,7 +49,7 @@ function SlidesEditor() {
   const location = useLocation()
   const { slidesId } = useParams<'slidesId'>()
 
-  if (!validate(slidesId || '')) {
+  if (!isValidUUID(slidesId || '')) {
     navigate('/')
   }
 
