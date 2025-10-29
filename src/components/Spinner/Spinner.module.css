@@ -1,0 +1,29 @@
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.spinner {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  left: 0;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.spinner::after {
+  animation: spinner 1s infinite;
+  animation-fill-mode: forwards;
+  border: 2px solid var(--color-purple);
+  border-radius: 4px;
+  content: '';
+  height: 2rem;
+  width: 2rem;
+}
