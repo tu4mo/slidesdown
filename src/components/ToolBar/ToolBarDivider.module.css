@@ -1,0 +1,4 @@
+.root {
+  border-left: 1px solid var(--color-border);
+  margin: 0 1rem;
+}
