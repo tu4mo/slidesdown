@@ -1,21 +1,7 @@
-import {
-  ElementType,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
 import { Slide } from '../Slide'
 import styles from './Slides.module.css'
-import { Theme as defaultTheme } from './themes/default'
-import { Theme as goforeTheme } from './themes/gofore'
-
-const THEMES: { [key: string]: ElementType<{ children: ReactNode }> } = {
-  default: defaultTheme,
-  gofore: goforeTheme,
-}
 
 function splitMarkdownToSlides(markdown: string = '') {
   return markdown.split('\n---\n')
@@ -26,7 +12,6 @@ interface SlidesProps {
   onSlidesCount?(count: number): void
   singleSlide?: number
   slideToFocus?: number
-  theme?: string
 }
 
 function Slides({
@@ -34,7 +19,6 @@ function Slides({
   onSlidesCount,
   singleSlide,
   slideToFocus,
-  theme,
 }: SlidesProps) {
   const [height, setHeight] = useState(0)
   const [scale, setScale] = useState(1)
@@ -84,8 +68,6 @@ function Slides({
     setWidth(width)
   }, [singleSlide])
 
-  const StyledTheme = THEMES[theme || 'default']
-
   const slides = splitMarkdownToSlides(markdown).map(
     (slideMarkdown, slideIndex) => (
       <Slide
@@ -102,24 +84,20 @@ function Slides({
 
   useWindowResizeObserver(handleResize)
 
-  return (
-    <StyledTheme>
-      {singleSlide !== undefined ? (
-        <div
-          className={styles.singleSlideContainer}
-          ref={slidesRef}
-        >
-          {slides[singleSlide]}
-        </div>
-      ) : (
-        <div
-          className={styles.slidesContainer}
-          ref={slidesRef}
-        >
-          {slides}
-        </div>
-      )}
-    </StyledTheme>
+  return singleSlide !== undefined ? (
+    <div
+      className={styles.singleSlideContainer}
+      ref={slidesRef}
+    >
+      {slides[singleSlide]}
+    </div>
+  ) : (
+    <div
+      className={styles.slidesContainer}
+      ref={slidesRef}
+    >
+      {slides}
+    </div>
   )
 }
 
