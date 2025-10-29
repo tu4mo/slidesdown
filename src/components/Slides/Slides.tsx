@@ -8,10 +8,7 @@ import {
 } from 'react'
 import { useWindowResizeObserver } from '../../hooks/useWindowResizeObserver'
 import { Slide } from '../Slide'
-import {
-  StyledSingleSlideContainer,
-  StyledSlidesContainer,
-} from './Slides.style'
+import styles from './Slides.module.css'
 import { Theme as defaultTheme } from './themes/default'
 import { Theme as goforeTheme } from './themes/gofore'
 
@@ -108,11 +105,19 @@ function Slides({
   return (
     <StyledTheme>
       {singleSlide !== undefined ? (
-        <StyledSingleSlideContainer ref={slidesRef}>
+        <div
+          className={styles.singleSlideContainer}
+          ref={slidesRef}
+        >
           {slides[singleSlide]}
-        </StyledSingleSlideContainer>
+        </div>
       ) : (
-        <StyledSlidesContainer ref={slidesRef}>{slides}</StyledSlidesContainer>
+        <div
+          className={styles.slidesContainer}
+          ref={slidesRef}
+        >
+          {slides}
+        </div>
       )}
     </StyledTheme>
   )

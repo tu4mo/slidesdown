@@ -1,6 +1,4 @@
-import styled from 'styled-components'
-
-export const StyledSingleSlideContainer = styled.div`
+.singleSlideContainer {
   align-items: center;
   background-color: #fff;
   display: flex;
@@ -10,9 +8,9 @@ export const StyledSingleSlideContainer = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-`
+}
 
-export const StyledSlidesContainer = styled.div`
+.slidesContainer {
   background-color: var(--color-background);
   height: 100%;
   left: 0;
@@ -23,8 +21,10 @@ export const StyledSlidesContainer = styled.div`
   top: 0;
   width: 100%;
   -webkit-overflow-scrolling: touch;
+}
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .slidesContainer {
     padding: 2rem;
   }
-`
+}
