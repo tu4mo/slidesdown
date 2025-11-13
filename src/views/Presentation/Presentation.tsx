@@ -23,7 +23,7 @@ function Presentation() {
   const fullscreen = useFullScreenHandle()
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const { slides } = useLoaderData<{
-    slides: { markdown: string; theme: string }
+    slides: { markdown: string }
   }>()
 
   const slidesCount = useRef(0)
@@ -110,7 +110,6 @@ function Presentation() {
           markdown={slides.markdown}
           onSlidesCount={handleSlidesCount}
           singleSlide={slideNumberAsNumber}
-          theme={slides.theme}
         />
         <StyledNoticationContainer>
           <Notification

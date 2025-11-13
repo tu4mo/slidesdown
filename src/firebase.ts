@@ -32,10 +32,9 @@ const storage = getStorage(firebaseApp)
 const IMAGES_COLLECTION = 'images'
 const SLIDES_COLLECTION = 'slides'
 
-interface Slide {
+type Slide = {
   markdown: string
   presentationId: `${string}-${string}-${string}-${string}-${string}`
-  theme: string
 }
 
 export const getSlides = async (id: string) => {
@@ -58,19 +57,16 @@ export const createSlides = async ({
   id,
   markdown,
   presentationId,
-  theme,
 }: {
   id: string
   markdown: string
   presentationId: string
-  theme: string
 }) => {
   try {
     await setDoc(doc(db, SLIDES_COLLECTION, id), {
       createdAt: serverTimestamp(),
       markdown,
       presentationId,
-      theme,
     })
   } catch (error) {
     console.error('Error adding document: ', error)
@@ -80,16 +76,14 @@ export const createSlides = async ({
 export const updateSlides = async ({
   id,
   markdown,
-  theme,
   callback,
 }: {
   id: string
   markdown: string
-  theme: string
   callback(): void
 }) => {
   try {
-    await updateDoc(doc(db, SLIDES_COLLECTION, id), { markdown, theme })
+    await updateDoc(doc(db, SLIDES_COLLECTION, id), { markdown })
 
     callback()
   } catch (error) {

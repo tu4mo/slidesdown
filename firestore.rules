@@ -8,19 +8,17 @@ service cloud.firestore {
 
       allow create:
         if request.resource.data.keys().hasOnly(
-          ['createdAt', 'markdown', 'presentationId', 'theme']
+          ['createdAt', 'markdown', 'presentationId']
         )
         && request.resource.data.createdAt == request.time
         && request.resource.data.markdown is string
-        && request.resource.data.presentationId is string
-        && request.resource.data.theme == 'default';
+        && request.resource.data.presentationId is string;
 
       allow update:
         if request.resource.data.diff(resource.data).affectedKeys().hasOnly(
-          ['markdown', 'theme']
+          ['markdown']
         )
-        && request.resource.data.markdown is string
-        && request.resource.data.theme == 'default';
+        && request.resource.data.markdown is string;
 
       // match /images/{image} {
       //   allow get, delete, list, update: if false;

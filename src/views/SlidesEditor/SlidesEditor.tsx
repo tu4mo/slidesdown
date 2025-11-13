@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import SplitPane from 'react-split-pane'
-import { useLocation, useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
 import {
   createSlides,
@@ -40,24 +40,16 @@ function SlidesEditor() {
   const [isUploading, setIsUploading] = useState(false)
   const [markdown, setMarkdown] = useState('')
   const [presentationId, setPresentationId] = useState(crypto.randomUUID())
-  const [theme, setTheme] = useState('')
   const [slideToFocus, setSlideToFocus] = useState(0)
   const [uploadProgress, setUploadProgress] = useState(0)
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const navigate = useNavigate()
-  const location = useLocation()
   const { slidesId } = useParams<'slidesId'>()
 
   if (!isValidUUID(slidesId || '')) {
     navigate('/')
   }
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
-    const theme = searchParams.get('theme') || 'default'
-    setTheme(theme)
-  }, [location.search])
 
   useEffect(() => {
     const fetchSlides = async () => {
@@ -97,7 +89,6 @@ function SlidesEditor() {
         id: slidesId,
         markdown,
         presentationId,
-        theme,
       })
 
       setIsSaving(false)
@@ -108,7 +99,6 @@ function SlidesEditor() {
     await updateSlidesThrottled({
       id: slidesId,
       markdown,
-      theme,
       callback: () => setIsSaving(false),
     })
   }
@@ -199,7 +189,6 @@ function SlidesEditor() {
           <Slides
             markdown={markdown}
             slideToFocus={slideToFocus}
-            theme={theme}
           />
           <SlidesToolBar
             isSaving={isSaving}
