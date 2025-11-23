@@ -53,7 +53,7 @@
     "eslint": "8.57.0",
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-react": "7.37.5",
-    "firebase-tools": "14.19.1",
+    "firebase-tools": "14.26.0",
     "jsdom": "27.2.0",
     "postcss-styled-syntax": "0.7.1",
     "prettier": "3.6.2",
