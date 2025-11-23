@@ -13,3 +13,6 @@ updates:
           - 'react-test-renderer'
           - '@types/react'
           - '@types/react-dom'
+      typescript-eslint:
+        patterns:
+          - '@typescript-eslint/*'
