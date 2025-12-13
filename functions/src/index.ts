@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions/v1'
-import { onSchedule } from 'firebase-functions/v2/scheduler'
+import { onSchedule } from 'firebase-functions/scheduler'
 import { initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 
