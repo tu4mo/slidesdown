@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import SplitPane from 'react-split-pane'
+import { Pane, SplitPane } from 'react-split-pane'
 import { useNavigate, useParams } from 'react-router'
 
 import {
@@ -15,7 +15,6 @@ import { Slides } from '../../components/Slides'
 import { Spinner } from '../../components/Spinner'
 
 import { SlidesToolBar } from './SlidesToolBar'
-import { StyledSidebar, StyledSlidesContainer } from './SlidesEditor.style'
 
 const DEFAULT_MARKDOWN =
   '# ✨✨✨\n\n# Welcome to Slidesdown\n\n---\n\n' +
@@ -165,38 +164,36 @@ function SlidesEditor() {
   }
 
   return (
-    <>
-      {/* @ts-expect-error Switch to modern split component */}
-      <SplitPane
+    <SplitPane
+      onResize={handleSplitPaneChange}
+      direction={width > 576 ? 'horizontal' : 'vertical'}
+      style={{ height: '100vh' }}
+    >
+      <Pane
         defaultSize={300}
-        onChange={handleSplitPaneChange}
-        split={width > 576 ? 'vertical' : 'horizontal'}
+        minSize={100}
+        style={{ boxShadow: 'var(--shadow-big)', zIndex: 1 }}
       >
-        <StyledSidebar>
-          <Editor
-            isLoading={isUploading}
-            onChange={handleEditorChange}
-            onCursorPositionChange={handleEditorCursorPositionChange}
-            // onDrop={handleEditorDrop}
-            progress={uploadProgress}
-            value={markdown}
-          />
-        </StyledSidebar>
-        <StyledSlidesContainer
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => e.preventDefault()}
-        >
-          <Slides
-            markdown={markdown}
-            slideToFocus={slideToFocus}
-          />
-          <SlidesToolBar
-            isSaving={isSaving}
-            onPresentationClick={handlePresentationClick}
-          />
-        </StyledSlidesContainer>
-      </SplitPane>
-    </>
+        <Editor
+          isLoading={isUploading}
+          onChange={handleEditorChange}
+          onCursorPositionChange={handleEditorCursorPositionChange}
+          // onDrop={handleEditorDrop}
+          progress={uploadProgress}
+          value={markdown}
+        />
+      </Pane>
+      <Pane minSize={100}>
+        <Slides
+          markdown={markdown}
+          slideToFocus={slideToFocus}
+        />
+        <SlidesToolBar
+          isSaving={isSaving}
+          onPresentationClick={handlePresentationClick}
+        />
+      </Pane>
+    </SplitPane>
   )
 }
 
