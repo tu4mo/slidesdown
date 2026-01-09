@@ -1,0 +1,8 @@
+.divider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-2.5px);
+  width: 5px;
+  z-index: 1;
+}

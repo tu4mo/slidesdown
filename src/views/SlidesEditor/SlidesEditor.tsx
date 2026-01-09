@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Pane, SplitPane } from 'react-split-pane'
 import { useNavigate, useParams } from 'react-router'
+import styles from './SlidesEditor.module.css'
 
 import {
   createSlides,
@@ -165,6 +166,7 @@ function SlidesEditor() {
 
   return (
     <SplitPane
+      dividerClassName={styles.divider}
       onResize={handleSplitPaneChange}
       direction={width > 576 ? 'horizontal' : 'vertical'}
       style={{ height: '100vh' }}
