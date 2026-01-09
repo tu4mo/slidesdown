@@ -274,17 +274,17 @@ it('renders correctly', () => {
               <thead>
                 <tr>
                   <th
-                    class="sc-dTvVRJ bGJWmh"
+                    class="_th_3a2981"
                   >
                     Column 1
                   </th>
                   <th
-                    class="sc-dTvVRJ bGJWmh"
+                    class="_th_3a2981"
                   >
                     Column 2
                   </th>
                   <th
-                    class="sc-dTvVRJ bGJWmh"
+                    class="_th_3a2981"
                   >
                     Column 3
                   </th>
@@ -293,17 +293,17 @@ it('renders correctly', () => {
               <tbody>
                 <tr>
                   <td
-                    class="sc-jwTyAe jLfAuY"
+                    class="_td_3a2981"
                   >
                     Cell 1
                   </td>
                   <td
-                    class="sc-jwTyAe jLfAuY"
+                    class="_td_3a2981"
                   >
                     Cell 2
                   </td>
                   <td
-                    class="sc-jwTyAe jLfAuY"
+                    class="_td_3a2981"
                   >
                     Cell 3
                   </td>
