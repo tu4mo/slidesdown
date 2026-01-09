@@ -1,13 +1,19 @@
 import { ReactNode, useEffect, useState } from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styles from './Notification.module.css'
 
 type Props = {
   children: ReactNode
   className?: string
   timeout?: number
+  slideDown?: boolean
 }
 
-function Notification({ children, className, timeout = 15000 }: Props) {
+function Notification({
+  children,
+  className,
+  timeout = 15000,
+  slideDown = false,
+}: Props) {
   const [hasTimedOut, setHasTimedOut] = useState(false)
 
   useEffect(() => {
@@ -15,29 +21,17 @@ function Notification({ children, className, timeout = 15000 }: Props) {
     return () => clearTimeout(timer)
   }, [timeout])
 
-  return !hasTimedOut ? <div className={className}>{children}</div> : null
+  if (hasTimedOut) return null
+
+  const classes = [
+    styles.notification,
+    slideDown ? styles.slideDown : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return <div className={classes}>{children}</div>
 }
 
-const slideDown = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(-1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
-
-const StyledNotification = styled(Notification)<{ $slideDown?: boolean }>`
-  ${(props) =>
-    props.$slideDown &&
-    css`
-      animation: ${slideDown} 1s ease-out;
-    `};
-
-  color: var(--color-purple);
-`
-
-export { StyledNotification as Notification }
+export { Notification }

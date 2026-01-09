@@ -112,7 +112,7 @@ function Presentation() {
         />
         <div className={styles.notificationContainer}>
           <Notification
-            $slideDown
+            slideDown
             timeout={5000}
           >
             Press space or arrows to change slide.

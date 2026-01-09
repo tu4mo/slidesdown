@@ -41,10 +41,9 @@ const Slide = memo(
       style={{ height, width }}
     >
       <div
-        className={[
-          styles.slideContainer,
-          single ? styles.single : ''
-        ].filter(Boolean).join(' ')}
+        className={[styles.slideContainer, single ? styles.single : '']
+          .filter(Boolean)
+          .join(' ')}
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
         <div>
