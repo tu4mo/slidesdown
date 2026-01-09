@@ -1,11 +1,6 @@
 import { useEffect, ReactNode } from 'react'
 
-import {
-  StyledModalContainer,
-  StyledModal,
-  StyledHeading,
-  StyledModalCloseButton,
-} from './Modal.style'
+import styles from './Modal.module.css'
 
 type Props = {
   children: ReactNode
@@ -27,13 +22,22 @@ function Modal({ children, heading, onClose }: Props) {
   }, [onClose])
 
   return (
-    <StyledModalContainer onClick={onClose}>
-      <StyledModal onClick={(e) => e.stopPropagation()}>
-        {heading && <StyledHeading>{heading}</StyledHeading>}
+    <div
+      className={styles.modalContainer}
+      onClick={onClose}
+    >
+      <div
+        className={styles.modal}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {heading && <h2 className={styles.heading}>{heading}</h2>}
         {children}
-        <StyledModalCloseButton onClick={onClose} />
-      </StyledModal>
-    </StyledModalContainer>
+        <button
+          className={styles.closeButton}
+          onClick={onClose}
+        />
+      </div>
+    </div>
   )
 }
 
