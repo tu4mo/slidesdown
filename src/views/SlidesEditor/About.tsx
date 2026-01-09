@@ -1,7 +1,7 @@
 import { Logo } from '../../components/Logo'
 import { Modal } from '../../components/Modal'
 
-import { StyledAbout, StyledHeading } from './About.style'
+import styles from './About.module.css'
 
 type Props = {
   onClose(): void
@@ -10,9 +10,9 @@ type Props = {
 function About({ onClose }: Props) {
   return (
     <Modal onClose={onClose}>
-      <StyledAbout>
+      <div className={styles.about}>
         <Logo large />
-        <StyledHeading>Write&nbsp;markdown, get&nbsp;slides</StyledHeading>
+        <h2 className={styles.heading}>Write&nbsp;markdown, get&nbsp;slides</h2>
         <a
           href="https://github.com/tu4mo/slidesdown"
           rel="noopener noreferrer"
@@ -20,7 +20,7 @@ function About({ onClose }: Props) {
         >
           GitHub
         </a>
-      </StyledAbout>
+      </div>
     </Modal>
   )
 }
