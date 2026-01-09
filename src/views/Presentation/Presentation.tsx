@@ -13,11 +13,7 @@ import { Notification } from '../../components/Notification'
 import { Slides } from '../../components/Slides'
 import { ToolBar, ToolBarDivider } from '../../components/ToolBar'
 
-import {
-  StyledPresentation,
-  StyledNoticationContainer,
-  StyledPresentationToolbar,
-} from './Presentation.style'
+import styles from './Presentation.module.css'
 
 function Presentation() {
   const fullscreen = useFullScreenHandle()
@@ -105,23 +101,29 @@ function Presentation() {
 
   return (
     <FullScreen handle={fullscreen}>
-      <StyledPresentation onMouseMove={handlePresentationMouseMove}>
+      <div
+        className={styles.presentation}
+        onMouseMove={handlePresentationMouseMove}
+      >
         <Slides
           markdown={slides.markdown}
           onSlidesCount={handleSlidesCount}
           singleSlide={slideNumberAsNumber}
         />
-        <StyledNoticationContainer>
+        <div className={styles.notificationContainer}>
           <Notification
             $slideDown
             timeout={5000}
           >
             Press space or arrows to change slide.
           </Notification>
-        </StyledNoticationContainer>
-        <StyledPresentationToolbar
+        </div>
+        <div
+          className={
+            styles.presentationToolbar +
+            (!isToolbarVisible ? ' ' + styles.presentationToolbarHidden : '')
+          }
           onMouseMove={handleToolbarMouseMove}
-          $visible={isToolbarVisible}
         >
           <ToolBar>
             <Icon
@@ -174,8 +176,8 @@ function Presentation() {
               </>
             ) : undefined}
           </ToolBar>
-        </StyledPresentationToolbar>
-      </StyledPresentation>
+        </div>
+      </div>
     </FullScreen>
   )
 }
