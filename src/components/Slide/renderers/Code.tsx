@@ -42,7 +42,7 @@ type Props = {
   className?: string | undefined
 }
 
-const Code = ({ children, className }: Props) => {
+export function Code({ children, className }: Props) {
   const language = className?.replace('language-', '')
 
   const html =
@@ -57,5 +57,3 @@ const Code = ({ children, className }: Props) => {
     <code>{children}</code>
   )
 }
-
-export { Code }

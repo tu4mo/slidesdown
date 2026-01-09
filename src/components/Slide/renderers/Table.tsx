@@ -1,13 +1,6 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
+import styles from './Table.module.css'
 
-const StyledTable = styled.table`
-  border-spacing: 0;
-  width: 100%;
-`
-
-const Table = ({ children }: { children?: ReactNode }) => (
-  <StyledTable>{children}</StyledTable>
-)
-
-export { Table }
+export function Table({ children }: { children?: ReactNode }) {
+  return <table className={styles.table}>{children}</table>
+}

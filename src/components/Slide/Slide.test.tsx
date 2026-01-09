@@ -255,7 +255,7 @@ it('renders correctly', () => {
 
             <p>
               <span
-                class="sc-fhHczv UnEHc"
+                class="_imageContainer_acdb4f"
               >
                 <img
                   alt=""
@@ -269,7 +269,7 @@ it('renders correctly', () => {
             
 
             <table
-              class="sc-ggWZvA efxoaf"
+              class="_table_0bd776"
             >
               <thead>
                 <tr>
