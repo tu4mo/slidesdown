@@ -23,7 +23,7 @@ function Presentation() {
   }>()
 
   const slidesCount = useRef(0)
-  const toolbarVisibilityTimer = useRef<NodeJS.Timeout | null>(null)
+  const toolbarVisibilityTimer = useRef<number | null>(null)
 
   const navigate = useNavigate()
   const { state, hash } = useLocation()
