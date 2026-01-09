@@ -1,0 +1,45 @@
+.transformContainer {
+  position: relative;
+}
+
+.transformContainer:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .transformContainer:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.slideContainer {
+  background-color: var(--color-slide);
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-size: 120%;
+  height: 450px;
+  justify-content: center;
+  left: 50%;
+  overflow: hidden;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  width: 800px;
+}
+
+.single {
+  box-shadow: none;
+  border-radius: unset;
+}
+
+.slideContainer h1 {
+  text-align: center;
+}
+
+.slideContainer ol,
+.slideContainer ul {
+  padding-left: 1.5em;
+}

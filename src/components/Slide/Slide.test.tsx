@@ -24,11 +24,11 @@ it('renders correctly', () => {
   expect(asFragment()).toMatchInlineSnapshot(`
     <DocumentFragment>
       <div
-        class="sc-bRKDuR fsIIfS"
+        class="_transformContainer_f5623e"
         style="height: 450px; width: 800px;"
       >
         <div
-          class="sc-hvigdm jXKUBY slide"
+          class="_slideContainer_f5623e"
           style="transform: translate(-50%, -50%) scale(1);"
         >
           <div>

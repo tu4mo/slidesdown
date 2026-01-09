@@ -2,7 +2,7 @@ import { ComponentProps, memo, Ref } from 'react'
 import Markdown from 'react-markdown'
 import gfm from 'remark-gfm'
 
-import { StyledTransformContainer, StyledSlideContainer } from './Slide.style'
+import styles from './Slide.module.css'
 
 import { Code } from './renderers/Code'
 import { Image } from './renderers/Image'
@@ -35,13 +35,16 @@ interface SlideProps {
 
 const Slide = memo(
   ({ markdown, ref, scale, single, width, height }: SlideProps) => (
-    <StyledTransformContainer
+    <div
       ref={ref}
+      className={styles.transformContainer}
       style={{ height, width }}
     >
-      <StyledSlideContainer
-        $single={single}
-        className="slide"
+      <div
+        className={[
+          styles.slideContainer,
+          single ? styles.single : ''
+        ].filter(Boolean).join(' ')}
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
       >
         <div>
@@ -52,8 +55,8 @@ const Slide = memo(
             {markdown}
           </Markdown>
         </div>
-      </StyledSlideContainer>
-    </StyledTransformContainer>
+      </div>
+    </div>
   ),
 )
 
