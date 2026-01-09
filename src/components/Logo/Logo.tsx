@@ -1,5 +1,5 @@
 import { Ref } from 'react'
-import { StyledImg } from './Logo.style'
+import styles from './Logo.module.css'
 
 import logoSvg from './logo.svg'
 
@@ -9,18 +9,17 @@ type Props = {
   ref?: Ref<HTMLImageElement>
 }
 
-function Logo({ large, onClick, ref }: Props) {
+export function Logo({ large, onClick, ref }: Props) {
+  const className = large ? `${styles.logo} ${styles.large}` : styles.logo
+
   return (
-    <StyledImg
-      $large={large}
+    <img
+      className={className}
       alt="Slidesdown"
       onClick={onClick}
       ref={ref}
       src={logoSvg}
+      style={onClick ? { cursor: 'pointer' } : undefined}
     />
   )
 }
-
-Logo.displayName = 'Logo'
-
-export { Logo }

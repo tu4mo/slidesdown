@@ -1,0 +1,11 @@
+.logo {
+  display: block;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+}
+
+.large {
+  height: 5rem;
+  width: 5rem;
+}
