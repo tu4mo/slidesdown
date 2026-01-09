@@ -10,7 +10,7 @@
     "deploy": "npm run build && firebase deploy",
     "format": "prettier --write .",
     "lint": "npm run lint:js && npm run lint:css",
-    "lint:css": "stylelint './src/**/*.{ts,tsx}'",
+    "lint:css": "stylelint './src/**/*.css'",
     "lint:js": "eslint .",
     "serve": "vite preview",
     "start": "vite",
@@ -39,7 +39,6 @@
     "remark-gfm": "4.0.1"
   },
   "devDependencies": {
-    "@stylelint/postcss-css-in-js": "0.38.0",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.1",
     "@types/lodash.throttle": "4.1.9",
@@ -54,7 +53,6 @@
     "eslint-plugin-react": "7.37.5",
     "firebase-tools": "15.1.0",
     "jsdom": "27.4.0",
-    "postcss-styled-syntax": "0.7.1",
     "prettier": "3.7.4",
     "stylelint": "16.26.1",
     "stylelint-config-recommended": "17.0.0",
