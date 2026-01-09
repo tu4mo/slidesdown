@@ -5,11 +5,7 @@ import { Logo } from '../../components/Logo'
 import { ToolBar } from '../../components/ToolBar'
 import { Tooltip } from '../../components/Tooltip'
 
-import {
-  StyledToolBarContainer,
-  StyledLogoContainer,
-  StyledIconWrapper,
-} from './SlidesToolBar.style'
+import styles from './SlidesToolBar.module.css'
 
 import { About } from './About'
 
@@ -23,23 +19,29 @@ function SlidesToolBar({ isSaving, onPresentationClick }: Props) {
 
   return (
     <>
-      <StyledToolBarContainer>
+      <div className={styles.toolBarContainer}>
         <ToolBar>
-          <StyledLogoContainer>
+          <div className={styles.logoContainer}>
             <Tooltip content="About Slidesdown">
               <Logo onClick={() => setIsAboutVisible(true)} />
             </Tooltip>
-          </StyledLogoContainer>
-          <StyledIconWrapper $withNotification={isSaving}>
+          </div>
+          <div
+            className={
+              isSaving
+                ? `${styles.iconWrapper} ${styles.iconWrapperWithNotification}`
+                : styles.iconWrapper
+            }
+          >
             <Icon
               alt="Presentation"
               onClick={onPresentationClick}
               tooltip="Presentation"
               type="presentation"
             />
-          </StyledIconWrapper>
+          </div>
         </ToolBar>
-      </StyledToolBarContainer>
+      </div>
       {isAboutVisible && <About onClose={() => setIsAboutVisible(false)} />}
     </>
   )

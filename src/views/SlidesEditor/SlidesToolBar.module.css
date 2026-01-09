@@ -1,0 +1,33 @@
+.toolBarContainer {
+  bottom: 1rem;
+  position: absolute;
+  right: 1rem;
+}
+
+.logoContainer {
+  align-items: center;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  margin-bottom: -1rem;
+  margin-right: 1rem;
+  margin-top: -1rem;
+  padding-right: 1rem;
+  position: relative;
+}
+
+.iconWrapper {
+  position: relative;
+}
+
+.iconWrapperWithNotification::after {
+  background-color: #d0021b;
+  border-radius: 50%;
+  border: 2px solid var(--color-background);
+  content: '';
+  height: 0.75rem;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.75rem;
+}
