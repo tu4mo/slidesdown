@@ -34,7 +34,7 @@
     "react-dom": "19.2.3",
     "react-full-screen": "1.1.1",
     "react-markdown": "10.1.0",
-    "react-router": "7.11.0",
+    "react-router": "7.12.0",
     "react-split-pane": "3.0.4",
     "remark-gfm": "4.0.1"
   },
