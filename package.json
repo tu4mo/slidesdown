@@ -55,7 +55,7 @@
     "jsdom": "27.4.0",
     "prettier": "3.7.4",
     "stylelint": "16.26.1",
-    "stylelint-config-recommended": "17.0.0",
+    "stylelint-config-recommended": "18.0.0",
     "typescript": "5.9.3",
     "typescript-plugin-css-modules": "5.2.0",
     "vite": "7.3.1",
