@@ -27,7 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "@floating-ui/react": "0.27.16",
-    "firebase": "12.7.0",
+    "firebase": "12.8.0",
     "lodash.throttle": "4.1.1",
     "prismjs": "1.30.0",
     "react": "19.2.3",
