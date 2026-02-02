@@ -26,7 +26,7 @@
   "author": "tu4mo",
   "license": "ISC",
   "dependencies": {
-    "@floating-ui/react": "0.27.16",
+    "@floating-ui/react": "0.27.17",
     "firebase": "12.8.0",
     "lodash.throttle": "4.1.1",
     "prismjs": "1.30.0",
