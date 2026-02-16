@@ -7,8 +7,8 @@ import { getPresentation } from './firebase'
 
 import 'prismjs/themes/prism.css'
 import './styles.css'
-import SlidesEditor from './views/SlidesEditor'
-import Presentation from './views/Presentation'
+import { SlidesEditor } from './views/SlidesEditor/SlidesEditor'
+import { Presentation } from './views/Presentation/Presentation'
 
 const newFilePath = `/edit/${crypto.randomUUID()}`
 

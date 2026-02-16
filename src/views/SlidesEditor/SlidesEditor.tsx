@@ -31,7 +31,7 @@ function isValidUUID(uuid: string): boolean {
   return uuidRegex.test(uuid)
 }
 
-function SlidesEditor() {
+export function SlidesEditor() {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [cursorPosition, setCursorPosition] = useState(0)
   const [isCreated, setIsCreated] = useState(false)
@@ -198,5 +198,3 @@ function SlidesEditor() {
     </SplitPane>
   )
 }
-
-export default SlidesEditor

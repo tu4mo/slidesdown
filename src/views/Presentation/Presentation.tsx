@@ -15,7 +15,7 @@ import { ToolBar, ToolBarDivider } from '../../components/ToolBar'
 
 import styles from './Presentation.module.css'
 
-function Presentation() {
+export function Presentation() {
   const fullscreen = useFullScreenHandle()
   const [isToolbarVisible, setIsToolbarVisible] = useState(false)
   const { slides } = useLoaderData<{
@@ -181,5 +181,3 @@ function Presentation() {
     </FullScreen>
   )
 }
-
-export default Presentation
