@@ -15,7 +15,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "13.6.1",
-    "firebase-functions": "7.0.6"
+    "firebase-functions": "7.1.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "22.0.5"
